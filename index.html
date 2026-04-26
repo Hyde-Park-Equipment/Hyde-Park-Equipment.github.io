@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Hub v0.1.0</title><!-- build:20260426_v010_skeleton -->
+<title>HPE Sales Hub v0.1.2</title><!-- build:20260426_v012_brighten_sso -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --black:#0a0a0a; --black-2:#141414; --black-3:#1c1c1c;
-  --gray-700:#2a2a2a; --gray-600:#3a3a3a; --gray-500:#6b6b6b; --gray-400:#9a9a9a; --gray-300:#cfcfcf;
+  --black:#0a0a0a; --black-2:#1a1a1a; --black-3:#2e2e2e;
+  --card-bg:#262626; --tile-bg:#333333;
+  --gray-700:#3a3a3a; --gray-600:#4a4a4a; --gray-500:#6b6b6b; --gray-400:#9a9a9a; --gray-300:#cfcfcf;
   --orange:#e85d04; --orange-dark:#c44d04;
   --warn:#f59e0b; --info:#3b82f6; --success:#10b981; --danger:#ef4444;
   --topbar-h:54px; --max-w:1280px;
@@ -63,7 +64,7 @@ button{font-family:inherit;cursor:pointer;}
 
 /* MODULE CARDS */
 .modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:28px;}
-.module-card{background:var(--black-2);border:1px solid var(--gray-700);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;transition:border-color .15s;}
+.module-card{background:var(--card-bg);border:1px solid var(--gray-700);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;transition:border-color .15s;}
 .module-card:hover{border-color:var(--gray-600);}
 .module-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
 .module-card-titlebox h3{color:white;font-size:15px;font-weight:600;margin-bottom:3px;}
@@ -72,7 +73,7 @@ button{font-family:inherit;cursor:pointer;}
 .module-card-go:hover{border-color:var(--orange);color:var(--orange);}
 
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;}
-.metric{background:var(--black-3);border-radius:7px;padding:9px 11px;}
+.metric{background:var(--tile-bg);border-radius:7px;padding:9px 11px;}
 .metric-label{font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:2px;}
 .metric-value{font-size:17px;font-weight:600;color:white;font-variant-numeric:tabular-nums;}
 
@@ -88,10 +89,10 @@ button{font-family:inherit;cursor:pointer;}
 .very-stale{color:var(--danger);}
 
 /* EMPTY / LOADING */
-.empty-state, .loading-state{background:var(--black-2);border:1px dashed var(--gray-700);border-radius:12px;padding:40px 24px;text-align:center;color:var(--gray-500);}
+.empty-state, .loading-state{background:var(--card-bg);border:1px dashed var(--gray-700);border-radius:12px;padding:40px 24px;text-align:center;color:var(--gray-500);}
 .empty-state h3{color:var(--gray-300);font-size:14px;font-weight:500;margin-bottom:6px;}
 .empty-state p{font-size:12px;line-height:1.6;}
-.empty-state code{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-300);background:var(--black-3);padding:1px 5px;border-radius:3px;}
+.empty-state code{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-300);background:var(--tile-bg);padding:1px 5px;border-radius:3px;}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.2);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
@@ -99,9 +100,9 @@ button{font-family:inherit;cursor:pointer;}
 .debug-section{margin-top:28px;}
 .debug-toggle{background:var(--black-3);border:1px solid var(--gray-700);color:var(--gray-400);font-size:12px;font-weight:500;padding:8px 14px;border-radius:7px;display:flex;align-items:center;gap:6px;}
 .debug-toggle:hover{color:var(--gray-300);border-color:var(--gray-600);}
-.debug-panel{display:none;margin-top:12px;background:var(--black-2);border:1px solid var(--gray-700);border-radius:8px;padding:14px;}
+.debug-panel{display:none;margin-top:12px;background:var(--card-bg);border:1px solid var(--gray-700);border-radius:8px;padding:14px;}
 .debug-panel.open{display:block;}
-.debug-panel pre{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-400);background:var(--black-3);padding:12px;border-radius:6px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin-bottom:8px;}
+.debug-panel pre{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-400);background:var(--tile-bg);padding:12px;border-radius:6px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin-bottom:8px;}
 .debug-panel h4{color:var(--gray-300);font-size:12px;font-weight:600;margin-top:14px;margin-bottom:6px;font-family:'DM Mono',monospace;}
 .debug-panel h4:first-child{margin-top:0;}
 
@@ -180,16 +181,46 @@ button{font-family:inherit;cursor:pointer;}
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
-const APP_VERSION='0.1.0';
-const APP_BUILD='20260426_v010_skeleton';
+const APP_VERSION='0.1.2';
+const APP_BUILD='20260426_v012_brighten_sso';
 console.log('%cHPE Sales Hub v'+APP_VERSION+' ('+APP_BUILD+')','background:#1e293b;color:#10b981;padding:4px 8px;border-radius:4px;font-weight:600');
 
 const CLIENT_ID='659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com';
 const SCOPES='https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
 const SHARED_DRIVE_NAME='HPE Link';
 const ALLOWED_DOMAIN='hydeparkequipment.ca';
-const SHARED_TOKEN_KEY='hpe_shared_token';   // future: read by all modules for SSO
-const HUB_TOKEN_KEY='hpe_hub_token';
+const SHARED_TOKEN_KEY='hpe_shared_token';
+const APP_TOKEN_KEY='hpe_hub_token';
+
+// ── CROSS-MODULE SSO HELPERS ──
+// All three apps (hub, used, shortline) share these helpers verbatim so that
+// signing in to any one app authenticates the others on the same domain.
+function readCachedToken(){
+  for(const k of [SHARED_TOKEN_KEY, APP_TOKEN_KEY]){
+    const raw=localStorage.getItem(k);
+    if(!raw)continue;
+    try{
+      const {token, exp}=JSON.parse(raw);
+      if(token && exp>Date.now())return token;
+    }catch(e){}
+  }
+  return null;
+}
+function writeCachedToken(token){
+  const exp=Date.now()+55*60*1000;  // 55 min, slightly under Google's 1hr
+  const payload=JSON.stringify({token, exp});
+  try{ localStorage.setItem(SHARED_TOKEN_KEY, payload); }catch(e){}
+  try{ localStorage.setItem(APP_TOKEN_KEY, payload); }catch(e){}
+}
+function clearCachedToken(){
+  try{ localStorage.removeItem(SHARED_TOKEN_KEY); }catch(e){}
+  try{ localStorage.removeItem(APP_TOKEN_KEY); }catch(e){}
+  // Also clear legacy sessionStorage entries from older builds
+  try{ sessionStorage.removeItem(APP_TOKEN_KEY); }catch(e){}
+  try{ sessionStorage.removeItem(SHARED_TOKEN_KEY); }catch(e){}
+  try{ sessionStorage.removeItem('hpe_token'); }catch(e){}
+  try{ sessionStorage.removeItem('hpe_shortline_token'); }catch(e){}
+}
 
 let tokenClient=null, accessToken=null, userInfo=null;
 let sharedDriveId=null;
@@ -215,12 +246,7 @@ function initGoogleAuth(){
         return;
       }
       accessToken=resp.access_token;
-      // Cache token (1 hour, Google's standard) in both keys
-      const exp=Date.now()+55*60*1000;
-      try{
-        sessionStorage.setItem(HUB_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
-        sessionStorage.setItem(SHARED_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
-      }catch(e){}
+      writeCachedToken(accessToken);
       // Schedule silent refresh every 45 minutes
       if(window._tokenRefreshTimer)clearInterval(window._tokenRefreshTimer);
       window._tokenRefreshTimer=setInterval(()=>{
@@ -231,8 +257,7 @@ function initGoogleAuth(){
         if(!userInfo.email||!userInfo.email.toLowerCase().endsWith('@'+ALLOWED_DOMAIN)){
           showAuthError('Access restricted to @'+ALLOWED_DOMAIN+' accounts. You signed in as '+(userInfo.email||'unknown')+'.');
           accessToken=null; userInfo=null;
-          sessionStorage.removeItem(HUB_TOKEN_KEY);
-          sessionStorage.removeItem(SHARED_TOKEN_KEY);
+          clearCachedToken();
           return;
         }
         await showApp();
@@ -241,20 +266,15 @@ function initGoogleAuth(){
       }
     }
   });
-  // Try cached token (hub-specific first, then shared)
-  let cached=sessionStorage.getItem(HUB_TOKEN_KEY)||sessionStorage.getItem(SHARED_TOKEN_KEY);
-  if(cached){
-    try{
-      const {token, exp}=JSON.parse(cached);
-      if(token&&exp>Date.now()){
-        accessToken=token;
-        loadUserInfo().then(()=>{
-          if(userInfo.email&&userInfo.email.toLowerCase().endsWith('@'+ALLOWED_DOMAIN)){
-            showApp();
-          }
-        }).catch(()=>{});
+  // Try cached token (shared first, then app-specific)
+  const cachedToken=readCachedToken();
+  if(cachedToken){
+    accessToken=cachedToken;
+    loadUserInfo().then(()=>{
+      if(userInfo.email&&userInfo.email.toLowerCase().endsWith('@'+ALLOWED_DOMAIN)){
+        showApp();
       }
-    }catch(e){}
+    }).catch(()=>{});
   }
 }
 
@@ -270,8 +290,7 @@ function signOut(){
     try{ google.accounts.oauth2.revoke(accessToken,()=>{}); }catch(e){}
   }
   accessToken=null; userInfo=null;
-  sessionStorage.removeItem(HUB_TOKEN_KEY);
-  sessionStorage.removeItem(SHARED_TOKEN_KEY);
+  clearCachedToken();
   if(window._tokenRefreshTimer){clearInterval(window._tokenRefreshTimer);window._tokenRefreshTimer=null;}
   document.getElementById('app').style.display='none';
   document.getElementById('topbar').style.display='none';
@@ -319,11 +338,7 @@ async function gfetch(url, opts={}){
         tokenClient.callback=async (resp)=>{
           if(resp.error){reject(new Error('token refresh failed'));return;}
           accessToken=resp.access_token;
-          const exp=Date.now()+55*60*1000;
-          try{
-            sessionStorage.setItem(HUB_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
-            sessionStorage.setItem(SHARED_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
-          }catch(e){}
+          writeCachedToken(accessToken);
           opts.headers['Authorization']='Bearer '+accessToken;
           resolve(await fetch(url, opts));
         };

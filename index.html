@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HPE Sales Hub v0.1.0</title><!-- build:20260426_v010_skeleton -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0a0a0a; --black-2:#141414; --black-3:#1c1c1c;
+  --gray-700:#2a2a2a; --gray-600:#3a3a3a; --gray-500:#6b6b6b; --gray-400:#9a9a9a; --gray-300:#cfcfcf;
+  --orange:#e85d04; --orange-dark:#c44d04;
+  --warn:#f59e0b; --info:#3b82f6; --success:#10b981; --danger:#ef4444;
+  --topbar-h:54px; --max-w:1280px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--black);color:var(--gray-300);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;}
+button{font-family:inherit;cursor:pointer;}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--black-2);border-bottom:1px solid var(--gray-700);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:100;}
+.topbar-left{display:flex;align-items:center;gap:14px;}
+.topbar-logo{width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:13px;}
+.topbar-title{font-size:13px;font-weight:600;color:white;line-height:1.2;}
+.topbar-title span{display:block;font-size:10px;font-weight:400;color:var(--gray-500);}
+.version-pill{font-family:'DM Mono',ui-monospace,monospace;font-size:9px;font-weight:600;color:var(--gray-500);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:2px 6px;letter-spacing:0.3px;cursor:help;user-select:none;}
+.version-pill:hover{color:var(--gray-300);background:rgba(255,255,255,0.1);}
+
+/* APP SWITCHER */
+.app-switcher{display:flex;align-items:center;gap:4px;background:var(--black-3);border:1px solid var(--gray-700);border-radius:8px;padding:3px;}
+.app-switcher a, .app-switcher button.app-tab{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--gray-400);font-size:12px;font-weight:500;padding:6px 10px;border-radius:5px;text-decoration:none;transition:background .12s,color .12s;}
+.app-switcher a:hover, .app-switcher button.app-tab:hover{color:var(--gray-300);background:rgba(255,255,255,0.04);}
+.app-switcher .active{background:var(--orange);color:white;}
+.app-switcher .active:hover{background:var(--orange);color:white;}
+
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.refresh-btn{background:var(--orange);color:white;border:none;border-radius:7px;padding:7px 12px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;}
+.refresh-btn:hover{background:var(--orange-dark);}
+.refresh-btn:disabled{opacity:0.5;cursor:not-allowed;}
+.user-avatar{width:30px;height:30px;border-radius:50%;background:var(--black-3);border:2px solid var(--orange);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--orange);overflow:hidden;}
+.user-avatar img{width:100%;height:100%;object-fit:cover;}
+
+/* AUTH SCREEN */
+.auth-screen{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px;}
+.auth-card{background:var(--black-2);border:1px solid var(--gray-700);border-radius:14px;padding:36px 32px;max-width:380px;width:100%;text-align:center;}
+.auth-logo{width:56px;height:56px;background:var(--orange);border-radius:14px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:22px;}
+.auth-title{color:white;font-size:18px;font-weight:600;margin-bottom:6px;}
+.auth-subtitle{color:var(--gray-500);font-size:13px;margin-bottom:24px;}
+.auth-btn{background:var(--orange);color:white;border:none;border-radius:8px;padding:12px 20px;font-size:14px;font-weight:600;width:100%;}
+.auth-btn:hover{background:var(--orange-dark);}
+.auth-error{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#fca5a5;font-size:12px;padding:10px 12px;border-radius:7px;margin-top:14px;display:none;text-align:left;}
+
+/* MAIN */
+.app-body{padding-top:var(--topbar-h);min-height:100vh;}
+.container{max-width:var(--max-w);margin:0 auto;padding:24px 20px 60px;}
+
+.page-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+.page-title{color:white;font-size:20px;font-weight:600;}
+.page-sub{color:var(--gray-500);font-size:12px;margin-top:3px;}
+.last-updated{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-500);}
+
+/* MODULE CARDS */
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:28px;}
+.module-card{background:var(--black-2);border:1px solid var(--gray-700);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;transition:border-color .15s;}
+.module-card:hover{border-color:var(--gray-600);}
+.module-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.module-card-titlebox h3{color:white;font-size:15px;font-weight:600;margin-bottom:3px;}
+.module-card-titlebox .module-key{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;}
+.module-card-go{background:transparent;border:1px solid var(--gray-700);color:var(--gray-300);font-size:11px;font-weight:500;padding:5px 10px;border-radius:6px;text-decoration:none;}
+.module-card-go:hover{border-color:var(--orange);color:var(--orange);}
+
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;}
+.metric{background:var(--black-3);border-radius:7px;padding:9px 11px;}
+.metric-label{font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:2px;}
+.metric-value{font-size:17px;font-weight:600;color:white;font-variant-numeric:tabular-nums;}
+
+.alerts{display:flex;flex-direction:column;gap:5px;}
+.alert{display:flex;align-items:center;justify-content:space-between;font-size:11px;padding:6px 10px;border-radius:6px;}
+.alert-warn{background:rgba(245,158,11,0.08);color:#fcd34d;border:1px solid rgba(245,158,11,0.2);}
+.alert-info{background:rgba(59,130,246,0.08);color:#93c5fd;border:1px solid rgba(59,130,246,0.2);}
+.alert-count{font-family:'DM Mono',monospace;font-weight:600;}
+
+.module-foot{display:flex;justify-content:space-between;font-size:10px;color:var(--gray-500);font-family:'DM Mono',monospace;border-top:1px solid var(--gray-700);padding-top:9px;}
+.fresh{color:var(--success);}
+.stale{color:var(--warn);}
+.very-stale{color:var(--danger);}
+
+/* EMPTY / LOADING */
+.empty-state, .loading-state{background:var(--black-2);border:1px dashed var(--gray-700);border-radius:12px;padding:40px 24px;text-align:center;color:var(--gray-500);}
+.empty-state h3{color:var(--gray-300);font-size:14px;font-weight:500;margin-bottom:6px;}
+.empty-state p{font-size:12px;line-height:1.6;}
+.empty-state code{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-300);background:var(--black-3);padding:1px 5px;border-radius:3px;}
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.2);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* DEBUG PANEL */
+.debug-section{margin-top:28px;}
+.debug-toggle{background:var(--black-3);border:1px solid var(--gray-700);color:var(--gray-400);font-size:12px;font-weight:500;padding:8px 14px;border-radius:7px;display:flex;align-items:center;gap:6px;}
+.debug-toggle:hover{color:var(--gray-300);border-color:var(--gray-600);}
+.debug-panel{display:none;margin-top:12px;background:var(--black-2);border:1px solid var(--gray-700);border-radius:8px;padding:14px;}
+.debug-panel.open{display:block;}
+.debug-panel pre{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-400);background:var(--black-3);padding:12px;border-radius:6px;overflow-x:auto;white-space:pre-wrap;word-break:break-word;margin-bottom:8px;}
+.debug-panel h4{color:var(--gray-300);font-size:12px;font-weight:600;margin-top:14px;margin-bottom:6px;font-family:'DM Mono',monospace;}
+.debug-panel h4:first-child{margin-top:0;}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--black-3);color:white;border:1px solid var(--gray-700);padding:10px 16px;border-radius:8px;font-size:13px;z-index:300;display:none;}
+.toast.show{display:block;}
+
+@media(max-width:700px){
+  .container{padding:16px 14px 40px;}
+  .topbar{padding:0 12px;}
+  .topbar-title span{display:none;}
+  .app-switcher button.app-tab span, .app-switcher a span{display:none;}
+  .modules-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">HPE</div>
+    <div class="auth-title">HPE Sales Hub</div>
+    <div class="auth-subtitle">Sign in with your @hydeparkequipment.ca account</div>
+    <button class="auth-btn" id="auth-btn" onclick="signIn()">Sign in with Google</button>
+    <div class="auth-error" id="auth-error"></div>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar" id="topbar" style="display:none;">
+  <div class="topbar-left">
+    <div class="topbar-logo">HPE</div>
+    <div class="topbar-title">Hyde Park Equipment<span>Sales Hub</span></div>
+    <span class="version-pill" id="version-pill" title="Build version">v…</span>
+  </div>
+  <div class="app-switcher" id="app-switcher">
+    <button class="app-tab active" type="button"><span>Hub</span></button>
+    <!-- module tabs injected here -->
+  </div>
+  <div class="topbar-right">
+    <button class="refresh-btn" id="refresh-btn" onclick="loadAllSummaries()">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+      Refresh
+    </button>
+    <div class="user-avatar" id="user-avatar" onclick="signOut()" title="Sign out"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="app-body" id="app" style="display:none;">
+  <div class="container">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Dashboard</div>
+        <div class="page-sub">Cross-module overview</div>
+      </div>
+      <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <div id="modules-area">
+      <div class="loading-state"><span class="spinner"></span> &nbsp; Loading modules…</div>
+    </div>
+
+    <div class="debug-section">
+      <button class="debug-toggle" onclick="toggleDebug()">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        Debug — raw summary JSON
+      </button>
+      <div class="debug-panel" id="debug-panel"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+const APP_VERSION='0.1.0';
+const APP_BUILD='20260426_v010_skeleton';
+console.log('%cHPE Sales Hub v'+APP_VERSION+' ('+APP_BUILD+')','background:#1e293b;color:#10b981;padding:4px 8px;border-radius:4px;font-weight:600');
+
+const CLIENT_ID='659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com';
+const SCOPES='https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+const SHARED_DRIVE_NAME='HPE Link';
+const ALLOWED_DOMAIN='hydeparkequipment.ca';
+const SHARED_TOKEN_KEY='hpe_shared_token';   // future: read by all modules for SSO
+const HUB_TOKEN_KEY='hpe_hub_token';
+
+let tokenClient=null, accessToken=null, userInfo=null;
+let sharedDriveId=null;
+let summaries=[];   // [{module, moduleName, moduleUrl, generatedAt, generatedBy, metrics, alerts, _fileId}]
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const p=document.getElementById('version-pill');
+  if(p){p.textContent='v'+APP_VERSION;p.title='Build '+APP_BUILD;}
+  initGoogleAuth();
+});
+
+// ── AUTH ──
+function initGoogleAuth(){
+  if(typeof google==='undefined'||!google.accounts){
+    setTimeout(initGoogleAuth, 200);
+    return;
+  }
+  tokenClient=google.accounts.oauth2.initTokenClient({
+    client_id:CLIENT_ID, scope:SCOPES, hd:ALLOWED_DOMAIN,
+    callback: async (resp)=>{
+      if(resp.error){
+        showAuthError('Sign in failed: '+(resp.error_description||resp.error));
+        return;
+      }
+      accessToken=resp.access_token;
+      // Cache token (1 hour, Google's standard) in both keys
+      const exp=Date.now()+55*60*1000;
+      try{
+        sessionStorage.setItem(HUB_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
+        sessionStorage.setItem(SHARED_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
+      }catch(e){}
+      // Schedule silent refresh every 45 minutes
+      if(window._tokenRefreshTimer)clearInterval(window._tokenRefreshTimer);
+      window._tokenRefreshTimer=setInterval(()=>{
+        try{ tokenClient.requestAccessToken({prompt:'',hint:userInfo?userInfo.email:''}); }catch(e){}
+      }, 45*60*1000);
+      try{
+        await loadUserInfo();
+        if(!userInfo.email||!userInfo.email.toLowerCase().endsWith('@'+ALLOWED_DOMAIN)){
+          showAuthError('Access restricted to @'+ALLOWED_DOMAIN+' accounts. You signed in as '+(userInfo.email||'unknown')+'.');
+          accessToken=null; userInfo=null;
+          sessionStorage.removeItem(HUB_TOKEN_KEY);
+          sessionStorage.removeItem(SHARED_TOKEN_KEY);
+          return;
+        }
+        await showApp();
+      }catch(e){
+        showAuthError('Could not load account info: '+(e.message||e));
+      }
+    }
+  });
+  // Try cached token (hub-specific first, then shared)
+  let cached=sessionStorage.getItem(HUB_TOKEN_KEY)||sessionStorage.getItem(SHARED_TOKEN_KEY);
+  if(cached){
+    try{
+      const {token, exp}=JSON.parse(cached);
+      if(token&&exp>Date.now()){
+        accessToken=token;
+        loadUserInfo().then(()=>{
+          if(userInfo.email&&userInfo.email.toLowerCase().endsWith('@'+ALLOWED_DOMAIN)){
+            showApp();
+          }
+        }).catch(()=>{});
+      }
+    }catch(e){}
+  }
+}
+
+function signIn(){
+  hideAuthError();
+  if(!tokenClient){showAuthError('Sign-in not yet ready. Try again in a moment.');return;}
+  tokenClient.requestAccessToken({prompt:'consent', include_granted_scopes:true, hint:''});
+}
+
+function signOut(){
+  if(!confirm('Sign out?'))return;
+  if(accessToken){
+    try{ google.accounts.oauth2.revoke(accessToken,()=>{}); }catch(e){}
+  }
+  accessToken=null; userInfo=null;
+  sessionStorage.removeItem(HUB_TOKEN_KEY);
+  sessionStorage.removeItem(SHARED_TOKEN_KEY);
+  if(window._tokenRefreshTimer){clearInterval(window._tokenRefreshTimer);window._tokenRefreshTimer=null;}
+  document.getElementById('app').style.display='none';
+  document.getElementById('topbar').style.display='none';
+  document.getElementById('auth-screen').style.display='flex';
+}
+
+async function loadUserInfo(){
+  const r=await fetch('https://www.googleapis.com/oauth2/v2/userinfo',{headers:{'Authorization':'Bearer '+accessToken}});
+  if(!r.ok)throw new Error('userinfo HTTP '+r.status);
+  userInfo=await r.json();
+}
+
+function showAuthError(msg){
+  const el=document.getElementById('auth-error');
+  el.textContent=msg; el.style.display='block';
+}
+function hideAuthError(){
+  document.getElementById('auth-error').style.display='none';
+}
+
+async function showApp(){
+  document.getElementById('auth-screen').style.display='none';
+  document.getElementById('topbar').style.display='flex';
+  document.getElementById('app').style.display='block';
+  // user avatar
+  const av=document.getElementById('user-avatar');
+  if(userInfo.picture){
+    av.innerHTML='<img src="'+userInfo.picture+'" alt="">';
+  }else{
+    const initial=(userInfo.email||'?').charAt(0).toUpperCase();
+    av.textContent=initial;
+  }
+  await loadAllSummaries();
+}
+
+// ── DRIVE FETCHING ──
+async function gfetch(url, opts={}){
+  opts.headers=opts.headers||{};
+  opts.headers['Authorization']='Bearer '+accessToken;
+  const r=await fetch(url, opts);
+  if(r.status===401){
+    // token expired — try refresh
+    return new Promise((resolve, reject)=>{
+      try{
+        tokenClient.callback=async (resp)=>{
+          if(resp.error){reject(new Error('token refresh failed'));return;}
+          accessToken=resp.access_token;
+          const exp=Date.now()+55*60*1000;
+          try{
+            sessionStorage.setItem(HUB_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
+            sessionStorage.setItem(SHARED_TOKEN_KEY, JSON.stringify({token:accessToken, exp}));
+          }catch(e){}
+          opts.headers['Authorization']='Bearer '+accessToken;
+          resolve(await fetch(url, opts));
+        };
+        tokenClient.requestAccessToken({prompt:'', hint:userInfo?userInfo.email:''});
+      }catch(e){reject(e);}
+    });
+  }
+  return r;
+}
+
+async function findSharedDrive(){
+  let pageToken=null;
+  do{
+    let url='https://www.googleapis.com/drive/v3/drives?pageSize=100';
+    if(pageToken)url+='&pageToken='+encodeURIComponent(pageToken);
+    const r=await gfetch(url);
+    const data=await r.json();
+    if(!data.drives)return null;
+    const d=data.drives.find(x=>x.name.trim()===SHARED_DRIVE_NAME.trim());
+    if(d)return d.id;
+    pageToken=data.nextPageToken;
+  }while(pageToken);
+  return null;
+}
+
+async function findAllSummaryFiles(){
+  // Search the whole shared drive for any file named exactly dashboard-summary.json
+  const params=new URLSearchParams({
+    q:"name='dashboard-summary.json' and trashed=false",
+    fields:'files(id,name,parents,modifiedTime)',
+    supportsAllDrives:'true',
+    includeItemsFromAllDrives:'true',
+    driveId:sharedDriveId,
+    corpora:'drive',
+    pageSize:'100'
+  });
+  const r=await gfetch('https://www.googleapis.com/drive/v3/files?'+params);
+  const data=await r.json();
+  return (data.files||[]);
+}
+
+async function fetchSummaryContent(fileId){
+  const r=await gfetch('https://www.googleapis.com/drive/v3/files/'+fileId+'?alt=media&supportsAllDrives=true');
+  if(!r.ok)throw new Error('fetch summary HTTP '+r.status);
+  return await r.json();
+}
+
+async function loadAllSummaries(){
+  const btn=document.getElementById('refresh-btn');
+  btn.disabled=true;
+  const origHTML=btn.innerHTML;
+  btn.innerHTML='<span class="spinner"></span> &nbsp;Loading';
+  const area=document.getElementById('modules-area');
+  area.innerHTML='<div class="loading-state"><span class="spinner"></span> &nbsp; Loading modules…</div>';
+  try{
+    if(!sharedDriveId){
+      sharedDriveId=await findSharedDrive();
+      if(!sharedDriveId)throw new Error('Shared Drive "'+SHARED_DRIVE_NAME+'" not found');
+    }
+    const files=await findAllSummaryFiles();
+    console.log('Hub: found',files.length,'summary file(s)');
+    const loaded=[];
+    for(const f of files){
+      try{
+        const content=await fetchSummaryContent(f.id);
+        content._fileId=f.id;
+        content._modifiedTime=f.modifiedTime;
+        loaded.push(content);
+      }catch(e){
+        console.warn('Failed to load summary',f.id,e);
+        loaded.push({_fileId:f.id, _error:String(e), module:'unknown', moduleName:'(failed to load)'});
+      }
+    }
+    // Sort by module name for stable display
+    loaded.sort((a,b)=>(a.moduleName||'').localeCompare(b.moduleName||''));
+    summaries=loaded;
+    renderModules();
+    renderAppSwitcher();
+    renderDebug();
+    document.getElementById('last-updated').textContent='Refreshed '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  }catch(e){
+    console.error('Hub load error:',e);
+    area.innerHTML='<div class="empty-state"><h3>Couldn\'t load modules</h3><p>'+escapeHtml(e.message||String(e))+'</p></div>';
+    showToast('Load failed: '+(e.message||e));
+  }finally{
+    btn.disabled=false;
+    btn.innerHTML=origHTML;
+  }
+}
+
+// ── RENDER ──
+function renderModules(){
+  const area=document.getElementById('modules-area');
+  if(!summaries.length){
+    area.innerHTML='<div class="empty-state"><h3>No module summaries found</h3><p>Each module writes a <code>dashboard-summary.json</code> on save and login. Open Used Tracker or Shortline once to seed the files, then refresh.</p></div>';
+    return;
+  }
+  area.innerHTML='<div class="modules-grid">'+summaries.map(renderModuleCard).join('')+'</div>';
+}
+
+function renderModuleCard(s){
+  if(s._error){
+    return '<div class="module-card"><div class="module-card-head"><div class="module-card-titlebox"><h3>(failed to load)</h3><div class="module-key">'+escapeHtml(s._fileId||'')+'</div></div></div><p style="color:#fca5a5;font-size:12px;">'+escapeHtml(s._error)+'</p></div>';
+  }
+  const metricsHtml=Object.entries(s.metrics||{}).map(([k,v])=>{
+    const display=formatMetricValue(k,v);
+    return '<div class="metric"><div class="metric-label">'+escapeHtml(humanize(k))+'</div><div class="metric-value">'+display+'</div></div>';
+  }).join('');
+  const alertsHtml=(s.alerts||[]).map(a=>{
+    const cls='alert-'+(a.severity==='warn'?'warn':'info');
+    return '<div class="alert '+cls+'"><span>'+escapeHtml(a.label||'')+'</span><span class="alert-count">'+(a.count||0)+'</span></div>';
+  }).join('');
+  const freshness=freshnessLabel(s.generatedAt);
+  return ''+
+    '<div class="module-card">'+
+      '<div class="module-card-head">'+
+        '<div class="module-card-titlebox">'+
+          '<h3>'+escapeHtml(s.moduleName||s.module||'Unknown')+'</h3>'+
+          '<div class="module-key">'+escapeHtml(s.module||'?')+' · schema v'+(s.schemaVersion||'?')+'</div>'+
+        '</div>'+
+        (s.moduleUrl?'<a class="module-card-go" href="'+escapeHtml(s.moduleUrl)+'">Open ↗</a>':'')+
+      '</div>'+
+      (metricsHtml?'<div class="metric-grid">'+metricsHtml+'</div>':'<p style="color:var(--gray-500);font-size:12px;">No metrics yet.</p>')+
+      (alertsHtml?'<div class="alerts">'+alertsHtml+'</div>':'')+
+      '<div class="module-foot">'+
+        '<span class="'+freshness.cls+'">'+freshness.label+'</span>'+
+        '<span>'+escapeHtml(s.generatedBy||'')+'</span>'+
+      '</div>'+
+    '</div>';
+}
+
+function renderAppSwitcher(){
+  const sw=document.getElementById('app-switcher');
+  // Keep the Hub tab, append one tab per module
+  let html='<button class="app-tab active" type="button"><span>Hub</span></button>';
+  summaries.forEach(s=>{
+    if(s._error||!s.moduleUrl)return;
+    const short=shortName(s.moduleName||s.module||'?');
+    html+='<a href="'+escapeHtml(s.moduleUrl)+'"><span>'+escapeHtml(short)+'</span></a>';
+  });
+  sw.innerHTML=html;
+}
+
+function renderDebug(){
+  const panel=document.getElementById('debug-panel');
+  if(!summaries.length){panel.innerHTML='<p style="color:var(--gray-500);font-size:12px;">No summaries loaded.</p>';return;}
+  panel.innerHTML=summaries.map(s=>{
+    const title=s.moduleName||s.module||'unknown';
+    return '<h4>'+escapeHtml(title)+'</h4><pre>'+escapeHtml(JSON.stringify(s,null,2))+'</pre>';
+  }).join('');
+}
+
+function toggleDebug(){
+  document.getElementById('debug-panel').classList.toggle('open');
+}
+
+// ── HELPERS ──
+function humanize(key){
+  // camelCase -> Title Case-ish
+  return key.replace(/([A-Z])/g,' $1').replace(/^./,c=>c.toUpperCase()).trim();
+}
+
+function formatMetricValue(key, val){
+  if(val==null)return '—';
+  if(typeof val!=='number')return escapeHtml(String(val));
+  // Currency-ish keys
+  if(/value|revenue|price|cost/i.test(key)){
+    return '$'+Math.round(val).toLocaleString();
+  }
+  // Days
+  if(/days/i.test(key))return val.toLocaleString()+'d';
+  // Default: integer with thousands separator
+  return Math.round(val).toLocaleString();
+}
+
+function freshnessLabel(iso){
+  if(!iso)return {label:'no timestamp', cls:'very-stale'};
+  const t=new Date(iso).getTime();
+  if(isNaN(t))return {label:'bad timestamp', cls:'very-stale'};
+  const ageMs=Date.now()-t;
+  const min=Math.floor(ageMs/60000);
+  if(min<1)return {label:'updated just now', cls:'fresh'};
+  if(min<60)return {label:'updated '+min+'m ago', cls:'fresh'};
+  const hr=Math.floor(min/60);
+  if(hr<24)return {label:'updated '+hr+'h ago', cls:'fresh'};
+  const days=Math.floor(hr/24);
+  if(days<7)return {label:'updated '+days+'d ago', cls:'stale'};
+  return {label:'updated '+days+'d ago', cls:'very-stale'};
+}
+
+function shortName(name){
+  // Trim "Module" / "Tracker" boilerplate for the topbar tab
+  return name.replace(/\s*(Module|Tracker|Equipment)\s*/gi,' ').replace(/\s+/g,' ').trim()||name;
+}
+
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+
+function showToast(msg, ms){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), ms||2500);
+}
+</script>
+</body>
+</html>

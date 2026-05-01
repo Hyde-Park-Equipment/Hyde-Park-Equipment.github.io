@@ -1307,7 +1307,6 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
   background:rgba(22,163,74,0.05);color:var(--green);font-weight:600;
 }
 #section-shortline .qline-margin-input:focus{outline:none;border-color:var(--green);background:rgba(22,163,74,0.10);}
-#section-shortline .qq-margin-input{}
 /* v0.7 — Bulk margin bar in Quote Builder */
 #section-shortline .bulk-margin-bar{
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;
@@ -3240,8 +3239,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.4.1',
-    build: '20260501_v141_dead_code_strip',
+    version: '1.4.2',
+    build: '20260501_v142_qq_drawer_strip',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -17346,9 +17345,6 @@ function init(){
   renderComms();
   renderBrandHub();
   renderBrandInfo();
-  loadQQFromStorage();
-  renderQQLines();
-  updateQQIndicator();
   // v0.7 — Price Book starts on brand cards view
   updatePricebookView();
   renderBrandCardsGrid();
@@ -18326,36 +18322,15 @@ function quickQuote(id, override){
   showToast(`Added ${s.brand} ${s.model} to quote`);
 }
 
-/* v0.35 — Adds a SKU to the Quick Quote drawer (qqState) and opens the drawer.
-   Used by the "+ Quote" button on SKU cards/rows in the price book.
-   This replaces the old quickQuote() flow for SKU cards, which jumped straight
-   into the full Quote Builder. The QQ drawer lets the rep keep adding lines
-   (more SKUs, trade-ins, additional costs) before committing to a full quote. */
+/* v1.4.2 — Repointed. Was the entry into the orphaned QQ drawer subsystem
+   (qqState/saveQQToStorage/renderQQLines/etc — all stripped in v1.4.2).
+   Now passes through to the original quickQuote() flow, which appends the
+   SKU to quoteLineItems (so it lands in the currently-open quote if one is
+   open, or starts a new one) and opens the Quote Builder. The price-book
+   "+ Quote" button at line ~17951 calls this; the function name is kept
+   so that onclick attribute keeps working untouched. */
 function addToQuickQuote(skuId){
-  const sku = SKUS.find(s => s.id === skuId);
-  if (!sku){ if(typeof showToast === 'function') showToast('SKU not found'); return; }
-  const brand = BRANDS.find(b => b.name === sku.brand) || { default_margin: 15 };
-  const price = Math.round((sku.cost || 0) / (1 - (brand.default_margin || 15)/100));
-  qqState.lines.push({
-    qid: qqNextId++,
-    type: 'sku',
-    sku_id: sku.id,
-    label: `${sku.brand} ${sku.model}`,
-    desc: sku.desc || '',
-    cost: sku.cost || 0,
-    price: price || 0,
-    qty: 1
-  });
-  // Track recently quoted (so the dashboard "Recent SKUs" updates too)
-  recentlyQuotedSkuIds = [sku.id, ...recentlyQuotedSkuIds.filter(x => x !== sku.id)].slice(0, 8);
-  if(typeof renderRecentSkus === 'function') renderRecentSkus();
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-  // v1.4.1 — guarded: openQuickQuote IIFE body removed; this whole drawer
-  // subsystem is orphaned but not yet stripped (see notes near line ~22299).
-  if (typeof openQuickQuote === 'function') openQuickQuote();
-  if(typeof showToast === 'function') showToast(`Added ${sku.brand} ${sku.model} to Quick Quote`);
+  return quickQuote(skuId);
 }
 
 function addTradeIn(){
@@ -20870,32 +20845,17 @@ function removeModelImage(key){
    shows up automatically on every future quote for that model.
    ============================================================ */
 
-/* Public entry point. Called from per-line camera buttons in QQ + full builder.
-   `context` is 'qq' or 'full'. `index` is the line position. */
+/* Public entry point. Called from per-line camera buttons in the full Quote
+   Builder. `context` is always 'full' since v1.4.2 (the orphaned QQ drawer
+   subsystem was stripped); the parameter is kept for the downstream
+   _openLineImageEditor call signature. `index` is the line position. */
 function uploadLineItemImage(context, index){
-  // Resolve brand/model from the line. QQ lines store label like "Walker T23" — split it.
   let brand = '', model = '', desc = '';
-  if(context === 'qq'){
-    const ln = qqState.lines[index];
-    if(!ln){ showToast('Line not found'); return; }
-    if(ln.type === 'sku' && ln.sku_id){
-      const sku = SKUS.find(s => s.id === ln.sku_id);
-      if(sku){ brand = sku.brand; model = sku.model; }
-    }
-    if(!brand && ln.label){
-      // Best-effort split for custom lines: first token = brand, rest = model
-      const parts = ln.label.trim().split(/\s+/);
-      brand = parts[0] || '';
-      model = parts.slice(1).join(' ');
-    }
-    desc = ln.label || ln.desc || '';
-  } else {
-    const ln = quoteLineItems[index];
-    if(!ln){ showToast('Line not found'); return; }
-    brand = ln.brand || '';
-    model = ln.model || '';
-    desc = ((brand+' '+model).trim()) || ln.desc || ln.label || '';
-  }
+  const ln = quoteLineItems[index];
+  if(!ln){ showToast('Line not found'); return; }
+  brand = ln.brand || '';
+  model = ln.model || '';
+  desc = ((brand+' '+model).trim()) || ln.desc || ln.label || '';
   if(!brand || !model){
     // Tell the user instead of silently failing — common case is a custom line
     // with a single-word label (no space-separated brand/model).
@@ -21017,7 +20977,6 @@ function _saveLineImage(){
   closeLineImageEditor();
   saveAppState();
   // Re-render the relevant view so the thumbnail appears immediately
-  if(ctx === 'qq' && typeof renderQQLines === 'function') renderQQLines();
   if(ctx === 'full' && typeof renderLineItems === 'function') renderLineItems();
   showToast('Image saved for ' + brand + ' ' + model);
 }
@@ -22272,501 +22231,17 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'), 2800);
 }
 
-/* ============================================================
-   v0.6: QUICK QUOTE — slide-out drawer, persists across pages
-   ============================================================ */
-let qqState = { customer:'', lines:[], tab:'items' };
-let qqNextId = 1;
-const QQ_STORAGE_KEY = 'hpe_qq_v1';
-
-function loadQQFromStorage(){
-  try {
-    const raw = localStorage.getItem(QQ_STORAGE_KEY);
-    if (raw){
-      const parsed = JSON.parse(raw);
-      if (parsed && typeof parsed === 'object'){
-        qqState.customer = parsed.customer || '';
-        qqState.lines = Array.isArray(parsed.lines) ? parsed.lines : [];
-        qqState.tab = parsed.tab || 'items';
-        // Sync customer field
-        const cf = document.getElementById('qq-customer');
-        if (cf) cf.value = qqState.customer;
-      }
-    }
-  } catch(e){ /* ignore */ }
-}
-function saveQQToStorage(){
-  try { localStorage.setItem(QQ_STORAGE_KEY, JSON.stringify(qqState)); } catch(e){}
-}
-
-/* v1.4.1 — Removed Shortline's IIFE-body openQuickQuote and closeQuickQuote.
-   The shell now owns the Quick Quote chooser modal at HPE.ui.openQuickQuote
-   / HPE.ui.closeQuickQuote (see line ~3807). The IIFE versions targeted
-   #qq-drawer / #qq-backdrop / #qq-results — Shortline's old internal QQ
-   drawer DOM, which no longer exists in the unified shell.
-
-   Note: the surrounding QQ-drawer subsystem (qqState, saveQQToStorage,
-   loadQQFromStorage, setQQTab, renderQQResults, renderQQLines, addToQQ
-   helpers, pushQuickQuoteToBuilder, the `+ Quote` button in the price-book
-   row, etc.) is also orphaned but is intentionally NOT being stripped in
-   this pass — it intersects with user-visible UI (the `+ Quote` button)
-   and would need a replacement workflow. Tracked for a follow-up pass. */
-
-function updateQQIndicator(){
-  // Show a small dot on the Quick Quote nav button when there are pending lines
-  const ind = document.getElementById('qq-indicator');
-  if (!ind) return;
-  ind.style.display = qqState.lines.length > 0 ? 'inline-block' : 'none';
-}
-
-document.addEventListener('input', function(e){
-  if (e.target && e.target.id === 'qq-customer'){
-    qqState.customer = e.target.value;
-    saveQQToStorage();
-  }
-});
-
-/* Picker */
-function setQQTab(tab){
-  qqState.tab = tab;
-  saveQQToStorage();
-  document.querySelectorAll('#qq-tabs .qq-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.tab === tab);
-  });
-  renderQQResults();
-}
-
-function renderQQResults(){
-  const search = (document.getElementById('qq-search')?.value || '').toLowerCase().trim();
-  const resultsEl = document.getElementById('qq-results');
-  const listEl = document.getElementById('qq-results-list');
-  if (!search){
-    resultsEl.classList.remove('open');
-    return;
-  }
-  resultsEl.classList.add('open');
-
-  // Search packages (alias-aware)
-  const packages = PACKAGES.filter(p =>
-    matchSearch(`${p.brand} ${p.name} ${p.desc}`, search)
-  ).sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
-
-  // Search SKUs (alias-aware, includes category)
-  const items = SKUS.filter(s => matchSearch(skuHaystack(s), search)).slice(0, 40);
-
-  // Update tab counts
-  document.querySelectorAll('#qq-tabs .qq-tab').forEach(t => {
-    const tab = t.dataset.tab;
-    const count = tab === 'packages' ? packages.length : items.length;
-    const label = tab === 'packages' ? 'Packages' : 'Items';
-    t.textContent = `${label} (${count})`;
-  });
-
-  // Auto-switch to packages tab if there are matching packages and we haven't manually picked items
-  let activeTab = qqState.tab;
-  if (packages.length > 0 && items.length === 0) activeTab = 'packages';
-  if (packages.length === 0 && items.length > 0) activeTab = 'items';
-
-  document.querySelectorAll('#qq-tabs .qq-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.tab === activeTab);
-  });
-
-  if (activeTab === 'packages'){
-    if (packages.length === 0){
-      listEl.innerHTML = '<div class="qq-empty">No matching packages. Try the Items tab.</div>';
-      return;
-    }
-    listEl.innerHTML = packages.map(p => {
-      // Stock: count how many of the package's lines have stock
-      const stockCounts = p.lines.map(l => {
-        const sku = SKUS.find(s => s.model === l.model);
-        return sku ? getStockForSku(sku).length : 0;
-      });
-      const allStocked = stockCounts.every(c => c > 0);
-      const noneStocked = stockCounts.every(c => c === 0);
-      const stockBadge = allStocked
-        ? '<span class="qq-stock-badge in-stock">all in stock</span>'
-        : noneStocked
-        ? '<span class="qq-stock-badge no-stock">none stocked</span>'
-        : '<span class="qq-stock-badge no-stock" style="background:rgba(245,158,11,0.15);color:#b45309">partial stock</span>';
-      const featuredCls = p.featured ? ' featured' : '';
-      return `
-        <div class="qq-result package${featuredCls}" onclick="addQQPackage(${p.id})">
-          <div class="qq-result-title">
-            ${p.featured ? '<span class="qq-pkg-star">★</span>' : ''}
-            <span class="qq-pkg-tag">PKG</span>
-            ${escapeHtml(p.brand)} — ${escapeHtml(p.name)}
-            ${stockBadge}
-          </div>
-          <div class="qq-result-meta">
-            <span>${escapeHtml(p.desc)}</span>
-            <span>${p.lines.length} lines</span>
-          </div>
-        </div>
-      `;
-    }).join('');
-  } else {
-    if (items.length === 0){
-      listEl.innerHTML = '<div class="qq-empty">No matching items.</div>';
-      return;
-    }
-    listEl.innerHTML = items.map(s => {
-      const stock = getStockForSku(s);
-      const stockBadge = stock.length > 0
-        ? `<span class="qq-stock-badge in-stock">${stock.length} in stock</span>`
-        : '<span class="qq-stock-badge no-stock">not stocked</span>';
-      return `
-        <div class="qq-result" onclick="addQQItem(${s.id})">
-          <div class="qq-result-title">
-            ${escapeHtml(s.brand)} ${escapeHtml(s.model)}
-            ${stockBadge}
-          </div>
-          <div class="qq-result-meta">
-            <span>${escapeHtml(s.desc)}</span>
-            <span style="font-family:'DM Mono',monospace">$${s.cost.toLocaleString('en-US',{maximumFractionDigits:0})} cost</span>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-}
-
-function addQQItem(skuId){
-  const sku = SKUS.find(s => s.id === skuId);
-  if (!sku) return;
-  const brand = BRANDS.find(b => b.name === sku.brand) || { default_margin: 15 };
-  const price = Math.round(sku.cost / (1 - brand.default_margin/100));
-  qqState.lines.push({
-    qid: qqNextId++,
-    type: 'sku',
-    sku_id: sku.id,
-    label: `${sku.brand} ${sku.model}`,
-    desc: sku.desc,
-    cost: sku.cost,
-    price: price,
-    qty: 1
-  });
-  document.getElementById('qq-search').value = '';
-  document.getElementById('qq-results').classList.remove('open');
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-}
-
-function addQQPackage(pkgId){
-  const pkg = PACKAGES.find(p => p.id === pkgId);
-  if (!pkg) return;
-  pkg.lines.forEach(line => {
-    const sku = SKUS.find(s => s.model === line.model);
-    if (sku){
-      const brand = BRANDS.find(b => b.name === sku.brand) || { default_margin: 15 };
-      const price = Math.round(sku.cost / (1 - brand.default_margin/100));
-      qqState.lines.push({
-        qid: qqNextId++,
-        type: 'sku',
-        sku_id: sku.id,
-        label: `${sku.brand} ${sku.model}`,
-        desc: sku.desc,
-        cost: sku.cost,
-        price: price,
-        qty: line.qty,
-        from_pkg: pkg.name
-      });
-    }
-  });
-  document.getElementById('qq-search').value = '';
-  document.getElementById('qq-results').classList.remove('open');
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-  showToast(`Added package: ${pkg.name}`);
-}
-
-function addQQCustomLine(){
-  qqState.lines.push({
-    qid: qqNextId++,
-    type: 'custom',
-    label: '',
-    desc: 'Manual entry',
-    cost: 0,
-    price: 0,
-    qty: 1
-  });
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-}
-
-/* v0.34 — Trade-In line in Quick Quote. Mirrors addTradeIn() in the full
-   Quote Builder. price is entered as a positive number; the totals math
-   subtracts trade-in lines from the customer total. */
-function addQQTradeIn(){
-  qqState.lines.push({
-    qid: qqNextId++,
-    type: 'trade-in',
-    label: 'Trade-In',
-    desc: 'Customer trade-in unit',
-    cost: 0,
-    price: 0,
-    qty: 1
-  });
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-  if(typeof showToast === 'function') showToast('Trade-in line added — fill in details');
-}
-
-/* v0.34 — Additional Cost line in Quick Quote. Mirrors addAdditionalCost(). */
-function addQQAdditionalCost(){
-  qqState.lines.push({
-    qid: qqNextId++,
-    type: 'additional-cost',
-    label: '',
-    desc: 'Additional cost',
-    cost: 0,
-    price: 0,
-    qty: 1
-  });
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-}
-
-function removeQQLine(qid){
-  qqState.lines = qqState.lines.filter(l => l.qid !== qid);
-  saveQQToStorage();
-  renderQQLines();
-  updateQQIndicator();
-}
-
-function updateQQLine(qid, field, value){
-  const line = qqState.lines.find(l => l.qid === qid);
-  if (!line) return;
-  if (field === 'label'){
-    line.label = value;
-  } else if (field === 'margin'){
-    // User typed a margin % — back-solve price from cost
-    const m = parseFloat(value);
-    if (!isNaN(m) && m < 100){
-      const cost = line.cost || 0;
-      line.price = m <= 0 ? cost : Math.round(cost / (1 - m/100));
-    }
-  } else {
-    line[field] = parseFloat(value) || 0;
-  }
-  saveQQToStorage();
-  renderQQLines();
-}
-
-function renderQQLines(){
-  const list = document.getElementById('qq-lines');
-  const totals = document.getElementById('qq-totals');
-  if (!list || !totals) return;
-  if (qqState.lines.length === 0){
-    list.innerHTML = '<div class="qq-empty">No lines yet. Search above or add a custom item.</div>';
-    totals.innerHTML = '';
-    return;
-  }
-  list.innerHTML = qqState.lines.map((l, idx) => {
-    const isTradeIn = l.type === 'trade-in';
-    const margin = l.price > 0 ? ((l.price - l.cost) / l.price * 100).toFixed(0) : '0';
-    // v0.34 — Editable label for custom + trade-in + additional-cost (anything not a fixed SKU)
-    const isEditable = l.type === 'custom' || l.type === 'trade-in' || l.type === 'additional-cost';
-    const placeholderTxt = isTradeIn ? 'Trade-in description' :
-                          (l.type === 'additional-cost' ? 'Additional cost label' : 'Item name');
-    // v0.43 — image button. Only product-style lines (sku/custom) get an image —
-    // trade-ins and additional-cost rows don't represent a model.
-    const showsImage = (l.type === 'sku' || l.type === 'custom');
-    let lineImg = null;
-    if(showsImage){
-      // Resolve brand/model the same way uploadLineItemImage will, so the thumbnail
-      // matches what gets attached when the user clicks.
-      let brand = '', model = '';
-      if(l.type === 'sku' && l.sku_id){
-        const sku = SKUS.find(s => s.id === l.sku_id);
-        if(sku){ brand = sku.brand; model = sku.model; }
-      }
-      if(!brand && l.label){
-        const parts = l.label.trim().split(/\s+/);
-        brand = parts[0] || ''; model = parts.slice(1).join(' ');
-      }
-      lineImg = (brand && model && typeof getModelImage === 'function') ? getModelImage(brand, model) : null;
-    }
-    const imgBtn = !showsImage ? '' :
-      (lineImg
-        ? `<img src="${lineImg}" alt="" style="width:24px;height:24px;object-fit:contain;border-radius:3px;background:#f9fafb;border:1px solid var(--gray-200);flex-shrink:0;cursor:pointer" onclick="uploadLineItemImage('qq',${idx})" title="Replace image (admin only)">`
-        : `<button onclick="uploadLineItemImage('qq',${idx})" title="Add image" style="width:24px;height:24px;border:1px dashed var(--gray-300);border-radius:3px;background:white;color:var(--gray-400);cursor:pointer;font-size:12px;flex-shrink:0;padding:0;display:flex;align-items:center;justify-content:center">📷</button>`);
-    const labelInput = isEditable
-      ? `<input type="text" value="${(l.label||'').replace(/"/g,'&quot;')}" placeholder="${placeholderTxt}" oninput="updateQQLine(${l.qid},'label',this.value)" style="flex:1;min-width:0;border:1px solid var(--gray-200);padding:4px 6px;border-radius:4px;font-size:11px;font-family:'DM Sans',sans-serif">`
-      : `<div class="qq-line-name" style="flex:1;min-width:0" title="${escapeHtml(l.desc||'')}">${escapeHtml(l.label)}<small>${escapeHtml(l.desc||'')}${l.from_pkg ? ' · from '+escapeHtml(l.from_pkg) : ''}</small></div>`;
-    const labelCell = `<div style="display:flex;align-items:center;gap:6px;min-width:0">${imgBtn}${labelInput}</div>`;
-    const rowStyle = isTradeIn ? 'background:rgba(22,163,74,0.05);' :
-                     (l.type === 'additional-cost' ? 'background:rgba(37,99,235,0.04);' : '');
-    return `
-      <div class="qq-line" style="${rowStyle}">
-        ${labelCell}
-        <input type="text" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*" class="qq-line-num" value="${(l.cost||0).toFixed(0)}" oninput="updateQQLine(${l.qid},'cost',this.value)" placeholder="cost">
-        <input type="text" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*" class="qq-line-num" value="${(l.price||0).toFixed(0)}" oninput="updateQQLine(${l.qid},'price',this.value)" placeholder="${isTradeIn ? 'credit' : 'price'}">
-        <input type="number" class="qq-line-num qq-margin-input" value="${margin}" step="0.5" oninput="updateQQLine(${l.qid},'margin',this.value)" title="Edit to back-solve price" style="background:rgba(22,163,74,0.05);color:var(--green);font-weight:600;text-align:right">
-        <input type="number" class="qq-line-num" value="${l.qty||1}" min="1" oninput="updateQQLine(${l.qid},'qty',this.value)" style="text-align:center">
-        <button class="qq-line-rm" onclick="removeQQLine(${l.qid})" title="Remove">×</button>
-      </div>
-    `;
-  }).join('');
-
-  // Header row
-  list.insertAdjacentHTML('afterbegin', `
-    <div class="qq-line" style="border-bottom:1.5px solid var(--gray-200);font-size:9.5px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em;padding-bottom:4px">
-      <span>Item</span>
-      <span style="text-align:right">Cost</span>
-      <span style="text-align:right">Price</span>
-      <span style="text-align:right">Mgn</span>
-      <span style="text-align:center">Qty</span>
-      <span></span>
-    </div>
-  `);
-
-  // Totals — v0.34: trade-in lines REDUCE the subtotal (customer pays less by the credit amount)
-  const totalCost = qqState.lines.reduce((s,l) => {
-    const sign = l.type === 'trade-in' ? -1 : 1;
-    return s + sign * (l.cost||0)*(l.qty||1);
-  }, 0);
-  const subtotal = qqState.lines.reduce((s,l) => {
-    const sign = l.type === 'trade-in' ? -1 : 1;
-    return s + sign * (l.price||0)*(l.qty||1);
-  }, 0);
-  const margin = subtotal > 0 ? ((subtotal-totalCost)/subtotal*100).toFixed(1) : '0';
-  const tax = subtotal * 0.13;
-  const grandTotal = subtotal + tax;
-  totals.innerHTML = `
-    <div class="qq-totals-row cost">Total cost <span style="font-family:'DM Mono',monospace">$${totalCost.toLocaleString('en-US',{maximumFractionDigits:0})}</span></div>
-    <div class="qq-totals-row">Subtotal <span style="font-family:'DM Mono',monospace">$${subtotal.toLocaleString('en-US',{maximumFractionDigits:0})}</span></div>
-    <div class="qq-totals-row margin">Gross margin <span style="font-family:'DM Mono',monospace">${margin}%</span></div>
-    <div class="qq-totals-row">HST (13%) <span style="font-family:'DM Mono',monospace">$${tax.toFixed(2)}</span></div>
-    <div class="qq-totals-row grand">Total <span style="font-family:'DM Mono',monospace">$${grandTotal.toLocaleString('en-US',{maximumFractionDigits:2})}</span></div>
-  `;
-}
-
-function copyQQSummary(){
-  if (qqState.lines.length === 0){ showToast('Nothing to copy yet'); return; }
-  const lines = qqState.lines.map(l => {
-    const total = (l.price||0)*(l.qty||1);
-    return `  ${l.qty} × ${l.label || '(item)'} — $${(l.price||0).toLocaleString('en-US',{maximumFractionDigits:0})} ea = $${total.toLocaleString('en-US',{maximumFractionDigits:0})}`;
-  }).join('\n');
-  const subtotal = qqState.lines.reduce((s,l)=>s+(l.price||0)*(l.qty||1),0);
-  const tax = subtotal*0.13;
-  const total = subtotal+tax;
-  const customer = qqState.customer ? `For: ${qqState.customer}\n` : '';
-  const text = `Quick Quote — Hyde Park Equipment\n${customer}\n${lines}\n\nSubtotal: $${subtotal.toLocaleString('en-US',{maximumFractionDigits:0})}\nHST: $${tax.toFixed(2)}\nTotal: $${total.toLocaleString('en-US',{maximumFractionDigits:2})}\n\n— ${CURRENT_USER.name}`;
-  if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(
-      () => showToast('Quote summary copied to clipboard'),
-      () => fallbackCopy(text)
-    );
-  } else {
-    fallbackCopy(text);
-  }
-}
-function fallbackCopy(text){
-  const ta = document.createElement('textarea');
-  ta.value = text; document.body.appendChild(ta); ta.select();
-  try { document.execCommand('copy'); showToast('Copied'); }
-  catch(e){ showToast('Copy failed — please select manually'); }
-  document.body.removeChild(ta);
-}
-
-function convertQQToFullQuote(){
-  // v0.10 — No line item required. Empty quote is valid (matches Full Quote behaviour).
-  // Transfer to full Quote Builder; map qq lines to quoteLineItems format
-  quoteLineItems = qqState.lines.map(l => {
-    if (l.type === 'sku' && l.sku_id){
-      const sku = SKUS.find(s => s.id === l.sku_id);
-      return {
-        sku_id: l.sku_id,
-        brand: sku?.brand || l.label.split(' ')[0] || '',
-        model: sku?.model || l.label.split(' ').slice(1).join(' '),
-        desc: l.desc || '',
-        cost: l.cost,
-        price: l.price,
-        qty: l.qty,
-        type: 'item'
-      };
-    }
-    // v0.34 — Preserve trade-in identity (different math + render in full builder)
-    if (l.type === 'trade-in'){
-      return {
-        type: 'trade-in',
-        brand: '',
-        model: 'TRADE-IN',
-        desc: l.label || 'Customer trade-in unit',
-        cost: l.cost || 0,
-        price: l.price || 0,
-        qty: l.qty || 1
-      };
-    }
-    // v0.34 — Preserve additional-cost identity
-    if (l.type === 'additional-cost'){
-      return {
-        type: 'additional-cost',
-        label: l.label || 'Additional cost',
-        cost: l.cost || 0,
-        price: l.price || 0,
-        qty: l.qty || 1,
-        show_on_pdf: true
-      };
-    }
-    // v0.43 — Custom lines: if the label parses into brand+model AND a model image
-    // exists in the catalog for that combo, treat the line as a regular product
-    // line so the image flows through to the full quote/PDF. Otherwise fall back
-    // to the old "additional-cost" mapping.
-    if (l.type === 'custom' && l.label){
-      const parts = l.label.trim().split(/\s+/);
-      if(parts.length >= 2){
-        const brand = parts[0];
-        const model = parts.slice(1).join(' ');
-        const hasImage = (typeof getModelImage === 'function') && getModelImage(brand, model);
-        if(hasImage){
-          return {
-            brand, model,
-            desc: l.desc || '',
-            cost: l.cost,
-            price: l.price,
-            qty: l.qty,
-            type: 'item'
-          };
-        }
-      }
-    }
-    // Custom / fallback line becomes an additional-cost type
-    return {
-      type: 'additional-cost',
-      label: l.label || 'Manual line',
-      cost: l.cost,
-      price: l.price,
-      qty: l.qty,
-      show_on_pdf: true
-    };
-  });
-  // Set customer
-  // v1.4.1 — guarded: closeQuickQuote IIFE body removed; this whole drawer
-  // subsystem is orphaned but not yet stripped (see notes near line ~22299).
-  if (typeof closeQuickQuote === 'function') closeQuickQuote(true);  // bypass confirmation — we're transferring data, not discarding
-  navigate('quotes');
-  setTimeout(() => {
-    if (typeof openQuoteBuilder === 'function') openQuoteBuilder();
-    const cust = document.getElementById('q-customer');
-    if (cust && qqState.customer){
-      cust.value = qqState.customer;
-      if (typeof onCustomerChange === 'function') onCustomerChange();
-    }
-    if (typeof renderLineItems === 'function') renderLineItems();
-  }, 150);
-  // Clear quick quote
-  qqState = { customer:'', lines:[], tab:'items' };
-  saveQQToStorage();
-  updateQQIndicator();
-  showToast('Transferred to full quote builder');
-}
+/* v1.4.2 — Removed orphaned Quick Quote drawer subsystem (~500 lines).
+   This block previously contained: qqState, qqNextId, QQ_STORAGE_KEY,
+   loadQQFromStorage, saveQQToStorage, updateQQIndicator, setQQTab,
+   renderQQResults, addQQItem, addQQPackage, addQQCustomLine, addQQTradeIn,
+   addQQAdditionalCost, removeQQLine, updateQQLine, renderQQLines,
+   copyQQSummary, fallbackCopy, convertQQToFullQuote, plus a #qq-customer
+   input listener. All targeted DOM (#qq-drawer, #qq-results, #qq-tabs,
+   #qq-customer, #qq-search, #qq-lines, #qq-totals, #qq-indicator) was
+   already absent from the unified shell. The price-book "+ Quote" button
+   now repoints to the original quickQuote() flow — see addToQuickQuote
+   near line ~18329. */
 
 /* ============================================================
    v0.6: PACKAGES (admin Brand Hub)
@@ -23437,11 +22912,6 @@ function updateCommissionCodes(idx, value){
     addNewBrand: typeof addNewBrand === 'function' ? addNewBrand : undefined,
     addPackage: typeof addPackage === 'function' ? addPackage : undefined,
     addPackageLine: typeof addPackageLine === 'function' ? addPackageLine : undefined,
-    addQQAdditionalCost: typeof addQQAdditionalCost === 'function' ? addQQAdditionalCost : undefined,
-    addQQCustomLine: typeof addQQCustomLine === 'function' ? addQQCustomLine : undefined,
-    addQQItem: typeof addQQItem === 'function' ? addQQItem : undefined,
-    addQQPackage: typeof addQQPackage === 'function' ? addQQPackage : undefined,
-    addQQTradeIn: typeof addQQTradeIn === 'function' ? addQQTradeIn : undefined,
     addSalesperson: typeof addSalesperson === 'function' ? addSalesperson : undefined,
     addSkuFromPicker: typeof addSkuFromPicker === 'function' ? addSkuFromPicker : undefined,
     addToQuickQuote: typeof addToQuickQuote === 'function' ? addToQuickQuote : undefined,
@@ -23482,8 +22952,6 @@ function updateCommissionCodes(idx, value){
     cmSetSort: typeof cmSetSort === 'function' ? cmSetSort : undefined,
     compareInDate: typeof compareInDate === 'function' ? compareInDate : undefined,
     confirmMarkSold: typeof confirmMarkSold === 'function' ? confirmMarkSold : undefined,
-    convertQQToFullQuote: typeof convertQQToFullQuote === 'function' ? convertQQToFullQuote : undefined,
-    copyQQSummary: typeof copyQQSummary === 'function' ? copyQQSummary : undefined,
     createHubStateFile: typeof createHubStateFile === 'function' ? createHubStateFile : undefined,
     dealPersistKey: typeof dealPersistKey === 'function' ? dealPersistKey : undefined,
     deleteAdjustment: typeof deleteAdjustment === 'function' ? deleteAdjustment : undefined,
@@ -23501,7 +22969,6 @@ function updateCommissionCodes(idx, value){
     ensureStihlFolder: typeof ensureStihlFolder === 'function' ? ensureStihlFolder : undefined,
     escapeAttr: typeof escapeAttr === 'function' ? escapeAttr : undefined,
     escapeHtml: typeof escapeHtml === 'function' ? escapeHtml : undefined,
-    fallbackCopy: typeof fallbackCopy === 'function' ? fallbackCopy : undefined,
     filterAdjustments: typeof filterAdjustments === 'function' ? filterAdjustments : undefined,
     filterAndRender: typeof filterAndRender === 'function' ? filterAndRender : undefined,
     filterByRepCodes: typeof filterByRepCodes === 'function' ? filterByRepCodes : undefined,
@@ -23551,7 +23018,6 @@ function updateCommissionCodes(idx, value){
     loadCommissionsNotes: typeof loadCommissionsNotes === 'function' ? loadCommissionsNotes : undefined,
     loadHubStateAndMigrate: typeof loadHubStateAndMigrate === 'function' ? loadHubStateAndMigrate : undefined,
     loadInventoryFile: typeof loadInventoryFile === 'function' ? loadInventoryFile : undefined,
-    loadQQFromStorage: typeof loadQQFromStorage === 'function' ? loadQQFromStorage : undefined,
     loadQuoteIntoBuilder: typeof loadQuoteIntoBuilder === 'function' ? loadQuoteIntoBuilder : undefined,
     loadSalespeople: typeof loadSalespeople === 'function' ? loadSalespeople : undefined,
     loadSkuCatalog: typeof loadSkuCatalog === 'function' ? loadSkuCatalog : undefined,
@@ -23627,7 +23093,6 @@ function updateCommissionCodes(idx, value){
     removeBrandLogo: typeof removeBrandLogo === 'function' ? removeBrandLogo : undefined,
     removeLine: typeof removeLine === 'function' ? removeLine : undefined,
     removeModelImage: typeof removeModelImage === 'function' ? removeModelImage : undefined,
-    removeQQLine: typeof removeQQLine === 'function' ? removeQQLine : undefined,
     removeSalesperson: typeof removeSalesperson === 'function' ? removeSalesperson : undefined,
     removeSkuImage: typeof removeSkuImage === 'function' ? removeSkuImage : undefined,
     renameUnmatchedBrand: typeof renameUnmatchedBrand === 'function' ? renameUnmatchedBrand : undefined,
@@ -23667,8 +23132,6 @@ function updateCommissionCodes(idx, value){
     renderMarginDealsSection: typeof renderMarginDealsSection === 'function' ? renderMarginDealsSection : undefined,
     renderModelImages: typeof renderModelImages === 'function' ? renderModelImages : undefined,
     renderPromos: typeof renderPromos === 'function' ? renderPromos : undefined,
-    renderQQLines: typeof renderQQLines === 'function' ? renderQQLines : undefined,
-    renderQQResults: typeof renderQQResults === 'function' ? renderQQResults : undefined,
     renderQuotes: typeof renderQuotes === 'function' ? renderQuotes : undefined,
     renderRecentQuotes: typeof renderRecentQuotes === 'function' ? renderRecentQuotes : undefined,
     renderRecentSkus: typeof renderRecentSkus === 'function' ? renderRecentSkus : undefined,
@@ -23696,7 +23159,6 @@ function updateCommissionCodes(idx, value){
     saveDealCostOverrides: typeof saveDealCostOverrides === 'function' ? saveDealCostOverrides : undefined,
     saveEditNote: typeof saveEditNote === 'function' ? saveEditNote : undefined,
     saveHubState: typeof saveHubState === 'function' ? saveHubState : undefined,
-    saveQQToStorage: typeof saveQQToStorage === 'function' ? saveQQToStorage : undefined,
     saveQuote: typeof saveQuote === 'function' ? saveQuote : undefined,
     saveSalespeople: typeof saveSalespeople === 'function' ? saveSalespeople : undefined,
     saveSkuCatalog: typeof saveSkuCatalog === 'function' ? saveSkuCatalog : undefined,
@@ -23706,7 +23168,6 @@ function updateCommissionCodes(idx, value){
     setAllLinesMargin: typeof setAllLinesMargin === 'function' ? setAllLinesMargin : undefined,
     setCurrentUserFromAuth: typeof setCurrentUserFromAuth === 'function' ? setCurrentUserFromAuth : undefined,
     setCustomersScope: typeof setCustomersScope === 'function' ? setCustomersScope : undefined,
-    setQQTab: typeof setQQTab === 'function' ? setQQTab : undefined,
     setQuoteStatus: typeof setQuoteStatus === 'function' ? setQuoteStatus : undefined,
     setQuotesScope: typeof setQuotesScope === 'function' ? setQuotesScope : undefined,
     showApp: typeof showApp === 'function' ? showApp : undefined,
@@ -23752,8 +23213,6 @@ function updateCommissionCodes(idx, value){
     updatePackageField: typeof updatePackageField === 'function' ? updatePackageField : undefined,
     updatePerTermRate: typeof updatePerTermRate === 'function' ? updatePerTermRate : undefined,
     updatePricebookView: typeof updatePricebookView === 'function' ? updatePricebookView : undefined,
-    updateQQIndicator: typeof updateQQIndicator === 'function' ? updateQQIndicator : undefined,
-    updateQQLine: typeof updateQQLine === 'function' ? updateQQLine : undefined,
     updateQuoteEditingBadge: typeof updateQuoteEditingBadge === 'function' ? updateQuoteEditingBadge : undefined,
     updateSalesperson: typeof updateSalesperson === 'function' ? updateSalesperson : undefined,
     updateSoldModalCanSubmit: typeof updateSoldModalCanSubmit === 'function' ? updateSoldModalCanSubmit : undefined,

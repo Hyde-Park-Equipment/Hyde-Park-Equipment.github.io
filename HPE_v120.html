@@ -2694,13 +2694,13 @@ body.admin-mode .admin-only { display: inline-flex; }
         <button class="qq-modal-close" onclick="HPE.ui.closeQuickQuote()">&times;</button>
       </div>
       <div class="qq-options">
-        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('used','tradecalc')">
+        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('used','list');HPE.ui.toast('Pick a unit to start a quote.')">
           <div class="qq-option-label">Used Equipment</div>
-          <div class="qq-option-sub">Trade calc &amp; used unit quoting</div>
+          <div class="qq-option-sub">Quote a unit from inventory</div>
         </div>
-        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('shortline','pricebook')">
+        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('shortline','dashboard');setTimeout(function(){if(window.S&&typeof S.openQuoteBuilder==='function')S.openQuoteBuilder();},0)">
           <div class="qq-option-label">Shortline</div>
-          <div class="qq-option-sub">New equipment price book quotes</div>
+          <div class="qq-option-sub">Build a quote for new equipment</div>
         </div>
       </div>
     </div>
@@ -3239,8 +3239,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.4.2',
-    build: '20260501_v142_qq_drawer_strip',
+    version: '1.5.1',
+    build: '20260501_v151_quick_quote_routing',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -3803,7 +3803,31 @@ const HPE = (function(){
       document.getElementById('mobile-menu-backdrop').classList.remove('open');
       document.getElementById('mobile-menu-sheet').classList.remove('open');
     },
-    openQuickQuote(){ document.getElementById('qq-modal-backdrop').classList.add('open'); },
+    /* v1.5.1 — Context-aware Quick Quote.
+       From Shortline: skip the chooser, open the blank Quote Builder directly.
+       From Used: skip the chooser, route to inventory list + toast (Used quotes
+         are inventory-anchored — no "blank Used quote" concept; the user must
+         pick a specific unit, then "Build Quote" on the unit detail drawer).
+       From Hub or anywhere else: open the two-option chooser modal. */
+    openQuickQuote(){
+      const sec = state.currentSection;
+      if(sec === 'shortline'){
+        if(window.S && typeof S.openQuoteBuilder === 'function'){
+          S.openQuoteBuilder();
+          return;
+        }
+        // Defensive fallback if Shortline isn't initialized yet
+        document.getElementById('qq-modal-backdrop').classList.add('open');
+        return;
+      }
+      if(sec === 'used'){
+        HPE.router.go('used', 'list');
+        ui.toast('Pick a unit to start a quote.');
+        return;
+      }
+      // Hub or anywhere else — open the chooser
+      document.getElementById('qq-modal-backdrop').classList.add('open');
+    },
     closeQuickQuote(){ document.getElementById('qq-modal-backdrop').classList.remove('open'); },
     /* Role switcher visibility + label.
        Source of truth for admin status: S.isCurrentUserAdmin() (matches user

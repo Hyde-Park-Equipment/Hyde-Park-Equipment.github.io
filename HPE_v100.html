@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HPE Sales Platform v1.0.0</title><!-- build:20260430_v100_stage1_shell -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+/* ========================================================================
+   HPE Sales Platform v1.0.0 — Stage 1 Shell
+   Single-file SPA: one auth, one bootstrap, one Drive load, four routes.
+   Per-section page bodies are NOT yet ported — each route currently shows a
+   placeholder. Subsequent steps within Stage 1 will absorb section content.
+   ======================================================================== */
+
+:root{
+  --black:#0a0a0a;
+  --frame-text:#ffffff; --frame-muted:#9a9a9a;
+  --bg:#f5f5f5;
+  --card:#ffffff;
+  --border:#e5e5e5;
+  --border-strong:#d4d4d4;
+  --text:#0a0a0a;
+  --text-2:#525252;
+  --text-3:#737373;
+  --orange:#e85d04; --orange-dark:#c44d04;
+  --purple:#7c3aed;--purple-bg:#f5f3ff;
+  --blue:#2563eb;--blue-bg:#eff6ff;
+  --green:#059669;--green-bg:#ecfdf5;
+  --topbar-h:54px;
+  --sidenav-w:200px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;}
+button,a{font-family:inherit;}
+a{color:inherit;text-decoration:none;}
+
+/* AUTH SCREEN — gates app behind Google sign-in */
+#auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--black);padding:20px;}
+.auth-card{background:#171717;border:1px solid #262626;border-radius:14px;padding:40px;width:380px;max-width:100%;text-align:center;}
+.auth-logo{width:60px;height:60px;background:#000;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;overflow:hidden;font-size:28px;font-weight:700;color:var(--orange);}
+.auth-title{font-size:18px;font-weight:600;color:white;margin-bottom:4px;}
+.auth-sub{font-size:12px;color:#a3a3a3;margin-bottom:28px;line-height:1.5;}
+.google-btn{width:100%;padding:11px 20px;border-radius:8px;border:1px solid #262626;background:white;font-size:14px;font-weight:500;color:#374151;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background 0.15s;font-family:'DM Sans',sans-serif;}
+.google-btn:hover{background:#f9fafb;}
+.auth-error{background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.4);color:#fca5a5;font-size:12px;padding:10px 12px;border-radius:7px;margin-top:14px;display:none;text-align:left;}
+.auth-loading{font-size:12px;color:#a3a3a3;margin-top:14px;display:none;}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--black);border-bottom:2px solid var(--orange);display:flex;align-items:center;padding:0 20px;z-index:100;gap:18px;}
+.topbar-hamburger{display:none;background:none;border:none;color:white;cursor:pointer;padding:6px;margin-right:4px;border-radius:6px;align-items:center;justify-content:center;}
+.topbar-hamburger:active{background:rgba(255,255,255,0.1);}
+.topbar-hamburger svg{width:24px;height:24px;}
+.topbar-left{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.topbar-logo{width:32px;height:32px;background:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;font-size:16px;font-weight:700;color:var(--orange);}
+.topbar-title{font-size:13px;font-weight:600;color:white;line-height:1.2;white-space:nowrap;flex-shrink:0;}
+.topbar-title span{display:block;font-size:10px;font-weight:400;color:#9ca3af;white-space:nowrap;}
+.topbar-spacer{flex:1;min-width:0;}
+.topbar-search{position:relative;flex:0 1 280px;min-width:140px;opacity:0.5;}
+.topbar-search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;color:var(--frame-muted);pointer-events:none;}
+.topbar-search input{width:100%;padding:6px 10px 6px 28px;border-radius:6px;border:1px solid #2a2a2a;background:#1a1a1a;font-family:'DM Sans',sans-serif;font-size:12px;color:white;cursor:not-allowed;}
+.topbar-search input::placeholder{color:var(--frame-muted);}
+
+/* APP-SWITCHER (now internal-route links, not cross-app navigation) */
+.app-switcher{display:flex;align-items:center;gap:2px;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:3px;}
+.app-tab{display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:#cbd5e1;font-size:13px;font-weight:600;padding:7px 14px;min-width:84px;border-radius:6px;text-decoration:none;transition:background .12s,color .12s;cursor:pointer;}
+.app-tab:hover{color:#ffffff;background:rgba(255,255,255,0.08);}
+.app-tab.active{background:var(--orange);color:white;}
+.app-tab.active:hover{background:var(--orange-dark);color:white;}
+
+/* APP BODY (sidebar + main) */
+.app-body-with-sidebar{display:flex;padding-top:var(--topbar-h);min-height:100vh;background:var(--bg);}
+
+/* SIDEBAR */
+.sidenav{width:var(--sidenav-w);background:var(--black);border-right:2px solid var(--orange);position:fixed;top:var(--topbar-h);left:0;bottom:0;z-index:50;display:flex;flex-direction:column;padding:14px 0 0;overflow-y:auto;}
+.sidenav-bottom{margin-top:auto;border-top:1px solid #1f1f1f;padding-top:8px;padding-bottom:14px;display:flex;flex-direction:column;}
+.sidenav-section-label{font-size:9px;color:var(--frame-muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;padding:10px 20px 6px;}
+.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:11px 20px;color:#d1d5db;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
+.nav-btn svg{width:16px;height:16px;flex-shrink:0;}
+.nav-btn:hover{color:#f1f5f9;background:rgba(255,255,255,0.04);}
+.nav-btn.active{color:white;background:rgba(232,93,4,0.12);border-left-color:var(--orange);}
+.nav-btn .nav-label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+.nav-btn.is-cross-link::after{content:'\2197';font-size:10px;color:var(--frame-muted);margin-left:4px;}
+.nav-btn.nav-quick-quote{background:linear-gradient(135deg,#e85d04 0%,#f97316 100%);color:white !important;font-weight:600;margin:0 12px 10px;padding:10px 14px;border-radius:8px;border-left:none;width:auto;justify-content:center;box-shadow:0 1px 3px rgba(232,93,4,0.4);}
+.nav-btn.nav-quick-quote:hover{background:linear-gradient(135deg,#d04400 0%,#e85500 100%);color:white !important;}
+.nav-btn.nav-quick-quote svg{width:14px;height:14px;}
+
+/* MAIN content area — hosts all section pages, only one visible at a time */
+.main-content-with-sidebar{margin-left:var(--sidenav-w);flex:1;min-height:calc(100vh - var(--topbar-h));}
+.section{display:none;}
+.section.active{display:block;}
+
+/* Per-section pages — same pattern current apps use */
+.page{display:none;padding:32px 28px;max-width:1400px;}
+.page.active{display:block;}
+.page-header{margin-bottom:24px;}
+.page-title{font-size:24px;font-weight:600;color:var(--text);letter-spacing:-0.01em;}
+.page-sub{font-size:13px;color:var(--text-3);margin-top:4px;}
+
+/* Stage 1 placeholder (shown for every page until content is absorbed) */
+.placeholder-card{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--purple);border-radius:var(--radius-lg);padding:40px 36px;max-width:560px;margin:40px auto;text-align:center;}
+.placeholder-icon{width:64px;height:64px;margin:0 auto 18px;background:var(--purple-bg);border-radius:16px;display:flex;align-items:center;justify-content:center;}
+.placeholder-icon svg{width:32px;height:32px;color:var(--purple);}
+.placeholder-title{color:var(--text);font-size:22px;font-weight:600;margin-bottom:6px;letter-spacing:-0.01em;}
+.placeholder-tag{display:inline-block;font-size:11px;background:var(--purple-bg);color:var(--purple);font-weight:500;padding:4px 11px;border-radius:5px;margin-bottom:18px;}
+.placeholder-body{color:var(--text-2);font-size:14px;line-height:1.6;margin-bottom:8px;}
+.placeholder-body p+p{margin-top:10px;}
+.placeholder-meta{font-family:'DM Mono',ui-monospace,monospace;font-size:11px;color:var(--text-3);margin-top:14px;padding-top:14px;border-top:1px dashed var(--border);}
+
+.btn{background:var(--card);border:1px solid var(--border-strong);color:var(--text-2);font-size:13px;font-weight:500;padding:8px 14px;border-radius:7px;text-decoration:none;cursor:pointer;transition:border-color .12s, color .12s;display:inline-flex;align-items:center;gap:6px;}
+.btn:hover{border-color:var(--orange);color:var(--orange);}
+.btn-primary{background:var(--orange);color:white;border-color:var(--orange);}
+.btn-primary:hover{background:var(--orange-dark);border-color:var(--orange-dark);color:white;}
+
+/* QUICK QUOTE modal — kept; routes are now internal */
+.qq-modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.qq-modal-backdrop.open{display:flex;}
+.qq-modal-card{background:white;border-radius:12px;max-width:480px;width:100%;padding:24px;}
+.qq-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.qq-modal-title{font-size:18px;font-weight:600;color:var(--text);}
+.qq-modal-sub{font-size:12px;color:var(--text-3);margin-top:2px;}
+.qq-modal-close{background:none;border:none;font-size:22px;color:var(--text-3);cursor:pointer;line-height:1;}
+.qq-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
+.qq-option{background:#f9fafb;border:2px solid var(--border);border-radius:10px;padding:18px 16px;cursor:pointer;text-align:center;transition:all 0.15s;}
+.qq-option:hover{border-color:var(--orange);background:white;}
+.qq-option-label{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.qq-option-sub{font-size:11px;color:var(--text-3);}
+
+/* MOBILE drawer */
+.mobile-menu-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:90;opacity:0;transition:opacity 0.2s;}
+.mobile-menu-backdrop.open{display:block;opacity:1;}
+.mobile-menu-sheet{display:none;position:fixed;top:0;left:0;bottom:0;width:85%;max-width:340px;background:white;z-index:91;overflow-y:auto;transform:translateX(-100%);transition:transform 0.25s ease-out;box-shadow:10px 0 30px rgba(0,0,0,0.2);flex-direction:column;}
+.mobile-menu-sheet.open{display:flex;transform:translateX(0);}
+.mobile-menu-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;background:var(--black);color:white;flex-shrink:0;}
+.mobile-menu-title{font-size:15px;font-weight:700;color:white;}
+.mobile-menu-close{background:none;border:none;color:white;font-size:22px;cursor:pointer;padding:4px 10px;border-radius:6px;line-height:1;}
+.mobile-menu-list{padding:6px 0 14px;overflow-y:auto;flex:1;}
+.mobile-menu-section{font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;padding:14px 20px 6px;}
+.mobile-menu-item{display:flex;align-items:center;gap:14px;padding:14px 20px;cursor:pointer;color:var(--text);font-size:14px;font-weight:500;background:none;border:none;width:100%;text-align:left;}
+.mobile-menu-item:active{background:#f3f4f6;}
+.mobile-menu-item.active{color:var(--orange);background:#fff7ed;}
+
+/* TOAST */
+.toast{position:fixed;top:70px;right:20px;background:#0a0a0a;color:white;padding:10px 16px;border-radius:8px;font-size:13px;z-index:300;box-shadow:0 4px 14px rgba(0,0,0,0.2);opacity:0;transform:translateY(-8px);transition:opacity 0.2s,transform 0.2s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+@media(max-width:780px){
+  .topbar{padding:0 12px;gap:8px;}
+  .topbar-title span{display:none;}
+  .topbar-search{display:none;}
+  .app-switcher{padding:2px;}
+  .app-tab{padding:6px 10px;min-width:64px;font-size:12px;}
+  .topbar-hamburger{display:inline-flex;}
+  .sidenav{display:none;}
+  .main-content-with-sidebar{margin-left:0;}
+  .page{padding:20px 14px;}
+  .qq-options{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     AUTH SCREEN
+     ============================================================ -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">HPE</div>
+    <div class="auth-title">Hyde Park Equipment</div>
+    <div class="auth-sub">Sign in with your @hydeparkequipment.ca account to continue.</div>
+    <button class="google-btn" id="auth-btn" onclick="HPE.auth.signIn()">
+      <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C33.6 6.1 29.1 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.2 8 3.1l5.7-5.7C33.6 6.1 29.1 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.6-1.9 13-5l-6-5.1c-2 1.4-4.4 2.1-7 2.1-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.7l6.1 5.1c-.4.4 6.5-4.7 6.5-14.3 0-1.3-.1-2.3-.5-4z"/></svg>
+      Sign in with Google
+    </button>
+    <div class="auth-loading" id="auth-loading">Signing you in…</div>
+    <div class="auth-error" id="auth-error"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     APP SHELL
+     ============================================================ -->
+<div id="app" style="display:none;">
+
+  <!-- TOPBAR ---------------------------------------------------- -->
+  <div class="topbar">
+    <button class="topbar-hamburger" id="topbar-hamburger" onclick="HPE.ui.openMobileMenu()" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="topbar-left">
+      <div class="topbar-logo">HPE</div>
+      <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Search…" disabled>
+    </div>
+    <div class="topbar-spacer"></div>
+    <nav class="app-switcher" aria-label="Section switcher">
+      <a class="app-tab" data-section="hub" href="#/" onclick="HPE.router.go('hub','dashboard');return false;">Home</a>
+      <a class="app-tab" data-section="used" href="#/used" onclick="HPE.router.go('used');return false;">Used</a>
+      <a class="app-tab" data-section="shortline" href="#/shortline" onclick="HPE.router.go('shortline');return false;">Shortline</a>
+      <a class="app-tab" data-section="kubota" href="#/kubota" onclick="HPE.router.go('kubota');return false;">Kubota</a>
+    </nav>
+    <div class="topbar-spacer"></div>
+    <div style="width:30px;flex-shrink:0;"></div>
+  </div>
+
+  <div class="app-body-with-sidebar">
+
+    <!-- SIDEBAR --------------------------------------------------
+         Contents are rendered dynamically by HPE.ui.renderSidebar()
+         based on the active section. -->
+    <aside class="sidenav" id="sidenav">
+      <!-- populated by JS -->
+    </aside>
+
+    <!-- MAIN CONTENT --------------------------------------------- -->
+    <main class="main-content-with-sidebar">
+
+      <!-- HUB section (Home) ----------------------------------- -->
+      <section class="section" id="section-hub" data-section="hub">
+        <div class="page" id="page-hub-dashboard" data-page="dashboard">
+          <div class="page-header"><div class="page-title">Dashboard</div><div class="page-sub">Cross-section overview</div></div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <h1 class="placeholder-title">Home — Dashboard</h1>
+            <span class="placeholder-tag">Stage 1 shell</span>
+            <div class="placeholder-body"><p>Real Home content (dashboard, comms, customers) will be absorbed into this section in the next sub-step of Stage 1.</p></div>
+            <div class="placeholder-meta">section: hub · page: dashboard · route: #/</div>
+          </div>
+        </div>
+        <div class="page" id="page-hub-communications" data-page="communications">
+          <div class="page-header"><div class="page-title">Communications</div><div class="page-sub">Team posts, pricing, shipping, announcements</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h1 class="placeholder-title">Communications</h1><span class="placeholder-tag">Stage 1 shell</span><div class="placeholder-meta">section: hub · page: communications · route: #/communications</div></div>
+        </div>
+        <div class="page" id="page-hub-customers" data-page="customers">
+          <div class="page-header"><div class="page-title">My Customers</div><div class="page-sub">Unified customer list</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><h1 class="placeholder-title">My Customers</h1><span class="placeholder-tag">Stage 1 shell</span><div class="placeholder-meta">section: hub · page: customers · route: #/customers</div></div>
+        </div>
+        <div class="page" id="page-hub-deals" data-page="deals">
+          <div class="page-header"><div class="page-title">My Deals Pipeline</div><div class="page-sub">Unified deals from Used, Shortline, and Kubota</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/></svg></div><h1 class="placeholder-title">My Deals Pipeline</h1><span class="placeholder-tag">Stage 1 shell</span><div class="placeholder-body"><p>Stage 4 builds the unified Won/Lost/Promote UI here — without app-switching.</p></div><div class="placeholder-meta">section: hub · page: deals · route: #/deals</div></div>
+        </div>
+        <div class="page" id="page-hub-quotes" data-page="quotes">
+          <div class="page-header"><div class="page-title">My Quotes</div><div class="page-sub">Unified quote history across all sections</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h1 class="placeholder-title">My Quotes</h1><span class="placeholder-tag">Stage 1 shell</span><div class="placeholder-meta">section: hub · page: quotes · route: #/quotes</div></div>
+        </div>
+        <div class="page" id="page-hub-commissions" data-page="commissions">
+          <div class="page-header"><div class="page-title">My Commissions</div><div class="page-sub">Commission tracking</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h1 class="placeholder-title">My Commissions</h1><span class="placeholder-tag">Stage 1 shell</span><div class="placeholder-body"><p>Currently sourced from Shortline. Decision suspended pending Stage 4 — once Shortline is a route not an app, commissions are just another section.</p></div><div class="placeholder-meta">section: hub · page: commissions · route: #/commissions</div></div>
+        </div>
+        <div class="page" id="page-hub-settings" data-page="settings">
+          <div class="page-header"><div class="page-title">My Settings</div><div class="page-sub">Preferences shared across all sections</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><h1 class="placeholder-title">My Settings</h1><span class="placeholder-tag">Deferred</span><div class="placeholder-body"><p>Real Settings page is postponed until after the refactor.</p></div><div class="placeholder-meta">section: hub · page: settings · route: #/settings</div></div>
+        </div>
+        <div class="page" id="page-hub-bugreport" data-page="bugreport">
+          <div class="page-header"><div class="page-title">Bug / Feature Request</div><div class="page-sub">File issues across any HPE section</div></div>
+          <div class="placeholder-card"><div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h1 class="placeholder-title">Bug / Feature Request</h1><span class="placeholder-tag">Deferred</span><div class="placeholder-meta">section: hub · page: bugreport · route: #/bugreport</div></div>
+        </div>
+      </section>
+
+      <!-- USED section ------------------------------------------ -->
+      <section class="section" id="section-used" data-section="used">
+        <div class="page" id="page-used-dashboard" data-page="dashboard">
+          <div class="page-header"><div class="page-title">Used Equipment</div><div class="page-sub">Tracker, trades, inventory</div></div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
+            <h1 class="placeholder-title">Used Equipment</h1>
+            <span class="placeholder-tag">Stage 1 shell</span>
+            <div class="placeholder-body"><p>The full Used Equipment Tracker (~9000 lines today) will be absorbed into this section. Current step only verifies routing/auth/sidebar mechanics.</p></div>
+            <div class="placeholder-meta">section: used · page: dashboard · route: #/used</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHORTLINE section ------------------------------------- -->
+      <section class="section" id="section-shortline" data-section="shortline">
+        <div class="page" id="page-shortline-dashboard" data-page="dashboard">
+          <div class="page-header"><div class="page-title">Shortline Price Book</div><div class="page-sub">New equipment quoting, brand hub, commissions</div></div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg></div>
+            <h1 class="placeholder-title">Shortline Price Book</h1>
+            <span class="placeholder-tag">Stage 1 shell</span>
+            <div class="placeholder-body"><p>The full Shortline Price Book (~13000 lines today) will be absorbed into this section.</p></div>
+            <div class="placeholder-meta">section: shortline · page: dashboard · route: #/shortline</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KUBOTA section ---------------------------------------- -->
+      <section class="section" id="section-kubota" data-section="kubota">
+        <div class="page" id="page-kubota-dashboard" data-page="dashboard">
+          <div class="page-header"><div class="page-title">Kubota Sales Module</div><div class="page-sub">Coming soon</div></div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9" stroke-linecap="round"/></svg></div>
+            <h1 class="placeholder-title">Kubota Sales Module</h1>
+            <span class="placeholder-tag">Coming soon</span>
+            <div class="placeholder-body"><p>This section is under development. It lives alongside Used and Shortline with shared sign-in.</p></div>
+            <div class="placeholder-meta">section: kubota · page: dashboard · route: #/kubota</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- QUICK QUOTE modal — internal routing now -->
+  <div class="qq-modal-backdrop" id="qq-modal-backdrop" onclick="if(event.target===this)HPE.ui.closeQuickQuote()">
+    <div class="qq-modal-card">
+      <div class="qq-modal-head">
+        <div>
+          <div class="qq-modal-title">Quick Quote</div>
+          <div class="qq-modal-sub">Which section would you like to start a quote in?</div>
+        </div>
+        <button class="qq-modal-close" onclick="HPE.ui.closeQuickQuote()">&times;</button>
+      </div>
+      <div class="qq-options">
+        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('used','tradecalc')">
+          <div class="qq-option-label">Used Equipment</div>
+          <div class="qq-option-sub">Trade calc &amp; used unit quoting</div>
+        </div>
+        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('shortline','quickquote')">
+          <div class="qq-option-label">Shortline</div>
+          <div class="qq-option-sub">New equipment price book quotes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE menu -->
+  <div class="mobile-menu-backdrop" id="mobile-menu-backdrop" onclick="HPE.ui.closeMobileMenu()"></div>
+  <div class="mobile-menu-sheet" id="mobile-menu-sheet">
+    <div class="mobile-menu-header">
+      <div class="mobile-menu-title" id="mobile-menu-title">Menu</div>
+      <button class="mobile-menu-close" onclick="HPE.ui.closeMobileMenu()">&times;</button>
+    </div>
+    <div class="mobile-menu-list" id="mobile-menu-list">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+</div><!-- /#app -->
+
+<script>
+/* ============================================================================
+ * HPE Sales Platform v1.0.0 — Stage 1 Shell
+ *
+ * Single-file SPA with hash routing. Cross-section nav is instant (no reload,
+ * no re-auth, no Drive resync).
+ *
+ * Architecture:
+ *   HPE.config   — constants (Google client ID, Drive folder names, etc.)
+ *   HPE.state    — in-memory state (currentSection, currentPage, token, user)
+ *   HPE.auth     — Google sign-in, token cache, SSO via hpe_shared_token
+ *   HPE.drive    — Drive read/write scaffolds (Stage 2 fills these in)
+ *   HPE.router   — hash routing: parse, navigate, back/forward
+ *   HPE.ui       — sidebar render, mobile menu, modals, toasts
+ *   HPE.sections — per-section config (sidebar items, sub-pages)
+ *
+ * Stage 1 deliberately does NOT include:
+ *   - Per-section page bodies (placeholders only)
+ *   - Drive state mutations (read scaffold only)
+ *   - State migration (Stage 2)
+ *   - Optimistic concurrency (Stage 3)
+ * ============================================================================ */
+
+const HPE = (function(){
+
+  // -- CONFIG ---------------------------------------------------------------
+  const config = {
+    version: '1.0.0',
+    build: '20260430_v100_stage1_shell',
+    googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
+    driveScope: 'https://www.googleapis.com/auth/drive',
+    sharedTokenKey: 'hpe_shared_token',
+    appTokenKey: 'hpe_v1_token',
+    sharedFolderName: 'HPE Link',
+    configFolderName: '_config',
+    allowedDomain: '@hydeparkequipment.ca',
+    adminEmails: ['johnwilliams@hydeparkequipment.ca','larry@hydeparkequipment.ca','bapfelbeck@hydeparkequipment.ca','adam@hydeparkequipment.ca']
+  };
+
+  // -- STATE ----------------------------------------------------------------
+  const state = {
+    token: null,
+    tokenExp: null,
+    user: null,                   // {email, name}
+    currentSection: 'hub',        // 'hub' | 'used' | 'shortline' | 'kubota'
+    currentPage: 'dashboard',     // section-relative page id
+    sectionInitialized: {},       // {used:false, shortline:false, ...} — reserved for lazy section init
+    driveReady: false             // becomes true after Stage 2's Drive bootstrap
+  };
+
+  // -- SECTIONS -------------------------------------------------------------
+  // Sidebar configurations per section. Stage 1 only declares the items the
+  // current apps actually expose at the top level. Sub-pages within a section
+  // (Used's tradecalc, Shortline's pricebook etc.) get added as those sections
+  // are absorbed in subsequent sub-steps.
+  const sections = {
+    hub: {
+      label: 'Home',
+      subtitle: 'Sales Platform',
+      quickQuote: true,
+      nav: [
+        {id:'dashboard',     label:'Dashboard',           icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'},
+        {id:'communications',label:'Communications',     icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
+        {id:'customers',     label:'My Customers',        icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>'},
+        {id:'deals',         label:'My Deals Pipeline',   icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
+        {id:'quotes',        label:'My Quotes',           icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
+        {id:'commissions',   label:'My Commissions',      icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'}
+      ],
+      bottomNav: [
+        {id:'settings',  label:'My Settings',           icon:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'},
+        {id:'bugreport', label:'Bug / Feature Request', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'}
+      ]
+    },
+    used: {
+      label: 'Used',
+      subtitle: 'Used Equipment Tracker',
+      quickQuote: true,
+      nav: [
+        {id:'dashboard', label:'Dashboard', icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'}
+        // Real Used pages (tradecalc, units, trades, etc.) get added as Used is absorbed.
+      ],
+      // Cross-links route inside the SPA — instant, no reload.
+      bottomNav: [
+        {id:'deals',          label:'My Deals Pipeline',  cross:'hub', icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
+        {id:'quotes',         label:'My Quotes',          cross:'hub', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
+        {id:'commissions',    label:'My Commissions',     cross:'hub', icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
+        {id:'customers',      label:'My Customers',       cross:'hub', icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
+        {id:'communications', label:'My Communications',  cross:'hub', icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
+        {id:'settings',       label:'My Settings',        cross:'hub', icon:'<circle cx="12" cy="12" r="3"/>'},
+        {id:'bugreport',      label:'Bug / Feature Request', cross:'hub', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/>'}
+      ]
+    },
+    shortline: {
+      label: 'Shortline',
+      subtitle: 'Shortline Price Book',
+      quickQuote: true,
+      nav: [
+        {id:'dashboard', label:'Dashboard', icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'}
+        // Real Shortline pages (pricebook, brand-hub, inventory, promotions, etc.) get added as Shortline is absorbed.
+      ],
+      bottomNav: [
+        {id:'deals',          label:'My Deals Pipeline',  cross:'hub', icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
+        {id:'quotes',         label:'My Quotes',          cross:'hub', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
+        {id:'commissions',    label:'My Commissions',     cross:'hub', icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
+        {id:'customers',      label:'My Customers',       cross:'hub', icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
+        {id:'communications', label:'My Communications',  cross:'hub', icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
+        {id:'settings',       label:'My Settings',        cross:'hub', icon:'<circle cx="12" cy="12" r="3"/>'},
+        {id:'bugreport',      label:'Bug / Feature Request', cross:'hub', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/>'}
+      ]
+    },
+    kubota: {
+      label: 'Kubota',
+      subtitle: 'Kubota Sales Module',
+      quickQuote: true,
+      nav: [
+        {id:'dashboard', label:'Dashboard', icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'}
+      ],
+      bottomNav: [
+        {id:'deals',          label:'My Deals Pipeline',  cross:'hub', icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
+        {id:'quotes',         label:'My Quotes',          cross:'hub', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
+        {id:'commissions',    label:'My Commissions',     cross:'hub', icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
+        {id:'customers',      label:'My Customers',       cross:'hub', icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
+        {id:'communications', label:'My Communications',  cross:'hub', icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
+        {id:'settings',       label:'My Settings',        cross:'hub', icon:'<circle cx="12" cy="12" r="3"/>'},
+        {id:'bugreport',      label:'Bug / Feature Request', cross:'hub', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/>'}
+      ]
+    }
+  };
+
+  // -- AUTH -----------------------------------------------------------------
+  const auth = {
+    readCachedToken(){
+      for(const k of [config.sharedTokenKey, config.appTokenKey]){
+        const raw = localStorage.getItem(k);
+        if(!raw) continue;
+        try{
+          const {token, exp, user} = JSON.parse(raw);
+          if(token && exp > Date.now()) return {token, exp, user};
+        }catch(e){}
+      }
+      return null;
+    },
+    writeCachedToken(token, expSeconds, user){
+      const exp = Date.now() + (expSeconds * 1000) - 60000; // 1-min safety margin
+      const payload = JSON.stringify({token, exp, user});
+      try{ localStorage.setItem(config.sharedTokenKey, payload); }catch(e){}
+      try{ localStorage.setItem(config.appTokenKey, payload); }catch(e){}
+    },
+    clearCachedToken(){
+      try{ localStorage.removeItem(config.sharedTokenKey); }catch(e){}
+      try{ localStorage.removeItem(config.appTokenKey); }catch(e){}
+    },
+    showError(msg){
+      const el = document.getElementById('auth-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+      document.getElementById('auth-loading').style.display = 'none';
+    },
+    showLoading(){
+      document.getElementById('auth-loading').style.display = 'block';
+      document.getElementById('auth-error').style.display = 'none';
+    },
+    signIn(){
+      auth.showLoading();
+      if(typeof google === 'undefined' || !google.accounts){
+        auth.showError('Google sign-in not loaded yet. Refresh the page.');
+        return;
+      }
+      const tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: config.googleClientId,
+        scope: config.driveScope,
+        callback: (resp) => {
+          if(resp.error){
+            auth.showError('Sign-in failed: ' + resp.error);
+            return;
+          }
+          // Fetch user info to verify domain
+          fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+            headers: {Authorization: 'Bearer ' + resp.access_token}
+          }).then(r => r.json()).then(info => {
+            if(!info.email || !info.email.endsWith(config.allowedDomain)){
+              auth.showError('Please sign in with your @hydeparkequipment.ca account.');
+              return;
+            }
+            const user = {email: info.email, name: info.name || info.email};
+            auth.writeCachedToken(resp.access_token, resp.expires_in || 3600, user);
+            auth.completeSignIn(resp.access_token, user);
+          }).catch(err => {
+            auth.showError('Could not verify account: ' + err.message);
+          });
+        }
+      });
+      tokenClient.requestAccessToken({prompt: ''});
+    },
+    completeSignIn(token, user){
+      state.token = token;
+      state.user = user;
+      console.log('[HPE] signed in as', user.email);
+      // Show app, hide auth
+      document.getElementById('auth-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      // Bootstrap remaining systems
+      bootstrap();
+    },
+    signOut(){
+      auth.clearCachedToken();
+      state.token = null;
+      state.user = null;
+      location.reload();
+    }
+  };
+
+  // -- DRIVE (scaffold — Stage 2 fills in the actual reads/writes) ---------
+  const drive = {
+    sharedFolderId: null,
+    configFolderId: null,
+    async init(){
+      // Stage 2 will:
+      //   1. Find HPE Link shared folder
+      //   2. Find _config subfolder
+      //   3. Load state.json (or migrate from existing files if absent)
+      //   4. Set up periodic save with revision-id checks (Stage 3)
+      console.log('[HPE] drive init scaffold — Stage 2 will populate this');
+      state.driveReady = true;
+      return true;
+    }
+  };
+
+  // -- ROUTER ---------------------------------------------------------------
+  // URL hash format: #/SECTION/PAGE, with shortcuts:
+  //   #/                  -> hub/dashboard
+  //   #/used              -> used/dashboard
+  //   #/quotes            -> hub/quotes (Home pages don't need 'hub/' prefix)
+  //   #/used/tradecalc    -> used/tradecalc
+  const router = {
+    parse(hash){
+      hash = (hash || '').replace(/^#?\/?/, '');
+      if(!hash) return {section: 'hub', page: 'dashboard'};
+      const parts = hash.split('/').filter(Boolean);
+      if(parts.length === 0) return {section: 'hub', page: 'dashboard'};
+      const first = parts[0];
+      if(['hub','used','shortline','kubota'].includes(first)){
+        return {section: first, page: parts[1] || 'dashboard'};
+      }
+      // Bare page name = a hub page
+      return {section: 'hub', page: first};
+    },
+    serialize(section, page){
+      if(section === 'hub'){
+        if(page === 'dashboard') return '#/';
+        return '#/' + page;
+      }
+      if(page === 'dashboard') return '#/' + section;
+      return '#/' + section + '/' + page;
+    },
+    go(section, page){
+      page = page || 'dashboard';
+      // Validate
+      if(!sections[section]){ ui.toast('Unknown section: ' + section); return; }
+      // Auto-fall-back if page doesn't exist for this section yet (Stage 1
+      // hasn't absorbed all pages). Falls back to dashboard.
+      const pageEl = document.getElementById('page-' + section + '-' + page);
+      if(!pageEl){
+        ui.toast(`"${page}" not yet available — Stage 1 placeholder`);
+        page = 'dashboard';
+      }
+      // Update hash without scroll jump
+      const newHash = router.serialize(section, page);
+      if(location.hash !== newHash){
+        history.replaceState(null, '', newHash);
+      }
+      // Apply
+      router.apply(section, page);
+    },
+    apply(section, page){
+      const sectionChanged = state.currentSection !== section;
+      state.currentSection = section;
+      state.currentPage = page;
+
+      // Show the right section
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      const sectionEl = document.getElementById('section-' + section);
+      if(sectionEl) sectionEl.classList.add('active');
+
+      // Show the right page within that section
+      sectionEl.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const pageEl = document.getElementById('page-' + section + '-' + page);
+      if(pageEl) pageEl.classList.add('active');
+
+      // Update topbar tab highlights
+      document.querySelectorAll('.app-tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.section === section);
+      });
+      // Update topbar subtitle
+      const sub = document.getElementById('topbar-section-sub');
+      if(sub) sub.textContent = sections[section].subtitle;
+
+      // Re-render sidebar if section changed (otherwise just update active state)
+      if(sectionChanged){
+        ui.renderSidebar();
+      }else{
+        ui.updateSidebarActive();
+      }
+
+      // Lazy section init (reserved hook — Stage 2+ will use this to load
+      // section-specific state on first visit)
+      if(!state.sectionInitialized[section]){
+        state.sectionInitialized[section] = true;
+        // Future: HPE.sections[section].onFirstVisit?.()
+      }
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+    },
+    handleHashChange(){
+      const {section, page} = router.parse(location.hash);
+      if(section !== state.currentSection || page !== state.currentPage){
+        router.apply(section, page);
+      }
+    }
+  };
+
+  // -- UI -------------------------------------------------------------------
+  const ui = {
+    renderSidebar(){
+      const sec = sections[state.currentSection];
+      const sidenav = document.getElementById('sidenav');
+      let html = '';
+      // Quick Quote button
+      if(sec.quickQuote){
+        html += `<button class="nav-btn nav-quick-quote" onclick="HPE.ui.openQuickQuote()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Quick Quote
+        </button>`;
+      }
+      // Top nav
+      sec.nav.forEach(item => {
+        const isActive = item.id === state.currentPage ? 'active' : '';
+        html += `<button class="nav-btn ${isActive}" data-page="${item.id}" onclick="HPE.router.go('${state.currentSection}','${item.id}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg>
+          <span class="nav-label">${item.label}</span>
+        </button>`;
+      });
+      // Bottom nav
+      if(sec.bottomNav && sec.bottomNav.length){
+        html += '<div class="sidenav-bottom">';
+        sec.bottomNav.forEach(item => {
+          const target = item.cross ? item.cross : state.currentSection;
+          const isCross = item.cross && item.cross !== state.currentSection;
+          const klass = isCross ? 'is-cross-link' : '';
+          const activeKlass = (target === state.currentSection && item.id === state.currentPage) ? 'active' : '';
+          html += `<button class="nav-btn ${klass} ${activeKlass}" data-page="${item.id}" data-cross="${item.cross || ''}" onclick="HPE.router.go('${target}','${item.id}')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg>
+            <span class="nav-label">${item.label}</span>
+          </button>`;
+        });
+        html += '</div>';
+      }
+      sidenav.innerHTML = html;
+    },
+    updateSidebarActive(){
+      document.querySelectorAll('.sidenav .nav-btn').forEach(btn => {
+        const pageId = btn.dataset.page;
+        const cross = btn.dataset.cross;
+        const targetSection = cross || state.currentSection;
+        btn.classList.toggle('active', pageId === state.currentPage && targetSection === state.currentSection);
+      });
+    },
+    renderMobileMenu(){
+      const sec = sections[state.currentSection];
+      const list = document.getElementById('mobile-menu-list');
+      document.getElementById('mobile-menu-title').textContent = sec.label;
+      let html = '';
+      // Section switcher (mobile-only convenience)
+      html += '<div class="mobile-menu-section">Sections</div>';
+      Object.keys(sections).forEach(key => {
+        const s = sections[key];
+        const isActive = key === state.currentSection ? 'active' : '';
+        html += `<button class="mobile-menu-item ${isActive}" onclick="HPE.ui.closeMobileMenu();HPE.router.go('${key}')">${s.label}</button>`;
+      });
+      // Current section's pages
+      if(sec.nav.length){
+        html += '<div class="mobile-menu-section">' + sec.label + '</div>';
+        if(sec.quickQuote){
+          html += `<button class="mobile-menu-item" style="color:var(--orange);font-weight:600" onclick="HPE.ui.closeMobileMenu();HPE.ui.openQuickQuote()">+ Quick Quote</button>`;
+        }
+        sec.nav.forEach(item => {
+          const isActive = item.id === state.currentPage ? 'active' : '';
+          html += `<button class="mobile-menu-item ${isActive}" onclick="HPE.ui.closeMobileMenu();HPE.router.go('${state.currentSection}','${item.id}')">${item.label}</button>`;
+        });
+      }
+      // Bottom items
+      if(sec.bottomNav && sec.bottomNav.length){
+        html += '<div class="mobile-menu-section">Personal</div>';
+        sec.bottomNav.forEach(item => {
+          const target = item.cross || state.currentSection;
+          html += `<button class="mobile-menu-item" onclick="HPE.ui.closeMobileMenu();HPE.router.go('${target}','${item.id}')">${item.label}</button>`;
+        });
+      }
+      list.innerHTML = html;
+    },
+    openMobileMenu(){
+      ui.renderMobileMenu();
+      document.getElementById('mobile-menu-backdrop').classList.add('open');
+      document.getElementById('mobile-menu-sheet').classList.add('open');
+    },
+    closeMobileMenu(){
+      document.getElementById('mobile-menu-backdrop').classList.remove('open');
+      document.getElementById('mobile-menu-sheet').classList.remove('open');
+    },
+    openQuickQuote(){ document.getElementById('qq-modal-backdrop').classList.add('open'); },
+    closeQuickQuote(){ document.getElementById('qq-modal-backdrop').classList.remove('open'); },
+    toast(msg, ms){
+      ms = ms || 2500;
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(ui._toastTimer);
+      ui._toastTimer = setTimeout(() => t.classList.remove('show'), ms);
+    }
+  };
+
+  // -- BOOTSTRAP ------------------------------------------------------------
+  // Runs after auth completes. Sequence:
+  //   1. Drive init (scaffolded — Stage 2 fills in)
+  //   2. Apply current hash route (renders sidebar + correct page)
+  //   3. Wire hashchange listener
+  async function bootstrap(){
+    try{
+      await drive.init();
+    }catch(err){
+      console.warn('[HPE] drive init failed:', err);
+      ui.toast('Drive unavailable — running in offline shell mode');
+    }
+    // Apply current hash (or default)
+    const {section, page} = router.parse(location.hash);
+    router.apply(section, page);
+    // Listen for back/forward
+    window.addEventListener('hashchange', router.handleHashChange);
+  }
+
+  // -- INIT (runs on DOMContentLoaded) -------------------------------------
+  function init(){
+    document.body.dataset.build = config.build;
+    document.title = 'HPE Sales Platform v' + config.version;
+    console.log('%c[HPE] v' + config.version + ' — ' + config.build, 'color:#e85d04;font-weight:600');
+
+    // Try cached token first
+    const cached = auth.readCachedToken();
+    if(cached){
+      state.token = cached.token;
+      state.tokenExp = cached.exp;
+      state.user = cached.user;
+      console.log('[HPE] using cached token for', cached.user && cached.user.email);
+      document.getElementById('auth-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      bootstrap();
+    }
+    // Otherwise auth screen stays visible until user clicks sign in
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  }else{
+    init();
+  }
+
+  // Public API
+  return {config, state, sections, auth, drive, router, ui};
+
+})();
+</script>
+
+</body>
+</html>

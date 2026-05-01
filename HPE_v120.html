@@ -3241,7 +3241,7 @@ const HPE = (function(){
   // -- CONFIG ---------------------------------------------------------------
   const config = {
     version: '1.4.0',
-    build: '20260501_v140_round5_sidebar_badges',
+    build: '20260501_v140_round6_bottomnav_alignment',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -3268,6 +3268,39 @@ const HPE = (function(){
   // current apps actually expose at the top level. Sub-pages within a section
   // (Used's tradecalc, Shortline's pricebook etc.) get added as those sections
   // are absorbed in subsequent sub-steps.
+  //
+  // v1.4.0 — Canonical "My ___" bottom-nav icons. All four sections render
+  // these in the same order with the same icons. The only difference between
+  // Hub's copy and the others is the `cross:'hub'` marker (which renders the
+  // little arrow indicating cross-section navigation). Defining them once
+  // here prevents drift between the four copies.
+  const MY_BOTTOM_NAV_ICONS = {
+    customers:      '<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>',
+    deals:          '<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>',
+    quotes:         '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+    commissions:    '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>',
+    communications: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+    settings:       '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+    bugreport:      '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'
+  };
+  // Build a bottomNav array. For Hub, no cross marker. For other sections,
+  // pass crossSection='hub' so links arrow over to Hub.
+  function buildMyBottomNav(crossSection){
+    const order = [
+      {id:'customers',     label:'My Customers'},
+      {id:'deals',         label:'My Deals Pipeline'},
+      {id:'quotes',        label:'My Quotes'},
+      {id:'commissions',   label:'My Commissions'},
+      {id:'communications',label:'My Communications'},
+      {id:'settings',      label:'My Settings'},
+      {id:'bugreport',     label:'Bug / Feature Request'}
+    ];
+    return order.map(item => {
+      const out = {id: item.id, label: item.label, icon: MY_BOTTOM_NAV_ICONS[item.id]};
+      if(crossSection) out.cross = crossSection;
+      return out;
+    });
+  }
   const sections = {
     hub: {
       label: 'Home',
@@ -3276,15 +3309,7 @@ const HPE = (function(){
       nav: [
         {id:'dashboard',     label:'Dashboard',           icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'}
       ],
-      bottomNav: [
-        {id:'customers',     label:'My Customers',        icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>'},
-        {id:'deals',         label:'My Deals Pipeline',   icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
-        {id:'quotes',        label:'My Quotes',           icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-        {id:'commissions',   label:'My Commissions',      icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
-        {id:'communications',label:'My Communications',   icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
-        {id:'settings',      label:'My Settings',         icon:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>'},
-        {id:'bugreport',     label:'Bug / Feature Request', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'}
-      ]
+      bottomNav: buildMyBottomNav(null)
     },
     used: {
       label: 'Used',
@@ -3306,15 +3331,7 @@ const HPE = (function(){
         {id:'leads',      label:'Keep an Eye Out', icon:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'}
       ],
       // Cross-links route inside the SPA — instant, no reload.
-      bottomNav: [
-        {id:'deals',          label:'My Deals Pipeline',  cross:'hub', icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
-        {id:'quotes',         label:'My Quotes',          cross:'hub', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-        {id:'commissions',    label:'My Commissions',     cross:'hub', icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
-        {id:'customers',      label:'My Customers',       cross:'hub', icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
-        {id:'communications', label:'My Communications',  cross:'hub', icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
-        {id:'settings',       label:'My Settings',        cross:'hub', icon:'<circle cx="12" cy="12" r="3"/>'},
-        {id:'bugreport',      label:'Bug / Feature Request', cross:'hub', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/>'}
-      ]
+      bottomNav: buildMyBottomNav('hub')
     },
     shortline: {
       label: 'Shortline',
@@ -3332,15 +3349,7 @@ const HPE = (function(){
         {id:'salespeople',       label:'Salespeople',       admin:true, icon:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6"/><path d="M19 8v6"/>'},
         {id:'model-images',      label:'Model Images',      admin:true, icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>'}
       ],
-      bottomNav: [
-        {id:'deals',          label:'My Deals Pipeline',  cross:'hub', icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
-        {id:'quotes',         label:'My Quotes',          cross:'hub', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-        {id:'commissions',    label:'My Commissions',     cross:'hub', icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
-        {id:'customers',      label:'My Customers',       cross:'hub', icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
-        {id:'communications', label:'My Communications',  cross:'hub', icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
-        {id:'settings',       label:'My Settings',        cross:'hub', icon:'<circle cx="12" cy="12" r="3"/>'},
-        {id:'bugreport',      label:'Bug / Feature Request', cross:'hub', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/>'}
-      ]
+      bottomNav: buildMyBottomNav('hub')
     },
     kubota: {
       label: 'Kubota',
@@ -3349,15 +3358,7 @@ const HPE = (function(){
       nav: [
         {id:'dashboard', label:'Dashboard', icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'}
       ],
-      bottomNav: [
-        {id:'deals',          label:'My Deals Pipeline',  cross:'hub', icon:'<circle cx="12" cy="12" r="10"/><polyline points="9,12 11,14 15,10"/>'},
-        {id:'quotes',         label:'My Quotes',          cross:'hub', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-        {id:'commissions',    label:'My Commissions',     cross:'hub', icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
-        {id:'customers',      label:'My Customers',       cross:'hub', icon:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
-        {id:'communications', label:'My Communications',  cross:'hub', icon:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>'},
-        {id:'settings',       label:'My Settings',        cross:'hub', icon:'<circle cx="12" cy="12" r="3"/>'},
-        {id:'bugreport',      label:'Bug / Feature Request', cross:'hub', icon:'<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/>'}
-      ]
+      bottomNav: buildMyBottomNav('hub')
     }
   };
 

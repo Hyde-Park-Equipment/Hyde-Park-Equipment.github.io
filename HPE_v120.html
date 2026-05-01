@@ -37,7 +37,7 @@
   --purple:#7c3aed;--purple-bg:#f5f3ff; --purple-light:#f3e8ff;
   --green-bg:#ecfdf5;
   --topbar-h:54px;
-  --sidenav-w:200px;
+  --sidenav-w:240px;
   --radius:8px;
   --radius-lg:14px;
   --shadow:0 1px 3px rgba(0,0,0,0.1);
@@ -82,6 +82,15 @@ a{color:inherit;text-decoration:none;}
 .app-tab:hover{color:#ffffff;background:rgba(255,255,255,0.08);}
 .app-tab.active{background:var(--orange);color:white;}
 .app-tab.active:hover{background:var(--orange-dark);color:white;}
+
+/* ROLE SWITCHER (admin-only — hidden by default; HPE.ui.applyAdminPermissions
+   shows it when SALESPEOPLE loads and the current user is an admin).
+   Pinned to the right edge so it doesn't disturb the centered .app-switcher. */
+.role-switcher-btn{position:absolute;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:6px 12px;color:#cbd5e1;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s,color .12s,border-color .12s;}
+.role-switcher-btn:hover{background:rgba(255,255,255,0.08);color:#ffffff;}
+.role-switcher-btn svg{width:14px;height:14px;flex-shrink:0;}
+body.admin-mode .role-switcher-btn{background:var(--orange);border-color:var(--orange);color:white;}
+body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-color:var(--orange-dark);color:white;}
 
 /* APP BODY (sidebar + main) */
 .app-body-with-sidebar{display:flex;padding-top:var(--topbar-h);min-height:100vh;background:var(--bg);}
@@ -1815,6 +1824,12 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
 .nav-section.admin-only { display: none; }
 body.admin-mode .nav-btn.admin-only { display: flex; }
 body.admin-mode .nav-section.admin-only { display: block; }
+/* v1.4.0 — Generic admin-only gate for buttons/elements outside nav. Default
+   hide; admin-mode shows them as inline-flex. The more specific .nav-btn.admin-only
+   and .nav-section.admin-only rules above retain their own display values
+   (display:flex / display:block) thanks to higher CSS specificity. */
+.admin-only { display: none; }
+body.admin-mode .admin-only { display: inline-flex; }
 </style>
 
   <!-- v1.3.0 — External deps (XLSX, jsPDF) for Shortline + Used -->
@@ -1864,6 +1879,10 @@ body.admin-mode .nav-section.admin-only { display: block; }
       <a class="app-tab" data-section="shortline" href="#/shortline" onclick="HPE.router.go('shortline');return false;">Shortline</a>
       <a class="app-tab" data-section="kubota" href="#/kubota" onclick="HPE.router.go('kubota');return false;">Kubota</a>
     </nav>
+    <button class="role-switcher-btn" id="role-switcher-btn" onclick="HPE.ui.toggleRole()" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 1l3 6 6 .9-4.5 4.4 1 6.7L12 16.7 6.5 19l1-6.7L3 7.9 9 7l3-6z"/></svg>
+      <span class="role-switcher-label">Admin</span>
+    </button>
   </div>
 
   <div class="app-body-with-sidebar">
@@ -2165,10 +2184,16 @@ body.admin-mode .nav-section.admin-only { display: block; }
       <div class="page-title">Price Book</div>
       <div class="page-sub" id="pricebook-subtitle">All active pricing across brands</div>
     </div>
-    <button class="btn-orange" onclick="S.openQuoteBuilder()">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      New Quote
-    </button>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="btn-secondary admin-only" onclick="S.editBrandsFromPricebook()" style="padding:8px 12px;font-size:12px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:4px;vertical-align:-2px"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Manage Brands
+      </button>
+      <button class="btn-orange" onclick="S.openQuoteBuilder()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Quote
+      </button>
+    </div>
   </div>
 
   <!-- Breadcrumb when a brand is selected -->
@@ -2670,7 +2695,7 @@ body.admin-mode .nav-section.admin-only { display: block; }
           <div class="qq-option-label">Used Equipment</div>
           <div class="qq-option-sub">Trade calc &amp; used unit quoting</div>
         </div>
-        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('shortline','quickquote')">
+        <div class="qq-option" onclick="HPE.ui.closeQuickQuote();HPE.router.go('shortline','pricebook')">
           <div class="qq-option-label">Shortline</div>
           <div class="qq-option-sub">New equipment price book quotes</div>
         </div>
@@ -3211,8 +3236,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.3.1',
-    build: '20260501_v131_topbar_centered_sidebar_hubnav_quoteoverlay_fixes',
+    version: '1.4.0',
+    build: '20260501_v140_round4_topbarsub_crossnav_audit',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -3266,8 +3291,6 @@ const HPE = (function(){
       nav: [
         {id:'dashboard', label:'Dashboard', icon:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>'},
         {id:'list',       label:'Full List',       icon:'<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/>'},
-        {id:'scotland',   label:'Scotland',        icon:'<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>'},
-        {id:'mallard',    label:'Mallard',         icon:'<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>'},
         {id:'pictures',   label:'Pictures',        icon:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>'},
         {id:'favourites', label:'Favourites',      icon:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'},
         {id:'mytrades',   label:'My Trades',       icon:'<path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/>'},
@@ -3296,8 +3319,6 @@ const HPE = (function(){
       nav: [
         {id:'dashboard',         label:'Dashboard',         icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'},
         {id:'pricebook',         label:'Price Book',        icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'},
-        {id:'quotes',            label:'Quotes',            icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-        {id:'commissions',       label:'Commissions',       icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'},
         {id:'inventory',         label:'Inventory',         icon:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>'},
         {id:'stihl',             label:'Stihl',             icon:'<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>'},
         {id:'brand-hub',         label:'Brand Hub',         admin:true, icon:'<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>'},
@@ -3777,6 +3798,41 @@ const HPE = (function(){
     },
     openQuickQuote(){ document.getElementById('qq-modal-backdrop').classList.add('open'); },
     closeQuickQuote(){ document.getElementById('qq-modal-backdrop').classList.remove('open'); },
+    /* Role switcher visibility + label.
+       Source of truth for admin status: S.isCurrentUserAdmin() (matches user
+       email against SALESPEOPLE list). Source of truth for current role:
+       body.admin-mode class. Called from Shortline's applyAdminPermissions()
+       so the shell button refreshes whenever Shortline's does (i.e. after
+       SALESPEOPLE loads, after sign-in, after switchRole). */
+    applyAdminPermissions(){
+      const btn = document.getElementById('role-switcher-btn');
+      if(!btn) return;
+      const S = window.S;
+      const canAdmin = !!(S && typeof S.isCurrentUserAdmin === 'function' && S.isCurrentUserAdmin());
+      btn.style.display = canAdmin ? '' : 'none';
+      // Update label based on current admin-mode state
+      const label = btn.querySelector('.role-switcher-label');
+      if(label){
+        label.textContent = document.body.classList.contains('admin-mode') ? 'Exit admin' : 'Admin';
+      }
+    },
+    /* Toggle between sales and admin role. Delegates to Shortline's switchRole
+       (which handles the body.admin-mode class, role gating, and any side
+       effects like re-rendering comms). After the switch, refresh the button
+       label by re-applying admin permissions. */
+    toggleRole(){
+      const S = window.S;
+      if(!S || typeof S.switchRole !== 'function'){
+        ui.toast('Admin mode not available yet — try again in a moment');
+        return;
+      }
+      const inAdmin = document.body.classList.contains('admin-mode');
+      S.switchRole(inAdmin ? 'sales' : 'admin');
+      // S.switchRole calls applyAdminPermissions internally on the Shortline
+      // side, but only when called from certain paths. Refresh shell button
+      // unconditionally to keep the label in sync.
+      ui.applyAdminPermissions();
+    },
     toast(msg, ms){
       ms = ms || 2500;
       const t = document.getElementById('toast');
@@ -4754,8 +4810,10 @@ async function syncFromDrive(){
     // Always refresh the cross-module dashboard summary on login so the hub
     // reflects the latest state even if no edits happen this session.
     try { writeDashboardSummary(); } catch(e){ console.warn('initial summary write failed:', e); }
-    const sub=document.getElementById('topbar-sub');
-    if(sub)sub.textContent=inventory.length+' units · '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    // v1.4.0 — The legacy #topbar-sub element no longer exists in the unified
+    // shell (shell owns the topbar subtitle as #topbar-section-sub, updated
+    // by the router on section change). The post-sync toast below carries the
+    // unit count, so dropping the topbar update here is a no-op for users.
     showToast('✓ Synced — '+inventory.length+' units');
     // Background: archive photo folders for units sold 30+ days ago
     setTimeout(()=>{processOverdueSoldArchives().catch(e=>console.warn('archive sweep error:',e));},1500);
@@ -17126,14 +17184,21 @@ function isCurrentUserAdmin(){
 
 /* Apply admin permissions to the UI. Hides the Admin role-switch button
    for non-admins, and forces the role back to 'sales' if a non-admin
-   somehow ended up in admin mode (e.g. left over from a previous session). */
+   somehow ended up in admin mode (e.g. left over from a previous session).
+   The legacy #role-admin button no longer exists in the shell DOM — that
+   guard is left in place for safety, but the function continues regardless
+   so the shell's role-switcher button can be kept in sync via
+   HPE.ui.applyAdminPermissions(). */
 function applyAdminPermissions(){
-  const adminBtn = document.getElementById('role-admin');
-  if(!adminBtn) return;
   const isAdmin = isCurrentUserAdmin();
-  adminBtn.style.display = isAdmin ? '' : 'none';
+  const adminBtn = document.getElementById('role-admin');
+  if(adminBtn) adminBtn.style.display = isAdmin ? '' : 'none';
   if(!isAdmin && currentRole === 'admin'){
     switchRole('sales');
+  }
+  // Notify the shell so its topbar role-switcher button refreshes.
+  if(typeof HPE !== 'undefined' && HPE.ui && typeof HPE.ui.applyAdminPermissions === 'function'){
+    HPE.ui.applyAdminPermissions();
   }
 }
 
@@ -17683,6 +17748,12 @@ function renderBrandDetailHeader(brandName){
     ? `<img src="${logoSrc}" alt="${escapeHtml(b.name)}" style="height:40px;max-width:60px;object-fit:contain;border-radius:6px;background:white;padding:4px;border:1px solid var(--gray-100)" onerror="markBrandLogoFailed('${escapeAttr(b.name)}')">`
     : `<div style="width:40px;height:40px;border-radius:6px;background:${color};color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-0.02em">${escapeHtml(b.name.charAt(0).toUpperCase())}</div>`;
   const isExpanded = (pricebookInfoExpanded === brandName);
+  const isAdmin = (typeof isCurrentUserAdmin === 'function') && isCurrentUserAdmin();
+  const editBtn = isAdmin ? `
+      <button onclick="editBrandFromPricebook('${escapeAttr(b.name)}')" style="background:white;border:1px solid var(--gray-200);color:var(--gray-700);padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit" title="Open in Brand Hub for editing">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Edit Brand
+      </button>` : '';
   headerEl.style.display = '';
   headerEl.innerHTML = `
     <div style="display:flex;align-items:center;gap:14px;background:white;border:1px solid var(--gray-200);border-radius:10px;padding:12px 16px">
@@ -17691,6 +17762,7 @@ function renderBrandDetailHeader(brandName){
         <div style="font-size:18px;font-weight:600;color:var(--gray-900);letter-spacing:-0.02em">${escapeHtml(b.name)}</div>
         <div style="font-size:11px;color:var(--gray-500);margin-top:2px">${escapeHtml((b.categories||[]).join(' · ') || 'No categories set')}</div>
       </div>
+      ${editBtn}
       <button onclick="toggleBrandInfoPanel('${escapeAttr(b.name)}')" style="background:${isExpanded?'rgba(232,93,4,0.08)':'white'};border:1px solid ${isExpanded?'var(--orange)':'var(--gray-200)'};color:${isExpanded?'var(--orange)':'var(--gray-700)'};padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         Brand Info
@@ -17710,6 +17782,41 @@ function renderBrandDetailHeader(brandName){
 function toggleBrandInfoPanel(brandName){
   pricebookInfoExpanded = (pricebookInfoExpanded === brandName) ? '' : brandName;
   renderBrandDetailHeader(brandName);
+}
+
+/* v1.4.0 — Admin entry points to Brand Hub from Price Book.
+   editBrandsFromPricebook() opens the Brand Hub page (top-level admin page).
+   editBrandFromPricebook(name) opens Brand Hub AND auto-expands the named
+   brand's card AND scrolls it into view, so the admin lands directly on the
+   editable detail for the brand they were viewing in Price Book. */
+function editBrandsFromPricebook(){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast === 'function') showToast('Admin access required.');
+    return;
+  }
+  // Ensure admin mode is on so the admin page is reachable + visible.
+  if(currentRole !== 'admin') switchRole('admin');
+  HPE.router.go('shortline','brand-hub');
+}
+
+function editBrandFromPricebook(brandName){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast === 'function') showToast('Admin access required.');
+    return;
+  }
+  if(currentRole !== 'admin') switchRole('admin');
+  // Pre-expand the target brand card so it's open when Brand Hub renders.
+  if(typeof expandedBrandCards !== 'undefined' && expandedBrandCards && typeof expandedBrandCards.add === 'function'){
+    expandedBrandCards.add(brandName);
+  }
+  HPE.router.go('shortline','brand-hub');
+  // Scroll to the card after the page renders. The router fires onPageVisit
+  // synchronously, which calls renderBrandHub(); we still defer with a short
+  // setTimeout to let the DOM settle and any animations/layout finish.
+  setTimeout(() => {
+    const el = document.getElementById('brand-card-' + brandName);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
 }
 
 /* Read-only inline brand info panel — same fields as the admin Brand Hub
@@ -23595,6 +23702,8 @@ function updateCommissionCodes(idx, value){
     renderBrandCardsGrid: typeof renderBrandCardsGrid === 'function' ? renderBrandCardsGrid : undefined,
     renderBrandCategoriesEditor: typeof renderBrandCategoriesEditor === 'function' ? renderBrandCategoriesEditor : undefined,
     renderBrandDetailHeader: typeof renderBrandDetailHeader === 'function' ? renderBrandDetailHeader : undefined,
+    editBrandsFromPricebook: typeof editBrandsFromPricebook === 'function' ? editBrandsFromPricebook : undefined,
+    editBrandFromPricebook: typeof editBrandFromPricebook === 'function' ? editBrandFromPricebook : undefined,
     renderBrandFinancePdf: typeof renderBrandFinancePdf === 'function' ? renderBrandFinancePdf : undefined,
     renderBrandHub: typeof renderBrandHub === 'function' ? renderBrandHub : undefined,
     renderBrandInfo: typeof renderBrandInfo === 'function' ? renderBrandInfo : undefined,

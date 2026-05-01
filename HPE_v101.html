@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v1.0.0</title><!-- build:20260430_v100_stage1_shell -->
+<title>HPE Sales Platform v1.0.1</title><!-- build:20260430_v101_stage1_kubota_absorbed -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -301,7 +301,10 @@ a{color:inherit;text-decoration:none;}
             <div class="placeholder-icon"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9" stroke-linecap="round"/></svg></div>
             <h1 class="placeholder-title">Kubota Sales Module</h1>
             <span class="placeholder-tag">Coming soon</span>
-            <div class="placeholder-body"><p>This section is under development. It lives alongside Used and Shortline with shared sign-in.</p></div>
+            <div class="placeholder-body">
+              <p>This module is under development.</p>
+              <p>It will live alongside the Used Equipment Tracker and Shortline Price Book, with shared sign-in and a unified dashboard back at the hub.</p>
+            </div>
             <div class="placeholder-meta">section: kubota · page: dashboard · route: #/kubota</div>
           </div>
         </div>
@@ -377,8 +380,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.0.0',
-    build: '20260430_v100_stage1_shell',
+    version: '1.0.1',
+    build: '20260430_v101_stage1_kubota_absorbed',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',

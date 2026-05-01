@@ -74,8 +74,10 @@ a{color:inherit;text-decoration:none;}
 .topbar-search input{width:100%;padding:6px 10px 6px 28px;border-radius:6px;border:1px solid #2a2a2a;background:#1a1a1a;font-family:'DM Sans',sans-serif;font-size:12px;color:white;cursor:not-allowed;}
 .topbar-search input::placeholder{color:var(--frame-muted);}
 
-/* APP-SWITCHER (now internal-route links, not cross-app navigation) */
-.app-switcher{display:flex;align-items:center;gap:2px;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:3px;}
+/* APP-SWITCHER (now internal-route links, not cross-app navigation)
+   Absolutely positioned in topbar center so the tabs sit at the viewport
+   midpoint regardless of left-side content width. */
+.app-switcher{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2px;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:3px;}
 .app-tab{display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:#cbd5e1;font-size:13px;font-weight:600;padding:7px 14px;min-width:84px;border-radius:6px;text-decoration:none;transition:background .12s,color .12s;cursor:pointer;}
 .app-tab:hover{color:#ffffff;background:rgba(255,255,255,0.08);}
 .app-tab.active{background:var(--orange);color:white;}
@@ -1856,14 +1858,12 @@ body.admin-mode .nav-section.admin-only { display: block; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <input type="text" placeholder="Search…" disabled>
     </div>
-    <div class="topbar-spacer"></div>
     <nav class="app-switcher" aria-label="Section switcher">
       <a class="app-tab" data-section="hub" href="#/" onclick="HPE.router.go('hub','dashboard');return false;">Home</a>
       <a class="app-tab" data-section="used" href="#/used" onclick="HPE.router.go('used');return false;">Used</a>
       <a class="app-tab" data-section="shortline" href="#/shortline" onclick="HPE.router.go('shortline');return false;">Shortline</a>
       <a class="app-tab" data-section="kubota" href="#/kubota" onclick="HPE.router.go('kubota');return false;">Kubota</a>
     </nav>
-    <div class="topbar-spacer"></div>
   </div>
 
   <div class="app-body-with-sidebar">

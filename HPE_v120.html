@@ -3286,8 +3286,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.5.2',
-    build: '20260502_v152_my_quotes_page',
+    version: '1.5.2.1',
+    build: '20260502_v1521_shortline_inline_handlers',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -14360,7 +14360,7 @@ function renderStihlTable(){
       ? `<span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-700)">${escapeHtml(String(r.year))}</span>`
       : `<span style="color:var(--gray-300);font-size:11px">—</span>`;
     const partAttr = String(r.partNumber || r.tag || '').replace(/'/g, '&#39;');
-    return `<tr style="cursor:pointer" onclick="openStihlDetail('${partAttr}')">
+    return `<tr style="cursor:pointer" onclick="S.openStihlDetail('${partAttr}')">
       <td>${typePill}</td>
       <td><strong>${escapeHtml(r.quickCode || '—')}</strong></td>
       <td style="font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-600)">${escapeHtml(r.partNumber || r.tag || '')}</td>
@@ -16562,11 +16562,11 @@ function renderCommissions(){
         <div class="page-sub">${escapeHtml(viewLabel)} · ${commissionsCurrentYear} · last updated ${lastModifiedStr}</div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        <select onchange="commissionsCurrentYear=parseInt(this.value,10);renderCommissions()" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif">
+        <select onchange="commissionsCurrentYear=parseInt(this.value,10);S.renderCommissions()" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif">
           ${yearOptions}
         </select>
         ${years.length >= 2 ? `<label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-600);cursor:pointer">
-          <input type="checkbox" ${commissionsYoYEnabled?'checked':''} onchange="commissionsYoYEnabled=this.checked;renderCommissions()">
+          <input type="checkbox" ${commissionsYoYEnabled?'checked':''} onchange="commissionsYoYEnabled=this.checked;S.renderCommissions()">
           vs ${commissionsCurrentYear-1}
         </label>` : ''}
         ${isAdmin ? renderCommissionsRepPickerInline() : ''}
@@ -16628,7 +16628,7 @@ function renderCommissionsRepPickerInline(){
     `<option disabled>──────────</option>`,
     ...reps.map(r => `<option value="${escapeHtml(r.code)}" ${commissionsCurrentRepFilter===r.code?'selected':''}>${escapeHtml(r.label)} (${escapeHtml(r.code)})</option>`)
   ];
-  return `<select onchange="commissionsCurrentRepFilter=this.value;renderCommissions();renderCommissionsAdmin()" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif">${opts.join('')}</select>`;
+  return `<select onchange="commissionsCurrentRepFilter=this.value;S.renderCommissions();S.renderCommissionsAdmin()" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif">${opts.join('')}</select>`;
 }
 
 function renderCommissionsMonthlyChart(agg, aggPrev){
@@ -16724,7 +16724,7 @@ function renderMarginDealsSection(repCodes){
     const cls = margin < 5 ? 'deal-margin-bad' : (margin > 20 ? 'deal-margin-good' : '');
     const lineNote = d.lineCount > 1 ? ` <span style="color:var(--gray-400);font-weight:400">· ${d.lineCount} lines</span>` : '';
     const overrideMark = eff.hasOverride ? ' <span style="color:#7c3aed;font-size:10px" title="Cost overridden">✎</span>' : '';
-    return `<div class="cm-deal-row" onclick="openDealDetail('${escapeHtml(d.dealKey)}','sales')" style="cursor:pointer" title="Click for deal detail">
+    return `<div class="cm-deal-row" onclick="S.openDealDetail('${S.escapeHtml(d.dealKey)}','sales')" style="cursor:pointer" title="Click for deal detail">
       <div class="deal-main">
         <div class="deal-customer">${escapeHtml(d.customer || '—')}${overrideMark}</div>
         <div class="deal-meta">${escapeHtml(d.repCode)} · ${escapeHtml(d.summary)}${lineNote} · ${escapeHtml(d.date || '—')}</div>
@@ -16812,7 +16812,7 @@ function _cmSortHeader(kind, field, label, alignRight){
   const arrow = active ? (s.dir === 'asc' ? ' ▲' : ' ▼') : '';
   const color = active ? 'var(--orange)' : 'var(--gray-700)';
   const align = alignRight ? 'text-align:right;' : '';
-  return `<th style="${align}cursor:pointer;user-select:none;color:${color}" onclick="cmSetSort('${kind}','${field}')" title="Click to sort">${escapeHtml(label)}${arrow}</th>`;
+  return `<th style="${align}cursor:pointer;user-select:none;color:${color}" onclick="S.cmSetSort('${kind}','${field}')" title="Click to sort">${escapeHtml(label)}${arrow}</th>`;
 }
 
 function renderCommissionsInvoiceList(repCodes){
@@ -16835,7 +16835,7 @@ function renderCommissionsInvoiceList(repCodes){
     const indicators = (flagged ? '<span title="Flagged for admin review" style="color:#dc2626;margin-left:4px">⚑</span>' : '')
                      + (noteCount > 0 ? `<span title="${noteCount} note${noteCount===1?'':'s'}" style="color:var(--gray-500);margin-left:4px;font-size:10px">📝${noteCount}</span>` : '')
                      + (eff.hasOverride ? '<span title="Cost overridden by admin" style="color:#7c3aed;margin-left:4px;font-size:10px">✎</span>' : '');
-    return `<tr style="cursor:pointer${flagged?';background:#fef9f9':''}" onclick="openDealDetail('${escapeHtml(d.dealKey)}','${kind}')" title="Click for deal detail">
+    return `<tr style="cursor:pointer${flagged?';background:#fef9f9':''}" onclick="S.openDealDetail('${S.escapeHtml(d.dealKey)}','${kind}')" title="Click for deal detail">
       <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(d.date || '—')}</td>
       <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(d.invoice)}${lineNote}${indicators}</td>
       <td>${escapeHtml(d.customer)}</td>
@@ -16857,7 +16857,7 @@ function renderCommissionsInvoiceList(repCodes){
     out += `<div class="panel" style="margin-top:0">
       <div class="panel-title" style="display:flex;justify-content:space-between;align-items:center">
         Unit Deals (${salesDeals.length}) <span style="font-size:11px;color:var(--gray-400);font-weight:400;margin-left:8px">${getDealsForYear(year,'sales').filter(d => repCodes.length===0 || repCodes.map(c=>c.toUpperCase()).includes((d.repCode||'').toUpperCase())).reduce((s,d)=>s+d.lineCount,0)} line items</span>
-        ${salesDeals.length > cap ? `<button onclick="toggleCmShowAll()" style="border:none;background:none;color:var(--orange);font-size:11px;cursor:pointer;padding:0">${_cmShowAllInvoices?'Show top '+cap:'Show all '+salesDeals.length}</button>` : ''}
+        ${salesDeals.length > cap ? `<button onclick="S.toggleCmShowAll()" style="border:none;background:none;color:var(--orange);font-size:11px;cursor:pointer;padding:0">${_cmShowAllInvoices?'Show top '+cap:'Show all '+salesDeals.length}</button>` : ''}
       </div>
       <div style="overflow-x:auto"><table class="quotes-table" style="width:100%;font-size:12px;min-width:900px">
         <thead><tr>
@@ -16880,7 +16880,7 @@ function renderCommissionsInvoiceList(repCodes){
     out += `<div class="panel" style="margin-top:0">
       <div class="panel-title" style="display:flex;justify-content:space-between;align-items:center">
         Parts Deals (${partsDeals.length})
-        ${partsDeals.length > cap ? `<button onclick="toggleCmShowAll()" style="border:none;background:none;color:var(--orange);font-size:11px;cursor:pointer;padding:0">${_cmShowAllInvoices?'Show top '+cap:'Show all '+partsDeals.length}</button>` : ''}
+        ${partsDeals.length > cap ? `<button onclick="S.toggleCmShowAll()" style="border:none;background:none;color:var(--orange);font-size:11px;cursor:pointer;padding:0">${_cmShowAllInvoices?'Show top '+cap:'Show all '+partsDeals.length}</button>` : ''}
       </div>
       <div style="overflow-x:auto"><table class="quotes-table" style="width:100%;font-size:12px;min-width:900px">
         <thead><tr>
@@ -16936,14 +16936,14 @@ function openDealDetail(dealKey, kind){
     ? `<span style="display:inline-block;background:#f3e8ff;color:#7c3aed;border:1px solid #ddd6fe;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">✎ COSTS OVERRIDDEN</span>`
     : '';
   const flagBtnHtml = flag
-    ? `<button onclick="resolveDealFlag('${escapeHtml(deal.persistKey)}','${kind}','${escapeHtml(dealKey)}')" style="padding:7px 12px;border:1px solid #fecaca;background:white;color:#dc2626;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">⚑ Unflag (resolve)</button>`
-    : `<button onclick="openFlagDealDialog('${kind}','${escapeHtml(dealKey)}')" style="padding:7px 12px;border:1px solid var(--gray-200);background:white;color:var(--gray-700);border-radius:6px;font-size:12px;cursor:pointer">⚑ Flag for admin review</button>`;
+    ? `<button onclick="S.resolveDealFlag('${S.escapeHtml(deal.persistKey)}','${kind}','${S.escapeHtml(dealKey)}')" style="padding:7px 12px;border:1px solid #fecaca;background:white;color:#dc2626;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">⚑ Unflag (resolve)</button>`
+    : `<button onclick="S.openFlagDealDialog('${kind}','${S.escapeHtml(dealKey)}')" style="padding:7px 12px;border:1px solid var(--gray-200);background:white;color:var(--gray-700);border-radius:6px;font-size:12px;cursor:pointer">⚑ Flag for admin review</button>`;
 
   // Admin-only cost breakdown section. Built only when isAdmin.
   const costBreakdownHtml = isAdmin ? renderCostBreakdownSection(deal, eff, kind) : '';
 
   const html = `
-    <div id="cm-deal-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px" onclick="if(event.target===this)closeDealDetail()">
+    <div id="cm-deal-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px" onclick="if(event.target===this)S.closeDealDetail()">
       <div style="background:white;border-radius:12px;width:900px;max-width:96vw;max-height:90vh;overflow:auto;display:flex;flex-direction:column">
         <div style="padding:18px 22px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
           <div style="min-width:0">
@@ -16961,7 +16961,7 @@ function openDealDetail(dealKey, kind){
               <span style="color:#a78b8b;font-size:11px;margin-left:6px">${flag.flaggedAt ? new Date(flag.flaggedAt).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : ''}</span>
             </div>` : ''}
           </div>
-          <button onclick="closeDealDetail()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
+          <button onclick="S.closeDealDetail()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
         </div>
         <div style="padding:14px 22px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:var(--gray-50);border-bottom:1px solid var(--gray-200)">
           <div><div style="font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Total Amount</div><div style="font-size:18px;font-weight:700;font-family:'DM Mono',monospace;margin-top:2px">${CM_FMT$(deal.totalAmount)}</div></div>
@@ -16992,7 +16992,7 @@ function openDealDetail(dealKey, kind){
           <div id="cm-notes-list" style="background:white;border:1px solid var(--gray-200);border-radius:6px;padding:8px;min-height:60px"></div>
           <div style="display:flex;gap:8px;margin-top:10px">
             <textarea id="cm-note-input" rows="2" placeholder="Add a note about this deal…" style="flex:1;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical"></textarea>
-            <button class="btn-orange" style="padding:8px 14px;font-size:12px;align-self:flex-start" onclick="addDealNote('${escapeHtml(deal.persistKey)}','${kind}','${escapeHtml(dealKey)}')">+ Add note</button>
+            <button class="btn-orange" style="padding:8px 14px;font-size:12px;align-self:flex-start" onclick="S.addDealNote('${S.escapeHtml(deal.persistKey)}','${kind}','${S.escapeHtml(dealKey)}')">+ Add note</button>
           </div>
           <div id="cm-related-placeholder" style="margin-top:14px;padding:10px 12px;background:white;border:1px dashed var(--gray-200);border-radius:6px;font-size:11px;color:var(--gray-500);font-style:italic">
             Related work orders will appear here once that data feed is connected.
@@ -17092,8 +17092,8 @@ function renderCostBreakdownSection(deal, eff, kind){
     </div>
     ${ovMeta}
     <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px">
-      ${eff.hasOverride ? `<button onclick="resetDealCostOverrides('${escapeHtml(deal.persistKey)}','${kind}','${escapeHtml(deal.dealKey)}')" style="padding:7px 12px;border:1px solid #fecaca;background:white;color:#dc2626;border-radius:6px;font-size:12px;cursor:pointer">Reset all overrides</button>` : ''}
-      <button class="btn-orange" style="padding:7px 14px;font-size:12px" onclick="saveDealCostOverrides('${escapeHtml(deal.persistKey)}','${kind}','${escapeHtml(deal.dealKey)}')">Save overrides</button>
+      ${eff.hasOverride ? `<button onclick="S.resetDealCostOverrides('${S.escapeHtml(deal.persistKey)}','${kind}','${S.escapeHtml(deal.dealKey)}')" style="padding:7px 12px;border:1px solid #fecaca;background:white;color:#dc2626;border-radius:6px;font-size:12px;cursor:pointer">Reset all overrides</button>` : ''}
+      <button class="btn-orange" style="padding:7px 14px;font-size:12px" onclick="S.saveDealCostOverrides('${S.escapeHtml(deal.persistKey)}','${kind}','${S.escapeHtml(deal.dealKey)}')">Save overrides</button>
     </div>
   </div>`;
 }
@@ -17179,8 +17179,8 @@ function renderDealNotesList(persistKey, kind, dealKey){
           <strong style="color:var(--gray-700)">${escapeHtml(n.authorName || n.authorEmail || 'Anonymous')}</strong> · ${ts}${edited}${isMine?' · <em>you</em>':''}
         </div>
         <div style="display:flex;gap:4px;flex-shrink:0">
-          ${canEdit ? `<button onclick="startEditNote('${escapeHtml(n.id)}','${escapeHtml(persistKey)}','${kind}','${escapeHtml(dealKey)}')" style="border:none;background:none;cursor:pointer;color:var(--gray-500);padding:2px 4px;font-size:13px" title="Edit">✎</button>` : ''}
-          ${canDelete ? `<button onclick="deleteDealNote('${escapeHtml(n.id)}','${escapeHtml(persistKey)}','${kind}','${escapeHtml(dealKey)}')" style="border:none;background:none;cursor:pointer;color:#dc2626;padding:2px 4px;font-size:14px" title="Delete (admin only)">×</button>` : ''}
+          ${canEdit ? `<button onclick="S.startEditNote('${S.escapeHtml(n.id)}','${S.escapeHtml(persistKey)}','${kind}','${S.escapeHtml(dealKey)}')" style="border:none;background:none;cursor:pointer;color:var(--gray-500);padding:2px 4px;font-size:13px" title="Edit">✎</button>` : ''}
+          ${canDelete ? `<button onclick="S.deleteDealNote('${S.escapeHtml(n.id)}','${S.escapeHtml(persistKey)}','${kind}','${S.escapeHtml(dealKey)}')" style="border:none;background:none;cursor:pointer;color:#dc2626;padding:2px 4px;font-size:14px" title="Delete (admin only)">×</button>` : ''}
         </div>
       </div>
       <div style="white-space:pre-wrap;color:var(--gray-800)">${escapeHtml(n.body)}</div>
@@ -17219,8 +17219,8 @@ function startEditNote(noteId, persistKey, kind, dealKey){
   bodyDiv.outerHTML = `<div>
     <textarea id="cm-edit-${escapeHtml(noteId)}" rows="3" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical">${escapeHtml(note.body)}</textarea>
     <div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end">
-      <button onclick="cancelEditNote('${escapeHtml(persistKey)}','${kind}','${escapeHtml(dealKey)}')" style="padding:5px 10px;border:1px solid var(--gray-200);background:white;border-radius:5px;font-size:11px;cursor:pointer">Cancel</button>
-      <button class="btn-orange" style="padding:5px 10px;font-size:11px" onclick="saveEditNote('${escapeHtml(noteId)}','${escapeHtml(persistKey)}','${kind}','${escapeHtml(dealKey)}')">Save</button>
+      <button onclick="S.cancelEditNote('${S.escapeHtml(persistKey)}','${kind}','${S.escapeHtml(dealKey)}')" style="padding:5px 10px;border:1px solid var(--gray-200);background:white;border-radius:5px;font-size:11px;cursor:pointer">Cancel</button>
+      <button class="btn-orange" style="padding:5px 10px;font-size:11px" onclick="S.saveEditNote('${S.escapeHtml(noteId)}','${S.escapeHtml(persistKey)}','${kind}','${S.escapeHtml(dealKey)}')">Save</button>
     </div>
   </div>`;
 }
@@ -17262,7 +17262,7 @@ function openFlagDealDialog(kind, dealKey){
   const deal = deals.find(d => d.dealKey === dealKey);
   if(!deal){ showToast('Deal not found'); return; }
   const html = `
-    <div id="cm-flag-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.5);display:flex;align-items:center;justify-content:center;z-index:10000;padding:20px" onclick="if(event.target===this)closeFlagDialog()">
+    <div id="cm-flag-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.5);display:flex;align-items:center;justify-content:center;z-index:10000;padding:20px" onclick="if(event.target===this)S.closeFlagDialog()">
       <div style="background:white;border-radius:12px;padding:22px;width:480px;max-width:94vw">
         <div style="font-size:15px;font-weight:600;margin-bottom:6px">⚑ Flag deal for admin review</div>
         <div style="font-size:12px;color:var(--gray-600);margin-bottom:14px">
@@ -17271,8 +17271,8 @@ function openFlagDealDialog(kind, dealKey){
         <label style="font-size:11px;color:var(--gray-600);font-weight:500;display:block;margin-bottom:4px">Reason (what should an admin look at?)</label>
         <textarea id="cm-flag-reason" rows="4" placeholder="e.g. margin looks too low — wondering if a setup cost was double-billed" style="width:100%;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical"></textarea>
         <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px">
-          <button onclick="closeFlagDialog()" style="padding:7px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:12px">Cancel</button>
-          <button class="btn-orange" style="padding:7px 14px;font-size:12px" onclick="submitFlagDeal('${kind}','${escapeHtml(dealKey)}')">⚑ Flag for review</button>
+          <button onclick="S.closeFlagDialog()" style="padding:7px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:12px">Cancel</button>
+          <button class="btn-orange" style="padding:7px 14px;font-size:12px" onclick="S.submitFlagDeal('${kind}','${S.escapeHtml(dealKey)}')">⚑ Flag for review</button>
         </div>
       </div>
     </div>`;
@@ -17742,7 +17742,7 @@ function renderRecentQuotes(){
   }).slice(0, 5);
   el.innerHTML = sorted.map(q => {
     const d = quoteDisplayFields(q);
-    return `<div class="recent-row" onclick="loadQuoteIntoBuilder('${d.id}')" style="cursor:pointer">
+    return `<div class="recent-row" onclick="S.loadQuoteIntoBuilder('${d.id}')" style="cursor:pointer">
       <div style="flex:1">
         <div class="rr-name">${escapeHtml(d.customer)}</div>
         <div class="rr-cust">${escapeHtml(d.summary)} · ${escapeHtml(d.dateStr)}</div>
@@ -17770,7 +17770,7 @@ function renderDashCommsCompact(){
   list.innerHTML = top3.map(c => {
     const isUnread = !readCommIds.has(c.id);
     return `
-      <div class="comms-compact-row${isUnread ? ' unread' : ''}" onclick="navigate('communications')">
+      <div class="comms-compact-row${isUnread ? ' unread' : ''}" onclick="S.navigate('communications')">
         <span class="ccr-pill ${c.category}">${c.category}</span>
         <div class="ccr-title">${isUnread ? '<span class="ccr-unread-dot"></span>' : ''}${c.pinned ? '<span class="pin-icon">📌</span>' : ''}${escapeHtml(c.title)}</div>
         <div class="ccr-date">${c.posted}</div>
@@ -17889,13 +17889,13 @@ function renderBrandCardsGrid(){
     // Logo precedence: manually-uploaded (b.logo) → Brandfetch auto (_logo_auto) → omit (text title above is enough)
     const logoSrc = b.logo || (!b._logo_failed && b._logo_auto) || '';
     const logoMarkup = logoSrc
-      ? `<div class="brand-card-tile-logo has-image"><img src="${logoSrc}" alt="${escapeHtml(b.name)}" onerror="markBrandLogoFailed('${escapeAttr(b.name)}')" /></div>`
+      ? `<div class="brand-card-tile-logo has-image"><img src="${logoSrc}" alt="${escapeHtml(b.name)}" onerror="S.markBrandLogoFailed('${S.escapeAttr(b.name)}')" /></div>`
       : '';
     const reviewBadge = b.auto_created
       ? `<span title="Auto-created from inventory — review in Brand Hub" style="position:absolute;top:14px;right:36px;font-size:10px;background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:4px;font-weight:600">NEW</span>`
       : '';
     return `
-      <div class="brand-card-tile ${safeName}" style="border-left:4px solid ${color};position:relative" onclick="selectBrandCard('${escapeHtml(b.name).replace(/'/g,'&#39;')}')">
+      <div class="brand-card-tile ${safeName}" style="border-left:4px solid ${color};position:relative" onclick="S.selectBrandCard('${S.escapeHtml(b.name).replace(/'/g,'&#39;')}')">
         ${reviewBadge}
         <div class="brand-card-tile-arrow">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
@@ -17966,7 +17966,7 @@ function updatePricebookView(){
 
   const cards = document.getElementById('brand-cards-grid');
   const tableWrap = document.getElementById('pricebook-table-wrap');
-  const toolbar = document.querySelector('#page-pricebook .toolbar');
+  const toolbar = document.querySelector('#page-shortline-pricebook .toolbar');
   const crumb = document.getElementById('pricebook-crumb');
   const subtitle = document.getElementById('pricebook-subtitle');
   const brandHeader = document.getElementById('brand-detail-header');
@@ -18018,12 +18018,12 @@ function renderBrandDetailHeader(brandName){
   const color = (typeof getBrandColor === 'function') ? getBrandColor(b.name) : '#6b7280';
   const logoSrc = b.logo || (!b._logo_failed && b._logo_auto) || '';
   const logoBlock = logoSrc
-    ? `<img src="${logoSrc}" alt="${escapeHtml(b.name)}" style="height:40px;max-width:60px;object-fit:contain;border-radius:6px;background:white;padding:4px;border:1px solid var(--gray-100)" onerror="markBrandLogoFailed('${escapeAttr(b.name)}')">`
+    ? `<img src="${logoSrc}" alt="${escapeHtml(b.name)}" style="height:40px;max-width:60px;object-fit:contain;border-radius:6px;background:white;padding:4px;border:1px solid var(--gray-100)" onerror="S.markBrandLogoFailed('${S.escapeAttr(b.name)}')">`
     : `<div style="width:40px;height:40px;border-radius:6px;background:${color};color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-0.02em">${escapeHtml(b.name.charAt(0).toUpperCase())}</div>`;
   const isExpanded = (pricebookInfoExpanded === brandName);
   const isAdmin = (typeof isCurrentUserAdmin === 'function') && isCurrentUserAdmin();
   const editBtn = isAdmin ? `
-      <button onclick="editBrandFromPricebook('${escapeAttr(b.name)}')" style="background:white;border:1px solid var(--gray-200);color:var(--gray-700);padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit" title="Open in Brand Hub for editing">
+      <button onclick="S.editBrandFromPricebook('${S.escapeAttr(b.name)}')" style="background:white;border:1px solid var(--gray-200);color:var(--gray-700);padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit" title="Open in Brand Hub for editing">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         Edit Brand
       </button>` : '';
@@ -18036,7 +18036,7 @@ function renderBrandDetailHeader(brandName){
         <div style="font-size:11px;color:var(--gray-500);margin-top:2px">${escapeHtml((b.categories||[]).join(' · ') || 'No categories set')}</div>
       </div>
       ${editBtn}
-      <button onclick="toggleBrandInfoPanel('${escapeAttr(b.name)}')" style="background:${isExpanded?'rgba(232,93,4,0.08)':'white'};border:1px solid ${isExpanded?'var(--orange)':'var(--gray-200)'};color:${isExpanded?'var(--orange)':'var(--gray-700)'};padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit">
+      <button onclick="S.toggleBrandInfoPanel('${S.escapeAttr(b.name)}')" style="background:${isExpanded?'rgba(232,93,4,0.08)':'white'};border:1px solid ${isExpanded?'var(--orange)':'var(--gray-200)'};color:${isExpanded?'var(--orange)':'var(--gray-700)'};padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
         Brand Info
         <span style="font-size:10px;margin-left:2px">${isExpanded ? '▴' : '▾'}</span>
@@ -18214,7 +18214,7 @@ function filterAndRender(){
       : renderStockPills(stockUnits);
     const _bColor = getBrandColor(s.brand);
     const _bPillStyle = `background:${rgba(_bColor, 0.12)};color:${_bColor};`;
-    return `<tr class="${s.promo?'has-promo':''}" onclick="openDetail(${s.id})">
+    return `<tr class="${s.promo?'has-promo':''}" onclick="S.openDetail(${s.id})">
       <td><span class="brand-pill" style="${_bPillStyle}">${s.brand}</span></td>
       <td class="cell-model">${s.model}</td>
       <td class="cell-desc">${s.desc}</td>
@@ -18222,7 +18222,7 @@ function filterAndRender(){
       <td class="cell-num cell-cost">$${s.cost.toLocaleString('en-US',{maximumFractionDigits:0})}</td>
       <td>${stockCell}</td>
       <td>${flags.join(' ')||'<span style="color:var(--gray-400);font-size:11px">—</span>'}</td>
-      <td onclick="event.stopPropagation();addToQuickQuote(${s.id})"><button class="quick-quote-btn">+ Quote</button></td>
+      <td onclick="event.stopPropagation();S.addToQuickQuote(${s.id})"><button class="quick-quote-btn">+ Quote</button></td>
     </tr>`;
   }).join('');
 }
@@ -18238,10 +18238,10 @@ function renderStockPills(units){
     const title = u.exact
       ? `Stock tag ${u.tag} (exact model match)`
       : `Stock tag ${u.tag} — DMS lists model as "${u.model}" (fuzzy match)`;
-    html += `<span class="stock-tag-pill ${cls}" title="${title}" onclick="event.stopPropagation();showToast('Tag ${u.tag} — ${u.exact?'exact':'fuzzy'} match against \\'${u.model}\\'')">${u.tag}</span>`;
+    html += `<span class="stock-tag-pill ${cls}" title="${title}" onclick="event.stopPropagation();S.showToast('Tag ${u.tag} — ${u.exact?'exact':'fuzzy'} match against \\'${u.model}\\'')">${u.tag}</span>`;
   });
   if (hidden > 0){
-    html += `<span class="stock-tag-pill more" title="${units.slice(MAX_INLINE).map(u=>u.tag).join(', ')}" onclick="event.stopPropagation();showToast('Additional tags: ${units.slice(MAX_INLINE).map(u=>u.tag).join(', ')}')">+${hidden}</span>`;
+    html += `<span class="stock-tag-pill more" title="${units.slice(MAX_INLINE).map(u=>u.tag).join(', ')}" onclick="event.stopPropagation();S.showToast('Additional tags: ${units.slice(MAX_INLINE).map(u=>u.tag).join(', ')}')">+${hidden}</span>`;
   }
   html += '</div>';
   return html;
@@ -18314,11 +18314,11 @@ function renderDrawerBody(s){
           </div>
           <div style="font-size:11px;color:var(--orange-dark)">Eligibility: ${s.notes&&s.notes.toLowerCase().includes('commercial')?'Commercial customers only':'All customers'}</div>
           <div class="promo-pricing">
-            <div class="promo-price-card ${detailUseStandard?'selected':''}" onclick="selectPromoOption(true)">
+            <div class="promo-price-card ${detailUseStandard?'selected':''}" onclick="S.selectPromoOption(true)">
               <label>Standard Cost</label>
               <div class="pp-cost">$${standardCost.toLocaleString('en-US',{maximumFractionDigits:0})}</div>
             </div>
-            <div class="promo-price-card ${!detailUseStandard?'selected':''}" onclick="selectPromoOption(false)">
+            <div class="promo-price-card ${!detailUseStandard?'selected':''}" onclick="S.selectPromoOption(false)">
               <label>Promo Cost</label>
               <div class="pp-cost">$${promoCost.toLocaleString('en-US',{maximumFractionDigits:0})}</div>
             </div>
@@ -18333,11 +18333,11 @@ function renderDrawerBody(s){
       <div class="section-title" style="display:flex;align-items:center;justify-content:space-between;gap:8px">
         <span>Overview</span>
         <div style="display:flex;align-items:center;gap:8px">
-          <button class="popular-toggle-btn admin-only ${s.popular ? 'active' : ''}" onclick="toggleSkuPopular(${s.id})" title="${s.popular ? 'Currently flagged Popular — click to unflag' : 'Flag as Popular (anchors high in brand-filtered Price Book)'}">
+          <button class="popular-toggle-btn admin-only ${s.popular ? 'active' : ''}" onclick="S.toggleSkuPopular(${s.id})" title="${s.popular ? 'Currently flagged Popular — click to unflag' : 'Flag as Popular (anchors high in brand-filtered Price Book)'}">
             <span class="pop-star">${s.popular ? '★' : '☆'}</span>
             ${s.popular ? 'Popular' : 'Mark Popular'}
           </button>
-          <button class="brand-info-jump-btn" onclick="jumpToBrandInfo('${escapeHtml(s.brand).replace(/'/g, '&#39;')}')" title="View ${s.brand} brand info">
+          <button class="brand-info-jump-btn" onclick="S.jumpToBrandInfo('${S.escapeHtml(s.brand).replace(/'/g, '&#39;')}')" title="View ${s.brand} brand info">
             <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             ${escapeHtml(s.brand)} brand info
           </button>
@@ -18369,9 +18369,9 @@ function renderDrawerBody(s){
       <div class="section-title">Pricing Calculator</div>
       <div class="calc-box">
         <div class="calc-row"><label>MSRP</label><input type="text" value="$${s.msrp.toLocaleString('en-US',{maximumFractionDigits:0})}" readonly><span class="calc-locked">locked</span></div>
-        <div class="calc-row cost"><label>Cost</label><input type="number" id="calc-cost" value="${activeCost.toFixed(2)}" oninput="recalcFromCost()"><span class="calc-locked">${detailUseStandard?'standard':'promo'}</span></div>
-        <div class="calc-row price"><label>Quote Price</label><input type="number" id="calc-price" value="${suggestedPrice.toFixed(0)}" oninput="recalcFromPrice()"><span class="calc-locked">editable</span></div>
-        <div class="calc-row margin"><label>Margin %</label><input type="number" id="calc-margin" value="${brandRule.default_margin}" step="0.5" oninput="recalcFromMargin()"><span class="calc-locked">editable</span></div>
+        <div class="calc-row cost"><label>Cost</label><input type="number" id="calc-cost" value="${activeCost.toFixed(2)}" oninput="S.recalcFromCost()"><span class="calc-locked">${detailUseStandard?'standard':'promo'}</span></div>
+        <div class="calc-row price"><label>Quote Price</label><input type="number" id="calc-price" value="${suggestedPrice.toFixed(0)}" oninput="S.recalcFromPrice()"><span class="calc-locked">editable</span></div>
+        <div class="calc-row margin"><label>Margin %</label><input type="number" id="calc-margin" value="${brandRule.default_margin}" step="0.5" oninput="S.recalcFromMargin()"><span class="calc-locked">editable</span></div>
         <div class="calc-summary">
           <div class="calc-summary-item"><label>Gross Profit</label><span id="calc-gp" class="">$${(suggestedPrice-activeCost).toLocaleString('en-US',{maximumFractionDigits:0})}</span></div>
           <div class="calc-summary-item gp"><label>Discount off MSRP</label><span id="calc-discount">${s.msrp > 0 ? ((1-suggestedPrice/s.msrp)*100).toFixed(1) + '%' : '—'}</span></div>
@@ -18417,8 +18417,8 @@ function renderSkuImage(s){
         <img src="${s.image}" alt="${escapeHtml(s.brand)} ${escapeHtml(s.model)}" />
         ${isAdmin ? `
           <div class="sku-image-actions">
-            <button class="sku-img-btn" onclick="uploadSkuImage(${s.id})">Replace</button>
-            <button class="sku-img-btn danger" onclick="removeSkuImage(${s.id})">Remove</button>
+            <button class="sku-img-btn" onclick="S.uploadSkuImage(${s.id})">Replace</button>
+            <button class="sku-img-btn danger" onclick="S.removeSkuImage(${s.id})">Remove</button>
           </div>` : ''}
       </div>
     `;
@@ -18426,7 +18426,7 @@ function renderSkuImage(s){
   // No image yet
   if (isAdmin){
     return `
-      <div class="sku-image-empty admin" onclick="uploadSkuImage(${s.id})">
+      <div class="sku-image-empty admin" onclick="S.uploadSkuImage(${s.id})">
         <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         <div><strong>Upload product image</strong></div>
         <small>JPG/PNG, ideally landscape · Will appear on this SKU's quotes</small>
@@ -18639,14 +18639,14 @@ function renderLineItems(){
         // Trade-in line has different fields (no margin, no cost — just a credit description and amount)
         return `<div class="quote-line trade-in">
           <div class="quote-line-name">
-            <input type="text" value="${li.desc.replace(/"/g,'&quot;')}" oninput="updateLine(${i},'desc',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:5px 7px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--green);font-weight:500" placeholder="e.g., 2018 Walker MT23 trade-in">
+            <input type="text" value="${li.desc.replace(/"/g,'&quot;')}" oninput="S.updateLine(${i},'desc',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:5px 7px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--green);font-weight:500" placeholder="e.g., 2018 Walker MT23 trade-in">
             <small>Trade-in credit (deducted from total)</small>
           </div>
           <span style="color:var(--gray-400);text-align:right;font-size:11px">—</span>
-          <input type="number" value="${li.price.toFixed(0)}" oninput="updateLine(${i},'price',this.value)" class="qline-money" style="width:100%" placeholder="0">
+          <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" style="width:100%" placeholder="0">
           <span style="color:var(--gray-400);text-align:right;font-size:11px">—</span>
           <span style="color:var(--gray-400);text-align:right;font-size:11px">1</span>
-          <button class="qline-remove" onclick="removeLine(${i})">×</button>
+          <button class="qline-remove" onclick="S.removeLine(${i})">×</button>
         </div>`;
       }
       if (li.type === 'additional-cost'){
@@ -18654,17 +18654,17 @@ function renderLineItems(){
         const labelEsc = (li.label||'').replace(/"/g,'&quot;');
         return `<div class="quote-line" style="background:var(--blue-light);border-color:var(--blue)">
           <div class="quote-line-name">
-            <input type="text" value="${labelEsc}" oninput="updateLine(${i},'label',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:5px 7px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--blue);font-weight:600" placeholder="e.g., Delivery, Setup, Prep, Services">
+            <input type="text" value="${labelEsc}" oninput="S.updateLine(${i},'label',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:5px 7px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--blue);font-weight:600" placeholder="e.g., Delivery, Setup, Prep, Services">
             <small style="display:flex;align-items:center;gap:6px;margin-top:4px;color:var(--gray-600)">
-              <input type="checkbox" ${li.show_on_pdf?'checked':''} onchange="updateLine(${i},'show_on_pdf',this.checked);renderLineItems.skip=true" style="width:13px;height:13px;accent-color:var(--blue);cursor:pointer">
+              <input type="checkbox" ${li.show_on_pdf?'checked':''} onchange="S.updateLine(${i},'show_on_pdf',this.checked);renderLineItems.skip=true" style="width:13px;height:13px;accent-color:var(--blue);cursor:pointer">
               Show on customer PDF
             </small>
           </div>
-          <input type="number" value="${li.cost.toFixed(0)}" oninput="updateLine(${i},'cost',this.value)" class="qline-money" style="width:100%" placeholder="cost">
-          <input type="number" value="${li.price.toFixed(0)}" oninput="updateLine(${i},'price',this.value)" class="qline-money" style="width:100%" placeholder="price">
-          <input type="number" value="${addMargin}" step="0.5" oninput="updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
-          <input type="number" value="${li.qty}" min="1" oninput="updateLine(${i},'qty',this.value)" style="width:100%">
-          <button class="qline-remove" onclick="removeLine(${i})">×</button>
+          <input type="number" value="${li.cost.toFixed(0)}" oninput="S.updateLine(${i},'cost',this.value)" class="qline-money" style="width:100%" placeholder="cost">
+          <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" style="width:100%" placeholder="price">
+          <input type="number" value="${addMargin}" step="0.5" oninput="S.updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
+          <input type="number" value="${li.qty}" min="1" oninput="S.updateLine(${i},'qty',this.value)" style="width:100%">
+          <button class="qline-remove" onclick="S.removeLine(${i})">×</button>
         </div>`;
       }
       const margin = li.price>0 ? ((li.price-li.cost)/li.price*100).toFixed(1) : '0';
@@ -18672,15 +18672,15 @@ function renderLineItems(){
       // is cataloged for this brand+model combo. Falls back silently if none.
       const lineImg = (typeof getModelImage === 'function') ? getModelImage(li.brand, li.model) : null;
       const thumb = lineImg
-        ? `<img src="${lineImg}" alt="" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#f9fafb;border:1px solid var(--gray-200);flex-shrink:0;cursor:pointer" onclick="uploadLineItemImage('full',${i})" title="Replace image (admin only)">`
-        : `<button onclick="uploadLineItemImage('full',${i})" title="Add image for ${escapeAttr((li.brand||'')+' '+(li.model||''))}" style="width:28px;height:28px;border:1px dashed var(--gray-300);border-radius:4px;background:white;color:var(--gray-400);cursor:pointer;font-size:14px;flex-shrink:0;padding:0;display:flex;align-items:center;justify-content:center">📷</button>`;
+        ? `<img src="${lineImg}" alt="" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#f9fafb;border:1px solid var(--gray-200);flex-shrink:0;cursor:pointer" onclick="S.uploadLineItemImage('full',${i})" title="Replace image (admin only)">`
+        : `<button onclick="S.uploadLineItemImage('full',${i})" title="Add image for ${escapeAttr((li.brand||'')+' '+(li.model||''))}" style="width:28px;height:28px;border:1px dashed var(--gray-300);border-radius:4px;background:white;color:var(--gray-400);cursor:pointer;font-size:14px;flex-shrink:0;padding:0;display:flex;align-items:center;justify-content:center">📷</button>`;
       return `<div class="quote-line">
         <div class="quote-line-name" style="display:flex;align-items:center;gap:8px">${thumb}<div style="flex:1;min-width:0">${li.brand} ${li.model}<small>${li.desc}</small></div></div>
-        <input type="number" value="${li.cost.toFixed(0)}" oninput="updateLine(${i},'cost',this.value)" class="qline-money" style="width:100%">
-        <input type="number" value="${li.price.toFixed(0)}" oninput="updateLine(${i},'price',this.value)" class="qline-money" style="width:100%">
-        <input type="number" value="${margin}" step="0.5" oninput="updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
-        <input type="number" value="${li.qty}" min="1" oninput="updateLine(${i},'qty',this.value)" style="width:100%">
-        <button class="qline-remove" onclick="removeLine(${i})">×</button>
+        <input type="number" value="${li.cost.toFixed(0)}" oninput="S.updateLine(${i},'cost',this.value)" class="qline-money" style="width:100%">
+        <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" style="width:100%">
+        <input type="number" value="${margin}" step="0.5" oninput="S.updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
+        <input type="number" value="${li.qty}" min="1" oninput="S.updateLine(${i},'qty',this.value)" style="width:100%">
+        <button class="qline-remove" onclick="S.removeLine(${i})">×</button>
       </div>`;
     }).join('');
   }
@@ -18922,7 +18922,7 @@ function updateFinanceDisplay(){
       <div class="fin-cell ${isOverride ? 'custom' : ''}">
         <div class="fin-cell-term">${t}mo</div>
         <div class="fin-cell-rate-wrap" title="Click to edit rate for ${t}mo term">
-          <input type="number" class="fin-cell-rate" step="0.01" min="0" value="${rate.toFixed(2)}" oninput="updatePerTermRate(${t}, this.value)" aria-label="${t}-month rate">
+          <input type="number" class="fin-cell-rate" step="0.01" min="0" value="${rate.toFixed(2)}" oninput="S.updatePerTermRate(${t}, this.value)" aria-label="${t}-month rate">
           <span class="fin-cell-rate-suffix">%</span>
         </div>
         <div class="fin-cell-amt ${loanAmount<=0?'empty':''}" id="fin-pmt-${t}">${pmt}</div>
@@ -18951,7 +18951,7 @@ function renderLinePicker(){
       ? `<span class="stock-pill stock-yes" style="font-size:9px;margin-left:6px;padding:1px 6px">${stock.length} in stock</span>`
       : `<span class="stock-pill" style="font-size:9px;margin-left:6px;padding:1px 6px;background:var(--gray-100);color:var(--gray-500)">not stocked</span>`;
     return `
-      <div class="lp-result" onclick="addSkuFromPicker(${s.id})">
+      <div class="lp-result" onclick="S.addSkuFromPicker(${s.id})">
         <div class="lp-result-info"><strong>${s.brand} ${s.model}${stockBadge}</strong><small>${s.desc}</small></div>
         <div class="lp-result-cost">$${s.cost.toLocaleString('en-US',{maximumFractionDigits:0})}</div>
         <div class="lp-result-msrp">$${s.msrp.toLocaleString('en-US',{maximumFractionDigits:0})}</div>
@@ -18997,7 +18997,7 @@ function onCustomerChange(){
   panel.classList.add('show');
   document.getElementById('cust-history-list').innerHTML = history.map(q => {
     const d = quoteDisplayFields(q);
-    return `<div class="cust-hist-row" onclick="loadQuoteIntoBuilder('${d.id}')" style="cursor:pointer">
+    return `<div class="cust-hist-row" onclick="S.loadQuoteIntoBuilder('${d.id}')" style="cursor:pointer">
       <span>${escapeHtml(d.id)}</span>
       <span>${escapeHtml(d.summary)}</span>
       <span>${escapeHtml(d.dateStr)}</span>
@@ -19043,7 +19043,7 @@ function renderRecentSkus(){
   el.innerHTML = recentlyQuotedSkuIds.slice(0, 6).map(id => {
     const s = SKUS.find(x=>x.id===id);
     if (!s) return '';
-    return `<div class="recent-skus-row" onclick="openDetail(${s.id})">
+    return `<div class="recent-skus-row" onclick="S.openDetail(${s.id})">
       <span class="rs-model">${s.model}</span>
       <span class="rs-desc">${s.brand}</span>
       <span class="rs-cost">$${s.cost.toLocaleString('en-US',{maximumFractionDigits:0})}</span>
@@ -19282,7 +19282,7 @@ function updateQuoteEditingBadge(){
     const q = SAMPLE_QUOTES.find(x => x.id === currentQuoteId);
     if (q){
       const editTime = q.lastEditedBy && q.updatedAt ? (' · last edited by ' + q.lastEditedBy + ' at ' + new Date(q.updatedAt).toLocaleString()) : '';
-      el.innerHTML = 'Editing <strong>' + q.id + '</strong> <span style="color:var(--gray-500);font-weight:400">(' + (q.status || 'draft') + ')</span>' + editTime + ' <button onclick="startNewQuote()" style="margin-left:10px;padding:3px 8px;font-size:11px;background:white;border:1px solid var(--gray-200);border-radius:4px;cursor:pointer">+ New quote</button>';
+      el.innerHTML = 'Editing <strong>' + q.id + '</strong> <span style="color:var(--gray-500);font-weight:400">(' + (q.status || 'draft') + ')</span>' + editTime + ' <button onclick="S.startNewQuote()" style="margin-left:10px;padding:3px 8px;font-size:11px;background:white;border:1px solid var(--gray-200);border-radius:4px;cursor:pointer">+ New quote</button>';
       el.style.display = 'block';
     }
   } else {
@@ -19715,8 +19715,8 @@ function renderQuotes(){
     const msg = SAMPLE_QUOTES.length === 0
       ? 'No quotes yet. Saved quotes from the quote builder will appear here.'
       : (myQuotesOnly
-        ? `No quotes match. ${filter ? 'Try clearing the filter or' : ''} switch to <a href="#" onclick="setQuotesScope(false);return false" style="color:var(--orange);font-weight:600">All Quotes</a>.`
-        : `No quotes match the filter. <a href="#" onclick="document.getElementById('quotes-filter').value='';renderQuotes();return false" style="color:var(--orange);font-weight:600">Clear filter</a>.`);
+        ? `No quotes match. ${filter ? 'Try clearing the filter or' : ''} switch to <a href="#" onclick="S.setQuotesScope(false);return false" style="color:var(--orange);font-weight:600">All Quotes</a>.`
+        : `No quotes match the filter. <a href="#" onclick="document.getElementById('quotes-filter').value='';S.renderQuotes();return false" style="color:var(--orange);font-weight:600">Clear filter</a>.`);
     list.innerHTML = `<div class="panel" style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">${msg}</div>`;
     return;
   }
@@ -19732,7 +19732,7 @@ function renderQuotes(){
     const isMineQ = isMine(q);
     const statusColor = statusColors[d.status] || '#6b7280';
     const revs = (q.revisions && q.revisions.length) ? ` · v${q.revisions.length}` : '';
-    return `<div class="panel" style="margin-bottom:10px;cursor:pointer" onclick="loadQuoteIntoBuilder('${d.id}')">
+    return `<div class="panel" style="margin-bottom:10px;cursor:pointer" onclick="S.loadQuoteIntoBuilder('${d.id}')">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
         <span style="font-size:11px;color:var(--gray-400);font-family:'DM Mono',monospace">${escapeHtml(d.id)}${revs}</span>
         <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;font-weight:600;color:${statusColor};background:${statusColor}1a;padding:2px 7px;border-radius:4px">${escapeHtml(d.status)}</span>
@@ -19789,9 +19789,9 @@ function renderCustomers(){
 
   if(rows.length === 0){
     if(CUSTOMERS.length === 0){
-      list.innerHTML = '<div class="panel" style="text-align:center;padding:32px;color:var(--gray-500);font-size:13px">No customers yet. <a href="#" onclick="openCustomerModal();return false" style="color:var(--orange);font-weight:600">+ Add your first customer</a> or <a href="#" onclick="openCustomerImport();return false" style="color:var(--orange);font-weight:600">↑ import from CSV</a>.</div>';
+      list.innerHTML = '<div class="panel" style="text-align:center;padding:32px;color:var(--gray-500);font-size:13px">No customers yet. <a href="#" onclick="S.openCustomerModal();return false" style="color:var(--orange);font-weight:600">+ Add your first customer</a> or <a href="#" onclick="S.openCustomerImport();return false" style="color:var(--orange);font-weight:600">↑ import from CSV</a>.</div>';
     } else if(customersScopeMine && mineCount === 0){
-      list.innerHTML = `<div class="panel" style="text-align:center;padding:32px;color:var(--gray-500);font-size:13px">You're not the account owner on any customers yet.<br><br><a href="#" onclick="setCustomersScope(false);return false" style="color:var(--orange);font-weight:600">Show all customers</a> or <a href="#" onclick="openCustomerModal();return false" style="color:var(--orange);font-weight:600">+ add a new customer</a>.</div>`;
+      list.innerHTML = `<div class="panel" style="text-align:center;padding:32px;color:var(--gray-500);font-size:13px">You're not the account owner on any customers yet.<br><br><a href="#" onclick="S.setCustomersScope(false);return false" style="color:var(--orange);font-weight:600">Show all customers</a> or <a href="#" onclick="S.openCustomerModal();return false" style="color:var(--orange);font-weight:600">+ add a new customer</a>.</div>`;
     } else {
       list.innerHTML = '<div class="panel" style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No customers match the current filters.</div>';
     }
@@ -19815,7 +19815,7 @@ function renderCustomers(){
     <tbody>
       ${rows.map(c => {
         const mine = isMine(c);
-        return `<tr style="border-bottom:1px solid var(--gray-100);cursor:pointer" onclick="openCustomerModal('${escapeAttr(c.id)}')">
+        return `<tr style="border-bottom:1px solid var(--gray-100);cursor:pointer" onclick="S.openCustomerModal('${S.escapeAttr(c.id)}')">
           <td style="padding:10px 14px"><strong style="color:var(--gray-900)">${escapeHtml(c.name)}</strong> ${typeBadge(c.customer_type)}</td>
           <td style="padding:10px 14px;color:var(--gray-600)">${escapeHtml(c.email||'—')}</td>
           <td style="padding:10px 14px;color:var(--gray-600);font-family:'DM Mono',monospace;font-size:12px">${escapeHtml(c.phone||'—')}</td>
@@ -19955,7 +19955,7 @@ function renderCustomerPicker(){
   rows.sort((a,b) => (a.name||'').localeCompare(b.name||''));
   if(rows.length === 0){
     if(CUSTOMERS.length === 0){
-      list.innerHTML = `<div style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No customers saved yet.<br><br><a href="#" onclick="closeCustomerPicker();goToCrossApp('hub','customers');return false" style="color:var(--orange);font-weight:600">Add one in Home ↗</a></div>`;
+      list.innerHTML = `<div style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No customers saved yet.<br><br><a href="#" onclick="S.closeCustomerPicker();S.goToCrossApp('hub','customers');return false" style="color:var(--orange);font-weight:600">Add one in Home ↗</a></div>`;
     } else {
       list.innerHTML = `<div style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No customers match "<strong>${escapeHtml(q)}</strong>"</div>`;
     }
@@ -19963,7 +19963,7 @@ function renderCustomerPicker(){
   }
   list.innerHTML = rows.slice(0, 200).map(c => {
     const sub = [c.email, c.phone, c.account_owner ? 'owner: '+c.account_owner : null].filter(Boolean).join(' · ');
-    return `<div onclick="selectCustomerFromPicker('${escapeAttr(c.id)}')" style="padding:12px 22px;border-bottom:1px solid var(--gray-100);cursor:pointer" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background='white'">
+    return `<div onclick="S.selectCustomerFromPicker('${S.escapeAttr(c.id)}')" style="padding:12px 22px;border-bottom:1px solid var(--gray-100);cursor:pointer" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background='white'">
       <div style="font-weight:600;color:var(--gray-900);font-size:13px">${escapeHtml(c.name)}</div>
       <div style="font-size:11px;color:var(--gray-500);margin-top:2px">${escapeHtml(sub) || '<span style="color:var(--gray-400)">— no contact info —</span>'}</div>
     </div>`;
@@ -20083,15 +20083,15 @@ function renderInventoryPage(){
   const thBase = 'padding:10px 12px;font-size:11px;font-weight:600;color:var(--gray-600);letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;user-select:none';
   list.innerHTML = `<table style="width:100%;border-collapse:collapse;background:white;border:1px solid var(--gray-200);border-radius:10px;overflow:hidden;font-size:12px">
     <thead><tr style="background:#f9fafb;border-bottom:1px solid var(--gray-200)">
-      <th style="text-align:left;${thBase}" onclick="sortInventoryBy('tag')">Tag${sortInd('tag')}</th>
-      <th style="text-align:left;${thBase}" onclick="sortInventoryBy('brand')">Brand${sortInd('brand')}</th>
-      <th style="text-align:left;${thBase}" onclick="sortInventoryBy('model')">Model${sortInd('model')}</th>
-      <th style="text-align:left;${thBase}" onclick="sortInventoryBy('desc')">Description${sortInd('desc')}</th>
+      <th style="text-align:left;${thBase}" onclick="S.sortInventoryBy('tag')">Tag${sortInd('tag')}</th>
+      <th style="text-align:left;${thBase}" onclick="S.sortInventoryBy('brand')">Brand${sortInd('brand')}</th>
+      <th style="text-align:left;${thBase}" onclick="S.sortInventoryBy('model')">Model${sortInd('model')}</th>
+      <th style="text-align:left;${thBase}" onclick="S.sortInventoryBy('desc')">Description${sortInd('desc')}</th>
       <th style="text-align:center;padding:10px 6px;font-size:11px;font-weight:600;color:var(--gray-600);letter-spacing:0.04em;text-transform:uppercase;width:36px" title="Notes">📝</th>
-      <th style="text-align:center;${thBase}" onclick="sortInventoryBy('year')">Yr${sortInd('year')}</th>
-      <th style="text-align:center;${thBase}" onclick="sortInventoryBy('location')">Loc${sortInd('location')}</th>
-      <th style="text-align:right;${thBase}" onclick="sortInventoryBy('cost')">Cost${sortInd('cost')}</th>
-      <th style="text-align:right;${thBase}" onclick="sortInventoryBy('list_price')">List${sortInd('list_price')}</th>
+      <th style="text-align:center;${thBase}" onclick="S.sortInventoryBy('year')">Yr${sortInd('year')}</th>
+      <th style="text-align:center;${thBase}" onclick="S.sortInventoryBy('location')">Loc${sortInd('location')}</th>
+      <th style="text-align:right;${thBase}" onclick="S.sortInventoryBy('cost')">Cost${sortInd('cost')}</th>
+      <th style="text-align:right;${thBase}" onclick="S.sortInventoryBy('list_price')">List${sortInd('list_price')}</th>
       <th style="text-align:center;padding:10px 6px;font-size:11px;font-weight:600;color:var(--gray-600);letter-spacing:0.04em;text-transform:uppercase;width:48px" title="Mark sold">Sold</th>
     </tr></thead>
     <tbody>
@@ -20125,17 +20125,17 @@ function renderInventoryPage(){
         const soldTitle = isSold
           ? (u._override && u._override.soldTo ? `Sold to ${u._override.soldTo}\n(Click to view/edit)` : 'Marked sold (click to view)')
           : 'Mark this unit sold';
-        return `<tr style="${rowStyle}" onclick="openInventoryDetail('${escapeAttr(u.tag)}')" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background='${isSold?'#fafafa':''}'">
+        return `<tr style="${rowStyle}" onclick="S.openInventoryDetail('${S.escapeAttr(u.tag)}')" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background='${isSold?'#fafafa':''}'">
           <td style="padding:8px 12px;font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-900);font-weight:600">${tagCell}</td>
           <td style="padding:8px 12px;color:var(--gray-700)">${brandLabel}</td>
           <td style="padding:8px 12px;color:var(--gray-700)">${escapeHtml(u.model)}</td>
           <td style="padding:8px 12px;color:var(--gray-500);font-size:11px">${escapeHtml(u.desc)}</td>
-          <td style="padding:8px 6px;text-align:center;cursor:pointer" onclick="event.stopPropagation();editInventoryNotesByTag('${escapeAttr(u.tag)}')" title="${notesTitle}">${notesCell}</td>
+          <td style="padding:8px 6px;text-align:center;cursor:pointer" onclick="event.stopPropagation();S.editInventoryNotesByTag('${S.escapeAttr(u.tag)}')" title="${notesTitle}">${notesCell}</td>
           <td style="padding:8px 12px;text-align:center;color:var(--gray-600);font-size:11px">${escapeHtml(u.year)}</td>
           <td style="padding:8px 12px;text-align:center"><span style="color:${locColor};font-weight:600;font-size:11px">${escapeHtml(u.location)}</span></td>
           <td style="padding:8px 12px;text-align:right;font-family:'DM Mono',monospace;color:var(--gray-700)">${u.cost > 0 ? '$'+Math.round(u.cost).toLocaleString() : '—'}</td>
           <td style="padding:8px 12px;text-align:right;font-family:'DM Mono',monospace;color:var(--gray-900);font-weight:600">${u.list_price > 0 ? '$'+Math.round(u.list_price).toLocaleString() : '—'}</td>
-          <td style="padding:8px 6px;text-align:center;cursor:pointer" onclick="event.stopPropagation();openSoldModalByTag('${escapeAttr(u.tag)}')" title="${soldTitle}">${soldCell}</td>
+          <td style="padding:8px 6px;text-align:center;cursor:pointer" onclick="event.stopPropagation();S.openSoldModalByTag('${S.escapeAttr(u.tag)}')" title="${soldTitle}">${soldCell}</td>
         </tr>`;
       }).join('')}
     </tbody>
@@ -20218,7 +20218,7 @@ function openInventoryDetail(tag){
         ${existingQuotes.length > 0 ? `
           <div style="margin-top:14px;padding:10px 12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px">
             <div style="font-size:11px;font-weight:600;color:#1e40af;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px">⚠ Already on ${existingQuotes.length} quote${existingQuotes.length===1?'':'s'}</div>
-            ${existingQuotes.slice(0,5).map(q => `<div style="font-size:12px;color:#1e40af;margin-top:3px"><a href="#" onclick="closeInventoryDetail();loadQuoteIntoBuilder('${escapeAttr(q.id)}');return false" style="color:#1e40af;text-decoration:underline">${escapeHtml(q.id)}</a> — ${escapeHtml(q.customer?.name || '—')} · ${escapeHtml(q.salesperson || '—')}</div>`).join('')}
+            ${existingQuotes.slice(0,5).map(q => `<div style="font-size:12px;color:#1e40af;margin-top:3px"><a href="#" onclick="S.closeInventoryDetail();S.loadQuoteIntoBuilder('${S.escapeAttr(q.id)}');return false" style="color:#1e40af;text-decoration:underline">${escapeHtml(q.id)}</a> — ${escapeHtml(q.customer?.name || '—')} · ${escapeHtml(q.salesperson || '—')}</div>`).join('')}
           </div>` : ''}
       </div>
       ${heroImg ? `<div style="aspect-ratio:4/3;background:var(--gray-50);border-radius:8px;border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px"><img src="${heroImg}" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></div>` : ''}
@@ -20765,7 +20765,7 @@ function renderSalespeople(){
     return a.name.localeCompare(b.name);
   });
   if(sorted.length === 0){
-    host.innerHTML = '<div style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No salespeople yet. <a href="#" onclick="addSalesperson();return false" style="color:var(--orange);font-weight:600">+ Add the first one</a></div>';
+    host.innerHTML = '<div style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No salespeople yet. <a href="#" onclick="S.addSalesperson();return false" style="color:var(--orange);font-weight:600">+ Add the first one</a></div>';
     return;
   }
   host.innerHTML = `<table class="admin-table">
@@ -20774,10 +20774,10 @@ function renderSalespeople(){
       ${sorted.map((s, i) => {
         const realIdx = SALESPEOPLE.findIndex(x => x === s);
         return `<tr>
-          <td><input type="text" value="${escapeAttr(s.name)}" oninput="updateSalesperson(${realIdx},'name',this.value)" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px"></td>
-          <td><input type="email" value="${escapeAttr(s.email||'')}" oninput="updateSalesperson(${realIdx},'email',this.value)" placeholder="optional" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px"></td>
-          <td><label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:12px"><input type="checkbox" ${s.active?'checked':''} onchange="toggleSalespersonActive(${realIdx})">${s.active?'<span style="color:var(--green);font-weight:600">Active</span>':'<span style="color:var(--gray-500)">Inactive</span>'}</label></td>
-          <td style="text-align:right"><button onclick="removeSalesperson(${realIdx})" style="background:none;border:1px solid #fecaca;color:var(--red);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer">Remove</button></td>
+          <td><input type="text" value="${escapeAttr(s.name)}" oninput="S.updateSalesperson(${realIdx},'name',this.value)" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px"></td>
+          <td><input type="email" value="${escapeAttr(s.email||'')}" oninput="S.updateSalesperson(${realIdx},'email',this.value)" placeholder="optional" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px"></td>
+          <td><label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:12px"><input type="checkbox" ${s.active?'checked':''} onchange="S.toggleSalespersonActive(${realIdx})">${s.active?'<span style="color:var(--green);font-weight:600">Active</span>':'<span style="color:var(--gray-500)">Inactive</span>'}</label></td>
+          <td style="text-align:right"><button onclick="S.removeSalesperson(${realIdx})" style="background:none;border:1px solid #fecaca;color:var(--red);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer">Remove</button></td>
         </tr>`;
       }).join('')}
     </tbody>
@@ -20869,7 +20869,7 @@ function renderAdminPermissions(){
         <td style="text-align:right;white-space:nowrap">
           ${statusBadge}
           <label style="display:inline-flex;align-items:center;gap:6px;cursor:${isSelf?'not-allowed':'pointer'};margin-left:10px;font-size:12px;${isSelf?'opacity:0.5':''}">
-            <input type="checkbox" ${checked} ${disabled} onchange="toggleSalespersonAdmin(${realIdx})">
+            <input type="checkbox" ${checked} ${disabled} onchange="S.toggleSalespersonAdmin(${realIdx})">
             <span>Admin</span>
           </label>
         </td>
@@ -20932,7 +20932,7 @@ function renderModelImages(){
   if(!host) return;
   const entries = Object.entries(MODEL_IMAGES);
   if(entries.length === 0){
-    host.innerHTML = '<div style="text-align:center;padding:32px;color:var(--gray-500);font-size:13px">No model images cataloged yet.<br><br><a href="#" onclick="addModelImageEntry();return false" style="color:var(--orange);font-weight:600">+ Add your first model image</a><br><br><span style="font-size:11px">When a model has an image here, it auto-appears on quote builder line items, PDF quotes, and inventory unit detail panels — keyed by brand+model (case-insensitive).</span></div>';
+    host.innerHTML = '<div style="text-align:center;padding:32px;color:var(--gray-500);font-size:13px">No model images cataloged yet.<br><br><a href="#" onclick="S.addModelImageEntry();return false" style="color:var(--orange);font-weight:600">+ Add your first model image</a><br><br><span style="font-size:11px">When a model has an image here, it auto-appears on quote builder line items, PDF quotes, and inventory unit detail panels — keyed by brand+model (case-insensitive).</span></div>';
     return;
   }
   // Parse keys back into {brand, model} for display, sort by brand then model
@@ -20955,8 +20955,8 @@ function renderModelImages(){
         <div style="font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em">${escapeHtml(p.brand) || '<span style="color:var(--gray-400)">no brand</span>'}</div>
         <div style="font-weight:600;color:var(--gray-900);font-family:'DM Mono',monospace;font-size:13px">${escapeHtml(p.model)}</div>
         <div style="display:flex;gap:6px;margin-top:4px">
-          <button onclick="replaceModelImage('${escapeAttr(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Replace</button>
-          <button onclick="removeModelImage('${escapeAttr(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid #fecaca;color:var(--red);border-radius:5px;font-size:11px;cursor:pointer">Remove</button>
+          <button onclick="S.replaceModelImage('${S.escapeAttr(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Replace</button>
+          <button onclick="S.removeModelImage('${S.escapeAttr(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid #fecaca;color:var(--red);border-radius:5px;font-size:11px;cursor:pointer">Remove</button>
         </div>
       </div>
     `).join('')}
@@ -20991,11 +20991,11 @@ function _openModelImageEditor(existingKey){
   }
   const isReplace = !!existingKey;
   const html = `
-    <div id="mi-modal-backdrop" style="position:fixed;inset:0;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px" onclick="if(event.target===this)closeModelImageEditor()">
+    <div id="mi-modal-backdrop" style="position:fixed;inset:0;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px" onclick="if(event.target===this)S.closeModelImageEditor()">
       <div style="background:white;border-radius:12px;width:480px;max-width:94vw;display:flex;flex-direction:column">
         <div style="padding:18px 22px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center">
           <div style="font-size:16px;font-weight:600">${isReplace?'Replace':'Add'} Model Image</div>
-          <button onclick="closeModelImageEditor()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
+          <button onclick="S.closeModelImageEditor()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
         </div>
         <div style="padding:18px 22px">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
@@ -21017,19 +21017,19 @@ function _openModelImageEditor(existingKey){
               <div style="font-size:13px;color:var(--gray-700);margin-bottom:6px">Drop an image here</div>
               <div style="font-size:11px;color:var(--gray-500);margin-bottom:10px">or</div>
               <button onclick="document.getElementById('mi-file-input').click()" style="padding:7px 14px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;cursor:pointer">Choose file</button>
-              <input id="mi-file-input" type="file" accept="image/jpeg,image/png" style="display:none" onchange="_handleModelImageFile(this.files[0])">
+              <input id="mi-file-input" type="file" accept="image/jpeg,image/png" style="display:none" onchange="S._handleModelImageFile(this.files[0])">
               <div style="font-size:10px;color:var(--gray-400);margin-top:8px">JPG or PNG, under 3MB</div>
             </div>
             <div id="mi-file-preview" style="display:none">
               <img id="mi-preview-img" style="max-width:100%;max-height:200px;border-radius:6px;margin-bottom:8px">
               <div id="mi-preview-name" style="font-size:11px;color:var(--gray-600);margin-bottom:8px"></div>
-              <button onclick="_clearModelImagePreview()" style="padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Choose different</button>
+              <button onclick="S._clearModelImagePreview()" style="padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Choose different</button>
             </div>
           </div>
         </div>
         <div style="padding:14px 22px;border-top:1px solid var(--gray-200);background:var(--gray-50);display:flex;justify-content:flex-end;gap:8px;border-radius:0 0 12px 12px">
-          <button onclick="closeModelImageEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:13px">Cancel</button>
-          <button id="mi-save-btn" class="btn-orange" onclick="_saveModelImageFromEditor()" disabled style="opacity:0.5;cursor:not-allowed">Save</button>
+          <button onclick="S.closeModelImageEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:13px">Cancel</button>
+          <button id="mi-save-btn" class="btn-orange" onclick="S._saveModelImageFromEditor()" disabled style="opacity:0.5;cursor:not-allowed">Save</button>
         </div>
       </div>
     </div>`;
@@ -21156,14 +21156,14 @@ function _openLineImageEditor(context, index, brand, model, displayName){
   }
   const isReplace = !!existing;
   const html = `
-    <div id="li-img-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;z-index:10001;padding:20px" onclick="if(event.target===this)closeLineImageEditor()">
+    <div id="li-img-modal" style="position:fixed;inset:0;background:rgba(15,23,42,0.55);display:flex;align-items:center;justify-content:center;z-index:10001;padding:20px" onclick="if(event.target===this)S.closeLineImageEditor()">
       <div style="background:white;border-radius:12px;width:480px;max-width:94vw;display:flex;flex-direction:column">
         <div style="padding:18px 22px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center">
           <div>
             <div style="font-size:16px;font-weight:600">${isReplace?'Replace':'Add'} image for <span style="font-family:'DM Mono',monospace">${escapeHtml(displayName)}</span></div>
             <div style="font-size:11px;color:var(--gray-500);margin-top:2px">Saves to the Model Images catalog so it shows on all future quotes for this model.</div>
           </div>
-          <button onclick="closeLineImageEditor()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
+          <button onclick="S.closeLineImageEditor()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
         </div>
         <div style="padding:18px 22px">
           ${existing ? `<div style="margin-bottom:14px"><div style="font-size:11px;color:var(--gray-500);margin-bottom:4px">Current image</div><img src="${existing}" style="max-width:140px;max-height:100px;border:1px solid var(--gray-200);border-radius:6px;background:var(--gray-50);object-fit:contain"></div>` : ''}
@@ -21175,19 +21175,19 @@ function _openLineImageEditor(context, index, brand, model, displayName){
               <div style="font-size:13px;color:var(--gray-700);margin-bottom:6px">${isReplace?'Drop replacement image here':'Drop an image here'}</div>
               <div style="font-size:11px;color:var(--gray-500);margin-bottom:10px">or</div>
               <button onclick="document.getElementById('li-img-input').click()" style="padding:7px 14px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;cursor:pointer">Choose file</button>
-              <input id="li-img-input" type="file" accept="image/jpeg,image/png" style="display:none" onchange="_handleLineImageFile(this.files[0])">
+              <input id="li-img-input" type="file" accept="image/jpeg,image/png" style="display:none" onchange="S._handleLineImageFile(this.files[0])">
               <div style="font-size:10px;color:var(--gray-400);margin-top:8px">JPG or PNG, under 3MB</div>
             </div>
             <div id="li-img-preview" style="display:none">
               <img id="li-img-preview-img" style="max-width:100%;max-height:200px;border-radius:6px;margin-bottom:8px">
               <div id="li-img-preview-name" style="font-size:11px;color:var(--gray-600);margin-bottom:8px"></div>
-              <button onclick="_clearLineImagePreview()" style="padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Choose different</button>
+              <button onclick="S._clearLineImagePreview()" style="padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Choose different</button>
             </div>
           </div>
         </div>
         <div style="padding:14px 22px;border-top:1px solid var(--gray-200);background:var(--gray-50);display:flex;justify-content:flex-end;gap:8px;border-radius:0 0 12px 12px">
-          <button onclick="closeLineImageEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:13px">Cancel</button>
-          <button id="li-img-save-btn" class="btn-orange" onclick="_saveLineImage()" disabled style="opacity:0.5;cursor:not-allowed">Save</button>
+          <button onclick="S.closeLineImageEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:13px">Cancel</button>
+          <button id="li-img-save-btn" class="btn-orange" onclick="S._saveLineImage()" disabled style="opacity:0.5;cursor:not-allowed">Save</button>
         </div>
       </div>
     </div>`;
@@ -21288,8 +21288,8 @@ function renderComms(){
         </div>
         <div class="comms-msg-text">${escapeHtml(c.message)}</div>
         ${isAdmin ? `<div class="comms-actions">
-          <button class="comms-action-btn" onclick="togglePinComm(${c.id})">${c.pinned ? 'Unpin' : 'Pin'}</button>
-          <button class="comms-action-btn delete" onclick="deleteComm(${c.id})">Delete</button>
+          <button class="comms-action-btn" onclick="S.togglePinComm(${c.id})">${c.pinned ? 'Unpin' : 'Pin'}</button>
+          <button class="comms-action-btn delete" onclick="S.deleteComm(${c.id})">Delete</button>
         </div>` : ''}
       </div>
       <div class="comms-meta">
@@ -21384,7 +21384,7 @@ function renderBrandHub(){
     const expanded = expandedBrandCards.has(b.name);
     return `
       <div class="brand-card ${expanded ? 'expanded' : ''} ${isInactive ? 'brand-card-inactive' : ''}" id="brand-card-${b.name}">
-        <div class="brand-card-header" onclick="toggleBrandCard('${b.name.replace(/'/g, "\\'")}')">
+        <div class="brand-card-header" onclick="S.toggleBrandCard('${b.name.replace(/'/g, "\\'")}')">
           <span class="chev">▶</span>
           <div class="brand-card-title">
             ${b.name}
@@ -21393,7 +21393,7 @@ function renderBrandHub(){
           </div>
           <div class="brand-card-stats">
             ${isInactive ? `
-              <button class="brand-activate-btn" onclick="event.stopPropagation();toggleBrandActive('${b.name.replace(/'/g, "\\'")}')">+ Activate</button>
+              <button class="brand-activate-btn" onclick="event.stopPropagation();S.toggleBrandActive('${b.name.replace(/'/g, "\\'")}')">+ Activate</button>
             ` : `
               <span><strong>${b.sku_count}</strong> SKUs</span>
               <span><strong>${b.varies_by_model ? 'varies' : b.dealer_discount + '%'}</strong> discount</span>
@@ -21462,12 +21462,12 @@ function renderBrandCardBody(b){
           <strong>This vendor is inactive.</strong>
           Sales reps don't see it. Click <strong>Activate</strong> below when you're ready to add SKUs and start quoting it.
         </div>
-        <button class="brand-activate-btn" onclick="toggleBrandActive('${b.name.replace(/'/g, "\\'")}')">+ Activate ${escapeHtml(b.name)}</button>
+        <button class="brand-activate-btn" onclick="S.toggleBrandActive('${b.name.replace(/'/g, "\\'")}')">+ Activate ${escapeHtml(b.name)}</button>
       </div>
     ` : `
       <div class="brand-active-toolbar">
         <span class="brand-status-pill active">● Active</span>
-        <button class="brand-deactivate-btn" onclick="toggleBrandActive('${b.name.replace(/'/g, "\\'")}')" title="Hide this brand from sales-side views">Deactivate</button>
+        <button class="brand-deactivate-btn" onclick="S.toggleBrandActive('${b.name.replace(/'/g, "\\'")}')" title="Hide this brand from sales-side views">Deactivate</button>
       </div>
     `}
 
@@ -21492,12 +21492,12 @@ function renderBrandCardBody(b){
       </div>
       <div class="brand-color-row">
         <div class="brand-color-preview" style="background:${getBrandColor(b.name)}"></div>
-        <input type="color" id="brand-color-${b.name}" value="${getBrandColor(b.name)}" onchange="updateBrandColor('${escapeHtml(b.name).replace(/'/g, '&#39;')}', this.value)" class="brand-color-picker">
-        <input type="text" id="brand-color-hex-${b.name}" value="${getBrandColor(b.name)}" maxlength="7" placeholder="#RRGGBB" oninput="updateBrandColor('${escapeHtml(b.name).replace(/'/g, '&#39;')}', this.value)" class="brand-color-hex">
-        <button class="pkg-btn-sm" onclick="resetBrandColor('${escapeHtml(b.name).replace(/'/g, '&#39;')}')" title="Reset to default">Reset</button>
+        <input type="color" id="brand-color-${b.name}" value="${getBrandColor(b.name)}" onchange="S.updateBrandColor('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}', this.value)" class="brand-color-picker">
+        <input type="text" id="brand-color-hex-${b.name}" value="${getBrandColor(b.name)}" maxlength="7" placeholder="#RRGGBB" oninput="S.updateBrandColor('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}', this.value)" class="brand-color-hex">
+        <button class="pkg-btn-sm" onclick="S.resetBrandColor('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}')" title="Reset to default">Reset</button>
         <div class="brand-color-swatches">
           ${['#1e40af','#b45309','#dc2626','#f59e0b','#7c3aed','#16a34a','#0891b2','#475569'].map(c => `
-            <button class="brand-color-swatch" style="background:${c}" onclick="updateBrandColor('${escapeHtml(b.name).replace(/'/g, '&#39;')}', '${c}')" title="${c}"></button>
+            <button class="brand-color-swatch" style="background:${c}" onclick="S.updateBrandColor('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}', '${c}')" title="${c}"></button>
           `).join('')}
         </div>
       </div>
@@ -21512,7 +21512,7 @@ function renderBrandCardBody(b){
       </div>
       <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
         <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer">
-          <input type="checkbox" ${b.popular ? 'checked' : ''} onchange="toggleBrandPopular('${escapeHtml(b.name).replace(/'/g, '&#39;')}')">
+          <input type="checkbox" ${b.popular ? 'checked' : ''} onchange="S.toggleBrandPopular('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}')">
           <strong>Popular brand</strong>
           <span style="color:var(--gray-500)">— surfaces first in "Popular" sort</span>
         </label>
@@ -21522,7 +21522,7 @@ function renderBrandCardBody(b){
         ${BRAND_CATEGORIES.map(cat => {
           const checked = (b.categories || []).includes(cat);
           return `<label class="cat-chip ${checked?'checked':''}" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border:1px solid ${checked?'var(--orange)':'var(--gray-200)'};background:${checked?'#fff7ed':'white'};color:${checked?'var(--orange)':'var(--gray-700)'};border-radius:6px;font-size:12px;font-weight:500;cursor:pointer">
-            <input type="checkbox" ${checked?'checked':''} onchange="toggleBrandCategory('${escapeHtml(b.name).replace(/'/g, '&#39;')}', '${cat}')" style="margin:0">
+            <input type="checkbox" ${checked?'checked':''} onchange="S.toggleBrandCategory('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}', '${cat}')" style="margin:0">
             ${cat}
           </label>`;
         }).join('')}
@@ -21536,7 +21536,7 @@ function renderBrandCardBody(b){
         Short Description
         <span style="font-size:11px;font-weight:400;color:var(--gray-500);margin-left:auto">One-line tagline shown on cards</span>
       </div>
-      <textarea id="brand-notes-${escapeHtml(b.name).replace(/"/g, '&quot;')}" rows="2" placeholder="e.g. Pro-Power Canada distributor — Mike Henderson contact" oninput="updateBrandNotes('${escapeHtml(b.name).replace(/'/g, '&#39;')}', this.value)" style="width:100%;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical">${escapeHtml(b.notes || '')}</textarea>
+      <textarea id="brand-notes-${escapeHtml(b.name).replace(/"/g, '&quot;')}" rows="2" placeholder="e.g. Pro-Power Canada distributor — Mike Henderson contact" oninput="S.updateBrandNotes('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}', this.value)" style="width:100%;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical">${escapeHtml(b.notes || '')}</textarea>
     </div>
 
     <!-- PRICING CONFIG -->
@@ -21546,7 +21546,7 @@ function renderBrandCardBody(b){
         Pricing Configuration
       </div>
       <div class="brand-checkbox-row">
-        <input type="checkbox" id="${variesId}" ${b.varies_by_model ? 'checked' : ''} onchange="toggleVariesByModel('${b.name}')">
+        <input type="checkbox" id="${variesId}" ${b.varies_by_model ? 'checked' : ''} onchange="S.toggleVariesByModel('${b.name}')">
         <label for="${variesId}"><strong>Discount varies by model</strong> — pricing comes from per-SKU file, not flat MSRP × discount</label>
         <span class="hint">Recommended for Toro, Stihl</span>
       </div>
@@ -21556,11 +21556,11 @@ function renderBrandCardBody(b){
       <div class="brand-grid three">
         <div class="brand-field">
           <label>Dealer Discount % ${b.varies_by_model ? '(fallback only)' : ''}</label>
-          <input type="number" value="${b.dealer_discount}" step="0.5" onchange="updateBrandField('${b.name}','dealer_discount',this.value)">
+          <input type="number" value="${b.dealer_discount}" step="0.5" onchange="S.updateBrandField('${b.name}','dealer_discount',this.value)">
         </div>
         <div class="brand-field">
           <label>Default Margin %</label>
-          <input type="number" value="${b.default_margin}" step="0.5" onchange="updateBrandField('${b.name}','default_margin',this.value)">
+          <input type="number" value="${b.default_margin}" step="0.5" onchange="S.updateBrandField('${b.name}','default_margin',this.value)">
         </div>
         <div class="brand-field">
           <label>SKU Count</label>
@@ -21578,15 +21578,15 @@ function renderBrandCardBody(b){
       <div class="brand-grid three">
         <div class="brand-field">
           <label>Contact Name</label>
-          <input type="text" value="${b.contact_name || ''}" onchange="updateBrandField('${b.name}','contact_name',this.value)">
+          <input type="text" value="${b.contact_name || ''}" onchange="S.updateBrandField('${b.name}','contact_name',this.value)">
         </div>
         <div class="brand-field">
           <label>Email</label>
-          <input type="email" value="${b.contact_email || ''}" onchange="updateBrandField('${b.name}','contact_email',this.value)">
+          <input type="email" value="${b.contact_email || ''}" onchange="S.updateBrandField('${b.name}','contact_email',this.value)">
         </div>
         <div class="brand-field">
           <label>Phone</label>
-          <input type="tel" value="${b.contact_phone || ''}" onchange="updateBrandField('${b.name}','contact_phone',this.value)">
+          <input type="tel" value="${b.contact_phone || ''}" onchange="S.updateBrandField('${b.name}','contact_phone',this.value)">
         </div>
       </div>
     </div>
@@ -21599,15 +21599,15 @@ function renderBrandCardBody(b){
       </div>
       <div class="brand-field full" style="margin-bottom:10px">
         <label>Ordering Instructions</label>
-        <textarea onchange="updateBrandField('${b.name}','ordering_instructions',this.value)">${b.ordering_instructions || ''}</textarea>
+        <textarea onchange="S.updateBrandField('${b.name}','ordering_instructions',this.value)">${b.ordering_instructions || ''}</textarea>
       </div>
       <div class="brand-field full" style="margin-bottom:10px">
         <label>Freight Notes</label>
-        <textarea onchange="updateBrandField('${b.name}','freight_notes',this.value)">${b.freight_notes || ''}</textarea>
+        <textarea onchange="S.updateBrandField('${b.name}','freight_notes',this.value)">${b.freight_notes || ''}</textarea>
       </div>
       <div class="brand-field full">
         <label>Fleet / Volume Pricing Qualifications</label>
-        <textarea onchange="updateBrandField('${b.name}','fleet_pricing',this.value)">${b.fleet_pricing || ''}</textarea>
+        <textarea onchange="S.updateBrandField('${b.name}','fleet_pricing',this.value)">${b.fleet_pricing || ''}</textarea>
       </div>
     </div>
 
@@ -21619,7 +21619,7 @@ function renderBrandCardBody(b){
       </div>
       <div class="brand-field full">
         <label>Free-form notes (visible to all staff)</label>
-        <textarea onchange="updateBrandField('${b.name}','free_form_notes',this.value)">${b.free_form_notes || ''}</textarea>
+        <textarea onchange="S.updateBrandField('${b.name}','free_form_notes',this.value)">${b.free_form_notes || ''}</textarea>
       </div>
     </div>
 
@@ -21632,7 +21632,7 @@ function renderBrandCardBody(b){
       </div>
       <div class="brand-field full" style="margin-bottom:10px">
         <label>Finance Notes (rates, terms, programs, restrictions)</label>
-        <textarea onchange="updateBrandField('${b.name}','finance_notes',this.value)" placeholder="e.g., Walker offers 0% for 36 months on T-series. 4.99% standard. Customer must qualify with Pro-Power Canada Credit. Approval typically 24-48hrs.">${b.finance_notes || ''}</textarea>
+        <textarea onchange="S.updateBrandField('${b.name}','finance_notes',this.value)" placeholder="e.g., Walker offers 0% for 36 months on T-series. 4.99% standard. Customer must qualify with Pro-Power Canada Credit. Approval typically 24-48hrs.">${b.finance_notes || ''}</textarea>
       </div>
       <div class="brand-finance-pdf-slot" id="brand-finance-pdf-slot-${b.name}">
         ${renderBrandFinancePdf(b)}
@@ -21649,7 +21649,7 @@ function renderBrandCardBody(b){
       <div class="pkg-list" id="pkg-list-${b.name}">
         ${renderBrandPackages(b.name)}
       </div>
-      <button class="pkg-btn-sm" onclick="addPackage('${b.name}')" style="margin-top:8px;border-color:var(--orange);color:var(--orange)">+ New package</button>
+      <button class="pkg-btn-sm" onclick="S.addPackage('${b.name}')" style="margin-top:8px;border-color:var(--orange);color:var(--orange)">+ New package</button>
     </div>
 
     <!-- PRICE FILES -->
@@ -21658,7 +21658,7 @@ function renderBrandCardBody(b){
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Price Files & Documents
       </div>
-      <div class="upload-zone" onclick="mockUpload('${b.name}')" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');mockUpload('${b.name}')">
+      <div class="upload-zone" onclick="S.mockUpload('${b.name}')" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="event.preventDefault();this.classList.remove('dragover');mockUpload('${b.name}')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         <div class="upload-zone-text">
           <strong>Drop a price file here</strong> or click to browse
@@ -21671,8 +21671,8 @@ function renderBrandCardBody(b){
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             <span class="file-name">${escapeHtml(f.name)}</span>
             <span class="file-meta">${f.size} · ${f.uploaded} · ${f.uploaded_by}</span>
-            <button class="file-action" onclick="showToast('Downloading ' + ${JSON.stringify(f.name)} + ' (mocked)')">Download</button>
-            <button class="file-action delete" onclick="deleteBrandFile('${b.name}',${i})">Delete</button>
+            <button class="file-action" onclick="S.showToast('Downloading ' + ${JSON.stringify(f.name)} + ' (mocked)')">Download</button>
+            <button class="file-action delete" onclick="S.deleteBrandFile('${b.name}',${i})">Delete</button>
           </div>
         `).join('')}
       </div>
@@ -21778,19 +21778,19 @@ function renderUnmatchedBrands(){
             <div style="font-size:14px;font-weight:600;color:var(--gray-900)">${escapeHtml(b.name)}</div>
             <div style="font-size:11px;color:var(--gray-600);margin-top:2px">${unitsCount} unit${unitsCount===1?'':'s'} · ${skusCount} SKU${skusCount===1?'':'s'}</div>
           </div>
-          <button class="btn-secondary" onclick="approveUnmatchedBrand('${escapeAttr(b.name)}')" style="padding:5px 10px;font-size:11px">✓ Approve as-is</button>
+          <button class="btn-secondary" onclick="S.approveUnmatchedBrand('${S.escapeAttr(b.name)}')" style="padding:5px 10px;font-size:11px">✓ Approve as-is</button>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px">
           <label style="color:var(--gray-700)">Rename to:</label>
           <input id="rename-${safeId}" type="text" value="${escapeAttr(b.name)}" style="padding:5px 8px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;flex:1;min-width:140px;font-family:inherit">
-          <button class="btn-secondary" onclick="renameUnmatchedBrand('${escapeAttr(b.name)}','${safeId}')" style="padding:5px 10px;font-size:11px">Rename</button>
+          <button class="btn-secondary" onclick="S.renameUnmatchedBrand('${S.escapeAttr(b.name)}','${safeId}')" style="padding:5px 10px;font-size:11px">Rename</button>
           <span style="color:var(--gray-300)">|</span>
           <label style="color:var(--gray-700)">Merge into:</label>
           <select id="merge-${safeId}" style="padding:5px 8px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit">
             <option value="">— pick brand —</option>
             ${targetOptions}
           </select>
-          <button class="btn-secondary" onclick="mergeUnmatchedBrand('${escapeAttr(b.name)}','${safeId}')" style="padding:5px 10px;font-size:11px">Merge</button>
+          <button class="btn-secondary" onclick="S.mergeUnmatchedBrand('${S.escapeAttr(b.name)}','${safeId}')" style="padding:5px 10px;font-size:11px">Merge</button>
         </div>
       </div>
     `;
@@ -21939,14 +21939,14 @@ function renderBrandCategoriesEditor(){
       ${BRAND_CATEGORIES.map((c, i) => `
         <span style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;border-radius:6px;font-size:12px;font-weight:500">
           ${escapeHtml(c)}
-          <button onclick="removeBrandCategory(${i})" title="Remove ${escapeHtml(c)}" style="background:none;border:none;color:#1e40af;cursor:pointer;font-size:16px;line-height:1;padding:0;margin-left:2px">×</button>
+          <button onclick="S.removeBrandCategory(${i})" title="Remove ${escapeHtml(c)}" style="background:none;border:none;color:#1e40af;cursor:pointer;font-size:16px;line-height:1;padding:0;margin-left:2px">×</button>
         </span>
       `).join('')}
       ${BRAND_CATEGORIES.length === 0 ? '<span style="font-size:12px;color:var(--gray-500);font-style:italic">No categories yet — add some below</span>' : ''}
     </div>
     <div style="display:flex;gap:6px">
-      <input type="text" id="new-cat-input" placeholder="e.g. Trailers, Trimmers, Power Equipment" onkeydown="if(event.key==='Enter')addBrandCategoryFromInput()" style="flex:1;padding:7px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
-      <button class="btn-orange" onclick="addBrandCategoryFromInput()" style="padding:7px 14px;font-size:12px">+ Add</button>
+      <input type="text" id="new-cat-input" placeholder="e.g. Trailers, Trimmers, Power Equipment" onkeydown="if(event.key==='Enter')S.addBrandCategoryFromInput()" style="flex:1;padding:7px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
+      <button class="btn-orange" onclick="S.addBrandCategoryFromInput()" style="padding:7px 14px;font-size:12px">+ Add</button>
     </div>
     <div style="margin-top:8px;font-size:11px;color:var(--gray-500)">
       Removing a category here unassigns it from all brands that had it. Undo by re-adding it and re-tagging the brands.
@@ -22078,14 +22078,14 @@ function renderBrandLogo(b){
       <div class="brand-logo-preview" ondragover="brandLogoDragOver(event)" ondragleave="brandLogoDragLeave(event)" ondrop="brandLogoDrop(event,'${safeName}')">
         <img src="${b.logo}" alt="${escapeHtml(b.name)} logo" />
         <div class="brand-logo-actions">
-          <button class="sku-img-btn" onclick="uploadBrandLogo('${safeName}')">Replace</button>
-          <button class="sku-img-btn danger" onclick="removeBrandLogo('${safeName}')">Remove</button>
+          <button class="sku-img-btn" onclick="S.uploadBrandLogo('${safeName}')">Replace</button>
+          <button class="sku-img-btn danger" onclick="S.removeBrandLogo('${safeName}')">Remove</button>
         </div>
       </div>
     `;
   }
   return `
-    <div class="brand-logo-empty" onclick="uploadBrandLogo('${safeName}')" ondragover="brandLogoDragOver(event)" ondragleave="brandLogoDragLeave(event)" ondrop="brandLogoDrop(event,'${safeName}')">
+    <div class="brand-logo-empty" onclick="S.uploadBrandLogo('${safeName}')" ondragover="brandLogoDragOver(event)" ondragleave="brandLogoDragLeave(event)" ondrop="brandLogoDrop(event,'${safeName}')">
       <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <div><strong>Upload or drag &amp; drop ${escapeHtml(b.name)} logo</strong></div>
       <small>PNG with transparency preferred · Will appear on customer quotes &amp; brand cards</small>
@@ -22234,15 +22234,15 @@ function renderBrandFinancePdf(b){
           <small>${b.finance_pdf_size || ''}${b.finance_pdf_uploaded ? ' · uploaded ' + b.finance_pdf_uploaded : ''}</small>
         </div>
         <div class="bf-pdf-actions">
-          <button class="pkg-btn-sm" onclick="viewBrandFinanceInfo('${escapeHtml(b.name).replace(/'/g, '&#39;')}')">View</button>
-          <button class="pkg-btn-sm" onclick="uploadBrandFinancePdf('${escapeHtml(b.name).replace(/'/g, '&#39;')}')">Replace</button>
-          <button class="pkg-btn-sm danger" onclick="removeBrandFinancePdf('${escapeHtml(b.name).replace(/'/g, '&#39;')}')">Remove</button>
+          <button class="pkg-btn-sm" onclick="S.viewBrandFinanceInfo('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}')">View</button>
+          <button class="pkg-btn-sm" onclick="S.uploadBrandFinancePdf('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}')">Replace</button>
+          <button class="pkg-btn-sm danger" onclick="S.removeBrandFinancePdf('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}')">Remove</button>
         </div>
       </div>
     `;
   }
   return `
-    <div class="brand-finance-pdf-empty" onclick="uploadBrandFinancePdf('${escapeHtml(b.name).replace(/'/g, '&#39;')}')">
+    <div class="brand-finance-pdf-empty" onclick="S.uploadBrandFinancePdf('${S.escapeHtml(b.name).replace(/'/g, '&#39;')}')">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       <div><strong>Upload Finance Info PDF</strong></div>
       <small>Manufacturer financing flyer, rate sheet, etc. — sales reps see a button on every quote for this brand</small>
@@ -22314,7 +22314,7 @@ function viewBrandFinanceInfo(brandName){
         <div class="finance-info-eyebrow" style="color:${color}">${escapeHtml(brandName)} · Finance Info</div>
         <h2 class="finance-info-title">Financing Reference</h2>
       </div>
-      <button class="finance-info-close" onclick="closeFinanceInfoModal()" title="Close">×</button>
+      <button class="finance-info-close" onclick="S.closeFinanceInfoModal()" title="Close">×</button>
     </div>
     <div class="finance-info-body">
       ${hasNotes ? `
@@ -22403,11 +22403,11 @@ function renderBrandInfo(){
     const categoryBadges = (b.categories || []).map(c => `<span class="brand-badge brand-badge-cat">${escapeHtml(c)}</span>`).join('');
     const logoThumbSrc = b.logo || (!b._logo_failed && b._logo_auto) || '';
     const logoThumb = logoThumbSrc
-      ? `<img src="${logoThumbSrc}" alt="${escapeHtml(b.name)}" style="height:24px;max-width:60px;object-fit:contain;margin-right:8px;vertical-align:middle" onerror="markBrandLogoFailed('${escapeAttr(b.name)}')">`
+      ? `<img src="${logoThumbSrc}" alt="${escapeHtml(b.name)}" style="height:24px;max-width:60px;object-fit:contain;margin-right:8px;vertical-align:middle" onerror="S.markBrandLogoFailed('${S.escapeAttr(b.name)}')">`
       : '';
     return `
       <div class="brand-info-light-card brand-info-card ${expanded ? 'expanded' : ''}">
-        <div class="brand-info-card-header" onclick="toggleInfoCard('${b.name}')">
+        <div class="brand-info-card-header" onclick="S.toggleInfoCard('${b.name}')">
           <span class="chev">▶</span>
           <div class="brand-info-card-title">
             ${logoThumb}${escapeHtml(b.name)} ${popularBadge}${categoryBadges}
@@ -22472,7 +22472,7 @@ function renderBrandInfoCardBody(b){
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             <span class="file-name">${escapeHtml(f.name)}</span>
             <span class="file-meta">${f.size} · ${f.uploaded}</span>
-            <button class="file-action" onclick="showToast('Downloading ' + ${JSON.stringify(f.name)} + ' (mocked)')">Download</button>
+            <button class="file-action" onclick="S.showToast('Downloading ' + ${JSON.stringify(f.name)} + ' (mocked)')">Download</button>
           </div>
         `).join('')}
       </div>
@@ -22545,17 +22545,17 @@ function renderBrandPackages(brandName){
     return `
       <div class="pkg-item${p.featured?' featured':''}">
         <div class="pkg-item-header">
-          <span class="pkg-feature-toggle${p.featured?' active':''}" onclick="togglePackageFeatured(${p.id})" title="${p.featured?'Featured (anchored at top)':'Click to feature'}">★</span>
+          <span class="pkg-feature-toggle${p.featured?' active':''}" onclick="S.togglePackageFeatured(${p.id})" title="${p.featured?'Featured (anchored at top)':'Click to feature'}">★</span>
           <div class="pkg-item-name">
-            <input type="text" value="${(p.name||'').replace(/"/g,'&quot;')}" onchange="updatePackageField(${p.id},'name',this.value)" style="width:100%;background:none;border:none;font-weight:600;font-size:13px;color:var(--gray-900);padding:0;font-family:'DM Sans',sans-serif">
-            <input type="text" value="${(p.desc||'').replace(/"/g,'&quot;')}" placeholder="Short description" onchange="updatePackageField(${p.id},'desc',this.value)" style="width:100%;background:none;border:none;font-size:11px;color:var(--gray-500);padding:0;margin-top:2px;font-family:'DM Sans',sans-serif">
+            <input type="text" value="${(p.name||'').replace(/"/g,'&quot;')}" onchange="S.updatePackageField(${p.id},'name',this.value)" style="width:100%;background:none;border:none;font-weight:600;font-size:13px;color:var(--gray-900);padding:0;font-family:'DM Sans',sans-serif">
+            <input type="text" value="${(p.desc||'').replace(/"/g,'&quot;')}" placeholder="Short description" onchange="S.updatePackageField(${p.id},'desc',this.value)" style="width:100%;background:none;border:none;font-size:11px;color:var(--gray-500);padding:0;margin-top:2px;font-family:'DM Sans',sans-serif">
           </div>
         </div>
         <div class="pkg-lines">${linesHtml}</div>
         <div class="pkg-actions">
-          <button class="pkg-btn-sm" onclick="addPackageLine(${p.id})">+ Add line</button>
-          <button class="pkg-btn-sm" onclick="editPackageLines(${p.id})">Edit lines</button>
-          <button class="pkg-btn-sm danger" style="margin-left:auto" onclick="deletePackage(${p.id})">Delete</button>
+          <button class="pkg-btn-sm" onclick="S.addPackageLine(${p.id})">+ Add line</button>
+          <button class="pkg-btn-sm" onclick="S.editPackageLines(${p.id})">Edit lines</button>
+          <button class="pkg-btn-sm danger" style="margin-left:auto" onclick="S.deletePackage(${p.id})">Delete</button>
         </div>
       </div>
     `;
@@ -22788,8 +22788,8 @@ function renderCommissionsAdmin(){
             <div style="font-size:13px;color:var(--gray-700);margin-bottom:8px">Drop a yearly commissions xlsx here</div>
             <div style="font-size:11px;color:var(--gray-500);margin-bottom:14px">Filename should contain a 4-digit year (e.g. <code>Commissions_YTD_2025.xlsx</code>)</div>
             <button class="btn-orange" onclick="document.getElementById('cmadmin-upload').click()">⬆ Choose file</button>
-            <input id="cmadmin-upload" type="file" accept=".xlsx,.xls" style="display:none" onchange="uploadCommissionsXlsx(this.files[0])">
-            <button onclick="loadCommissionsFiles().then(()=>{showToast('Refreshed');renderCommissionsAdmin()})" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;font-size:13px;cursor:pointer;margin-left:8px">↻ Refresh</button>
+            <input id="cmadmin-upload" type="file" accept=".xlsx,.xls" style="display:none" onchange="S.uploadCommissionsXlsx(this.files[0])">
+            <button onclick="S.loadCommissionsFiles().then(()=>{S.showToast('Refreshed');S.renderCommissionsAdmin()})" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;font-size:13px;cursor:pointer;margin-left:8px">↻ Refresh</button>
           </div>
           ${years.length === 0
             ? `<div style="text-align:center;padding:14px;color:var(--gray-500);font-size:12px">No files uploaded yet.</div>`
@@ -22830,7 +22830,7 @@ function renderCommissionsAdmin(){
       <div class="admin-panel" style="margin-top:14px">
         <div class="admin-panel-title" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
           <span>Leaderboard</span>
-          <select onchange="commissionsCurrentYear=parseInt(this.value,10);renderCommissionsAdmin()" style="padding:5px 9px;border:1px solid var(--gray-200);border-radius:5px;font-size:11px">${yearOpts}</select>
+          <select onchange="commissionsCurrentYear=parseInt(this.value,10);S.renderCommissionsAdmin()" style="padding:5px 9px;border:1px solid var(--gray-200);border-radius:5px;font-size:11px">${yearOpts}</select>
         </div>
         <div style="padding:0 14px 14px">
           <table class="admin-table" style="width:100%;font-size:12px">
@@ -22899,8 +22899,8 @@ function renderCommissionsAdmin(){
                     <td style="font-size:11px;max-width:240px"><div style="white-space:pre-wrap;color:var(--gray-700)">${escapeHtml(f.reason || '')}</div></td>
                     <td style="font-size:11px;color:var(--gray-600)">${escapeHtml(f.flaggedByName || f.flaggedBy || '')}</td>
                     <td style="text-align:right;white-space:nowrap">
-                      <button onclick="openFlaggedDealFromAdmin('${escapeHtml(f.dealKey)}','${f.kind}','${escapeHtml(f.invoice)}','${escapeHtml(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>
-                      <button onclick="resolveFlagFromAdmin('${escapeHtml(f.dealKey)}')" style="padding:4px 8px;border:1px solid #dcfce7;background:#dcfce7;color:#166534;border-radius:4px;font-size:10px;cursor:pointer;font-weight:600">✓ Resolve</button>
+                      <button onclick="S.openFlaggedDealFromAdmin('${S.escapeHtml(f.dealKey)}','${f.kind}','${S.escapeHtml(f.invoice)}','${S.escapeHtml(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>
+                      <button onclick="S.resolveFlagFromAdmin('${S.escapeHtml(f.dealKey)}')" style="padding:4px 8px;border:1px solid #dcfce7;background:#dcfce7;color:#166534;border-radius:4px;font-size:10px;cursor:pointer;font-weight:600">✓ Resolve</button>
                     </td>
                   </tr>`;
                 }).join('')}
@@ -22917,7 +22917,7 @@ function renderCommissionsAdmin(){
       <div class="admin-panel" style="margin-top:14px">
         <div class="admin-panel-title" style="display:flex;justify-content:space-between;align-items:center">
           <span>Manual Adjustments (${commissionsCurrentYear})</span>
-          <button class="btn-orange" style="padding:5px 11px;font-size:11px" onclick="openAdjustmentEditor()">+ Add Adjustment</button>
+          <button class="btn-orange" style="padding:5px 11px;font-size:11px" onclick="S.openAdjustmentEditor()">+ Add Adjustment</button>
         </div>
         <div style="padding:0 14px 14px">
           ${adj.length === 0
@@ -22933,8 +22933,8 @@ function renderCommissionsAdmin(){
                   <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(a.invoice||'')}</td>
                   <td style="font-size:11px">${escapeHtml(a.note||'')}</td>
                   <td style="text-align:right;white-space:nowrap">
-                    <button onclick="openAdjustmentEditor('${a.id}')" style="border:none;background:none;cursor:pointer;color:var(--gray-500);padding:0 4px;font-size:14px">✎</button>
-                    <button onclick="deleteAdjustment('${a.id}')" style="border:none;background:none;cursor:pointer;color:#dc2626;padding:0 4px;font-size:14px">×</button>
+                    <button onclick="S.openAdjustmentEditor('${a.id}')" style="border:none;background:none;cursor:pointer;color:var(--gray-500);padding:0 4px;font-size:14px">✎</button>
+                    <button onclick="S.deleteAdjustment('${a.id}')" style="border:none;background:none;cursor:pointer;color:#dc2626;padding:0 4px;font-size:14px">×</button>
                   </td>
                 </tr>`).join('')}
               </tbody>
@@ -23013,7 +23013,7 @@ function openAdjustmentEditor(id){
   const repOpts = reps.map(r => `<option value="${escapeHtml(r.code)}" ${existing && existing.repCode===r.code?'selected':''}>${escapeHtml(getRepLabel(r.code) || r.label)} (${escapeHtml(r.code)})</option>`).join('');
   const today = new Date().toISOString().slice(0,10);
   const html = `
-    <div id="adj-modal-backdrop" style="position:fixed;inset:0;background:rgba(15,23,42,0.5);display:flex;align-items:center;justify-content:center;z-index:9999" onclick="if(event.target===this)closeAdjustmentEditor()">
+    <div id="adj-modal-backdrop" style="position:fixed;inset:0;background:rgba(15,23,42,0.5);display:flex;align-items:center;justify-content:center;z-index:9999" onclick="if(event.target===this)S.closeAdjustmentEditor()">
       <div style="background:white;border-radius:12px;padding:24px;width:480px;max-width:92vw;max-height:90vh;overflow:auto">
         <div style="font-size:16px;font-weight:600;margin-bottom:16px">${isEdit ? 'Edit' : 'Add'} Adjustment</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -23038,8 +23038,8 @@ function openAdjustmentEditor(id){
             <textarea id="adj-note" rows="2" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif">${existing?escapeHtml(existing.note||''):''}</textarea></div>
         </div>
         <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:20px">
-          <button onclick="closeAdjustmentEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer">Cancel</button>
-          <button class="btn-orange" onclick="saveAdjustment(${isEdit ? `'${id}'` : 'null'})">${isEdit?'Update':'Save'}</button>
+          <button onclick="S.closeAdjustmentEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer">Cancel</button>
+          <button class="btn-orange" onclick="S.saveAdjustment(${isEdit ? `'${id}'` : 'null'})">${isEdit?'Update':'Save'}</button>
         </div>
       </div>
     </div>`;
@@ -23109,7 +23109,7 @@ function renderCommissionCodes(){
       <td style="font-size:11px;color:var(--gray-500);font-family:'DM Mono',monospace">${escapeHtml(s.email||'')}</td>
       <td>
         <input type="text" value="${escapeHtml(codesStr)}" placeholder="e.g. JOHNW, JW"
-          onchange="updateCommissionCodes(${s._idx}, this.value)"
+          onchange="S.updateCommissionCodes(${s._idx}, this.value)"
           style="width:100%;padding:5px 8px;border:1px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:'DM Mono',monospace">
       </td>
     </tr>`;

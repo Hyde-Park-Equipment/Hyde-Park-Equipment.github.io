@@ -3110,7 +3110,7 @@ body.admin-mode .admin-only { display: inline-flex; }
   </div>
 </div>
 
-<div class="quote-overlay" id="quote-overlay" onclick="S.closeQuoteIfOutside(event)">
+<div class="quote-overlay" id="quote-overlay-sl" onclick="S.closeQuoteIfOutside(event)">
   <div class="quote-modal" onclick="event.stopPropagation()">
     <div class="quote-header">
       <div class="quote-header-title">Build Quote<span>Cost-driven pricing with per-line margin control</span></div>
@@ -3286,8 +3286,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.5.2.2',
-    build: '20260502_v1522_return_to_my_quotes_on_close',
+    version: '1.5.2.3',
+    build: '20260502_v1523_shortline_overlay_id_fix',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -4093,7 +4093,8 @@ const HPE = (function(){
         this._overlayObserver = null;
       }
       const sectionSel = source === 'used' ? '#section-used' : '#section-shortline';
-      const overlay = document.querySelector(sectionSel + ' #quote-overlay');
+      const overlayId = source === 'used' ? '#quote-overlay' : '#quote-overlay-sl';
+      const overlay = document.querySelector(sectionSel + ' ' + overlayId);
       if(!overlay){
         console.warn('[HPE.quotes] could not find overlay for source:', source);
         return;
@@ -18606,7 +18607,7 @@ function quoteFromDrawer(){
 
 /* QUOTE BUILDER */
 function openQuoteBuilder(){
-  document.getElementById('quote-overlay').classList.add('open');
+  document.getElementById('quote-overlay-sl').classList.add('open');
   if (quoteLineItems.length===0) renderLineItems();
   // Populate salesperson dropdown from SALESPEOPLE list
   const sp = document.getElementById('q-salesperson');
@@ -18637,7 +18638,7 @@ function closeQuoteBuilder(force){
       if (!confirm(msg)) return;
     }
   }
-  document.getElementById('quote-overlay').classList.remove('open');
+  document.getElementById('quote-overlay-sl').classList.remove('open');
   document.getElementById('line-picker').classList.remove('open');
   // If we were editing a saved quote, fully reset the builder so closing acts like
   // "discard edits". The user can re-open the quote from Recent / Quotes page if needed.
@@ -18647,7 +18648,7 @@ function closeQuoteBuilder(force){
     if (typeof clearQuoteBuilder === 'function') clearQuoteBuilder();
   }
 }
-function closeQuoteIfOutside(e){ if (e.target.id==='quote-overlay') closeQuoteBuilder(); }
+function closeQuoteIfOutside(e){ if (e.target.id==='quote-overlay-sl') closeQuoteBuilder(); }
 
 function quickQuote(id, override){
   const s = SKUS.find(x=>x.id===id);
@@ -19299,7 +19300,7 @@ function loadQuoteIntoBuilder(id){
   if (typeof renderLineItems === 'function') renderLineItems();
   if (typeof updateTotals === 'function') updateTotals();
   if (typeof updateQuoteEditingBadge === 'function') updateQuoteEditingBadge();
-  // The quote builder is an OVERLAY (#quote-overlay), not a page.
+  // The quote builder is an OVERLAY (#quote-overlay-sl), not a page.
   // Use openQuoteBuilder() — calling navigate('quote-builder') crashes because
   // there's no <div id="page-quote-builder">.
   if (typeof openQuoteBuilder === 'function') openQuoteBuilder();
@@ -20339,7 +20340,7 @@ function quoteThisUnit(){
   const price = u._quotePrice || u.list_price || u.msrp || (u.cost > 0 && margin > 0 ? Math.round(u.cost / (1 - margin/100)) : 0);
   const desc = (u.desc || '') + (u.year ? ' · ' + u.year : '') + ' · Stock #' + u.tag;
   // If the user already had a quote in progress, append to it. Otherwise start a new one.
-  const builderOpen = document.getElementById('quote-overlay') && document.getElementById('quote-overlay').classList.contains('open');
+  const builderOpen = document.getElementById('quote-overlay-sl') && document.getElementById('quote-overlay-sl').classList.contains('open');
   const hasExistingLines = Array.isArray(quoteLineItems) && quoteLineItems.length > 0;
   let appendMode = false;
   if(builderOpen || hasExistingLines){

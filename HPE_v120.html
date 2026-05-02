@@ -4432,49 +4432,38 @@ const HPE = (function(){
           if(a.pinned !== b.pinned) return a.pinned ? -1 : 1;
           return new Date(b.posted) - new Date(a.posted);
         });
-        if(filtered.length === 0){
-          list.innerHTML = '<div class="comms-empty">No messages in this category.</div>';
-          updateCommsBadge();
-          return;
+openInSection(quote){
+  if(!quote || !quote.source){
+    ui.toast('Quote has no source — cannot open');
+    return;
+  }
+  const legacyId = quote.legacyId || quote.id;
+  try{
+    if(quote.source === 'used'){
+      router.go('used', 'list');
+      // Defer to next tick so Used's onFirstVisit can settle if first time
+      setTimeout(() => {
+        try{
+          if(window.U && typeof U.openQuoteFromUnified === 'function'){
+            U.openQuoteFromUnified(quote);
+            this._watchOverlayClose('used');
+          } else if(window.U && typeof U.editQuote === 'function'){
+            // Fallback to legacy path
+            U.editQuote(legacyId);
+            this._watchOverlayClose('used');
+          } else {
+            ui.toast('Used not ready — try again');
+          }
+        }catch(e){
+          console.error('[HPE.quotes] openQuoteFromUnified (used) failed:', e);
+          ui.toast('Could not open quote: ' + (e.message || e));
         }
-        const adminMode = isAdmin();
-        list.innerHTML = filtered.map(c => {
-          const unread = !readCommIds.has(c.id);
-          const pinClass = c.pinned ? ' pinned' : '';
-          const unreadClass = unread ? ' unread' : '';
-          return ''+
-            '<div class="comms-item' + pinClass + unreadClass + '" data-comm-id="' + c.id + '">' +
-              '<span class="comms-cat-pill comms-cat-' + escapeAttr(c.category||'general') + '">' + escapeHtml(c.category||'general') + '</span>' +
-              '<div class="comms-body">' +
-                '<div class="comms-msg-title">' +
-                  (c.pinned ? '<span class="pin-icon">&#x1F4CC;</span>' : '') +
-                  escapeHtml(c.title || '(no title)') +
-                '</div>' +
-                '<div class="comms-msg-text">' + escapeHtml(c.message || '') + '</div>' +
-                (adminMode ? '<div class="comms-actions">' +
-                  '<button class="comms-action-btn" onclick="HPE.sectionImpl.hub.togglePinComm(' + c.id + ')">' + (c.pinned ? 'Unpin' : 'Pin') + '</button>' +
-                  '<button class="comms-action-btn delete" onclick="HPE.sectionImpl.hub.deleteComm(' + c.id + ')">Delete</button>' +
-                '</div>' : '') +
-              '</div>' +
-              '<div class="comms-meta">' +
-                '<strong>' + escapeHtml(c.posted || '') + '</strong>' +
-                escapeHtml(c.by || '') +
-              '</div>' +
-            '</div>';
-        }).join('');
-        updateCommsBadge();
-      }
-      function filterComms(cat){
-        activeCommsFilter = cat;
-        document.querySelectorAll('.comms-tab').forEach(t => {
-          t.classList.toggle('active', t.dataset.cat === cat);
-        });
-        renderComms();
-      }
-      function toggleCommsCompose(){
-        document.getElementById('comms-compose').classList.toggle('show');
-      }
-      function submitComm(){
+      }, 0);
+    }else if(quote.source === 'sl'){
+      router.go('shortline', 'dashboard');
+      setTimeout(() => {
+        try{
+          if(window.S && typeof S.openQuoteFromUnified === 'function'){
         if(!isAdmin()){ ui.toast('Admins only'); return; }
         const title = document.getElementById('cc-title').value.trim();
         const category = document.getElementById('cc-category').value;

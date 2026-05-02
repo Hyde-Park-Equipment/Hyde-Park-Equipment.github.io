@@ -191,6 +191,40 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .empty-state-body{font-size:13px;color:var(--gray-600);line-height:1.6;}
 .empty-state-body code{background:var(--gray-100);padding:1px 6px;border-radius:4px;font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;color:var(--gray-700);}
 
+/* My Quotes (shell-level unified list, v1.5.2) */
+.hub-quotes-toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px;padding:14px;background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);}
+.hub-quotes-scope{display:inline-flex;border:1px solid var(--gray-200);border-radius:8px;overflow:hidden;}
+.hqs-btn{background:var(--card);color:var(--gray-700);border:none;padding:7px 14px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border-right:1px solid var(--gray-200);}
+.hqs-btn:last-child{border-right:none;}
+.hqs-btn.active{background:var(--orange);color:white;}
+.hqs-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;padding:0 6px;background:rgba(0,0,0,0.08);border-radius:9px;font-size:10px;font-weight:700;}
+.hqs-btn.active .hqs-count{background:rgba(255,255,255,0.25);}
+.hub-quotes-chips{display:inline-flex;flex-wrap:wrap;gap:6px;}
+.hqc-chip{background:var(--card);color:var(--gray-600);border:1px solid var(--gray-200);border-radius:14px;padding:5px 11px;font-size:11.5px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.hqc-chip:hover{border-color:var(--gray-300);color:var(--gray-800);}
+.hqc-chip.active{background:var(--gray-900);color:white;border-color:var(--gray-900);}
+.hub-quotes-search{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--card);color:var(--gray-900);}
+.hub-quotes-search:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,93,4,0.08);}
+.hub-quotes-list{display:flex;flex-direction:column;gap:8px;}
+.hub-quotes-empty{padding:32px 16px;text-align:center;color:var(--gray-500);font-size:13px;background:var(--card);border:1px dashed var(--gray-200);border-radius:var(--radius-lg);}
+.hub-quotes-retry{margin-left:8px;background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.hub-quote-card{background:var(--card);border:1px solid var(--gray-200);border-left:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color 120ms,box-shadow 120ms;}
+.hub-quote-card:hover{border-color:var(--gray-300);box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+.hqc-row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.hqc-row2{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--gray-600);}
+.hqc-source{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:0.04em;}
+.hqc-source.src-used{background:#dcfce7;color:#166534;}
+.hqc-source.src-sl{background:#ffedd5;color:#9a3412;}
+.hqc-customer{font-size:14px;font-weight:600;color:var(--gray-900);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.hqc-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:capitalize;background:var(--gray-100);color:var(--gray-700);}
+.hqc-status.status-active,.hqc-status.status-draft,.hqc-status.status-sent{background:#dbeafe;color:#1e40af;}
+.hqc-status.status-won,.hqc-status.status-accepted{background:#dcfce7;color:#166534;}
+.hqc-status.status-lost,.hqc-status.status-declined{background:#fee2e2;color:#991b1b;}
+.hqc-status.status-expired{background:#fef3c7;color:#92400e;}
+.hqc-sp{font-weight:500;color:var(--gray-700);}
+.hqc-date{color:var(--gray-500);font-family:'DM Mono',monospace;font-size:11px;}
+.hqc-total{margin-left:auto;font-weight:700;color:var(--gray-900);font-size:13px;}
+
 /* Dashboard */
 .last-updated{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-500);}
 
@@ -2048,7 +2082,7 @@ body.admin-mode .admin-only { display: inline-flex; }
           </div>
         </div>
 
-        <!-- QUOTES — Stage 4 will fill in -->
+        <!-- QUOTES — unified cross-section quote list (v1.5.2) -->
         <div class="page" id="page-hub-quotes" data-page="quotes">
           <div class="page-header">
             <div>
@@ -2056,14 +2090,27 @@ body.admin-mode .admin-only { display: inline-flex; }
               <div class="page-sub">Unified quote history across all sections</div>
             </div>
           </div>
-          <div class="empty-state-card">
-            <div class="empty-state-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          <div class="hub-quotes-toolbar">
+            <div class="hub-quotes-scope">
+              <button class="hqs-btn active" id="hub-quotes-scope-mine" onclick="HPE.quotes.setFilter('scope','mine');document.getElementById('hub-quotes-scope-mine').classList.add('active');document.getElementById('hub-quotes-scope-all').classList.remove('active')">My Quotes <span class="hqs-count" id="hub-quotes-mine-count">0</span></button>
+              <button class="hqs-btn" id="hub-quotes-scope-all" onclick="HPE.quotes.setFilter('scope','all');document.getElementById('hub-quotes-scope-all').classList.add('active');document.getElementById('hub-quotes-scope-mine').classList.remove('active')">All Quotes <span class="hqs-count" id="hub-quotes-all-count">0</span></button>
             </div>
-            <div class="empty-state-title">Unified quotes coming in Stage 4</div>
-            <div class="empty-state-body">
-              <p>Each section's quotes will surface here once state consolidation lands. Sortable, filterable, with cross-section actions inline.</p>
+            <div class="hub-quotes-chips" data-group="source">
+              <button class="hqc-chip active" data-val="all" onclick="HPE.quotes.setFilter('source','all');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;source&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='all'))">All sources</button>
+              <button class="hqc-chip" data-val="used" onclick="HPE.quotes.setFilter('source','used');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;source&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='used'))">Used</button>
+              <button class="hqc-chip" data-val="sl" onclick="HPE.quotes.setFilter('source','sl');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;source&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='sl'))">Shortline</button>
             </div>
+            <div class="hub-quotes-chips" data-group="status">
+              <button class="hqc-chip active" data-val="all" onclick="HPE.quotes.setFilter('status','all');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;status&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='all'))">All statuses</button>
+              <button class="hqc-chip" data-val="active" onclick="HPE.quotes.setFilter('status','active');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;status&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='active'))">Active</button>
+              <button class="hqc-chip" data-val="won" onclick="HPE.quotes.setFilter('status','won');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;status&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='won'))">Won</button>
+              <button class="hqc-chip" data-val="lost" onclick="HPE.quotes.setFilter('status','lost');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;status&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='lost'))">Lost</button>
+              <button class="hqc-chip" data-val="expired" onclick="HPE.quotes.setFilter('status','expired');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;status&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='expired'))">Expired</button>
+            </div>
+            <input type="text" class="hub-quotes-search" placeholder="Search by customer name…" oninput="HPE.quotes.setFilter('search', this.value)">
+          </div>
+          <div id="hub-quotes-list" class="hub-quotes-list">
+            <div class="hub-quotes-empty">Loading quotes…</div>
           </div>
         </div>
 
@@ -3239,8 +3286,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.5.1',
-    build: '20260501_v151_quick_quote_routing',
+    version: '1.5.2',
+    build: '20260502_v152_my_quotes_page',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -3911,6 +3958,210 @@ const HPE = (function(){
     }
   };
 
+  // -- QUOTES (shell-level read-only view of unified quotes.json) -----------
+  // Per SPEC_unified_quoting_v2.md §"My Quotes — the unified page":
+  // Reads `HPE Link/_config/quotes.json` (which both Used and Shortline
+  // dual-write to via _usedQuoteToUnified / _slQuoteToUnified). Renders the
+  // unified list at #page-hub-quotes. Click a quote → routes to the source
+  // section and loads it into that section's existing builder. NOT a writer.
+  const quotes = {
+    _cache: [],          // last-fetched array of unified quote objects
+    _fileId: null,       // cached fileId to avoid re-lookups
+    _loading: false,
+    _loaded: false,      // true after at least one successful refresh
+    _retryTimer: null,
+    _filters: {
+      scope: 'mine',     // 'mine' | 'all'
+      source: 'all',     // 'all' | 'used' | 'sl'
+      status: 'all',     // 'all' | 'draft' | 'active' | 'sent' | 'won' | 'lost' | 'expired'
+      search: ''
+    },
+
+    list(){ return this._cache.slice(); },
+
+    async refresh(){
+      if(this._loading) return;
+      this._loading = true;
+      try{
+        if(!drive.ready || !drive.configFolderId){
+          // Auth not ready — caller's render() will show the "loading" state.
+          // Schedule one retry; if still not ready, render() will show "Sign in".
+          this._scheduleRetry();
+          return;
+        }
+        const f = await drive.findFileInFolder(drive.configFolderId, 'quotes.json');
+        if(!f){ this._cache = []; this._loaded = true; return; }
+        this._fileId = f.id;
+        const data = await drive.readJsonFile(f.id);
+        const arr = (data && Array.isArray(data.quotes)) ? data.quotes : [];
+        // Sort by updatedAt/createdAt descending
+        arr.sort((a, b) => {
+          const ta = (a._source_data && a._source_data.updatedAt) || a.createdAt || '';
+          const tb = (b._source_data && b._source_data.updatedAt) || b.createdAt || '';
+          return tb.localeCompare(ta);
+        });
+        this._cache = arr;
+        this._loaded = true;
+      }catch(e){
+        console.warn('[HPE.quotes] refresh failed:', e);
+        this._scheduleRetry();
+      }finally{
+        this._loading = false;
+        this._render();
+      }
+    },
+
+    _scheduleRetry(){
+      if(this._retryTimer) return;
+      this._retryTimer = setTimeout(() => {
+        this._retryTimer = null;
+        // Only retry if still on the quotes page and not yet loaded
+        if(state.currentSection === 'hub' && state.currentPage === 'quotes' && !this._loaded){
+          this.refresh();
+        }
+      }, 1500);
+    },
+
+    openInSection(quote){
+      if(!quote || !quote.source){
+        ui.toast('Quote has no source — cannot open');
+        return;
+      }
+      const legacyId = quote.legacyId || quote.id;
+      try{
+        if(quote.source === 'used'){
+          router.go('used', 'list');
+          // Defer to next tick so Used's onFirstVisit can settle if first time
+          setTimeout(() => {
+            try{
+              if(window.U && typeof U.editQuote === 'function'){
+                U.editQuote(legacyId);
+              }else{
+                ui.toast('Used not ready — try again');
+              }
+            }catch(e){
+              console.error('[HPE.quotes] U.editQuote failed:', e);
+              ui.toast('Could not open quote: ' + (e.message || e));
+            }
+          }, 0);
+        }else if(quote.source === 'sl'){
+          router.go('shortline', 'dashboard');
+          setTimeout(() => {
+            try{
+              if(window.S && typeof S.loadQuoteIntoBuilder === 'function'){
+                S.loadQuoteIntoBuilder(legacyId);
+              }else{
+                ui.toast('Shortline not ready — try again');
+              }
+            }catch(e){
+              console.error('[HPE.quotes] S.loadQuoteIntoBuilder failed:', e);
+              ui.toast('Could not open quote: ' + (e.message || e));
+            }
+          }, 0);
+        }else{
+          ui.toast('Unknown quote source: ' + quote.source);
+        }
+      }catch(e){
+        console.error('[HPE.quotes] openInSection failed:', e);
+        ui.toast('Could not open quote: ' + (e.message || e));
+      }
+    },
+
+    setFilter(name, value){
+      if(!(name in this._filters)) return;
+      this._filters[name] = value;
+      this._render();
+    },
+
+    _filtered(){
+      const f = this._filters;
+      const myEmail = (state.user && state.user.email || '').toLowerCase();
+      const search = f.search.trim().toLowerCase();
+      return this._cache.filter(q => {
+        // Scope: mine = createdBy.email matches current user, OR salesperson name matches
+        if(f.scope === 'mine'){
+          const qEmail = ((q.createdBy && q.createdBy.email) || '').toLowerCase();
+          const qName = ((q.createdBy && q.createdBy.name) || q.salesperson || '').toLowerCase();
+          const myName = ((state.user && state.user.name) || '').toLowerCase();
+          const matchesMine = (qEmail && qEmail === myEmail) || (qName && myName && qName === myName);
+          if(!matchesMine) return false;
+        }
+        // Source filter
+        if(f.source !== 'all' && q.source !== f.source) return false;
+        // Status filter — default 'active' covers both 'active' and 'draft' lifecycle entries
+        if(f.status !== 'all' && (q.status || 'active') !== f.status) return false;
+        // Customer search
+        if(search){
+          const cust = ((q.customer && q.customer.name) || '').toLowerCase();
+          if(cust.indexOf(search) === -1) return false;
+        }
+        return true;
+      });
+    },
+
+    _render(){
+      const list = document.getElementById('hub-quotes-list');
+      if(!list) return;  // page DOM not yet present
+      // Update count badges on scope chips
+      const myCount = this._cache.filter(q => {
+        const qEmail = ((q.createdBy && q.createdBy.email) || '').toLowerCase();
+        const qName = ((q.createdBy && q.createdBy.name) || q.salesperson || '').toLowerCase();
+        const myEmail = (state.user && state.user.email || '').toLowerCase();
+        const myName = ((state.user && state.user.name) || '').toLowerCase();
+        return (qEmail && qEmail === myEmail) || (qName && myName && qName === myName);
+      }).length;
+      const allCount = this._cache.length;
+      const myEl = document.getElementById('hub-quotes-mine-count');
+      const allEl = document.getElementById('hub-quotes-all-count');
+      if(myEl) myEl.textContent = myCount;
+      if(allEl) allEl.textContent = allCount;
+      // Render list body
+      if(this._loading && !this._loaded){
+        list.innerHTML = '<div class="hub-quotes-empty">Loading quotes…</div>';
+        return;
+      }
+      if(!this._loaded){
+        if(!drive.ready){
+          list.innerHTML = '<div class="hub-quotes-empty">Sign in to view quotes. <button class="hub-quotes-retry" onclick="HPE.quotes.refresh()">Retry</button></div>';
+        }else{
+          list.innerHTML = '<div class="hub-quotes-empty">Loading quotes…</div>';
+        }
+        return;
+      }
+      const filtered = this._filtered();
+      if(!filtered.length){
+        list.innerHTML = '<div class="hub-quotes-empty">No quotes match the current filters.</div>';
+        return;
+      }
+      let html = '';
+      filtered.forEach(q => {
+        const cust = (q.customer && q.customer.name) || '—';
+        const sp = q.salesperson || (q.createdBy && q.createdBy.name) || '—';
+        const dateIso = (q._source_data && q._source_data.updatedAt) || q.createdAt || '';
+        const dateStr = dateIso ? new Date(dateIso).toLocaleDateString() : '—';
+        const total = (typeof q.total === 'number') ? '$' + q.total.toLocaleString() : '—';
+        const sourceLabel = q.source === 'sl' ? 'Shortline' : 'Used';
+        const sourceClass = q.source === 'sl' ? 'src-sl' : 'src-used';
+        const status = q.status || 'active';
+        // Escape via textContent insertion via dataset would be cleaner; for inline render, escape critical bits
+        const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        html += '<div class="hub-quote-card" onclick="HPE.quotes.openInSection(HPE.quotes._cache.find(x=>x.id===\''+esc(q.id)+'\'))">' +
+          '<div class="hqc-row1">' +
+            '<span class="hqc-source '+sourceClass+'">'+sourceLabel+'</span>' +
+            '<span class="hqc-customer">'+esc(cust)+'</span>' +
+            '<span class="hqc-status status-'+esc(status)+'">'+esc(status)+'</span>' +
+          '</div>' +
+          '<div class="hqc-row2">' +
+            '<span class="hqc-sp">'+esc(sp)+'</span>' +
+            '<span class="hqc-date">'+esc(dateStr)+'</span>' +
+            '<span class="hqc-total">'+total+'</span>' +
+          '</div>' +
+        '</div>';
+      });
+      list.innerHTML = html;
+    }
+  };
+
   // -- SECTION IMPLEMENTATIONS ----------------------------------------------
   // Each section's logic is wrapped here under HPE.sectionImpl.<name> to avoid
   // global-namespace collisions when Used and Shortline (which share function
@@ -4035,6 +4286,9 @@ const HPE = (function(){
         }else if(page === 'dashboard'){
           renderDashCommsPanel();
           updateCommsBadge();
+        }else if(page === 'quotes'){
+          // v1.5.2 — refresh unified quotes.json on every visit
+          HPE.quotes.refresh();
         }
       }
 
@@ -4631,7 +4885,7 @@ const HPE = (function(){
   // Otherwise: post-IIFE script blocks (section impls) call HPE.init() once registered.
 
   // Public API
-  return {config, state, sections, auth, drive, router, ui, sectionImpl, init};
+  return {config, state, sections, auth, drive, router, ui, quotes, sectionImpl, init};
 
 })();
 

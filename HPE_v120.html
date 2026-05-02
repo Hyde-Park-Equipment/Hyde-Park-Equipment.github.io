@@ -1309,29 +1309,46 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
 #section-shortline .quote-field input, #section-shortline .quote-field textarea, #section-shortline .quote-field select{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
 #section-shortline .quote-field input:focus, #section-shortline .quote-field textarea:focus, #section-shortline .quote-field select:focus{outline:none;border-color:var(--orange);}
 #section-shortline .quote-field.full{grid-column:1/-1;}
-#section-shortline .quote-line{display:grid;grid-template-columns:1fr 80px 100px 100px 70px 28px;gap:8px;padding:10px 0;align-items:center;border-bottom:1px solid var(--gray-100);font-size:12px;}
-#section-shortline .quote-line-header{font-size:9px;font-weight:700;letter-spacing:0.06em;color:var(--gray-500);text-transform:uppercase;border-bottom:1px solid var(--gray-200);padding-bottom:6px;}
-#section-shortline .quote-line-name{font-weight:500;color:var(--gray-900);}
+/* v1.5.2.4 — Two-row card layout for line items.
+   Row 1: thumbnail + name (left), × button (right).
+   Row 2: 4 labeled fields (Cost / Price / Margin% / Qty) in a responsive grid.
+   Designed to read well at any width with no media-query collapse needed. */
+#section-shortline .quote-line{display:flex;flex-direction:column;gap:8px;padding:10px;background:white;border:1px solid var(--gray-200);border-radius:var(--radius);font-size:12px;margin-bottom:6px;}
+#section-shortline .quote-line:last-child{margin-bottom:0;}
+#section-shortline .qline-row1{display:flex;align-items:center;gap:8px;}
+#section-shortline .qline-name-wrap{flex:1;min-width:0;display:flex;align-items:center;gap:8px;}
+#section-shortline .quote-line-header{display:none;}
+#section-shortline .quote-line-name{font-weight:600;color:var(--gray-900);flex:1;min-width:0;}
 #section-shortline .quote-line-name small{display:block;color:var(--gray-500);font-weight:400;font-size:11px;margin-top:1px;}
-#section-shortline .quote-line input{padding:5px 7px;font-size:12px;font-family:'DM Mono',monospace;text-align:right;border:1px solid var(--gray-200);border-radius:4px;}
+#section-shortline .qline-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+#section-shortline .qline-field{display:flex;flex-direction:column;gap:3px;min-width:0;}
+#section-shortline .qline-field-label{font-size:9px;font-weight:700;letter-spacing:0.06em;color:var(--gray-500);text-transform:uppercase;}
+#section-shortline .quote-line input{width:100%;padding:6px 8px;font-size:12px;font-family:'DM Mono',monospace;text-align:right;border:1px solid var(--gray-200);border-radius:4px;}
 #section-shortline .quote-line input:focus{outline:none;border-color:var(--orange);}
 #section-shortline .quote-line input.qline-money{-moz-appearance:textfield;}
 #section-shortline .quote-line input.qline-money::-webkit-outer-spin-button, #section-shortline .quote-line input.qline-money::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
 #section-shortline .quote-line .qline-margin{color:var(--green);font-weight:600;}
 #section-shortline .quote-line .qline-total{font-family:'DM Mono',monospace;text-align:right;color:var(--gray-900);font-weight:600;}
-#section-shortline .qline-remove{background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:16px;line-height:1;}
-#section-shortline .qline-remove:hover{color:var(--red);}
+#section-shortline .qline-remove{background:none;border:1px solid var(--gray-200);color:var(--gray-500);cursor:pointer;font-size:14px;line-height:1;width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;}
+#section-shortline .qline-remove:hover{color:var(--red);border-color:var(--red);background:#fef2f2;}
 #section-shortline .add-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
 #section-shortline .add-btn{background:white;border:1px dashed var(--gray-300);color:var(--gray-500);padding:9px;border-radius:var(--radius);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
 #section-shortline .add-btn:hover{border-color:var(--orange);color:var(--orange);}
 #section-shortline .line-picker{display:none;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;margin-top:8px;}
 #section-shortline .line-picker.open{display:block;}
-#section-shortline .line-picker .lp-results{max-height:240px;overflow-y:auto;background:white;border-radius:6px;border:1px solid var(--gray-200);margin-top:6px;}
-#section-shortline .lp-result{padding:8px 10px;cursor:pointer;font-size:12px;display:grid;grid-template-columns:1fr 90px 90px;gap:8px;align-items:center;border-bottom:1px solid var(--gray-100);}
+#section-shortline .lp-header{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+#section-shortline .lp-header input{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--gray-200);font-size:13px;font-family:'DM Sans',sans-serif;}
+#section-shortline .lp-header input:focus{outline:none;border-color:var(--orange);}
+#section-shortline .lp-close{background:white;border:1px solid var(--gray-200);color:var(--gray-500);cursor:pointer;font-size:14px;line-height:1;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;}
+#section-shortline .lp-close:hover{color:var(--gray-900);background:var(--gray-100);}
+#section-shortline .line-picker .lp-results{max-height:240px;overflow-y:auto;background:white;border-radius:6px;border:1px solid var(--gray-200);}
+#section-shortline .lp-hint{padding:18px 14px;text-align:center;color:var(--gray-500);font-size:12px;line-height:1.5;}
+#section-shortline .lp-result{padding:8px 10px;cursor:pointer;font-size:12px;display:grid;grid-template-columns:1fr 70px 70px;gap:8px;align-items:center;border-bottom:1px solid var(--gray-100);}
 #section-shortline .lp-result:last-child{border-bottom:none;}
 #section-shortline .lp-result:hover{background:var(--orange-light);}
-#section-shortline .lp-result-info strong{color:var(--gray-900);}
-#section-shortline .lp-result-info small{display:block;color:var(--gray-500);font-size:11px;}
+#section-shortline .lp-result-info{min-width:0;}
+#section-shortline .lp-result-info strong{color:var(--gray-900);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#section-shortline .lp-result-info small{display:block;color:var(--gray-500);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 #section-shortline .lp-result-cost{font-family:'DM Mono',monospace;color:var(--blue);font-size:11px;text-align:right;}
 /* v0.7 — Editable margin field on quote lines (Quick Quote + Full Quote) */
 #section-shortline .qline-margin-input{
@@ -1637,8 +1654,6 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
 #section-shortline .quote-modal{width:96%;max-width:96%;}
 #section-shortline .quote-body{padding:14px;}
 #section-shortline .quote-grid{grid-template-columns:1fr;gap:8px;}
-#section-shortline .quote-line{grid-template-columns:1fr;gap:4px;}
-#section-shortline .quote-line-header{display:none;}
 #section-shortline .add-options{grid-template-columns:1fr !important;}
 #section-shortline .totals-box{grid-template-columns:1fr 1fr;}
 #section-shortline .quote-actions{flex-direction:column-reverse;gap:8px;}
@@ -3144,14 +3159,6 @@ body.admin-mode .admin-only { display: inline-flex; }
       <div class="section-block">
         <div class="section-title">Line Items</div>
         <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;">
-          <div class="quote-line quote-line-header">
-            <div>Item</div>
-            <div style="text-align:right">Cost</div>
-            <div style="text-align:right">Price</div>
-            <div style="text-align:right">Margin %</div>
-            <div style="text-align:right">Qty</div>
-            <div></div>
-          </div>
           <div id="line-items-list"></div>
 
           <!-- v0.7 — Bulk margin tool -->
@@ -3171,7 +3178,10 @@ body.admin-mode .admin-only { display: inline-flex; }
             <button class="add-btn" onclick="S.addAdditionalCost()" style="border-color:var(--blue);color:var(--blue)">+ Additional Cost</button>
           </div>
           <div class="line-picker" id="line-picker">
-            <input type="text" class="search-input" placeholder="Search..." id="lp-search-input" oninput="S.renderLinePicker()" style="padding-left:10px">
+            <div class="lp-header">
+              <input type="text" placeholder="Search the price book…" id="lp-search-input" oninput="S.renderLinePicker()" onkeydown="if(event.key==='Escape'){event.preventDefault();S.closeLinePicker();}">
+              <button type="button" class="lp-close" onclick="S.closeLinePicker()" title="Close search (Esc)">&#10005;</button>
+            </div>
             <div class="lp-results" id="lp-results"></div>
           </div>
         </div>
@@ -3286,8 +3296,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.5.2.3',
-    build: '20260502_v1523_shortline_overlay_id_fix',
+    version: '1.5.2.4',
+    build: '20260502_v1524_shortline_builder_redesign',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -4084,11 +4094,17 @@ const HPE = (function(){
        - Only one observer at a time (clear any prior).
        - Disconnects after first detected close, so routing only fires once.
        - Settle delay before observing, so the open transition itself doesn't
-         trip the "now closed" check.                                            */
+         trip the "now closed" check.
+
+       v1.5.2.4 — Diagnostic logging added (HPE.quotes._debugObserver=true to
+       enable). Settle delay reduced to 50ms (was 150ms) for faster install.   */
     _overlayObserver: null,
+    _debugObserver: true, // set false to silence logs once verified working
     _watchOverlayClose(source){
+      const log = (...args) => { if(this._debugObserver) console.log('[overlay-observer]', ...args); };
       // Clean up any previous observer (defensive — shouldn't normally be needed)
       if(this._overlayObserver){
+        log('disconnecting prior observer');
         try{ this._overlayObserver.disconnect(); }catch(_){}
         this._overlayObserver = null;
       }
@@ -4099,6 +4115,7 @@ const HPE = (function(){
         console.warn('[HPE.quotes] could not find overlay for source:', source);
         return;
       }
+      log('found overlay for', source, '— element:', overlay);
       // "Open" detection differs per section
       const isOpen = () => {
         if(source === 'used'){
@@ -4113,17 +4130,26 @@ const HPE = (function(){
       // watching, and we don't want to mis-fire on the open-side of that.
       setTimeout(() => {
         if(!isOpen()){
-          // Overlay never actually opened — bail without observing
+          log('settle check: overlay is NOT open after delay — bailing');
           return;
         }
+        log('settle check: overlay IS open — installing observer');
         const observer = new MutationObserver(() => {
-          if(!isOpen()){
+          const open = isOpen();
+          log('mutation fired — isOpen now:', open);
+          if(!open){
+            log('overlay closed — disconnecting + routing to hub/quotes');
             try{ observer.disconnect(); }catch(_){}
             if(this._overlayObserver === observer) this._overlayObserver = null;
             // Route back to My Quotes. Defer one tick so any in-progress
             // close handler (toasts, etc.) finishes cleanly first.
             setTimeout(() => {
-              router.go('hub', 'quotes');
+              try{
+                router.go('hub', 'quotes');
+                log('router.go(hub, quotes) called');
+              }catch(e){
+                console.error('[overlay-observer] router.go failed:', e);
+              }
             }, 0);
           }
         });
@@ -4132,7 +4158,7 @@ const HPE = (function(){
           attributeFilter: ['style', 'class']
         });
         this._overlayObserver = observer;
-      }, 150);
+      }, 50);
     },
 
     setFilter(name, value){
@@ -18609,6 +18635,9 @@ function quoteFromDrawer(){
 function openQuoteBuilder(){
   document.getElementById('quote-overlay-sl').classList.add('open');
   if (quoteLineItems.length===0) renderLineItems();
+  // v1.5.2.4 — Always start with the line-picker closed so loaded quotes
+  // don't show a dangling "search the price book" panel on entry.
+  if (typeof closeLinePicker === 'function') closeLinePicker();
   // Populate salesperson dropdown from SALESPEOPLE list
   const sp = document.getElementById('q-salesperson');
   if (sp){
@@ -18702,53 +18731,96 @@ function renderLineItems(){
   if (quoteLineItems.length===0){
     list.innerHTML = '<div style="text-align:center;padding:18px;color:var(--gray-500);font-size:12px;line-height:1.5">No items yet — that\'s OK. Add lines below if you want to include any, then click <strong>Generate PDF Quote</strong>. A quote with no lines is valid (e.g., for a quick blank/template PDF).</div>';
   } else {
+    // v1.5.2.4 — Two-row card layout. Row 1: name + remove button. Row 2: 4 labeled fields.
+    // Works at any width without media-query collapse hacks.
     list.innerHTML = quoteLineItems.map((li,i)=>{
       if (li.type === 'trade-in'){
-        // Trade-in line has different fields (no margin, no cost — just a credit description and amount)
+        // Trade-in: description input on row 1, single price field on row 2 (no cost/margin/qty).
         return `<div class="quote-line trade-in">
-          <div class="quote-line-name">
-            <input type="text" value="${li.desc.replace(/"/g,'&quot;')}" oninput="S.updateLine(${i},'desc',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:5px 7px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--green);font-weight:500" placeholder="e.g., 2018 Walker MT23 trade-in">
-            <small>Trade-in credit (deducted from total)</small>
+          <div class="qline-row1">
+            <div class="qline-name-wrap">
+              <div class="quote-line-name" style="color:var(--green)">
+                <input type="text" value="${li.desc.replace(/"/g,'&quot;')}" oninput="S.updateLine(${i},'desc',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:6px 8px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--green);font-weight:600;border-radius:4px" placeholder="e.g., 2018 Walker MT23 trade-in">
+                <small>Trade-in credit (deducted from total)</small>
+              </div>
+            </div>
+            <button class="qline-remove" onclick="S.removeLine(${i})" title="Remove this line">&#10005;</button>
           </div>
-          <span style="color:var(--gray-400);text-align:right;font-size:11px">—</span>
-          <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" style="width:100%" placeholder="0">
-          <span style="color:var(--gray-400);text-align:right;font-size:11px">—</span>
-          <span style="color:var(--gray-400);text-align:right;font-size:11px">1</span>
-          <button class="qline-remove" onclick="S.removeLine(${i})">×</button>
+          <div class="qline-fields">
+            <div class="qline-field" style="grid-column:1 / -1">
+              <span class="qline-field-label" style="color:var(--green)">Trade-in credit ($)</span>
+              <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" placeholder="0">
+            </div>
+          </div>
         </div>`;
       }
       if (li.type === 'additional-cost'){
         const addMargin = li.price>0 ? ((li.price-li.cost)/li.price*100).toFixed(1) : '0';
         const labelEsc = (li.label||'').replace(/"/g,'&quot;');
         return `<div class="quote-line" style="background:var(--blue-light);border-color:var(--blue)">
-          <div class="quote-line-name">
-            <input type="text" value="${labelEsc}" oninput="S.updateLine(${i},'label',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:5px 7px;font-size:11px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--blue);font-weight:600" placeholder="e.g., Delivery, Setup, Prep, Services">
-            <small style="display:flex;align-items:center;gap:6px;margin-top:4px;color:var(--gray-600)">
-              <input type="checkbox" ${li.show_on_pdf?'checked':''} onchange="S.updateLine(${i},'show_on_pdf',this.checked);renderLineItems.skip=true" style="width:13px;height:13px;accent-color:var(--blue);cursor:pointer">
-              Show on customer PDF
-            </small>
+          <div class="qline-row1">
+            <div class="qline-name-wrap">
+              <div class="quote-line-name" style="color:var(--blue)">
+                <input type="text" value="${labelEsc}" oninput="S.updateLine(${i},'label',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:6px 8px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--blue);font-weight:600;border-radius:4px" placeholder="e.g., Delivery, Setup, Prep, Services">
+                <small style="display:flex;align-items:center;gap:6px;margin-top:4px;color:var(--gray-600)">
+                  <input type="checkbox" ${li.show_on_pdf?'checked':''} onchange="S.updateLine(${i},'show_on_pdf',this.checked);renderLineItems.skip=true" style="width:13px;height:13px;accent-color:var(--blue);cursor:pointer">
+                  Show on customer PDF
+                </small>
+              </div>
+            </div>
+            <button class="qline-remove" onclick="S.removeLine(${i})" title="Remove this line">&#10005;</button>
           </div>
-          <input type="number" value="${li.cost.toFixed(0)}" oninput="S.updateLine(${i},'cost',this.value)" class="qline-money" style="width:100%" placeholder="cost">
-          <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" style="width:100%" placeholder="price">
-          <input type="number" value="${addMargin}" step="0.5" oninput="S.updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
-          <input type="number" value="${li.qty}" min="1" oninput="S.updateLine(${i},'qty',this.value)" style="width:100%">
-          <button class="qline-remove" onclick="S.removeLine(${i})">×</button>
+          <div class="qline-fields">
+            <div class="qline-field">
+              <span class="qline-field-label">Cost</span>
+              <input type="number" value="${li.cost.toFixed(0)}" oninput="S.updateLine(${i},'cost',this.value)" class="qline-money" placeholder="0">
+            </div>
+            <div class="qline-field">
+              <span class="qline-field-label">Price</span>
+              <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" placeholder="0">
+            </div>
+            <div class="qline-field">
+              <span class="qline-field-label">Margin %</span>
+              <input type="number" value="${addMargin}" step="0.5" oninput="S.updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
+            </div>
+            <div class="qline-field">
+              <span class="qline-field-label">Qty</span>
+              <input type="number" value="${li.qty}" min="1" oninput="S.updateLine(${i},'qty',this.value)">
+            </div>
+          </div>
         </div>`;
       }
+      // Standard SKU line
       const margin = li.price>0 ? ((li.price-li.cost)/li.price*100).toFixed(1) : '0';
       // v0.24 — Show a small thumbnail next to the line label when a model image
       // is cataloged for this brand+model combo. Falls back silently if none.
       const lineImg = (typeof getModelImage === 'function') ? getModelImage(li.brand, li.model) : null;
       const thumb = lineImg
-        ? `<img src="${lineImg}" alt="" style="width:28px;height:28px;object-fit:contain;border-radius:4px;background:#f9fafb;border:1px solid var(--gray-200);flex-shrink:0;cursor:pointer" onclick="S.uploadLineItemImage('full',${i})" title="Replace image (admin only)">`
-        : `<button onclick="S.uploadLineItemImage('full',${i})" title="Add image for ${escapeAttr((li.brand||'')+' '+(li.model||''))}" style="width:28px;height:28px;border:1px dashed var(--gray-300);border-radius:4px;background:white;color:var(--gray-400);cursor:pointer;font-size:14px;flex-shrink:0;padding:0;display:flex;align-items:center;justify-content:center">📷</button>`;
+        ? `<img src="${lineImg}" alt="" style="width:32px;height:32px;object-fit:contain;border-radius:4px;background:#f9fafb;border:1px solid var(--gray-200);flex-shrink:0;cursor:pointer" onclick="S.uploadLineItemImage('full',${i})" title="Replace image (admin only)">`
+        : `<button onclick="S.uploadLineItemImage('full',${i})" title="Add image for ${escapeAttr((li.brand||'')+' '+(li.model||''))}" style="width:32px;height:32px;border:1px dashed var(--gray-300);border-radius:4px;background:white;color:var(--gray-400);cursor:pointer;font-size:14px;flex-shrink:0;padding:0;display:flex;align-items:center;justify-content:center">&#128247;</button>`;
       return `<div class="quote-line">
-        <div class="quote-line-name" style="display:flex;align-items:center;gap:8px">${thumb}<div style="flex:1;min-width:0">${li.brand} ${li.model}<small>${li.desc}</small></div></div>
-        <input type="number" value="${li.cost.toFixed(0)}" oninput="S.updateLine(${i},'cost',this.value)" class="qline-money" style="width:100%">
-        <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money" style="width:100%">
-        <input type="number" value="${margin}" step="0.5" oninput="S.updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
-        <input type="number" value="${li.qty}" min="1" oninput="S.updateLine(${i},'qty',this.value)" style="width:100%">
-        <button class="qline-remove" onclick="S.removeLine(${i})">×</button>
+        <div class="qline-row1">
+          <div class="qline-name-wrap">${thumb}<div class="quote-line-name">${li.brand} ${li.model}<small>${li.desc}</small></div></div>
+          <button class="qline-remove" onclick="S.removeLine(${i})" title="Remove this line">&#10005;</button>
+        </div>
+        <div class="qline-fields">
+          <div class="qline-field">
+            <span class="qline-field-label">Cost</span>
+            <input type="number" value="${li.cost.toFixed(0)}" oninput="S.updateLine(${i},'cost',this.value)" class="qline-money">
+          </div>
+          <div class="qline-field">
+            <span class="qline-field-label">Price</span>
+            <input type="number" value="${li.price.toFixed(0)}" oninput="S.updateLine(${i},'price',this.value)" class="qline-money">
+          </div>
+          <div class="qline-field">
+            <span class="qline-field-label">Margin %</span>
+            <input type="number" value="${margin}" step="0.5" oninput="S.updateLine(${i},'margin',this.value)" class="qline-margin-input" title="Edit to back-solve price">
+          </div>
+          <div class="qline-field">
+            <span class="qline-field-label">Qty</span>
+            <input type="number" value="${li.qty}" min="1" oninput="S.updateLine(${i},'qty',this.value)">
+          </div>
+        </div>
       </div>`;
     }).join('');
   }
@@ -19004,20 +19076,33 @@ function toggleLinePicker(mode){
   picker.classList.toggle('open');
   if (picker.classList.contains('open')){
     document.getElementById('lp-search-input').value='';
-    document.getElementById('lp-search-input').placeholder = 'Search SKUs...';
+    document.getElementById('lp-search-input').placeholder = 'Search the price book…';
     renderLinePicker();
     document.getElementById('lp-search-input').focus();
   }
 }
 
+/* v1.5.2.4 — Explicit close (× button + Escape key) */
+function closeLinePicker(){
+  const picker = document.getElementById('line-picker');
+  if (picker) picker.classList.remove('open');
+}
+
 function renderLinePicker(){
-  const search = document.getElementById('lp-search-input').value.toLowerCase();
+  const search = document.getElementById('lp-search-input').value.trim().toLowerCase();
+  const results = document.getElementById('lp-results');
+  // v1.5.2.4 — Don't show the full SKU list on empty/very short queries.
+  // Type at least 2 chars to see results. Avoids the "mile-long list" problem.
+  if (search.length < 2){
+    results.innerHTML = '<div class="lp-hint">Type at least 2 characters to search the price book<br><span style="color:var(--gray-400);font-size:11px">(e.g. "toro", "walker", "MT23")</span></div>';
+    return;
+  }
   const filtered = SKUS.filter(s => matchSearch(skuHaystack(s), search)).slice(0,40);
   const html = filtered.map(s=>{
     const stock = getStockForSku(s);
     const stockBadge = stock.length > 0
-      ? `<span class="stock-pill stock-yes" style="font-size:9px;margin-left:6px;padding:1px 6px">${stock.length} in stock</span>`
-      : `<span class="stock-pill" style="font-size:9px;margin-left:6px;padding:1px 6px;background:var(--gray-100);color:var(--gray-500)">not stocked</span>`;
+      ? `<span class="stock-pill stock-yes" style="font-size:9px;margin-left:6px;padding:1px 6px;background:var(--green-light);color:var(--green);border-radius:3px;font-weight:600">${stock.length} in stock</span>`
+      : `<span class="stock-pill" style="font-size:9px;margin-left:6px;padding:1px 6px;background:var(--gray-100);color:var(--gray-500);border-radius:3px;font-weight:600">not stocked</span>`;
     return `
       <div class="lp-result" onclick="S.addSkuFromPicker(${s.id})">
         <div class="lp-result-info"><strong>${s.brand} ${s.model}${stockBadge}</strong><small>${s.desc}</small></div>
@@ -19026,7 +19111,7 @@ function renderLinePicker(){
       </div>
     `;
   }).join('');
-  document.getElementById('lp-results').innerHTML = html || '<div style="padding:18px;text-align:center;color:var(--gray-400);font-size:12px">No matches</div>';
+  results.innerHTML = html || '<div class="lp-hint">No matches for "'+search.replace(/[<>"&]/g,'')+'"</div>';
 }
 
 function addSkuFromPicker(id){ quickQuote(id); document.getElementById('line-picker').classList.remove('open'); }
@@ -23540,6 +23625,7 @@ function updateCommissionCodes(idx, value){
     toggleFinancing: typeof toggleFinancing === 'function' ? toggleFinancing : undefined,
     toggleInfoCard: typeof toggleInfoCard === 'function' ? toggleInfoCard : undefined,
     toggleLinePicker: typeof toggleLinePicker === 'function' ? toggleLinePicker : undefined,
+    closeLinePicker: typeof closeLinePicker === 'function' ? closeLinePicker : undefined,
     togglePackageFeatured: typeof togglePackageFeatured === 'function' ? togglePackageFeatured : undefined,
     togglePinComm: typeof togglePinComm === 'function' ? togglePinComm : undefined,
     toggleSalespersonActive: typeof toggleSalespersonActive === 'function' ? toggleSalespersonActive : undefined,

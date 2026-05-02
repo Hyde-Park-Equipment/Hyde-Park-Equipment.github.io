@@ -3286,8 +3286,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.5.2.1',
-    build: '20260502_v1521_shortline_inline_handlers',
+    version: '1.5.2.2',
+    build: '20260502_v1522_return_to_my_quotes_on_close',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -4036,6 +4036,8 @@ const HPE = (function(){
             try{
               if(window.U && typeof U.editQuote === 'function'){
                 U.editQuote(legacyId);
+                // v1.5.2.2 — watch for overlay close, then return to My Quotes
+                this._watchOverlayClose('used');
               }else{
                 ui.toast('Used not ready — try again');
               }
@@ -4050,6 +4052,8 @@ const HPE = (function(){
             try{
               if(window.S && typeof S.loadQuoteIntoBuilder === 'function'){
                 S.loadQuoteIntoBuilder(legacyId);
+                // v1.5.2.2 — watch for overlay close, then return to My Quotes
+                this._watchOverlayClose('shortline');
               }else{
                 ui.toast('Shortline not ready — try again');
               }
@@ -4065,6 +4069,69 @@ const HPE = (function(){
         console.error('[HPE.quotes] openInSection failed:', e);
         ui.toast('Could not open quote: ' + (e.message || e));
       }
+    },
+
+    /* v1.5.2.2 — Watch the quote-builder overlay for "closed" state. When the
+       user closes the builder (via Close button, PDF-then-close, Escape, click-
+       outside, or any other path that hides the overlay), route them back to
+       My Quotes instead of leaving them stranded in the source section.
+
+       Implementation: MutationObserver on the section-specific overlay element.
+       Used hides via style.display='none'; Shortline toggles a .open class.
+       We poll the open state on each mutation and disconnect on first close.
+
+       Safety:
+       - Only one observer at a time (clear any prior).
+       - Disconnects after first detected close, so routing only fires once.
+       - Settle delay before observing, so the open transition itself doesn't
+         trip the "now closed" check.                                            */
+    _overlayObserver: null,
+    _watchOverlayClose(source){
+      // Clean up any previous observer (defensive — shouldn't normally be needed)
+      if(this._overlayObserver){
+        try{ this._overlayObserver.disconnect(); }catch(_){}
+        this._overlayObserver = null;
+      }
+      const sectionSel = source === 'used' ? '#section-used' : '#section-shortline';
+      const overlay = document.querySelector(sectionSel + ' #quote-overlay');
+      if(!overlay){
+        console.warn('[HPE.quotes] could not find overlay for source:', source);
+        return;
+      }
+      // "Open" detection differs per section
+      const isOpen = () => {
+        if(source === 'used'){
+          // Used uses inline style.display
+          return overlay.style.display !== 'none' && overlay.style.display !== '';
+        }else{
+          // Shortline uses .open class
+          return overlay.classList.contains('open');
+        }
+      };
+      // Brief settle delay — the open transition may set the attribute we're
+      // watching, and we don't want to mis-fire on the open-side of that.
+      setTimeout(() => {
+        if(!isOpen()){
+          // Overlay never actually opened — bail without observing
+          return;
+        }
+        const observer = new MutationObserver(() => {
+          if(!isOpen()){
+            try{ observer.disconnect(); }catch(_){}
+            if(this._overlayObserver === observer) this._overlayObserver = null;
+            // Route back to My Quotes. Defer one tick so any in-progress
+            // close handler (toasts, etc.) finishes cleanly first.
+            setTimeout(() => {
+              router.go('hub', 'quotes');
+            }, 0);
+          }
+        });
+        observer.observe(overlay, {
+          attributes: true,
+          attributeFilter: ['style', 'class']
+        });
+        this._overlayObserver = observer;
+      }, 150);
     },
 
     setFilter(name, value){

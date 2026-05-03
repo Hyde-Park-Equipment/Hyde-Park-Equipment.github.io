@@ -3296,8 +3296,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '1.5.2.6',
-    build: '20260502_v1526_unified_quote_open',
+    version: '1.5.2.5',
+    build: '20260502_v1525_overlay_lookup_fix',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -4044,18 +4044,15 @@ const HPE = (function(){
           // Defer to next tick so Used's onFirstVisit can settle if first time
           setTimeout(() => {
             try{
-              if(window.U && typeof U.openQuoteFromUnified === 'function'){
-                // v1.5.2.6 — open from unified quote object so we don't depend on quoteHistory being populated
-                U.openQuoteFromUnified(quote);
-                this._watchOverlayClose('used');
-              }else if(window.U && typeof U.editQuote === 'function'){
+              if(window.U && typeof U.editQuote === 'function'){
                 U.editQuote(legacyId);
+                // v1.5.2.2 — watch for overlay close, then return to My Quotes
                 this._watchOverlayClose('used');
               }else{
                 ui.toast('Used not ready — try again');
               }
             }catch(e){
-              console.error('[HPE.quotes] openQuoteFromUnified (used) failed:', e);
+              console.error('[HPE.quotes] U.editQuote failed:', e);
               ui.toast('Could not open quote: ' + (e.message || e));
             }
           }, 0);
@@ -4063,18 +4060,15 @@ const HPE = (function(){
           router.go('shortline', 'dashboard');
           setTimeout(() => {
             try{
-              if(window.S && typeof S.openQuoteFromUnified === 'function'){
-                // v1.5.2.6 — open from unified quote object so we don't depend on SAMPLE_QUOTES being populated
-                S.openQuoteFromUnified(quote);
-                this._watchOverlayClose('shortline');
-              }else if(window.S && typeof S.loadQuoteIntoBuilder === 'function'){
+              if(window.S && typeof S.loadQuoteIntoBuilder === 'function'){
                 S.loadQuoteIntoBuilder(legacyId);
+                // v1.5.2.2 — watch for overlay close, then return to My Quotes
                 this._watchOverlayClose('shortline');
               }else{
                 ui.toast('Shortline not ready — try again');
               }
             }catch(e){
-              console.error('[HPE.quotes] openQuoteFromUnified (sl) failed:', e);
+              console.error('[HPE.quotes] S.loadQuoteIntoBuilder failed:', e);
               ui.toast('Could not open quote: ' + (e.message || e));
             }
           }, 0);
@@ -10323,48 +10317,6 @@ function editQuote(quoteId){
   updateQuoteBuilderSaveButton();
 }
 
-// v1.5.2.6 — Open a Used quote from the unified My Quotes hub.
-// Takes the full unified quote object so we don't depend on quoteHistory
-// being populated. Maps onto Used builder fields, then opens #quote-overlay.
-function openQuoteFromUnified(uq){
-  if(!uq){ showToast('Quote not found'); return; }
-  const q = (uq.legacy && typeof uq.legacy === 'object') ? uq.legacy : uq;
-  const stock = q.stock || uq.stock;
-  const u = stock ? inventory.find(x => x.stock === stock) : null;
-  if (!u){ showToast('Unit no longer in inventory', 3000); return; }
-  currentQuoteUnit=u;
-  document.getElementById('q-customer').value      = q.customer || uq.customer || '';
-  document.getElementById('q-cust-phone').value    = q.custPhone || uq.customerPhone || '';
-  document.getElementById('q-cust-email').value    = q.custEmail || uq.customerEmail || '';
-  document.getElementById('q-salesperson').value   = q.salesperson || uq.salesperson || '';
-  document.getElementById('q-email').value         = q.email || uq.email || '';
-  document.getElementById('q-date').value          = new Date().toLocaleDateString();
-  document.getElementById('q-list').value          = q.listPrice || u.price || '';
-  document.getElementById('q-price').value         = q.price || '';
-  document.getElementById('q-notes').value         = q.notes || uq.notes || '';
-  document.getElementById('q-addcost').value       = q.addCost || '';
-  document.getElementById('q-addcost-desc').value  = q.addDesc || '';
-  document.getElementById('q-addcost-show').checked = q.addShow !== false;
-  const fShowList=document.getElementById('q-show-list');
-  if(fShowList) fShowList.checked = q.showListOnPdf !== false;
-  const fEn   = document.getElementById('q-finance-enabled');
-  const fDown = document.getElementById('q-finance-down');
-  const fRate = document.getElementById('q-finance-rate');
-  const fFields=document.getElementById('q-finance-fields');
-  perTermRates = (q.financing && q.financing.perTermRates && typeof q.financing.perTermRates==='object') ? Object.assign({}, q.financing.perTermRates) : {};
-  if(fEn)    fEn.checked    = !!(q.financing && q.financing.enabled);
-  if(fDown)  fDown.value    = (q.financing && q.financing.down != null) ? q.financing.down : '';
-  if(fRate)  fRate.value    = (q.financing && q.financing.rate != null) ? q.financing.rate : '4.99';
-  if(fFields) fFields.style.display = (fEn && fEn.checked) ? 'grid' : 'none';
-  document.getElementById('quote-modal-title').textContent='Edit Quote — '+u.year+' '+u.make+' '+u.model;
-  window._editingQuoteId = q.id || uq.id || null;
-  updateMargin();
-  document.getElementById('quote-overlay').style.display='flex';
-  document.body.style.overflow='hidden';
-  _quoteBuilderSnapshot=snapshotQuoteBuilder();
-  updateQuoteBuilderSaveButton();
-}
-
 // ── MY TRADES ──
 const ADMIN_EMAIL='johnwilliams@hydeparkequipment.ca';
 
@@ -12925,7 +12877,6 @@ function buildFinTable(units){
     downloadSelectedPhotos: typeof downloadSelectedPhotos === 'function' ? downloadSelectedPhotos : undefined,
     editLead: typeof editLead === 'function' ? editLead : undefined,
     editQuote: typeof editQuote === 'function' ? editQuote : undefined,
-    openQuoteFromUnified: typeof openQuoteFromUnified === 'function' ? openQuoteFromUnified : undefined,
     ensureStockFolder: typeof ensureStockFolder === 'function' ? ensureStockFolder : undefined,
     enterPhotoDeleteMode: typeof enterPhotoDeleteMode === 'function' ? enterPhotoDeleteMode : undefined,
     enterPhotoDownloadMode: typeof enterPhotoDownloadMode === 'function' ? enterPhotoDownloadMode : undefined,
@@ -19441,37 +19392,6 @@ function loadQuoteIntoBuilder(id){
   showToast('Editing ' + q.id);
 }
 
-/* v1.5.2.6 — Open a quote from the unified My Quotes hub.
-   Takes the full unified quote object so we don't depend on SAMPLE_QUOTES
-   being populated on the hub page. Maps the unified shape onto the
-   Shortline builder fields, then opens #quote-overlay-sl. */
-function openQuoteFromUnified(uq){
-  if(!uq){ showToast('Quote not found'); return; }
-  const q = (uq.legacy && typeof uq.legacy === 'object') ? uq.legacy : uq;
-  currentQuoteId = q.id || uq.id || null;
-  if (document.getElementById('q-customer'))    document.getElementById('q-customer').value    = (q.customer && q.customer.name) || q.customer || uq.customer || '';
-  if (document.getElementById('q-cust-email'))  document.getElementById('q-cust-email').value  = (q.customer && q.customer.email) || q.custEmail || uq.customerEmail || '';
-  if (document.getElementById('q-cust-phone'))  document.getElementById('q-cust-phone').value  = (q.customer && q.customer.phone) || q.custPhone || uq.customerPhone || '';
-  if (document.getElementById('q-notes'))       document.getElementById('q-notes').value       = q.notes || uq.notes || '';
-  if (document.getElementById('q-salesperson')) document.getElementById('q-salesperson').value = q.salesperson || uq.salesperson || '';
-  const fEnabled = document.getElementById('q-finance-enabled');
-  if (fEnabled){
-    fEnabled.checked = !!(q.financing && q.financing.enabled);
-    if (typeof toggleFinancing === 'function') toggleFinancing();
-  }
-  if (document.getElementById('q-finance-down')) document.getElementById('q-finance-down').value = (q.financing && q.financing.down != null) ? q.financing.down : 0;
-  if (document.getElementById('q-finance-rate')) document.getElementById('q-finance-rate').value = (q.financing && q.financing.rate != null) ? q.financing.rate : 4.99;
-  perTermRates = (q.financing && q.financing.perTermRates && typeof q.financing.perTermRates === 'object')
-    ? Object.assign({}, q.financing.perTermRates) : {};
-  if (typeof updateFinanceDisplay === 'function') updateFinanceDisplay();
-  quoteLineItems = JSON.parse(JSON.stringify(q.lineItems || uq.lineItems || []));
-  if (typeof renderLineItems === 'function') renderLineItems();
-  if (typeof updateTotals === 'function') updateTotals();
-  if (typeof updateQuoteEditingBadge === 'function') updateQuoteEditingBadge();
-  if (typeof openQuoteBuilder === 'function') openQuoteBuilder();
-  showToast('Editing ' + (currentQuoteId || 'quote'));
-}
-
 /* Reset the builder to a clean slate (for "New quote" button) */
 function clearQuoteBuilder(){
   currentQuoteId = null;
@@ -23530,7 +23450,6 @@ function updateCommissionCodes(idx, value){
     loadHubStateAndMigrate: typeof loadHubStateAndMigrate === 'function' ? loadHubStateAndMigrate : undefined,
     loadInventoryFile: typeof loadInventoryFile === 'function' ? loadInventoryFile : undefined,
     loadQuoteIntoBuilder: typeof loadQuoteIntoBuilder === 'function' ? loadQuoteIntoBuilder : undefined,
-    openQuoteFromUnified: typeof openQuoteFromUnified === 'function' ? openQuoteFromUnified : undefined,
     loadSalespeople: typeof loadSalespeople === 'function' ? loadSalespeople : undefined,
     loadSkuCatalog: typeof loadSkuCatalog === 'function' ? loadSkuCatalog : undefined,
     loadStihlData: typeof loadStihlData === 'function' ? loadStihlData : undefined,

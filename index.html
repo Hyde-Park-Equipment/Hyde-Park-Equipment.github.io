@@ -13930,6 +13930,7 @@ async function loadInventoryFile(){
     const cMsrp = colIdx('suggested list price');
     const cCost = colIdx('cost');
     const cReplacement = colIdx('replacement value');
+    const cSerial = colIdx('serial number');
     if(cStatus < 0 || cTag < 0 || cMake < 0 || cNewUsed < 0 || cLoc < 0){
       console.warn('Inventory file is missing required columns (status, stock number, make, new/used, location).');
       INVENTORY = [];
@@ -13981,7 +13982,8 @@ async function loadInventoryFile(){
         list_price: listPrice,
         msrp,
         replacement_value: replacement,
-        in_date: inDate
+        in_date: inDate,
+        serial: cSerial >= 0 ? String(row[cSerial]||'').trim() : ''
       });
     }
     INVENTORY = out;
@@ -15469,7 +15471,7 @@ function getStockForSku(sku){
   })
     .map(u => ({unit:u, m:modelsMatch(sku.model, u.model)}))
     .filter(x => x.m.match);
-  return matches.map(x => ({tag:x.unit.tag, model:x.unit.model, exact:x.m.exact}));
+  return matches.map(x => ({tag:x.unit.tag, model:x.unit.model, serial:x.unit.serial||'', year:x.unit.year||'', location:x.unit.location||'', cost:x.unit.cost||0, list_price:x.unit.list_price||0, exact:x.m.exact}));
 }
 
 let BRANDS = [
@@ -18305,7 +18307,7 @@ function filterAndRender(){
     const stockUnits = getStockForSku(s);
     const stockCell = stockUnits.length === 0
       ? '<span class="badge b-stock-no">Not in stock</span>'
-      : renderStockPills(stockUnits);
+      : `<span class="badge b-stock-yes" title="Click row to see tag &amp; serial numbers">${stockUnits.length} in stock</span>`;
     const _bColor = getBrandColor(s.brand);
     const _bPillStyle = `background:${rgba(_bColor, 0.12)};color:${_bColor};`;
     return `<tr class="${s.promo?'has-promo':''}" onclick="S.openDetail(${s.id})">
@@ -18319,6 +18321,34 @@ function filterAndRender(){
       <td onclick="event.stopPropagation();S.addToQuickQuote(${s.id})"><button class="quick-quote-btn">+ Quote</button></td>
     </tr>`;
   }).join('');
+}
+
+/* v1.5.3 — Detail-drawer table: list tag + serial + year + location for every in-stock unit. */
+function renderStockUnitTable(units){
+  if (!units || !units.length) return '';
+  const rows = units.map(u => {
+    const serial = u.serial ? escapeHtml(u.serial) : '<span style="color:var(--gray-400)">—</span>';
+    const year = u.year ? escapeHtml(String(u.year)) : '';
+    const loc = u.location ? escapeHtml(u.location) : '';
+    const fuzzyMark = u.exact ? '' : ' <span title="Fuzzy model match" style="color:var(--amber);font-size:10px;font-weight:700">~</span>';
+    return `<tr style="border-bottom:1px solid var(--gray-100)">
+      <td style="padding:5px 8px;font-family:\'DM Mono\',monospace;font-weight:600;color:var(--gray-900)">${escapeHtml(u.tag)}${fuzzyMark}</td>
+      <td style="padding:5px 8px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--gray-700)">${serial}</td>
+      <td style="padding:5px 8px;text-align:center;color:var(--gray-600);font-size:11px">${year}</td>
+      <td style="padding:5px 8px;text-align:center;color:var(--gray-600);font-size:11px">${loc}</td>
+    </tr>`;
+  }).join('');
+  return `<div style="margin-top:8px;border:1px solid var(--gray-200);border-radius:6px;overflow:hidden">
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead><tr style="background:#f9fafb;color:var(--gray-600);font-size:10px;text-transform:uppercase;letter-spacing:0.04em">
+        <th style="text-align:left;padding:6px 8px;font-weight:600">Tag</th>
+        <th style="text-align:left;padding:6px 8px;font-weight:600">Serial #</th>
+        <th style="text-align:center;padding:6px 8px;font-weight:600;width:50px">Year</th>
+        <th style="text-align:center;padding:6px 8px;font-weight:600;width:50px">Loc</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
 }
 
 /* Render stock unit tags as pills. Show first 4 inline, rest behind a +N pill that expands. */
@@ -18391,7 +18421,7 @@ function renderDrawerBody(s){
     const summary = fuzzyCount > 0
       ? `<span class="badge b-stock-yes">${stockUnits.length} in stock</span> <span style="font-size:11px;color:var(--amber);margin-left:6px">(${fuzzyCount} fuzzy match)</span>`
       : `<span class="badge b-stock-yes">${stockUnits.length} in stock</span>`;
-    stockBadge = summary + '<div style="margin-top:6px">' + renderStockPills(stockUnits) + '</div>';
+    stockBadge = summary + renderStockUnitTable(stockUnits);
   }
 
   let promoBlock = '';
@@ -20359,6 +20389,7 @@ function openInventoryDetail(tag){
           <div><div style="font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em">Location</div><div style="color:var(--gray-700);margin-top:2px">${escapeHtml(locFull)}</div></div>
           <div><div style="font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em">In Date</div><div style="color:var(--gray-700);margin-top:2px;font-size:12px">${escapeHtml(u.in_date || '—')}</div></div>
           <div><div style="font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em">Tag</div><div style="font-family:'DM Mono',monospace;color:var(--gray-900);margin-top:2px;font-weight:600">${escapeHtml(u.tag)}</div></div>
+          <div><div style="font-size:10px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em">Serial Number</div><div style="font-family:'DM Mono',monospace;color:var(--gray-700);margin-top:2px;font-size:12px">${u.serial ? escapeHtml(u.serial) : '<span style=\'color:var(--gray-400)\'>—</span>'}</div></div>
         </div>
         <div style="border-top:1px solid var(--gray-100);margin:14px 0 12px"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 18px">

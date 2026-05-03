@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v2.0.1</title><!-- build:20260503_v201_model_detail_page -->
+<title>HPE Sales Platform v2.0.2</title><!-- build:20260503_v202_sold_lifecycle -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -2433,6 +2433,31 @@ body.admin-mode .admin-only { display: inline-flex; }
   <div id="model-detail-content"><!-- populated by renderModelDetailPage() --></div>
 </div>
 
+<!-- v2.0.2 — Sold archive: units that have been sold AND dropped off the daily xlsx -->
+<div class="page" id="page-shortline-sold-archive">
+  <div class="page-header">
+    <div>
+      <div class="page-title">Sold Archive</div>
+      <div class="page-sub">Units that have been sold or reserved and have since dropped off the daily inventory file. <span id="sold-archive-count" style="color:var(--gray-500)"></span></div>
+    </div>
+  </div>
+  <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+    <div class="search-wrap" style="flex:1;min-width:240px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-input" id="archive-filter" placeholder="Search by tag, brand, model, customer, salesperson, invoice…" oninput="S.renderSoldArchivePage()">
+    </div>
+    <select class="filter-select" id="archive-brand-filter" onchange="S.renderSoldArchivePage()">
+      <option value="">All brands</option>
+    </select>
+    <select class="filter-select" id="archive-source-filter" onchange="S.renderSoldArchivePage()">
+      <option value="">All sources</option>
+      <option value="xlsx">Reserved (from file)</option>
+      <option value="manual">Marked sold (manual)</option>
+    </select>
+  </div>
+  <div id="sold-archive-list"></div>
+</div>
+
 <div class="page" id="page-shortline-quotes">
   <div class="page-header">
     <div>
@@ -2512,8 +2537,8 @@ body.admin-mode .admin-only { display: inline-flex; }
       <option value="M">Mallard (M)</option>
     </select>
     <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-700);cursor:pointer;padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;background:#fff;user-select:none">
-      <input type="checkbox" id="inv-show-sold" onchange="S.renderInventoryPage()" style="cursor:pointer">
-      Show sold
+      <input type="checkbox" id="inv-hide-sold" onchange="S.renderInventoryPage()" style="cursor:pointer">
+      Hide sold/reserved
     </label>
   </div>
   <div id="inventory-list"></div>
@@ -3410,8 +3435,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '2.0.1',
-    build: '20260503_v201_model_detail_page',
+    version: '2.0.2',
+    build: '20260503_v202_sold_lifecycle',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -3511,6 +3536,7 @@ const HPE = (function(){
         {id:'dashboard',         label:'Dashboard',         icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'},
         {id:'pricebook',         label:'Price Book',        icon:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'},
         {id:'inventory',         label:'Inventory',         icon:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>'},
+        {id:'sold-archive',      label:'Sold Archive',      icon:'<path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><line x1="10" y1="12" x2="14" y2="12"/>'},
         {id:'stihl',             label:'Stihl',             icon:'<path d=\"M18 7C18 5 15.5 4 12 4C8.5 4 6 5.5 6 8.5C6 13 18 11.5 18 15.5C18 18.5 15.5 20 12 20C8.5 20 6 18.5 6 17\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>'},
         {id:'brand-hub',         label:'Brand Hub',         admin:true, icon:'<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>'},
         {id:'promotions',        label:'Promotions',        admin:true, icon:'<polyline points="20 7 12 15 8 11 2 17"/><polyline points="14 7 20 7 20 13"/>'},
@@ -3773,25 +3799,34 @@ const HPE = (function(){
   const router = {
     parse(hash){
       hash = (hash || '').replace(/^#?\/?/, '');
-      if(!hash) return {section: 'hub', page: 'dashboard'};
+      if(!hash) return {section: 'hub', page: 'dashboard', params: ''};
       const parts = hash.split('/').filter(Boolean);
-      if(parts.length === 0) return {section: 'hub', page: 'dashboard'};
+      if(parts.length === 0) return {section: 'hub', page: 'dashboard', params: ''};
       const first = parts[0];
       if(['hub','used','shortline','kubota'].includes(first)){
-        return {section: first, page: parts[1] || 'dashboard'};
+        // v2.0.2 — Anything past the page name is treated as `params` (string,
+        // user-decoded by the page handler). Lets pages like `model-detail`
+        // round-trip state through the URL without router changes.
+        return {section: first, page: parts[1] || 'dashboard', params: parts.slice(2).join('/')};
       }
       // Bare page name = a hub page
-      return {section: 'hub', page: first};
+      return {section: 'hub', page: first, params: parts.slice(1).join('/')};
     },
-    serialize(section, page){
+    serialize(section, page, params){
+      let path;
       if(section === 'hub'){
-        if(page === 'dashboard') return '#/';
-        return '#/' + page;
+        path = (page === 'dashboard') ? '#/' : ('#/' + page);
+      } else {
+        path = (page === 'dashboard') ? ('#/' + section) : ('#/' + section + '/' + page);
       }
-      if(page === 'dashboard') return '#/' + section;
-      return '#/' + section + '/' + page;
+      if(params){
+        // Don't double-up trailing slashes for hub-dashboard ('#/').
+        if(path === '#/') path = '#/' + params;
+        else path = path + '/' + params;
+      }
+      return path;
     },
-    go(section, page){
+    go(section, page, params){
       page = page || 'dashboard';
       // Validate
       if(!sections[section]){ ui.toast('Unknown section: ' + section); return; }
@@ -3804,20 +3839,22 @@ const HPE = (function(){
         if(!pageEl){
           ui.toast(`"${page}" not yet available — Stage 1 placeholder`);
           page = 'dashboard';
+          params = '';
         }
       }
       // Update hash without scroll jump
-      const newHash = router.serialize(section, page);
+      const newHash = router.serialize(section, page, params);
       if(location.hash !== newHash){
         history.replaceState(null, '', newHash);
       }
       // Apply
-      router.apply(section, page);
+      router.apply(section, page, params);
     },
-    apply(section, page){
+    apply(section, page, params){
       const sectionChanged = state.currentSection !== section;
       state.currentSection = section;
       state.currentPage = page;
+      state.currentParams = params || '';
 
       // Show the right section
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -3859,7 +3896,7 @@ const HPE = (function(){
       // Per-page hook — runs every time a page within this section is shown
       const impl = sectionImpl[section];
       if(impl && typeof impl.onPageVisit === 'function'){
-        try{ impl.onPageVisit(page); }catch(e){
+        try{ impl.onPageVisit(page, params || ''); }catch(e){
           console.error('[HPE] onPageVisit failed for ' + section + '/' + page + ':', e);
         }
       }
@@ -3868,9 +3905,9 @@ const HPE = (function(){
       window.scrollTo(0, 0);
     },
     handleHashChange(){
-      const {section, page} = router.parse(location.hash);
-      if(section !== state.currentSection || page !== state.currentPage){
-        router.apply(section, page);
+      const {section, page, params} = router.parse(location.hash);
+      if(section !== state.currentSection || page !== state.currentPage || (params || '') !== (state.currentParams || '')){
+        router.apply(section, page, params);
       }
     }
   };
@@ -5061,8 +5098,8 @@ const HPE = (function(){
       ui.toast('Drive unavailable — running in offline shell mode');
     }
     // Apply current hash (or default)
-    const {section, page} = router.parse(location.hash);
-    router.apply(section, page);
+    const {section, page, params} = router.parse(location.hash);
+    router.apply(section, page, params);
     // Listen for back/forward
     window.addEventListener('hashchange', router.handleHashChange);
   }
@@ -13392,6 +13429,153 @@ let commissionsYoYEnabled = false;
    "marked sold" / manual notes / etc. Keyed by tag.
    Schema: { [tag]: { sold: bool, soldAt: ISO, soldTo: string, soldPrice: number, notes: string } } */
 let INVENTORY_OVERRIDES = {};
+
+/* v2.0.2 — SOLD ARCHIVE
+   ============================================================================
+   When the daily xlsx import runs, units that were previously marked sold
+   (manual flag or xlsx-reserved) AND are no longer in the new file are
+   considered "fully gone" — invoiced and shipped from the dealer system —
+   and get moved here. Each entry is a snapshot of everything we knew about
+   the unit at archive time, so the history is preserved even if INVENTORY_
+   OVERRIDES gets cleaned up later.
+
+   Schema (array, newest first):
+     [{
+       tag,                 // stock #
+       brand, make, model, desc, year, location, serial,
+       cost, list_price, msrp, in_date,
+       sold: true,
+       soldAt,              // ISO timestamp when first marked sold
+       soldBy,              // salesperson name (manual) or reservedEmp (xlsx)
+       soldTo,              // customer name (manual) or reservedCustomer (xlsx)
+       soldPrice,           // manual price (xlsx doesn't have this)
+       reservedInvoice,     // xlsx invoice ID
+       source,              // 'manual' | 'xlsx'
+       archivedAt           // ISO when this entry was created
+     }]
+   ============================================================================ */
+let SOLD_ARCHIVE = [];
+
+/* Called from loadInventoryFile() after the new INVENTORY array is built.
+   - For every row in the new INVENTORY that has reservedEmp populated,
+     mirror it into INVENTORY_OVERRIDES[tag] so the unit shows the red flag
+     and the rest of the app's sold-aware logic kicks in (stock counts,
+     model detail history, etc.).
+   - For every tag that was in the previous INVENTORY but is missing from
+     the new one AND was marked sold, archive it.
+   `previousTags` is a Set of tag strings from the prior INVENTORY array. */
+function _syncReservedAndArchive(previousTags){
+  let changed = false;
+  // Pass 1: mirror xlsx-reserved into INVENTORY_OVERRIDES
+  const currentTags = new Set();
+  for(const u of INVENTORY){
+    currentTags.add(u.tag);
+    const resEmp = u._reservedEmp;
+    if(resEmp){
+      const existing = INVENTORY_OVERRIDES[u.tag] || {};
+      // Preserve any manually-entered fields (e.g. notes, manual sale price).
+      // Only overwrite the sale-attribution fields when they aren't already
+      // populated by a manual mark-sold.
+      if(!existing.sold || existing.source === 'xlsx'){
+        INVENTORY_OVERRIDES[u.tag] = Object.assign({}, existing, {
+          sold: true,
+          source: 'xlsx',
+          soldBy: resEmp,
+          soldTo: u._reservedCustomer || existing.soldTo || '',
+          reservedInvoice: u._reservedInvoice || existing.reservedInvoice || '',
+          // Use the reserved date if we have it, else stamp now
+          soldAt: u._reservedDate ? new Date(u._reservedDate).toISOString() : (existing.soldAt || new Date().toISOString())
+        });
+        changed = true;
+      }
+    } else {
+      // No reservedEmp on this row. If the override says source:'xlsx' but the
+      // reservation has been cleared in the dealer system (rare but possible),
+      // unmark it. Manual flags (source !== 'xlsx') are NEVER touched.
+      const existing = INVENTORY_OVERRIDES[u.tag];
+      if(existing && existing.sold && existing.source === 'xlsx'){
+        delete existing.sold;
+        delete existing.source;
+        delete existing.soldBy;
+        delete existing.soldTo;
+        delete existing.soldAt;
+        delete existing.reservedInvoice;
+        if(Object.keys(existing).length === 0){
+          delete INVENTORY_OVERRIDES[u.tag];
+        }
+        changed = true;
+      }
+    }
+  }
+  // Pass 2: archive any previously-sold tag that's no longer in INVENTORY
+  if(previousTags && previousTags.size > 0){
+    // Build a map of last-known unit data from the OLD INVENTORY so we can
+    // snapshot it. But by the time we run this, INVENTORY has been replaced —
+    // so we rely on INVENTORY_OVERRIDES for sale info. The unit's static
+    // fields (brand, model, etc.) were captured into the override at sale
+    // time only for xlsx-reserved units; manual flags don't store them.
+    // To minimize lost history, the archive entry stores whatever's available.
+    for(const tag of previousTags){
+      if(currentTags.has(tag)) continue; // still in inventory
+      const ov = INVENTORY_OVERRIDES[tag];
+      if(!ov || !ov.sold) continue; // wasn't sold; just dropped off (e.g. data fix)
+      // Snapshot. Pull static unit fields from the override's saved snapshot if
+      // we have one, else leave blank.
+      const snap = ov._unitSnapshot || {};
+      SOLD_ARCHIVE.unshift({
+        tag,
+        brand: snap.brand || '',
+        make: snap.make || '',
+        model: snap.model || '',
+        desc: snap.desc || '',
+        year: snap.year || '',
+        location: snap.location || '',
+        serial: snap.serial || '',
+        cost: snap.cost || 0,
+        list_price: snap.list_price || 0,
+        msrp: snap.msrp || 0,
+        in_date: snap.in_date || '',
+        sold: true,
+        soldAt: ov.soldAt || '',
+        soldBy: ov.soldBy || '',
+        soldTo: ov.soldTo || '',
+        soldPrice: ov.soldPrice || 0,
+        reservedInvoice: ov.reservedInvoice || '',
+        source: ov.source || 'manual',
+        notes: ov.notes || '',
+        notesThread: Array.isArray(ov.notesThread) ? ov.notesThread.slice() : [],
+        archivedAt: new Date().toISOString()
+      });
+      // Remove the override now that the unit is archived.
+      delete INVENTORY_OVERRIDES[tag];
+      changed = true;
+    }
+  }
+  // Pass 3: snapshot static unit fields onto current overrides for future
+  // archival. We do this every import so manual flags get their snapshot
+  // backfilled the first time the import runs after marking sold.
+  for(const u of INVENTORY){
+    const ov = INVENTORY_OVERRIDES[u.tag];
+    if(ov && ov.sold && !ov._unitSnapshot){
+      ov._unitSnapshot = {
+        brand: u.brand,
+        make: u.make,
+        model: u.model,
+        desc: u.desc,
+        year: u.year,
+        location: u.location,
+        serial: u.serial,
+        cost: u.cost,
+        list_price: u.list_price,
+        msrp: u.msrp,
+        in_date: u.in_date
+      };
+      changed = true;
+    }
+  }
+  if(changed && typeof saveAppState === 'function') saveAppState();
+}
+
 let appStateFileId=null;
 let dashboardSummaryFileId=null;  // dashboard-summary.json — read by HPE Sales Hub
 // v0.47f — Unified quotes (schema v1, per SCHEMAS_v1.md). Dual-write target in
@@ -13427,6 +13611,11 @@ function hideAuthError(){
 
 async function showApp(){
   syncShellAuth();
+  // v2.0.2 — Populate CURRENT_USER from Google OAuth so things like the
+  // Sold-by dropdown can default to the logged-in user. Was defined but
+  // never called; sold modal default-selection silently failed because
+  // CURRENT_USER.name stayed empty.
+  if(typeof setCurrentUserFromAuth === 'function') setCurrentUserFromAuth();
   // Bootstrap Drive folder skeleton + load app state
   try {
     await bootstrapDrive();
@@ -13628,6 +13817,10 @@ async function loadAppState(){
       // v0.23 — inventory overrides (sold marks, notes) layered over the xlsx data
       if(state.INVENTORY_OVERRIDES && typeof state.INVENTORY_OVERRIDES === 'object'){
         INVENTORY_OVERRIDES = state.INVENTORY_OVERRIDES;
+      }
+      // v2.0.2 — Sold archive (units that have been sold AND dropped off the daily xlsx)
+      if(Array.isArray(state.SOLD_ARCHIVE)){
+        SOLD_ARCHIVE = state.SOLD_ARCHIVE;
       }
       // Brand categories (admin-managed, defaults to Snow/Turf/Mower/Construction if absent)
       if(Array.isArray(state.BRAND_CATEGORIES) && state.BRAND_CATEGORIES.length>0){
@@ -14142,6 +14335,14 @@ async function loadInventoryFile(){
     const cCost = colIdx('cost');
     const cReplacement = colIdx('replacement value');
     const cSerial = colIdx('serial number');
+    // v2.0.2 — Reserved columns. When 'reserved employee' is populated on a
+    // row, the unit has been reserved/sold via the dealer accounting system.
+    // We mirror these into INVENTORY_OVERRIDES[tag] (with a `source:'xlsx'`
+    // tag) so the unit shows the same red flag as a manually-marked sale.
+    const cResEmp = colIdx('reserved employee');
+    const cResDate = colIdx('reserved date');
+    const cResCustomer = colIdx('reserved customer');
+    const cResInvoice = colIdx('reserved invoice');
     if(cStatus < 0 || cTag < 0 || cMake < 0 || cNewUsed < 0 || cLoc < 0){
       console.warn('Inventory file is missing required columns (status, stock number, make, new/used, location).');
       INVENTORY = [];
@@ -14194,10 +14395,29 @@ async function loadInventoryFile(){
         msrp,
         replacement_value: replacement,
         in_date: inDate,
-        serial: cSerial >= 0 ? String(row[cSerial]||'').trim() : ''
+        serial: cSerial >= 0 ? String(row[cSerial]||'').trim() : '',
+        // v2.0.2 — Reserved fields straight from the xlsx (untouched). Used in
+        // _syncReservedAndArchive() below to mark the unit sold automatically.
+        _reservedEmp: cResEmp >= 0 ? String(row[cResEmp]||'').trim() : '',
+        _reservedDate: cResDate >= 0 ? (function(){
+          const v = row[cResDate];
+          if(v instanceof Date && !isNaN(v)) return v.toISOString().slice(0,10);
+          return String(v||'').trim();
+        })() : '',
+        _reservedCustomer: cResCustomer >= 0 ? String(row[cResCustomer]||'').trim() : '',
+        _reservedInvoice: cResInvoice >= 0 ? String(row[cResInvoice]||'').trim() : ''
       });
     }
+    // Capture the previous tag set BEFORE replacing INVENTORY, so we can detect
+    // tags that just disappeared and archive any sold ones.
+    const _previousTags = new Set();
+    if(Array.isArray(INVENTORY)){
+      for(const u of INVENTORY) _previousTags.add(u.tag);
+    }
     INVENTORY = out;
+    // v2.0.2 — Sync xlsx-reserved units into INVENTORY_OVERRIDES, and archive
+    // any previously-sold tags that have just dropped off the file.
+    _syncReservedAndArchive(_previousTags);
     console.log('Loaded', INVENTORY.length, 'inventory units from', inventoryFileName);
     // v0.27 — If the normalizer auto-added new brands, persist them so they
     // survive the next page load.
@@ -15011,6 +15231,7 @@ async function _saveAppStateNow(){
       MODEL_NOTES,
       MODEL_FIELDS,
       INVENTORY_OVERRIDES,
+      SOLD_ARCHIVE,
       commsRead: Array.from(readCommIds),
       quotes: SAMPLE_QUOTES,
       popularSkuIds,
@@ -19006,7 +19227,11 @@ let currentModelDetailKey = null;
 function navigateToModelDetail(brand, model){
   if(!brand || !model){ if(typeof showToast==='function') showToast('Cannot open model detail — missing brand/model'); return; }
   currentModelDetailKey = { brand: String(brand), model: String(model) };
-  HPE.router.go('shortline', 'model-detail');
+  // v2.0.2 — Encode brand+model in the URL hash so refresh and back/forward
+  // preserve the page (was: empty "no model selected" screen on reload).
+  // Each segment is URI-encoded so spaces, slashes, etc. survive round-trip.
+  const params = encodeURIComponent(brand) + '/' + encodeURIComponent(model);
+  HPE.router.go('shortline', 'model-detail', params);
   // Belt-and-braces render in case onPageVisit doesn't fire (e.g. already on
   // the page navigating to a different model).
   renderModelDetailPage();
@@ -21235,6 +21460,103 @@ function sortInventoryBy(field){
   renderInventoryPage();
 }
 
+/* v2.0.2 — Sold Archive page renderer.
+   Lists every entry in SOLD_ARCHIVE (newest first). Search across tag/brand/
+   model/customer/salesperson/invoice, plus brand and source dropdowns.
+   Each row shows the snapshotted unit fields + sale info captured at archive
+   time. No edit affordances — this is a read-only history. */
+function renderSoldArchivePage(){
+  const list = document.getElementById('sold-archive-list');
+  if(!list) return;
+  // Populate brand dropdown from archived brands (one-time per render — cheap).
+  const brandSel = document.getElementById('archive-brand-filter');
+  if(brandSel){
+    const currentVal = brandSel.value;
+    const brands = [...new Set(SOLD_ARCHIVE.map(e => e.brand).filter(Boolean))].sort();
+    brandSel.innerHTML = '<option value="">All brands</option>' + brands.map(b => `<option value="${escapeAttr(b)}">${escapeHtml(b)}</option>`).join('');
+    if(currentVal && brands.includes(currentVal)) brandSel.value = currentVal;
+  }
+  const filter = (document.getElementById('archive-filter')?.value || '').toLowerCase().trim();
+  const brandFilter = document.getElementById('archive-brand-filter')?.value || '';
+  const sourceFilter = document.getElementById('archive-source-filter')?.value || '';
+  let rows = SOLD_ARCHIVE.slice();
+  if(brandFilter) rows = rows.filter(e => e.brand === brandFilter);
+  if(sourceFilter) rows = rows.filter(e => (e.source || 'manual') === sourceFilter);
+  if(filter){
+    rows = rows.filter(e => {
+      const hay = `${e.tag} ${e.brand} ${e.make} ${e.model} ${e.desc} ${e.soldBy} ${e.soldTo} ${e.reservedInvoice} ${e.serial}`.toLowerCase();
+      return hay.includes(filter);
+    });
+  }
+  // Update count chip
+  const countEl = document.getElementById('sold-archive-count');
+  if(countEl){
+    if(SOLD_ARCHIVE.length === 0){
+      countEl.textContent = '';
+    } else if(rows.length === SOLD_ARCHIVE.length){
+      countEl.textContent = '(' + SOLD_ARCHIVE.length + ' total)';
+    } else {
+      countEl.textContent = '(' + rows.length + ' of ' + SOLD_ARCHIVE.length + ')';
+    }
+  }
+  if(SOLD_ARCHIVE.length === 0){
+    list.innerHTML = `<div class="panel" style="text-align:center;padding:40px 20px;color:var(--gray-500);font-size:13px">
+      <div style="font-size:32px;margin-bottom:10px">📦</div>
+      <div style="font-weight:600;color:var(--gray-700);margin-bottom:6px">No sold units archived yet</div>
+      <div style="max-width:480px;margin:0 auto;line-height:1.5">When a unit that's been marked sold (manually or reserved in the inventory file) drops off the next daily import — meaning it's been invoiced and shipped — it lands here automatically with a full snapshot of its sale info.</div>
+    </div>`;
+    return;
+  }
+  if(rows.length === 0){
+    list.innerHTML = `<div class="panel" style="text-align:center;padding:24px;color:var(--gray-500);font-size:13px">No archived units match the current filters.</div>`;
+    return;
+  }
+  const fmtDate = (iso) => {
+    if(!iso) return '—';
+    try { return new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' }); }
+    catch(e){ return iso; }
+  };
+  const fmtMoney = (n) => (n > 0) ? '$' + Math.round(n).toLocaleString() : '<span style="color:var(--gray-300)">—</span>';
+  const thBase = 'padding:10px 12px;font-size:11px;font-weight:600;color:var(--gray-600);letter-spacing:0.04em;text-transform:uppercase;text-align:left';
+  list.innerHTML = `<table style="width:100%;border-collapse:collapse;background:white;border:1px solid var(--gray-200);border-radius:10px;overflow:hidden;font-size:12px">
+    <thead><tr style="background:#f9fafb;border-bottom:1px solid var(--gray-200)">
+      <th style="${thBase}">Tag</th>
+      <th style="${thBase}">Brand</th>
+      <th style="${thBase}">Model</th>
+      <th style="${thBase}">Serial</th>
+      <th style="${thBase};text-align:center;width:60px">Yr</th>
+      <th style="${thBase}">Sold By</th>
+      <th style="${thBase}">Customer</th>
+      <th style="${thBase}">Invoice</th>
+      <th style="${thBase};text-align:right">Sale Price</th>
+      <th style="${thBase};width:90px">Sold</th>
+      <th style="${thBase};width:90px">Archived</th>
+      <th style="${thBase};text-align:center;width:60px">Source</th>
+    </tr></thead>
+    <tbody>
+      ${rows.map(e => {
+        const sourcePill = (e.source === 'xlsx')
+          ? '<span style="display:inline-block;font-size:9px;font-weight:700;background:#dbeafe;color:#1e40af;padding:2px 6px;border-radius:3px;letter-spacing:0.04em" title="Auto-archived from inventory file">FILE</span>'
+          : '<span style="display:inline-block;font-size:9px;font-weight:700;background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:3px;letter-spacing:0.04em" title="Manually marked sold in app">MANUAL</span>';
+        return `<tr style="border-bottom:1px solid var(--gray-100)">
+          <td style="padding:8px 12px;font-family:'DM Mono',monospace;font-weight:700;color:var(--gray-900)">${escapeHtml(e.tag)}</td>
+          <td style="padding:8px 12px;color:var(--gray-700)">${escapeHtml(e.brand || e.make || '—')}</td>
+          <td style="padding:8px 12px;color:var(--gray-700);font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(e.model || '—')}</td>
+          <td style="padding:8px 12px;color:var(--gray-600);font-family:'DM Mono',monospace;font-size:11px">${e.serial ? escapeHtml(e.serial) : '—'}</td>
+          <td style="padding:8px 12px;text-align:center;color:var(--gray-600);font-size:11px">${e.year ? escapeHtml(String(e.year)) : '—'}</td>
+          <td style="padding:8px 12px;color:var(--gray-700)">${e.soldBy ? escapeHtml(e.soldBy) : '<span style="color:var(--gray-300)">—</span>'}</td>
+          <td style="padding:8px 12px;color:var(--gray-700);font-family:'DM Mono',monospace;font-size:11px">${e.soldTo ? escapeHtml(e.soldTo) : '<span style="color:var(--gray-300)">—</span>'}</td>
+          <td style="padding:8px 12px;color:var(--gray-700);font-family:'DM Mono',monospace;font-size:11px">${e.reservedInvoice ? escapeHtml(e.reservedInvoice) : '<span style="color:var(--gray-300)">—</span>'}</td>
+          <td style="padding:8px 12px;text-align:right;font-family:'DM Mono',monospace;color:var(--gray-900)">${fmtMoney(e.soldPrice)}</td>
+          <td style="padding:8px 12px;color:var(--gray-600);font-size:11px">${fmtDate(e.soldAt)}</td>
+          <td style="padding:8px 12px;color:var(--gray-600);font-size:11px">${fmtDate(e.archivedAt)}</td>
+          <td style="padding:8px 12px;text-align:center">${sourcePill}</td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table>`;
+}
+
 function renderInventoryPage(){
   const list = document.getElementById('inventory-list');
   const sub = document.getElementById('inv-page-sub');
@@ -21260,14 +21582,18 @@ function renderInventoryPage(){
   const filter = (document.getElementById('inv-filter')?.value || '').toLowerCase().trim();
   const brandSel = (document.getElementById('inv-brand-filter')?.value || '');
   const locSel = (document.getElementById('inv-loc-filter')?.value || '');
-  const showSold = !!document.getElementById('inv-show-sold')?.checked;
+  // v2.0.2 — Inverted the sold filter. Was "Show sold" (hide-by-default), now
+  // "Hide sold/reserved" (show-by-default). A sold/reserved unit stays on the
+  // inventory list (with red flag) until it drops off the daily xlsx import,
+  // which is the real "it's been invoiced and shipped" signal. The hide-toggle
+  // is for users who want to focus on truly-available units only.
+  const hideSold = !!document.getElementById('inv-hide-sold')?.checked;
   // v0.23 — Apply overrides layer to each unit so sold flags / notes show up
   let rows = INVENTORY.map(u => {
     const ov = INVENTORY_OVERRIDES[u.tag];
     return ov ? Object.assign({}, u, { _override: ov, sold: !!ov.sold }) : u;
   });
-  // Hide sold by default
-  if(!showSold) rows = rows.filter(u => !u.sold);
+  if(hideSold) rows = rows.filter(u => !u.sold);
   if(brandSel) rows = rows.filter(u => (u.brand || u.make) === brandSel);
   if(locSel) rows = rows.filter(u => u.location === locSel);
   if(filter){
@@ -21371,9 +21697,28 @@ function renderInventoryPage(){
         const soldCell = isSold
           ? `<span style="display:inline-flex;align-items:center;gap:4px;background:#dc2626;color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:0.04em"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" stroke="none" aria-hidden="true"><path d="M5 3v18h2v-7h11l-1.5-4L18 6H7V3H5z"/></svg>SOLD</span>`
           : `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-300);vertical-align:-2px" aria-hidden="true"><path d="M4 21V4"/><path d="M4 4h13l-1.5 4L17 12H4"/></svg>`;
-        const soldTitle = isSold
-          ? (u._override && u._override.soldTo ? `Sold to ${u._override.soldTo}\n(Click to view/edit)` : 'Marked sold (click to view)')
-          : 'Mark this unit sold';
+        // v2.0.2 — Rich sold-flag tooltip. Pulls whichever fields are populated
+        // (xlsx-reserved fills source/soldBy/soldTo/reservedInvoice/soldAt; manual
+        // sale fills soldBy/soldTo/soldPrice/soldAt). Both paths surface here.
+        let soldTitle;
+        if(isSold){
+          const ov = u._override || {};
+          const lines = [];
+          if(ov.source === 'xlsx') lines.push('Reserved (from inventory file)');
+          else lines.push('Marked sold');
+          if(ov.soldBy) lines.push('By: ' + ov.soldBy);
+          if(ov.soldTo) lines.push('To: ' + ov.soldTo);
+          if(ov.reservedInvoice) lines.push('Invoice: ' + ov.reservedInvoice);
+          if(ov.soldAt){
+            try { lines.push('Date: ' + new Date(ov.soldAt).toLocaleDateString()); } catch(e){}
+          }
+          if(ov.soldPrice) lines.push('Price: $' + Number(ov.soldPrice).toLocaleString());
+          lines.push('');
+          lines.push('Click to view/edit');
+          soldTitle = lines.join('\n');
+        } else {
+          soldTitle = 'Mark this unit sold';
+        }
         return `<tr style="${rowStyle}" onclick="S.openInventoryDetail('${S.escapeAttr(u.tag)}')" onmouseover="this.style.background='#fff7ed'" onmouseout="this.style.background='${isSold?'#fafafa':''}'">
           <td style="padding:8px 12px;font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-900);font-weight:600">${tagCell}</td>
           <td style="padding:8px 12px;color:var(--gray-700)">${brandLabel}</td>
@@ -21632,16 +21977,30 @@ function openSoldModalByTag(tag){
 }
 
 /* v0.33 — Populate the Sold By dropdown with active salespeople, defaulting
-   to the current signed-in user when their name is in the list. */
+   to the current signed-in user when their record is in the list.
+   v2.0.2 — Match by EMAIL first (much more reliable than name; capitalization
+   or formatting drift between OAuth name and salespeople.json record was
+   silently breaking the default). Fall back to name match, then to single-
+   active-rep auto-pick. */
 function populateSoldBySelect(){
   const sel = document.getElementById('sold-f-soldby');
   if(!sel) return;
   const active = (typeof getActiveSalespeople === 'function') ? getActiveSalespeople() : (SALESPEOPLE || []).filter(s => s.active !== false);
   sel.innerHTML = '<option value="">— select —</option>'
     + active.map(s => `<option value="${escapeAttr(s.name)}">${escapeHtml(s.name)}</option>`).join('');
-  const myName = (CURRENT_USER && CURRENT_USER.name) || '';
-  if(myName && active.some(s => s.name === myName)){
-    sel.value = myName;
+  // Resolve current user from CURRENT_USER, falling back to userInfo if CURRENT_USER
+  // wasn't populated yet (e.g. setCurrentUserFromAuth hadn't fired).
+  const myEmail = ((CURRENT_USER && CURRENT_USER.email) || (typeof userInfo !== 'undefined' && userInfo && userInfo.email) || '').toLowerCase();
+  const myName  = (CURRENT_USER && CURRENT_USER.name)  || (typeof userInfo !== 'undefined' && userInfo && userInfo.name)  || '';
+  let matched = null;
+  if(myEmail){
+    matched = active.find(s => (s.email || '').toLowerCase() === myEmail);
+  }
+  if(!matched && myName){
+    matched = active.find(s => s.name === myName);
+  }
+  if(matched){
+    sel.value = matched.name;
   } else if(active.length === 1){
     sel.value = active[0].name;
   }
@@ -21716,6 +22075,12 @@ function confirmMarkSold(){
   if(currentDetailId !== null && typeof renderDrawerBody === 'function'){
     const _s = SKUS.find(x => x.id === currentDetailId);
     if(_s) renderDrawerBody(_s);
+  }
+  // v2.0.2 — If the model detail page is currently active, re-render it too.
+  // Was not in the refresh chain before, so the red flag stayed gray after a
+  // sale until something else triggered a re-render.
+  if(currentModelDetailKey && typeof renderModelDetailPage === 'function'){
+    renderModelDetailPage();
   }
 }
 
@@ -24786,6 +25151,8 @@ function updateCommissionCodes(idx, value){
     /* v2.0.1 — Model detail page (replaces drawer) */
     navigateToModelDetail: typeof navigateToModelDetail === 'function' ? navigateToModelDetail : undefined,
     renderModelDetailPage: typeof renderModelDetailPage === 'function' ? renderModelDetailPage : undefined,
+    /* v2.0.2 — Sold archive page */
+    renderSoldArchivePage: typeof renderSoldArchivePage === 'function' ? renderSoldArchivePage : undefined,
     backFromModelDetail: typeof backFromModelDetail === 'function' ? backFromModelDetail : undefined,
     toggleUnitNotesRow: typeof toggleUnitNotesRow === 'function' ? toggleUnitNotesRow : undefined,
     submitModelNote: typeof submitModelNote === 'function' ? submitModelNote : undefined,
@@ -24988,10 +25355,28 @@ function updateCommissionCodes(idx, value){
   // toggling is already done by HPE.router.apply(). To stay aligned with
   // the original navigate() behaviour, this hook duplicates the page-specific
   // render dispatch:
-  function onPageVisit(page){
+  function onPageVisit(page, params){
     syncShellAuth();
     if (page === 'inventory' && typeof renderInventoryPage === 'function'){ renderInventoryPage(); return; }
-    if (page === 'model-detail' && typeof renderModelDetailPage === 'function'){ renderModelDetailPage(); return; }
+    if (page === 'model-detail'){
+      // v2.0.2 — Decode brand/model from URL params so refresh/back-forward/
+      // shared links restore the right model. Falls back to currentModelDetailKey
+      // when arriving via in-app navigation (which already set it).
+      if(params && typeof params === 'string'){
+        const segs = params.split('/').filter(Boolean);
+        if(segs.length >= 2){
+          try {
+            currentModelDetailKey = {
+              brand: decodeURIComponent(segs[0]),
+              model: decodeURIComponent(segs[1])
+            };
+          } catch(e){ console.warn('Could not decode model-detail params:', params, e); }
+        }
+      }
+      if(typeof renderModelDetailPage === 'function') renderModelDetailPage();
+      return;
+    }
+    if (page === 'sold-archive' && typeof renderSoldArchivePage === 'function'){ renderSoldArchivePage(); return; }
     if (page === 'salespeople'){
       if(typeof renderSalespeople === 'function') renderSalespeople();
       if(typeof renderAdminPermissions === 'function') renderAdminPermissions();

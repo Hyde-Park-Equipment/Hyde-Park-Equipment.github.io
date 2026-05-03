@@ -5843,7 +5843,10 @@ async function loadSharedSalespeople(){
       return;
     }
     if(sd.files.length > 1){
-      console.warn('Multiple salespeople.json files in _config; using most recent');
+      // v2.0.0 — Auto-consolidate older copies to Drive trash (30-day recovery).
+      // Used Tracker is read-only on salespeople (Shortline owns the writes), so
+      // trashing duplicates here is purely housekeeping; no risk of losing data.
+      _consolidateDuplicateFiles(sd.files, 'salespeople.json').catch(e => console.warn('consolidate failed:', e));
     }
     const content = await gfetch('https://www.googleapis.com/drive/v3/files/'+sd.files[0].id+'?alt=media&supportsAllDrives=true');
     const json = await content.json();
@@ -5879,12 +5882,21 @@ async function loadAppState(){
   try{
     const params=new URLSearchParams({
       q:"name='app-state.json' and '"+photosFolderId+"' in parents and trashed=false",
-      fields:'files(id,name)',supportsAllDrives:'true',includeItemsFromAllDrives:'true',
+      fields:'files(id,name,modifiedTime)',
+      orderBy:'modifiedTime desc',
+      pageSize:'10',
+      supportsAllDrives:'true',includeItemsFromAllDrives:'true',
       ...(sharedDriveId?{driveId:sharedDriveId,corpora:'drive'}:{})
     });
     const r=await gfetch('https://www.googleapis.com/drive/v3/files?'+params);
     const data=await r.json();
     if(data.files&&data.files.length>0){
+      // v2.0.0 — Auto-consolidate: if an earlier save retry created a sibling
+      // app-state.json instead of updating in place, trash the older copies
+      // (Drive trash, 30-day recovery) and keep the most recent.
+      if(data.files.length>1){
+        _consolidateDuplicateFiles(data.files, 'app-state.json (Used)').catch(e => console.warn('consolidate failed:', e));
+      }
       appStateFileId=data.files[0].id;
       const content=await gfetch('https://www.googleapis.com/drive/v3/files/'+appStateFileId+'?alt=media&supportsAllDrives=true');
       const state=await content.json();
@@ -5949,6 +5961,33 @@ async function saveAppState(){
   // contract: the main app-state.json save above is the source of truth; these are mirrors.
   try { writeUnifiedQuotes(); } catch(e){ console.warn('unified quotes write failed:', e); }
   try { writeUnifiedDeals(); } catch(e){ console.warn('unified deals write failed:', e); }
+}
+
+/* v2.0.0 — Used-scoped duplicate config-file consolidator.
+   See the Shortline IIFE for full docstring. Same behaviour:
+   trashes older copies (recoverable in Drive trash for 30 days),
+   keeps the most recent one. Fire-and-forget. */
+async function _consolidateDuplicateFiles(files, label){
+  if(!files || files.length <= 1) return;
+  const dupes = files.slice(1);
+  const trashed = [];
+  for(const f of dupes){
+    try {
+      const resp = await gfetch('https://www.googleapis.com/drive/v3/files/'+f.id+'?supportsAllDrives=true', {
+        method:'PATCH',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ trashed: true })
+      });
+      if(resp.ok){ trashed.push(f.id); }
+      else { console.warn('Could not trash duplicate '+label+' (id='+f.id+'):', resp.status); }
+    } catch(e){
+      console.warn('Failed to trash duplicate '+label+' (id='+f.id+'):', e);
+    }
+  }
+  if(trashed.length > 0){
+    console.log('Auto-consolidated '+trashed.length+' duplicate '+label+' file(s) — moved to Drive trash. Recoverable for 30 days.');
+    if(typeof showToast === 'function') showToast('✓ Cleaned up ' + trashed.length + ' duplicate ' + label + ' file' + (trashed.length===1?'':'s') + ' (moved to Drive trash)', 4000);
+  }
 }
 
 /* ============================================================
@@ -13453,10 +13492,9 @@ async function loadAppState(){
   const data=await r.json();
   if(data.files && data.files.length>0){
     if(data.files.length > 1){
-      // Multiple app-state.json files exist — likely from earlier silent save failures
-      // that created duplicates. Warn the user; we'll use the most recent.
-      console.warn('Found '+data.files.length+' app-state.json files in Drive. Using the most recently modified. Consider cleaning up duplicates manually.');
-      if(typeof showToast === 'function') showToast('⚠ Found ' + data.files.length + ' copies of app-state.json — using the most recent. Clean up duplicates in Drive.', 6000);
+      // v2.0.0 — Auto-consolidate. Older copies go to Drive trash (30-day recovery
+      // window), most recent stays as the canonical app-state.json.
+      _consolidateDuplicateFiles(data.files, 'app-state.json').catch(e => console.warn('consolidate failed:', e));
     }
     appStateFileId=data.files[0].id;
     const content=await gfetch('https://www.googleapis.com/drive/v3/files/'+appStateFileId+'?alt=media&supportsAllDrives=true');
@@ -13548,6 +13586,45 @@ async function saveAppState(){
 }
 
 /* ============================================================
+   v2.0.0 — Duplicate config-file consolidator
+   ------------------------------------------------------------
+   When a load query returns multiple files with the same name in the same
+   folder (a known consequence of a save retry that created a sibling instead
+   of updating in place), this helper:
+     1. Keeps the most-recently-modified copy (the one we'd already pick).
+     2. Trashes the older copies via Drive API (NOT permanent delete — they
+        sit in Drive trash for 30 days, recoverable from the Drive UI).
+     3. Surfaces a clear toast telling the user it self-healed.
+
+   Required input: `files` — an array from Drive list, ALREADY sorted by
+   `modifiedTime desc` so files[0] is the canonical one to keep.
+
+   Fire-and-forget: trash failures only log; never block the load path.
+   ============================================================ */
+async function _consolidateDuplicateFiles(files, label){
+  if(!files || files.length <= 1) return;
+  const dupes = files.slice(1);  // everything after files[0] is older
+  const trashed = [];
+  for(const f of dupes){
+    try {
+      const resp = await gfetch('https://www.googleapis.com/drive/v3/files/'+f.id+'?supportsAllDrives=true', {
+        method:'PATCH',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ trashed: true })
+      });
+      if(resp.ok){ trashed.push(f.id); }
+      else { console.warn('Could not trash duplicate '+label+' (id='+f.id+'):', resp.status); }
+    } catch(e){
+      console.warn('Failed to trash duplicate '+label+' (id='+f.id+'):', e);
+    }
+  }
+  if(trashed.length > 0){
+    console.log('Auto-consolidated '+trashed.length+' duplicate '+label+' file(s) — moved to Drive trash. Recoverable for 30 days.');
+    if(typeof showToast === 'function') showToast('✓ Cleaned up ' + trashed.length + ' duplicate ' + label + ' file' + (trashed.length===1?'':'s') + ' (moved to Drive trash)', 4000);
+  }
+}
+
+/* ============================================================
    SALESPEOPLE — shared list at HPE Link/_config/salespeople.json
    Loaded on bootstrap, edited via admin UI, saved back to Drive.
    Other apps (Used Tracker etc.) will read from the same file.
@@ -13570,7 +13647,8 @@ async function loadSalespeople(){
     const data=await r.json();
     if(data.files && data.files.length>0){
       if(data.files.length > 1){
-        console.warn('Found '+data.files.length+' salespeople.json files. Using most recent.');
+        // v2.0.0 — Auto-consolidate older copies to Drive trash (30-day recovery).
+        _consolidateDuplicateFiles(data.files, 'salespeople.json').catch(e => console.warn('consolidate failed:', e));
       }
       salespeopleFileId=data.files[0].id;
       const content=await gfetch('https://www.googleapis.com/drive/v3/files/'+salespeopleFileId+'?alt=media&supportsAllDrives=true');
@@ -13716,7 +13794,10 @@ async function findHubStateFile(){
   const r=await gfetch('https://www.googleapis.com/drive/v3/files?'+params);
   const data=await r.json();
   if(data.files && data.files.length>0){
-    if(data.files.length>1) console.warn('Multiple hub-state.json files; using most recent');
+    if(data.files.length>1){
+      // v2.0.0 — Auto-consolidate older copies to Drive trash (30-day recovery).
+      _consolidateDuplicateFiles(data.files, 'hub-state.json').catch(e => console.warn('consolidate failed:', e));
+    }
     return data.files[0];
   }
   return null;

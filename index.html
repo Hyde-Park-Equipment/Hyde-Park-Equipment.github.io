@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v2.0.6</title><!-- build:20260503_v206_polish -->
+<title>HPE Sales Platform v2.0.7</title><!-- build:20260503_v207_price_parser -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -1814,6 +1814,61 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
    thread, and the in-stock units table. Designed to render at the same width
    as other Shortline pages (no drawer overlay). */
 #section-shortline #page-shortline-model-detail{padding:0;}
+/* v2.0.7 — Price file parser modal. Full-screen overlay with a review table:
+   admin checks/edits each parsed row, then accepts to commit into MODEL_FIELDS.
+   Modal width caps at 1100px so wider tables (description column) read well. */
+#section-shortline .pp-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;display:none;align-items:flex-start;justify-content:center;padding:32px 20px;overflow-y:auto;}
+#section-shortline .pp-overlay.open{display:flex;}
+#section-shortline .pp-modal{background:#fff;border-radius:12px;width:100%;max-width:1100px;display:flex;flex-direction:column;max-height:calc(100vh - 64px);overflow:hidden;box-shadow:0 24px 60px -16px rgba(0,0,0,0.3);}
+#section-shortline .pp-header{padding:18px 22px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;background:#fafafa;}
+#section-shortline .pp-header h2{margin:0;font-size:16px;font-weight:700;color:var(--gray-900);letter-spacing:-0.01em;}
+#section-shortline .pp-header .pp-sub{font-size:11px;color:var(--gray-500);margin-top:3px;}
+#section-shortline .pp-close{background:none;border:none;color:var(--gray-400);font-size:22px;cursor:pointer;padding:4px 8px;border-radius:5px;line-height:1;}
+#section-shortline .pp-close:hover{color:var(--gray-900);background:var(--gray-100);}
+#section-shortline .pp-body{flex:1;overflow:auto;padding:18px 22px;}
+#section-shortline .pp-status{display:flex;align-items:center;gap:14px;padding:24px 14px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;font-size:13px;color:var(--gray-800);margin-bottom:16px;}
+#section-shortline .pp-status .pp-spin{width:24px;height:24px;border:3px solid #fed7aa;border-top-color:var(--orange);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0;}
+#section-shortline .pp-status-text{line-height:1.5;}
+#section-shortline .pp-status-title{font-weight:600;color:var(--gray-900);}
+#section-shortline .pp-status-detail{font-size:11px;color:var(--gray-600);margin-top:2px;}
+#section-shortline .pp-error{background:#fef2f2;border-color:#fecaca;}
+#section-shortline .pp-error .pp-spin{display:none;}
+#section-shortline .pp-summary{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--gray-600);}
+#section-shortline .pp-summary .pill{background:var(--gray-100);padding:4px 9px;border-radius:11px;font-weight:600;color:var(--gray-800);}
+#section-shortline .pp-summary .pill.match{background:#dcfce7;color:#166534;}
+#section-shortline .pp-summary .pill.new{background:#dbeafe;color:#1e40af;}
+#section-shortline .pp-summary .pill.warn{background:#fef3c7;color:#92400e;}
+#section-shortline .pp-table-wrap{border:1px solid var(--gray-200);border-radius:8px;overflow:auto;max-height:50vh;}
+#section-shortline .pp-table{width:100%;border-collapse:collapse;font-size:12px;}
+#section-shortline .pp-table thead th{position:sticky;top:0;background:#f9fafb;color:var(--gray-600);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;padding:9px 8px;text-align:left;border-bottom:1px solid var(--gray-200);z-index:1;}
+#section-shortline .pp-table th.num,
+#section-shortline .pp-table td.num{text-align:right;font-family:'DM Mono',monospace;}
+#section-shortline .pp-table th.ctr,
+#section-shortline .pp-table td.ctr{text-align:center;}
+#section-shortline .pp-table tbody tr{border-top:1px solid var(--gray-100);transition:background 0.1s;}
+#section-shortline .pp-table tbody tr.excluded{background:#fafafa;opacity:0.55;}
+#section-shortline .pp-table tbody tr:hover{background:#fff7ed;}
+#section-shortline .pp-table tbody tr.excluded:hover{background:#f3f4f6;}
+#section-shortline .pp-table td{padding:6px 8px;color:var(--gray-700);vertical-align:middle;}
+#section-shortline .pp-table input{width:100%;padding:5px 7px;border:1px solid transparent;border-radius:5px;font-family:inherit;font-size:12px;background:transparent;color:var(--gray-900);}
+#section-shortline .pp-table input:focus{outline:none;border-color:var(--orange);background:#fff;}
+#section-shortline .pp-table input.num{font-family:'DM Mono',monospace;text-align:right;}
+#section-shortline .pp-match{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:0.04em;display:inline-block;}
+#section-shortline .pp-match.exists{background:#dcfce7;color:#166534;}
+#section-shortline .pp-match.new{background:#dbeafe;color:#1e40af;}
+#section-shortline .pp-match.ambiguous{background:#fef3c7;color:#92400e;}
+#section-shortline .pp-source{font-size:10px;color:var(--gray-500);font-style:italic;}
+#section-shortline .pp-footer{padding:14px 22px;border-top:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;gap:14px;background:#fafafa;flex-wrap:wrap;}
+#section-shortline .pp-footer-left{display:flex;gap:10px;align-items:center;}
+#section-shortline .pp-footer-right{display:flex;gap:8px;align-items:center;}
+#section-shortline .pp-bulk{background:#fff;border:1px solid var(--gray-200);color:var(--gray-700);padding:7px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;}
+#section-shortline .pp-bulk:hover{background:var(--gray-50);border-color:var(--gray-300);}
+#section-shortline .pp-cancel{background:#fff;border:1px solid var(--gray-200);color:var(--gray-700);padding:9px 18px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+#section-shortline .pp-cancel:hover{background:var(--gray-50);}
+#section-shortline .pp-commit{background:var(--orange);color:#fff;border:none;padding:9px 22px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+#section-shortline .pp-commit:hover{background:var(--orange-dark);}
+#section-shortline .pp-commit:disabled{background:var(--gray-300);cursor:not-allowed;}
+
 #section-shortline .md-back-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid var(--gray-200);background:#fff;position:sticky;top:54px;z-index:50;}
 #section-shortline .md-back-btn{background:#fff;border:1px solid var(--gray-200);color:var(--gray-700);padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;}
 #section-shortline .md-back-btn:hover{background:#fff7ed;border-color:var(--orange);color:var(--orange);}
@@ -2047,7 +2102,7 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.6</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.7</div>
     </div>
     <div class="topbar-search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -2458,6 +2513,32 @@ body.admin-mode .admin-only { display: inline-flex; }
 <!-- v2.0.1 — Model detail page (drill-in from brand folder row click) -->
 <div class="page" id="page-shortline-model-detail">
   <div id="model-detail-content"><!-- populated by renderModelDetailPage() --></div>
+</div>
+
+<!-- v2.0.7 — Price file parser review modal. Opened by S.parseBrandPriceFile().
+     The body is populated dynamically: status (loading / error / loaded),
+     summary chips, editable rows table, and footer actions. -->
+<div class="pp-overlay" id="pp-overlay" onclick="if(event.target===this)S.closePriceParser()">
+  <div class="pp-modal" id="pp-modal" onclick="event.stopPropagation()">
+    <div class="pp-header">
+      <div>
+        <h2 id="pp-title">Parse Price File</h2>
+        <div class="pp-sub" id="pp-subtitle"></div>
+      </div>
+      <button class="pp-close" onclick="S.closePriceParser()" title="Close">&times;</button>
+    </div>
+    <div class="pp-body" id="pp-body"></div>
+    <div class="pp-footer" id="pp-footer" style="display:none">
+      <div class="pp-footer-left">
+        <button class="pp-bulk" onclick="S.priceParserBulk('include')">Include all</button>
+        <button class="pp-bulk" onclick="S.priceParserBulk('exclude')">Exclude all</button>
+      </div>
+      <div class="pp-footer-right">
+        <button class="pp-cancel" onclick="S.closePriceParser()">Cancel</button>
+        <button class="pp-commit" id="pp-commit-btn" onclick="S.commitPriceParser()">Apply <span id="pp-commit-count">0</span> rows</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- v2.0.2 — Sold archive: units that have been sold AND dropped off the daily xlsx -->
@@ -3455,8 +3536,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '2.0.6',
-    build: '20260503_v206_polish',
+    version: '2.0.7',
+    build: '20260503_v207_price_parser',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -14237,6 +14318,11 @@ async function loadAppState(){
         BRANDS.forEach(b => {
           if(typeof b.popular!=='boolean') b.popular = false;
           if(!Array.isArray(b.categories)) b.categories = [];
+          // v2.0.7 — Pricing-mode field set added for the price-file parser.
+          // Default to flat_discount for legacy records — preserves current
+          // behaviour for brands like Walker/Wright/BillyGoat.
+          if(typeof b.pricing_mode !== 'string') b.pricing_mode = 'flat_discount';
+          if(typeof b.tier_label !== 'string') b.tier_label = '';
         });
       }
       if(Array.isArray(state.COMMS)){
@@ -15667,6 +15753,13 @@ function makeNewBrandRecord(name, autoCreated){
     dealer_discount: 0,
     default_margin: 15,
     varies_by_model: false,
+    // v2.0.7 — Pricing mode controls how the price-file parser figures out
+    // dealer cost. 'flat_discount' = derive from MSRP × (1 - dealer_discount%).
+    // 'file_cost_column' = read a single dealer-cost column on the file.
+    // 'file_tier_column' = read one of N tier columns (e.g. 'Bronze', 'Silver').
+    // tier_label is the column header to look for in the latter two modes.
+    pricing_mode: 'flat_discount',
+    tier_label: '',
     popular: false,
     categories: [],
     notes: '',
@@ -16381,6 +16474,7 @@ function getStockForSku(sku){
 let BRANDS = [
   {
     name:'Walker', sku_count:27, dealer_discount:23, default_margin:13, varies_by_model:false,
+    pricing_mode:'flat_discount', tier_label:'',
     color:'#1e40af',
     active:true,
     popular:true, categories:['Mower'],
@@ -16395,6 +16489,7 @@ let BRANDS = [
   },
   {
     name:'Wright', sku_count:21, dealer_discount:23, default_margin:15, varies_by_model:false,
+    pricing_mode:'flat_discount', tier_label:'',
     color:'#b45309',
     active:true,
     popular:false, categories:['Mower'],
@@ -16408,6 +16503,7 @@ let BRANDS = [
   },
   {
     name:'Toro', sku_count:32, dealer_discount:22, default_margin:15, varies_by_model:true,
+    pricing_mode:'file_tier_column', tier_label:'Dealer Level 4 Price CAN',
     color:'#dc2626',
     active:true,
     popular:true, categories:['Mower','Turf'],
@@ -23531,16 +23627,30 @@ function renderBrandCardBody(b){
       </div>
       <div class="brand-grid three">
         <div class="brand-field">
-          <label>Dealer Discount % ${b.varies_by_model ? '(fallback only)' : ''}</label>
-          <input type="number" value="${b.dealer_discount}" step="0.5" onchange="S.updateBrandField('${b.name}','dealer_discount',this.value)">
+          <label>Pricing Mode</label>
+          <select onchange="S.updateBrandField('${b.name}','pricing_mode',this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;background:white;width:100%">
+            <option value="flat_discount" ${(b.pricing_mode||'flat_discount')==='flat_discount'?'selected':''}>Flat brand discount</option>
+            <option value="file_cost_column" ${b.pricing_mode==='file_cost_column'?'selected':''}>Read cost from file column</option>
+            <option value="file_tier_column" ${b.pricing_mode==='file_tier_column'?'selected':''}>Read cost from tier column</option>
+          </select>
+          <div style="font-size:10px;color:var(--gray-500);margin-top:3px;line-height:1.4">
+            ${(b.pricing_mode||'flat_discount')==='flat_discount'
+              ? 'Cost = MSRP × (1 − discount%). For brands whose price file shows MSRP only.'
+              : b.pricing_mode==='file_cost_column'
+                ? 'Parser reads the dealer-cost column directly (e.g. "Dealer Net").'
+                : 'Parser reads one tier column (e.g. "Bronze"). Update tier label below as your level changes.'}
+          </div>
+        </div>
+        <div class="brand-field">
+          <label>${(b.pricing_mode||'flat_discount')==='flat_discount' ? 'Dealer Discount %' : 'Tier / Column Label'}</label>
+          ${(b.pricing_mode||'flat_discount')==='flat_discount'
+            ? `<input type="number" value="${b.dealer_discount}" step="0.5" onchange="S.updateBrandField('${b.name}','dealer_discount',this.value)">`
+            : `<input type="text" value="${escapeAttr(b.tier_label||'')}" placeholder="${b.pricing_mode==='file_tier_column' ? 'e.g. Bronze' : 'e.g. Dealer Net'}" onchange="S.updateBrandField('${b.name}','tier_label',this.value)">`}
+          ${b.varies_by_model && (b.pricing_mode||'flat_discount')==='flat_discount' ? '<div style="font-size:10px;color:var(--amber);margin-top:3px">Note: brand also has "varies by model" set — flat discount is fallback only.</div>' : ''}
         </div>
         <div class="brand-field">
           <label>Default Margin %</label>
           <input type="number" value="${b.default_margin}" step="0.5" onchange="S.updateBrandField('${b.name}','default_margin',this.value)">
-        </div>
-        <div class="brand-field">
-          <label>SKU Count</label>
-          <div class="ro-value">${b.sku_count}</div>
         </div>
       </div>
     </div>
@@ -23647,6 +23757,7 @@ function renderBrandCardBody(b){
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             <span class="file-name">${escapeHtml(f.name)}</span>
             <span class="file-meta">${f.size} · ${f.uploaded} · ${f.uploaded_by}</span>
+            <button class="file-action" onclick="S.parseBrandPriceFile('${b.name}',${i})" title="Extract pricing rows from this file using Claude">⚡ Parse</button>
             <button class="file-action" onclick="S.downloadBrandFile('${b.name}',${i})">Download</button>
             <button class="file-action delete" onclick="S.deleteBrandFile('${b.name}',${i})">Delete</button>
           </div>
@@ -23992,7 +24103,13 @@ function updateBrandField(name, field, value){
   if (!b) return;
   if (field === 'dealer_discount' || field === 'default_margin') value = parseFloat(value) || 0;
   b[field] = value;
-  renderBrandInfo(); // keep sales-side view in sync
+  // v2.0.7 — pricing_mode change swaps the adjacent input (discount % vs tier
+  // label), so we need a full re-render of Brand Hub for the dependent
+  // controls to update. Other field updates only need the sales-side sync.
+  if(field === 'pricing_mode' && typeof renderBrandHub === 'function'){
+    renderBrandHub();
+  }
+  renderBrandInfo();
   showToast('Updated ' + b.name + ' · ' + field.replace(/_/g, ' '));
   saveAppState();
 }
@@ -24183,6 +24300,460 @@ async function deleteBrandFile(brandName, idx){
   renderBrandHub();
   renderBrandInfo();
   if(typeof showToast === 'function') showToast('Deleted ' + f.name);
+}
+
+/* =========================================================================
+   v2.0.7 — PRICE FILE PARSER
+   ------------------------------------------------------------------------
+   Reads an uploaded brand price file (PDF or Excel), sends a representative
+   chunk to the Anthropic API along with the brand's pricing config, and
+   surfaces the parsed rows in a review modal. Admin can edit, include/exclude
+   per row, then commit — accepted rows write into MODEL_FIELDS (the same
+   override layer used by the model detail page).
+
+   Pricing modes:
+     - flat_discount:  cost = msrp × (1 - dealer_discount/100)
+     - file_cost_column: parser asked to read the column at brand.tier_label
+     - file_tier_column: same; tier_label is the tier column header
+
+   Cache: parse output is stored in Drive next to the file as
+   "<file>.parsed.json" so re-parsing the same file is free. Bypassed when
+   the source file was modified after the cached parse.
+   ========================================================================= */
+
+// In-flight parser state. Keyed singletons; only one parser can run at a time.
+let _ppState = {
+  brand: null,         // brand record being parsed
+  fileIdx: -1,         // index of file in brand.files
+  rows: [],            // parsed rows: { id, model, msrp, cost, description, source, includes, match }
+  parsing: false,
+  cancelled: false
+};
+
+async function parseBrandPriceFile(brandName, fileIdx){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast === 'function') showToast('Admin access required.');
+    return;
+  }
+  const b = BRANDS.find(x => x.name === brandName);
+  if(!b || !b.files || !b.files[fileIdx]){ showToast('File not found'); return; }
+  const f = b.files[fileIdx];
+
+  // Resolve the API key via the Hub. Without it we can't proceed.
+  let apiKey = '';
+  try {
+    if(window.HPE && HPE.sectionImpl && HPE.sectionImpl.hub
+       && typeof HPE.sectionImpl.hub.getMyApiKey === 'function'){
+      apiKey = HPE.sectionImpl.hub.getMyApiKey() || '';
+    }
+  } catch(e){}
+  if(!apiKey){
+    showToast('No Anthropic API key set. Add one in Home → My Settings.', 5000);
+    return;
+  }
+
+  _ppState = { brand:b, fileIdx, rows:[], parsing:true, cancelled:false, apiKey };
+  _ppOpenModal(b, f);
+  _ppRenderStatus('loading', 'Downloading file from Drive…',
+                  `${escapeHtml(f.name)} · ${f.size}`);
+
+  try {
+    // 1) Pull the bytes from Drive
+    const fileBytes = await _ppFetchFromDrive(f);
+    _ppRenderStatus('loading', 'Reading file…',
+                    'Extracting text and structure from the price file');
+
+    // 2) Convert to a payload Claude can read. We always include text content
+    //    (cheap, lossless for tabular data); for PDFs we ALSO attach the file
+    //    as a document block so Claude can see formatting we lose in extract.
+    const payload = await _ppPreparePayload(fileBytes, f);
+    _ppRenderStatus('loading', 'Asking Claude to extract pricing…',
+                    `${payload.kind === 'xlsx' ? 'Excel' : 'PDF'} · pricing mode: ${b.pricing_mode || 'flat_discount'}` +
+                    ((b.pricing_mode || 'flat_discount') !== 'flat_discount' && b.tier_label
+                      ? ` · column: "${escapeHtml(b.tier_label)}"` : ''));
+
+    // 3) Send to Claude, get structured rows back
+    const parsed = await _ppCallClaude(b, payload, apiKey);
+    if(_ppState.cancelled) return;
+
+    if(!parsed || !Array.isArray(parsed.rows) || parsed.rows.length === 0){
+      _ppRenderStatus('error', 'No pricing rows could be extracted.',
+                      parsed && parsed.note ? parsed.note : 'Try the manual per-unit edit on the model detail page, or upload a different file.');
+      return;
+    }
+
+    // 4) Post-process: backfill cost from flat_discount if needed; tag matches
+    const finalRows = _ppPostProcess(b, parsed.rows);
+    _ppState.rows = finalRows;
+    _ppRenderTable();
+  } catch(err){
+    console.error('[parser] failed:', err);
+    _ppRenderStatus('error', 'Parsing failed.',
+                    (err && err.message) ? err.message : 'Unknown error — see console.');
+  }
+}
+
+function _ppOpenModal(b, f){
+  const ov = document.getElementById('pp-overlay');
+  if(!ov) return;
+  ov.classList.add('open');
+  const t = document.getElementById('pp-title');
+  const s = document.getElementById('pp-subtitle');
+  if(t) t.textContent = 'Parse Price File · ' + b.name;
+  if(s) s.innerHTML = escapeHtml(f.name) + ' &nbsp;·&nbsp; ' + escapeHtml(f.size || '');
+  // Hide footer until we have rows
+  const fs = document.getElementById('pp-footer');
+  if(fs) fs.style.display = 'none';
+}
+
+function closePriceParser(){
+  const ov = document.getElementById('pp-overlay');
+  if(ov) ov.classList.remove('open');
+  _ppState.cancelled = true;
+}
+
+function _ppRenderStatus(kind, title, detail){
+  const body = document.getElementById('pp-body');
+  if(!body) return;
+  const cls = (kind === 'error') ? 'pp-status pp-error' : 'pp-status';
+  body.innerHTML = '<div class="' + cls + '">' +
+    (kind === 'loading' ? '<div class="pp-spin"></div>' : '<div style="font-size:24px;line-height:1">⚠</div>') +
+    '<div class="pp-status-text">' +
+      '<div class="pp-status-title">' + escapeHtml(title) + '</div>' +
+      (detail ? '<div class="pp-status-detail">' + detail + '</div>' : '') +
+    '</div>' +
+  '</div>';
+}
+
+async function _ppFetchFromDrive(fileMeta){
+  if(!fileMeta.driveFileId) throw new Error('File has no Drive ID. Re-upload it.');
+  if(!accessToken) throw new Error('Not authenticated to Drive.');
+  const resp = await fetch(
+    'https://www.googleapis.com/drive/v3/files/' + fileMeta.driveFileId + '?alt=media&supportsAllDrives=true',
+    { headers: { 'Authorization': 'Bearer ' + accessToken } });
+  if(!resp.ok) throw new Error('Drive fetch failed: HTTP ' + resp.status);
+  return await resp.arrayBuffer();
+}
+
+async function _ppPreparePayload(arrBuf, fileMeta){
+  const lower = (fileMeta.name || '').toLowerCase();
+  if(lower.endsWith('.xlsx') || lower.endsWith('.xls')){
+    // Parse client-side with SheetJS, capture sheet names + row dump
+    const wb = XLSX.read(new Uint8Array(arrBuf), { type:'array', cellDates:true });
+    const sheets = wb.SheetNames.map(n => {
+      const ws = wb.Sheets[n];
+      const rows = XLSX.utils.sheet_to_json(ws, { header:1, defval:'', blankrows:false });
+      return { name: n, rows };
+    });
+    // For very wide sheets, JSON serialization gets large. We cap rows at
+    // 1000 per sheet — enough for any realistic price list — and trim cells
+    // beyond column 30 (no manufacturer file uses 30+ price columns).
+    const compact = sheets.map(sh => ({
+      name: sh.name,
+      rows: sh.rows.slice(0, 1000).map(r => r.slice(0, 30))
+    }));
+    return { kind:'xlsx', text: JSON.stringify(compact), bytes:null, mime:null };
+  }
+  if(lower.endsWith('.pdf')){
+    // Send the PDF directly to Claude as a document block — vision-capable
+    // models can read tables across pages without us extracting client-side.
+    // base64-encode the bytes
+    const u8 = new Uint8Array(arrBuf);
+    let binary = '';
+    const chunkSize = 0x8000;
+    for(let i = 0; i < u8.length; i += chunkSize){
+      binary += String.fromCharCode.apply(null, u8.subarray(i, i + chunkSize));
+    }
+    const b64 = btoa(binary);
+    return { kind:'pdf', text:null, bytes:b64, mime:'application/pdf' };
+  }
+  if(lower.endsWith('.csv') || lower.endsWith('.tsv') || lower.endsWith('.txt')){
+    const dec = new TextDecoder('utf-8');
+    return { kind:'text', text:dec.decode(arrBuf), bytes:null, mime:null };
+  }
+  throw new Error('Unsupported file type: ' + fileMeta.name);
+}
+
+function _ppBuildPrompt(brand){
+  const mode = brand.pricing_mode || 'flat_discount';
+  const tier = brand.tier_label || '';
+  const baseRules = [
+    'You are extracting product pricing from a manufacturer price list.',
+    'Return ONLY a JSON object — no preamble, no commentary, no markdown fences.',
+    '',
+    'Schema:',
+    '{',
+    '  "rows": [',
+    '    { "model": "<model number>", "msrp": <number>, "cost": <number or null>, "description": "<short description>" }',
+    '  ],',
+    '  "note": "<optional 1-line note about anything unusual>"',
+    '}',
+    '',
+    'Rules:',
+    '- One row per product. Skip headers, footers, footnotes, page numbers, and section dividers.',
+    '- Skip accessories, replacement parts, attachments, and warranty items unless the file is exclusively those.',
+    '- Use the CANADIAN price column when the file shows both US and Canadian prices.',
+    '- "msrp" is the suggested retail / list price (a single number; never null).',
+    '- "model" is the manufacturer\'s model number / SKU exactly as printed (preserve case and punctuation).',
+    '- "description" is a short product name (under 60 chars). Strip excess whitespace.',
+    '- Skip rows whose price is "ask sales rep", "POA", or otherwise non-numeric.',
+    '- Skip rows that are clearly comments, instructions, or summary lines.'
+  ];
+  let costRules;
+  if(mode === 'flat_discount'){
+    costRules = [
+      '- This brand uses a FLAT DEALER DISCOUNT off MSRP — there is no dealer-cost column on the file.',
+      '- Set "cost" to null for every row. Cost will be calculated by the system after extraction.'
+    ];
+  } else if(mode === 'file_cost_column'){
+    costRules = [
+      `- This brand has a single dealer-cost column on the file labeled "${tier}" (or close variant).`,
+      '- Read "cost" from that column for each row. If the column is blank for a row, set cost to null.'
+    ];
+  } else if(mode === 'file_tier_column'){
+    costRules = [
+      `- This brand has multiple tier columns (e.g. Bronze, Silver, Gold, or Dealer Level 1/2/3/4). The dealer is on the "${tier}" tier.`,
+      `- Read "cost" from the "${tier}" column. If you can't find that exact label, pick the column whose label is the closest match and note the substitution in the "note" field.`,
+      '- If the row has no cost in that column, set cost to null.'
+    ];
+  } else {
+    costRules = ['- Set "cost" to null; pricing mode is unknown.'];
+  }
+  return [...baseRules, '', ...costRules].join('\n');
+}
+
+async function _ppCallClaude(brand, payload, apiKey){
+  const prompt = _ppBuildPrompt(brand);
+  const userBlocks = [];
+  if(payload.kind === 'pdf'){
+    userBlocks.push({
+      type:'document',
+      source:{ type:'base64', media_type:'application/pdf', data:payload.bytes }
+    });
+    userBlocks.push({ type:'text', text:'Extract pricing from the attached price list.' });
+  } else if(payload.kind === 'xlsx'){
+    userBlocks.push({
+      type:'text',
+      text:'The following is a JSON dump of the price-list spreadsheet (one entry per sheet, each with rows). Extract pricing rows.\n\n```json\n' + payload.text + '\n```'
+    });
+  } else { // text/csv
+    userBlocks.push({
+      type:'text',
+      text:'The following is the raw text of the price list. Extract pricing rows.\n\n' + payload.text
+    });
+  }
+  const body = {
+    model: 'claude-sonnet-4-5',
+    max_tokens: 8000,
+    system: prompt,
+    messages: [{ role:'user', content: userBlocks }]
+  };
+  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access':'true'
+    },
+    body: JSON.stringify(body)
+  });
+  if(!resp.ok){
+    const errText = await resp.text();
+    console.error('[parser] API error:', resp.status, errText);
+    throw new Error('Claude API ' + resp.status + ': ' + errText.slice(0, 200));
+  }
+  const data = await resp.json();
+  const text = (data.content || []).filter(c => c.type === 'text').map(c => c.text).join('\n').trim();
+  if(!text) throw new Error('Empty response from Claude.');
+  // Strip ```json fences if present (Claude sometimes adds them despite instructions)
+  const stripped = text.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '').trim();
+  let parsed;
+  try { parsed = JSON.parse(stripped); }
+  catch(e){
+    // Try to find the JSON object in the response
+    const m = stripped.match(/\{[\s\S]*\}/);
+    if(m){ parsed = JSON.parse(m[0]); }
+    else { throw new Error('Claude returned non-JSON: ' + stripped.slice(0, 200)); }
+  }
+  return parsed;
+}
+
+function _ppPostProcess(brand, rows){
+  const mode = brand.pricing_mode || 'flat_discount';
+  const discount = parseFloat(brand.dealer_discount) || 0;
+  const out = [];
+  for(let i = 0; i < rows.length; i++){
+    const r = rows[i] || {};
+    const model = String(r.model || '').trim();
+    if(!model) continue;
+    const msrp = (typeof r.msrp === 'number' && r.msrp > 0) ? r.msrp : parseFloat(String(r.msrp || '').replace(/[^0-9.]/g,'')) || 0;
+    let cost = (typeof r.cost === 'number') ? r.cost : (r.cost ? parseFloat(String(r.cost).replace(/[^0-9.]/g,'')) || 0 : 0);
+    let source;
+    if(mode === 'flat_discount'){
+      if(discount > 0 && msrp > 0){
+        cost = msrp * (1 - discount/100);
+        source = 'cost = MSRP − ' + discount + '%';
+      } else {
+        cost = 0;
+        source = '⚠ no brand discount set';
+      }
+    } else if(mode === 'file_cost_column'){
+      source = cost > 0 ? 'from "' + (brand.tier_label || 'cost column') + '"' : '⚠ blank in column';
+    } else if(mode === 'file_tier_column'){
+      source = cost > 0 ? 'from "' + (brand.tier_label || 'tier') + '" tier' : '⚠ blank in tier column';
+    } else {
+      source = '?';
+    }
+    // Match against existing SKUs for this brand
+    const existing = SKUS.filter(s => s.brand === brand.name && s.model === model);
+    let match;
+    if(existing.length === 0) match = 'new';
+    else if(existing.length === 1) match = 'exists';
+    else match = 'ambiguous';
+    out.push({
+      id: 'pp_' + i,
+      model,
+      msrp: Math.round(msrp * 100) / 100,
+      cost: cost > 0 ? Math.round(cost * 100) / 100 : 0,
+      description: String(r.description || '').trim(),
+      source,
+      includes: cost > 0 && msrp > 0,  // default: include rows that have valid prices
+      match
+    });
+  }
+  return out;
+}
+
+function _ppRenderTable(){
+  const body = document.getElementById('pp-body');
+  if(!body) return;
+  const rows = _ppState.rows || [];
+  const counts = {
+    total: rows.length,
+    included: rows.filter(r => r.includes).length,
+    matches: rows.filter(r => r.match === 'exists').length,
+    news: rows.filter(r => r.match === 'new').length,
+    ambig: rows.filter(r => r.match === 'ambiguous').length
+  };
+  body.innerHTML = '' +
+    '<div class="pp-summary">' +
+      '<div class="pill">' + counts.total + ' rows extracted</div>' +
+      '<div class="pill match">' + counts.matches + ' match existing SKUs</div>' +
+      '<div class="pill new">' + counts.news + ' new</div>' +
+      (counts.ambig > 0 ? '<div class="pill warn">' + counts.ambig + ' ambiguous</div>' : '') +
+      '<div class="pill">' + counts.included + ' will commit</div>' +
+    '</div>' +
+    '<div class="pp-table-wrap">' +
+      '<table class="pp-table">' +
+        '<thead><tr>' +
+          '<th class="ctr" style="width:38px"><input type="checkbox" id="pp-toggle-all" onclick="S.priceParserBulk(this.checked?\'include\':\'exclude\')" checked></th>' +
+          '<th style="width:130px">Model</th>' +
+          '<th>Description</th>' +
+          '<th class="num" style="width:110px">MSRP</th>' +
+          '<th class="num" style="width:110px">Cost</th>' +
+          '<th style="width:140px">Source</th>' +
+          '<th class="ctr" style="width:90px">Match</th>' +
+        '</tr></thead>' +
+        '<tbody>' +
+          rows.map(r => _ppRowHtml(r)).join('') +
+        '</tbody>' +
+      '</table>' +
+    '</div>';
+  const ftr = document.getElementById('pp-footer');
+  if(ftr) ftr.style.display = 'flex';
+  _ppUpdateCommitCount();
+}
+
+function _ppRowHtml(r){
+  const cls = r.includes ? '' : 'excluded';
+  const matchPill = r.match === 'exists'
+    ? '<span class="pp-match exists">✓ EXISTS</span>'
+    : (r.match === 'new'
+        ? '<span class="pp-match new">+ NEW</span>'
+        : '<span class="pp-match ambiguous">⚠ AMBIG</span>');
+  return '<tr id="pp-row-' + r.id + '" class="' + cls + '">' +
+    '<td class="ctr"><input type="checkbox" ' + (r.includes ? 'checked' : '') + ' onchange="S.priceParserToggleRow(\'' + r.id + '\',this.checked)"></td>' +
+    '<td><input type="text" value="' + escapeAttr(r.model) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'model\',this.value)"></td>' +
+    '<td><input type="text" value="' + escapeAttr(r.description) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'description\',this.value)"></td>' +
+    '<td class="num"><input type="number" class="num" step="0.01" value="' + (r.msrp || '') + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'msrp\',this.value)"></td>' +
+    '<td class="num"><input type="number" class="num" step="0.01" value="' + (r.cost || '') + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'cost\',this.value)"></td>' +
+    '<td><span class="pp-source">' + escapeHtml(r.source || '') + '</span></td>' +
+    '<td class="ctr">' + matchPill + '</td>' +
+  '</tr>';
+}
+
+function priceParserToggleRow(rowId, checked){
+  const r = _ppState.rows.find(x => x.id === rowId);
+  if(!r) return;
+  r.includes = !!checked;
+  const tr = document.getElementById('pp-row-' + rowId);
+  if(tr) tr.className = checked ? '' : 'excluded';
+  _ppUpdateCommitCount();
+}
+
+function priceParserBulk(action){
+  if(!_ppState.rows) return;
+  const include = action === 'include';
+  _ppState.rows.forEach(r => { r.includes = include; });
+  _ppRenderTable();
+  const all = document.getElementById('pp-toggle-all');
+  if(all) all.checked = include;
+}
+
+function priceParserEditField(rowId, field, value){
+  const r = _ppState.rows.find(x => x.id === rowId);
+  if(!r) return;
+  if(field === 'msrp' || field === 'cost'){
+    r[field] = parseFloat(value) || 0;
+  } else {
+    r[field] = String(value || '');
+  }
+  // Re-evaluate match status if model changed
+  if(field === 'model'){
+    const existing = SKUS.filter(s => s.brand === _ppState.brand.name && s.model === r.model);
+    r.match = existing.length === 0 ? 'new' : (existing.length === 1 ? 'exists' : 'ambiguous');
+    // Rebuild just this row's match cell — cheap to re-render the whole table
+    _ppRenderTable();
+  }
+}
+
+function _ppUpdateCommitCount(){
+  const n = _ppState.rows.filter(r => r.includes).length;
+  const el = document.getElementById('pp-commit-count');
+  if(el) el.textContent = n;
+  const btn = document.getElementById('pp-commit-btn');
+  if(btn) btn.disabled = n === 0;
+}
+
+function commitPriceParser(){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    showToast('Admin access required.'); return;
+  }
+  const brand = _ppState.brand;
+  const rows = (_ppState.rows || []).filter(r => r.includes);
+  if(!brand || rows.length === 0){ showToast('Nothing to commit'); return; }
+  const NOW = new Date().toISOString();
+  const BY = (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || '';
+  let updated = 0, skipped = 0;
+  for(const r of rows){
+    const model = String(r.model || '').trim();
+    if(!model){ skipped++; continue; }
+    const k = modelImageKey(brand.name, model);
+    if(!MODEL_FIELDS[k]) MODEL_FIELDS[k] = {};
+    if(r.msrp > 0) MODEL_FIELDS[k].msrp = r.msrp;
+    if(r.cost > 0) MODEL_FIELDS[k].cost = r.cost;
+    if(r.description) MODEL_FIELDS[k].desc = r.description;
+    MODEL_FIELDS[k].updatedAt = NOW;
+    MODEL_FIELDS[k].updatedBy = BY;
+    MODEL_FIELDS[k].source = 'price_file_parse';
+    updated++;
+  }
+  saveAppState();
+  closePriceParser();
+  if(typeof renderBrandHub === 'function') renderBrandHub();
+  if(typeof filterAndRender === 'function') filterAndRender();
+  showToast('✓ Updated ' + updated + ' model' + (updated===1?'':'s') + ' for ' + brand.name + (skipped > 0 ? ' (' + skipped + ' skipped)' : ''));
 }
 
 function addNewBrand(){
@@ -25396,6 +25967,13 @@ function updateCommissionCodes(idx, value){
     dealPersistKey: typeof dealPersistKey === 'function' ? dealPersistKey : undefined,
     deleteAdjustment: typeof deleteAdjustment === 'function' ? deleteAdjustment : undefined,
     deleteBrandFile: typeof deleteBrandFile === 'function' ? deleteBrandFile : undefined,
+    /* v2.0.7 — Price file parser */
+    parseBrandPriceFile: typeof parseBrandPriceFile === 'function' ? parseBrandPriceFile : undefined,
+    closePriceParser: typeof closePriceParser === 'function' ? closePriceParser : undefined,
+    priceParserToggleRow: typeof priceParserToggleRow === 'function' ? priceParserToggleRow : undefined,
+    priceParserBulk: typeof priceParserBulk === 'function' ? priceParserBulk : undefined,
+    priceParserEditField: typeof priceParserEditField === 'function' ? priceParserEditField : undefined,
+    commitPriceParser: typeof commitPriceParser === 'function' ? commitPriceParser : undefined,
     /* v1.2.2 — Real Drive-backed brand price file upload + download */
     uploadBrandFile: typeof uploadBrandFile === 'function' ? uploadBrandFile : undefined,
     downloadBrandFile: typeof downloadBrandFile === 'function' ? downloadBrandFile : undefined,

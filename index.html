@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v2.0.0</title><!-- build:20260503_v200 -->
+<title>HPE Sales Platform v2.0.1</title><!-- build:20260503_v201_model_detail_page -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAF/UlEQVR42u2WS2ycVxXH/+fcOw+PZ+yZ8dtJbDcmbpzYTpqasKAIRSC19LFppUosgCqoEoRNCqhCqrLgJRawKIhFywpVokWqKqJQVEdRo6ipIE7TRKnrhNqx40fsePwaz4zn9X3fPYfFOCqyKAaEKhaczbc43z2/e94X+L/sIPRPdExbagVUof8tAAFMEEB1O49piyT/Ms1sM21qpgEAB1P8aBfviTMTlQJ4AlHoPS39xx50xPjhPXRsF6fCulCiXTGkIvAVa2WdzGFsXa+syGRO/70Q1T6tMfrekN2ToEqA8SzWKhplXLirQ02UjtLuOHbF0BRFYxgvjLrra1IO1JcdAHYLQFBFZ4yzPo9O6fymzG2KJR15zL56y03lUB9CPETxEHXWc9VhqYRn++2LH/hMO+RjCyAKQ7i26lrrMNxs3pgOACTDlPVgGZ6oV0W2qgBu590XOkzV6XRencLslAreFq/7ErRSUSYQwSksI8QAYAhhRsRAFER0pJm+tIsswxAMgWgnQO0nJnTU04YPVagiUCjIMgA4hSeoOniCiQ0lgkIDgSdwulXQlsH0CSFy96pvvUolfyuqgUBFI0yA7q7np/ZSWx2SEUQNOaW8ryeH7FJJZws6W8BiSQPRWrv8fVYsARGDR/bYo23Uk8CmrxE2eQ8XlwJRFUXEAMCzB8zDXTS5oYaRDOu+Bv1MGnCAZaiuFfnDdT2/gNen3c2sED5uewOgs55jlt5ekIilU8N0uEXynlkoYqWsx/vt2XnJlPWZ/TzcAkuaKdP5Bf75dXlrlp7oprfmMLFBMYsjrTi2F98Z4EZrzs4r0xbDAtjwdKDJHGrml8bdfAFnHtcnutzYmvloQwJBxIAAX9AW17Y4jrbjxjp9+4A5cdE/fduuV+X0DH33MP/2r5r3taNeRTgVoWxVa34YAE1RmtiQsTV9Zr+ZLmB3HX22HdM5fn9Fv9JFI3O6XNHlEv/sqhuZQ86j7jgpkPNwKSM/GuYXx/SrffS5Nvrhe/qnGRxtIxBu57ecMAAKPtrr6E5RpwsaMTS6rN88xLmS+o5TUSo5NIS4Vi05j/4wjfGsPneIExYv3ZDnD5vTM/LjK3JhUYuBlAIpOcqUsFbZGpUGwAPNfPnJcEeMzt3ByUG+W8LvJzC2htlNyXkIMUUMdzdQf5r7k2a4heKWX5mQ4/18K0efb9dSQO8uyUpZCz6cIlNCV5wihksOTmFrIVoqybk7Gg/pT6+5EwfNq7c0RMh78JyCaDCNN6aDvCcAHevk3gbem6BfjekvH6Io06PdUPBKWbNV+IKOGJ2dl54EAzpTUAsgzLi6qmdm3QPN/HQvn1/QoRQxYb6og2leLuMvGfdgM50YCP/gkr9U1v4U2mP0yoR7c1ZF1RCe7jVM/Hi3NoYpEB1soj/OouxAtSoiUk+UCar6wuXg1w+F3l6QTQ8ANqrqCRuinxw1vQ36WLd9+UbQE9cp4LlB8/yoV5umB1MIRB/pQktUKw7xelScnl9QJlgAlYD6ktzboABOHTG/uO6GmjjvS97XsOGpNe1pQF8KT40EswVqDFM8rMc6+Tc3pDnKqxVxisUimABVUSIAQoFoIDAEBlARHW7lUw+aq6tyYVG+f8jMb6InwQdSZjwri0UXMxqIZsoo+NoYxs0sfjcpX+vjZAQ1D16+qR/lkCnjyoq+c1ffnMbVVeqIQWubxjJ9435zbl4G01xxWmepL8lnZtzdohQD3V1vWurotS+b91fcyDy9dis4OWhDjD9n9FLG+aKiYEKdJV/gC1QJ0LCh5igWi2IAxCxdzmgywp7gyft4bpOurcrNrKvdjogqDr7gWwP29SnHoImctsUoYXlmU8oBah3rC5zi/qSJWSr68vV99r1lCRQEoCfBw602W5EQ4+KSS4TMUimoHauNwoF0aDzr4iFdr2Agzcf3m3cW8cG6TOaC2ircJvUh/mJ76Pq6v1CUf7wpth0LG2qJmtWKHkzTvkb6cB1NEYwuB57bbrx2LcsUCD4eqQTQvYVDn/weiRgCEGL6NB6Enw7lf0P+Bu79HNcoXPXJAAAAAElFTkSuQmCC">
@@ -1775,6 +1775,78 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
 #section-shortline .inv-sold-cell:hover svg{color:var(--gray-500) !important;}
 #section-shortline .inv-sold-cell:hover{background:#fff7ed;}
 
+/* v2.0.1 — Model detail page styles
+   Full-width drill-in view for a model: hero image, model fields, model notes
+   thread, and the in-stock units table. Designed to render at the same width
+   as other Shortline pages (no drawer overlay). */
+#section-shortline #page-shortline-model-detail{padding:0;}
+#section-shortline .md-back-bar{display:flex;align-items:center;gap:8px;padding:14px 20px;border-bottom:1px solid var(--gray-200);background:#fff;position:sticky;top:54px;z-index:50;}
+#section-shortline .md-back-btn{background:#fff;border:1px solid var(--gray-200);color:var(--gray-700);padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px;}
+#section-shortline .md-back-btn:hover{background:#fff7ed;border-color:var(--orange);color:var(--orange);}
+#section-shortline .md-breadcrumb{font-size:12px;color:var(--gray-500);}
+#section-shortline .md-breadcrumb strong{color:var(--gray-900);}
+#section-shortline .md-grid{display:grid;grid-template-columns:340px 1fr;gap:24px;padding:20px;align-items:start;}
+@media (max-width:920px){ #section-shortline .md-grid{grid-template-columns:1fr;} }
+#section-shortline .md-hero{background:#fff;border:1px solid var(--gray-200);border-radius:10px;overflow:hidden;}
+#section-shortline .md-hero-img{width:100%;aspect-ratio:1/1;background:#f9fafb;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#section-shortline .md-hero-img img{width:100%;height:100%;object-fit:contain;}
+#section-shortline .md-hero-empty{color:var(--gray-300);font-size:48px;}
+#section-shortline .md-hero-actions{display:flex;gap:6px;padding:10px;border-top:1px solid var(--gray-100);}
+#section-shortline .md-hero-actions button{flex:1;padding:8px 12px;background:#fff;border:1px solid var(--gray-200);border-radius:6px;font-size:11px;font-weight:600;color:var(--gray-700);cursor:pointer;font-family:inherit;}
+#section-shortline .md-hero-actions button:hover{background:#fff7ed;border-color:var(--orange);color:var(--orange);}
+#section-shortline .md-hero-actions button.danger:hover{background:#fef2f2;border-color:#dc2626;color:#dc2626;}
+#section-shortline .md-info{display:flex;flex-direction:column;gap:16px;}
+#section-shortline .md-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+#section-shortline .md-title h1{margin:0;font-size:24px;font-weight:700;color:var(--gray-900);letter-spacing:-0.01em;}
+#section-shortline .md-title .md-brand-pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px;}
+#section-shortline .md-title .md-model-id{font-family:'DM Mono',monospace;font-size:14px;color:var(--gray-600);margin-top:2px;}
+#section-shortline .md-card{background:#fff;border:1px solid var(--gray-200);border-radius:10px;padding:14px 16px;}
+#section-shortline .md-card-title{font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+#section-shortline .md-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+#section-shortline .md-field label{display:block;font-size:10px;color:var(--gray-500);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px;}
+#section-shortline .md-field-val{font-size:14px;color:var(--gray-900);font-weight:600;}
+#section-shortline .md-field-val.editable{cursor:pointer;border-bottom:1px dashed var(--gray-300);display:inline-flex;align-items:center;gap:5px;}
+#section-shortline .md-field-val.editable:hover{color:var(--orange);border-bottom-color:var(--orange);}
+#section-shortline .md-field-val.editable .pencil{font-size:10px;color:var(--gray-300);}
+#section-shortline .md-field-val.overridden{color:var(--orange-dark);}
+#section-shortline .md-field-val.overridden::after{content:' (edited)';font-size:9px;color:var(--gray-400);font-weight:500;letter-spacing:0;text-transform:none;}
+#section-shortline .md-desc{font-size:13px;color:var(--gray-700);line-height:1.5;}
+/* Notes thread */
+#section-shortline .md-notes-list{display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;}
+#section-shortline .md-note{background:#fff7ed;border:1px solid #fde6cc;border-radius:7px;padding:8px 12px;}
+#section-shortline .md-note.deleted{background:#f9fafb;border-color:var(--gray-200);opacity:0.7;}
+#section-shortline .md-note-meta{font-size:10px;color:var(--gray-500);margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+#section-shortline .md-note-author{font-weight:600;color:var(--gray-700);}
+#section-shortline .md-note-text{font-size:13px;color:var(--gray-800);line-height:1.45;white-space:pre-wrap;word-wrap:break-word;}
+#section-shortline .md-note-text.deleted{font-style:italic;color:var(--gray-400);}
+#section-shortline .md-note-del{background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:14px;line-height:1;padding:2px 4px;border-radius:3px;}
+#section-shortline .md-note-del:hover{color:#dc2626;background:#fef2f2;}
+#section-shortline .md-note-input-row{display:flex;gap:8px;margin-top:10px;align-items:flex-end;}
+#section-shortline .md-note-input{flex:1;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:inherit;resize:vertical;min-height:60px;}
+#section-shortline .md-note-input:focus{outline:none;border-color:var(--orange);}
+#section-shortline .md-note-add{padding:9px 16px;background:var(--orange);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;}
+#section-shortline .md-note-add:hover{background:var(--orange-dark);}
+#section-shortline .md-note-add:disabled{background:var(--gray-300);cursor:not-allowed;}
+#section-shortline .md-empty-notes{font-size:12px;color:var(--gray-400);font-style:italic;padding:8px 0;}
+/* Units table */
+#section-shortline .md-units-table{width:100%;border-collapse:collapse;font-size:12px;}
+#section-shortline .md-units-table thead tr{background:#f9fafb;color:var(--gray-600);font-size:10px;text-transform:uppercase;letter-spacing:0.04em;}
+#section-shortline .md-units-table th{padding:8px 10px;font-weight:600;text-align:left;}
+#section-shortline .md-units-table th.num{text-align:right;}
+#section-shortline .md-units-table th.ctr{text-align:center;}
+#section-shortline .md-units-table tbody tr{border-top:1px solid var(--gray-100);transition:background 0.1s;}
+#section-shortline .md-units-table tbody tr:hover{background:#fff7ed;}
+#section-shortline .md-units-table td{padding:9px 10px;color:var(--gray-700);}
+#section-shortline .md-units-table .num{text-align:right;font-family:'DM Mono',monospace;}
+#section-shortline .md-units-table .ctr{text-align:center;}
+#section-shortline .md-unit-tag{font-family:'DM Mono',monospace;font-weight:700;color:var(--gray-900);}
+#section-shortline .md-unit-tag.sold{text-decoration:line-through;color:var(--gray-400);}
+#section-shortline .md-unit-serial{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-700);}
+#section-shortline .md-unit-notes-toggle{cursor:pointer;color:var(--gray-400);font-size:14px;background:none;border:none;padding:2px;}
+#section-shortline .md-unit-notes-toggle.has-notes{color:var(--orange);}
+#section-shortline .md-unit-notes-row td{background:#fafafa;padding:14px 20px;border-top:1px solid var(--gray-200);}
+#section-shortline .md-sold-pill{display:inline-flex;align-items:center;gap:4px;background:#dc2626;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;letter-spacing:0.04em;}
+
 /* v0.10 — Active/Inactive brand UI */
 #section-shortline .brand-card.brand-card-inactive{background:rgba(0,0,0,0.2);border-color:var(--black-3);opacity:0.78;}
 #section-shortline .brand-card.brand-card-inactive:hover{opacity:1;}
@@ -2354,6 +2426,11 @@ body.admin-mode .admin-only { display: inline-flex; }
       <tbody id="pricebook-tbody"></tbody>
     </table>
   </div>
+</div>
+
+<!-- v2.0.1 — Model detail page (drill-in from brand folder row click) -->
+<div class="page" id="page-shortline-model-detail">
+  <div id="model-detail-content"><!-- populated by renderModelDetailPage() --></div>
 </div>
 
 <div class="page" id="page-shortline-quotes">
@@ -3333,8 +3410,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '2.0.0',
-    build: '20260503_v200',
+    version: '2.0.1',
+    build: '20260503_v201_model_detail_page',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -13540,6 +13617,14 @@ async function loadAppState(){
       if(state.MODEL_IMAGES && typeof state.MODEL_IMAGES === 'object'){
         MODEL_IMAGES = state.MODEL_IMAGES;
       }
+      // v2.0.1 — model-level note threads
+      if(state.MODEL_NOTES && typeof state.MODEL_NOTES === 'object'){
+        MODEL_NOTES = state.MODEL_NOTES;
+      }
+      // v2.0.1 — model-level field overrides (admin)
+      if(state.MODEL_FIELDS && typeof state.MODEL_FIELDS === 'object'){
+        MODEL_FIELDS = state.MODEL_FIELDS;
+      }
       // v0.23 — inventory overrides (sold marks, notes) layered over the xlsx data
       if(state.INVENTORY_OVERRIDES && typeof state.INVENTORY_OVERRIDES === 'object'){
         INVENTORY_OVERRIDES = state.INVENTORY_OVERRIDES;
@@ -14923,6 +15008,8 @@ async function _saveAppStateNow(){
       BRANDS, COMMS, PACKAGES, CUSTOMERS,
       BRAND_CATEGORIES,
       MODEL_IMAGES,
+      MODEL_NOTES,
+      MODEL_FIELDS,
       INVENTORY_OVERRIDES,
       commsRead: Array.from(readCommIds),
       quotes: SAMPLE_QUOTES,
@@ -17645,6 +17732,161 @@ function getModelImage(brand, model){
   return MODEL_IMAGES[modelImageKey(brand, model)] || null;
 }
 
+/* v2.0.1 — MODEL NOTES (thread, per brand+model)
+   ============================================================================
+   Schema: { [brand/model key]: [ { id, text, author, authorEmail, createdAt, deletedAt? }, ... ] }
+   Newest entries appended at the end of the array; deleted entries are kept
+   with deletedAt set (soft-delete) so we can show "Note removed by Admin"
+   audit trail. Admin can hard-delete via a separate path if ever needed.
+
+   Stored under MODEL_NOTES in app-state.json. Keyed identically to MODEL_IMAGES
+   so the same modelImageKey() helper resolves both. */
+let MODEL_NOTES = {};
+function getModelNotes(brand, model){
+  return MODEL_NOTES[modelImageKey(brand, model)] || [];
+}
+function addModelNote(brand, model, text){
+  const trimmed = (text || '').trim();
+  if(!trimmed) return null;
+  const key = modelImageKey(brand, model);
+  if(!MODEL_NOTES[key]) MODEL_NOTES[key] = [];
+  const entry = {
+    id: 'mn_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+    text: trimmed,
+    author: (CURRENT_USER && CURRENT_USER.name) || (userInfo && userInfo.name) || (userInfo && userInfo.email) || 'Unknown',
+    authorEmail: (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || '',
+    createdAt: new Date().toISOString()
+  };
+  MODEL_NOTES[key].push(entry);
+  saveAppState();
+  return entry;
+}
+function deleteModelNote(brand, model, noteId){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) return false;
+  const key = modelImageKey(brand, model);
+  const arr = MODEL_NOTES[key];
+  if(!Array.isArray(arr)) return false;
+  const note = arr.find(n => n.id === noteId);
+  if(!note) return false;
+  // Soft-delete so the audit trail is preserved
+  note.deletedAt = new Date().toISOString();
+  note.deletedBy = (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || '';
+  saveAppState();
+  return true;
+}
+
+/* v2.0.1 — UNIT NOTES (thread, per inventory tag)
+   ============================================================================
+   Lives under INVENTORY_OVERRIDES[tag].notesThread (array). The legacy
+   INVENTORY_OVERRIDES[tag].notes single-string is preserved as-is for
+   back-compat — getUnitNotes() merges it as a synthetic first entry so old
+   notes still show up. New writes go to notesThread; legacy `notes` is left
+   alone so a downgrade to v1.x still reads it.
+   ============================================================================ */
+function getUnitNotes(tag){
+  const ov = INVENTORY_OVERRIDES[tag];
+  if(!ov) return [];
+  const out = [];
+  // Legacy single-string note → synthesize a thread entry (no id, can't be deleted from UI)
+  if(typeof ov.notes === 'string' && ov.notes.trim()){
+    out.push({
+      id: 'legacy_' + tag,
+      text: ov.notes.trim(),
+      author: 'Legacy note',
+      authorEmail: '',
+      createdAt: '',
+      legacy: true
+    });
+  }
+  if(Array.isArray(ov.notesThread)){
+    for(const n of ov.notesThread) out.push(n);
+  }
+  return out;
+}
+function unitHasNotes(tag){
+  const ov = INVENTORY_OVERRIDES[tag];
+  if(!ov) return false;
+  if(typeof ov.notes === 'string' && ov.notes.trim()) return true;
+  if(Array.isArray(ov.notesThread) && ov.notesThread.some(n => !n.deletedAt)) return true;
+  return false;
+}
+function addUnitNote(tag, text){
+  const trimmed = (text || '').trim();
+  if(!trimmed) return null;
+  const existing = INVENTORY_OVERRIDES[tag] || {};
+  if(!Array.isArray(existing.notesThread)) existing.notesThread = [];
+  const entry = {
+    id: 'un_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+    text: trimmed,
+    author: (CURRENT_USER && CURRENT_USER.name) || (userInfo && userInfo.name) || (userInfo && userInfo.email) || 'Unknown',
+    authorEmail: (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || '',
+    createdAt: new Date().toISOString()
+  };
+  existing.notesThread.push(entry);
+  INVENTORY_OVERRIDES[tag] = existing;
+  saveAppState();
+  return entry;
+}
+function deleteUnitNote(tag, noteId){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) return false;
+  const ov = INVENTORY_OVERRIDES[tag];
+  if(!ov || !Array.isArray(ov.notesThread)) return false;
+  const note = ov.notesThread.find(n => n.id === noteId);
+  if(!note) return false;
+  note.deletedAt = new Date().toISOString();
+  note.deletedBy = (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || '';
+  saveAppState();
+  return true;
+}
+
+/* v2.0.1 — MODEL FIELDS (admin-editable per-model overrides)
+   ============================================================================
+   Lets admin override model-level fields (msrp, cost, category, desc) without
+   touching the base SKU catalog. Schema:
+     { [brand/model key]: { msrp?, cost?, category?, desc?, updatedAt, updatedBy } }
+   Reads via getModelField(); writes through setModelField() which auto-saves. */
+let MODEL_FIELDS = {};
+function getModelField(brand, model, field){
+  const k = modelImageKey(brand, model);
+  if(MODEL_FIELDS[k] && MODEL_FIELDS[k][field] !== undefined) return MODEL_FIELDS[k][field];
+  return undefined;
+}
+function setModelField(brand, model, field, value){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()) return false;
+  const k = modelImageKey(brand, model);
+  if(!MODEL_FIELDS[k]) MODEL_FIELDS[k] = {};
+  if(value === '' || value === null || value === undefined){
+    delete MODEL_FIELDS[k][field];
+    if(Object.keys(MODEL_FIELDS[k]).filter(x => !['updatedAt','updatedBy'].includes(x)).length === 0){
+      delete MODEL_FIELDS[k];
+    }
+  } else {
+    MODEL_FIELDS[k][field] = value;
+    MODEL_FIELDS[k].updatedAt = new Date().toISOString();
+    MODEL_FIELDS[k].updatedBy = (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || '';
+  }
+  saveAppState();
+  return true;
+}
+/* Effective model values: SKU value with MODEL_FIELDS override applied. */
+function effectiveModelMsrp(s){
+  const ov = getModelField(s.brand, s.model, 'msrp');
+  return (typeof ov === 'number' && !isNaN(ov)) ? ov : s.msrp;
+}
+function effectiveModelCost(s){
+  const ov = getModelField(s.brand, s.model, 'cost');
+  return (typeof ov === 'number' && !isNaN(ov)) ? ov : s.cost;
+}
+function effectiveModelDesc(s){
+  const ov = getModelField(s.brand, s.model, 'desc');
+  return (typeof ov === 'string' && ov.trim()) ? ov : s.desc;
+}
+function effectiveModelCategory(s){
+  const ov = getModelField(s.brand, s.model, 'category');
+  return (typeof ov === 'string' && ov.trim()) ? ov : (s.category || '');
+}
+
+
 /* QUOTES — real persistent quote system, loaded from app-state.json on init.
    Schema: see saveQuote() / quoteToSchema() below. */
 let SAMPLE_QUOTES = [];
@@ -18746,15 +18988,472 @@ function refreshPricebookSortIndicators(){
 }
 
 /* DETAIL DRAWER WITH 3-WAY CALCULATOR */
+/* v2.0.1 — Repointed from the legacy detail drawer to the new model detail
+   page. Callers pass a SKU id; we look up brand+model and navigate. The drawer
+   DOM and renderDrawerBody() are kept in place (unused) so anything else that
+   still references them keeps working until those call sites are migrated. */
 function openDetail(id){
   const s = SKUS.find(x=>x.id===id);
-  if (!s) return;
-  currentDetailId = id;
-  detailUseStandard = true;
-  document.getElementById('drawer-title').innerHTML = `${s.make} ${s.model}<span>${s.category}</span>`;
-  renderDrawerBody(s);
-  document.getElementById('drawer-overlay').classList.add('open');
-  document.getElementById('drawer').classList.add('open');
+  if(!s) return;
+  navigateToModelDetail(s.brand, s.model);
+}
+
+/* Module-level: which model the detail page is currently rendering. Set by
+   navigateToModelDetail() before the route change so onPageVisit() can pick
+   it up from this same scope. */
+let currentModelDetailKey = null;
+
+function navigateToModelDetail(brand, model){
+  if(!brand || !model){ if(typeof showToast==='function') showToast('Cannot open model detail — missing brand/model'); return; }
+  currentModelDetailKey = { brand: String(brand), model: String(model) };
+  HPE.router.go('shortline', 'model-detail');
+  // Belt-and-braces render in case onPageVisit doesn't fire (e.g. already on
+  // the page navigating to a different model).
+  renderModelDetailPage();
+  window.scrollTo(0, 0);
+}
+
+/* Pulls the canonical SKU record for the given brand+model. Returns a
+   synthetic record if no exact catalog match exists (so e.g. inventory
+   units for a model not in the catalog still produce a usable detail page). */
+function _findModelSku(brand, model){
+  const found = SKUS.find(s => s.brand === brand && s.model === model);
+  if(found) return found;
+  // Synthesize from the first matching inventory unit, if any
+  const inv = INVENTORY.find(u => (u.brand === brand || u.make === brand) && u.model === model);
+  if(inv){
+    return {
+      id: -1,
+      brand,
+      make: inv.make || brand,
+      model,
+      desc: inv.desc || '',
+      msrp: inv.msrp || 0,
+      cost: inv.cost || 0,
+      category: '',
+      _synthetic: true
+    };
+  }
+  return null;
+}
+
+/* Aggregate all inventory units for a model (in-stock AND sold). Used for
+   the units table — the model detail page shows everything historic, with a
+   visible sold flag, so admins can see sales history at a glance. */
+function _getAllUnitsForModel(brand, model){
+  const out = [];
+  for(const u of INVENTORY){
+    const ub = u.brand || u.make;
+    if(ub === brand && u.model === model){
+      const ov = INVENTORY_OVERRIDES[u.tag];
+      out.push(Object.assign({}, u, { _ov: ov || {}, sold: !!(ov && ov.sold) }));
+    }
+  }
+  // Sort: in-stock first, then sold; within each group, by tag
+  out.sort((a, b) => {
+    if(a.sold !== b.sold) return a.sold ? 1 : -1;
+    return (a.tag || '').localeCompare(b.tag || '');
+  });
+  return out;
+}
+
+function renderModelDetailPage(){
+  const container = document.getElementById('model-detail-content');
+  if(!container) return;
+  if(!currentModelDetailKey){
+    container.innerHTML = '<div class="panel" style="margin:24px;padding:32px;text-align:center;color:var(--gray-500);font-size:13px">No model selected. <a href="#" onclick="HPE.router.go(\'shortline\',\'pricebook\');return false;" style="color:var(--orange)">Back to Price Book</a></div>';
+    return;
+  }
+  const { brand, model } = currentModelDetailKey;
+  const sku = _findModelSku(brand, model);
+  const units = _getAllUnitsForModel(brand, model);
+  const inStock = units.filter(u => !u.sold);
+  const sold = units.filter(u => u.sold);
+  const isAdmin = (typeof isCurrentUserAdmin === 'function') && isCurrentUserAdmin();
+  const brandRec = BRANDS.find(b => b.name === brand) || {};
+  const brandColor = (typeof getBrandColor === 'function') ? getBrandColor(brand) : '#6b7280';
+  const modelImg = getModelImage(brand, model);
+  const brandLogo = brandRec.logo || (!brandRec._logo_failed && brandRec._logo_auto) || '';
+  const heroSrc = modelImg || brandLogo;
+
+  // Effective values (apply MODEL_FIELDS overrides on top of SKU)
+  const eff = {
+    msrp: sku ? effectiveModelMsrp(sku) : (getModelField(brand, model, 'msrp') || 0),
+    cost: sku ? effectiveModelCost(sku) : (getModelField(brand, model, 'cost') || 0),
+    category: sku ? effectiveModelCategory(sku) : (getModelField(brand, model, 'category') || ''),
+    desc: sku ? effectiveModelDesc(sku) : (getModelField(brand, model, 'desc') || '')
+  };
+  const overridden = {
+    msrp: getModelField(brand, model, 'msrp') !== undefined,
+    cost: getModelField(brand, model, 'cost') !== undefined,
+    category: getModelField(brand, model, 'category') !== undefined,
+    desc: getModelField(brand, model, 'desc') !== undefined
+  };
+
+  const fmtMoney = (n) => (n > 0) ? '$' + Math.round(n).toLocaleString() : '<span style="color:var(--gray-300)">—</span>';
+  const safeBrand = escapeAttr(brand);
+  const safeModel = escapeAttr(model);
+
+  // Hero / left column
+  const heroHtml = `
+    <div class="md-hero">
+      <div class="md-hero-img">
+        ${heroSrc
+          ? `<img src="${heroSrc}" alt="${escapeHtml(brand+' '+model)}">`
+          : `<div class="md-hero-empty">📷</div>`}
+      </div>
+      ${isAdmin ? `
+        <div class="md-hero-actions">
+          <button onclick="S.uploadModelDetailImage('${safeBrand}','${safeModel}')">${modelImg ? 'Replace image' : 'Upload image'}</button>
+          ${modelImg ? `<button class="danger" onclick="S.removeModelDetailImage('${safeBrand}','${safeModel}')">Remove</button>` : ''}
+        </div>
+      ` : ''}
+    </div>
+  `;
+
+  // Editable field render helper
+  const fieldHtml = (fieldId, label, value, displayValue, type) => {
+    const isOverridden = overridden[fieldId];
+    if(isAdmin){
+      return `<div class="md-field"><label>${label}</label>
+        <span class="md-field-val editable ${isOverridden ? 'overridden' : ''}" onclick="S.editModelField('${safeBrand}','${safeModel}','${fieldId}','${type||'text'}')">${displayValue}<span class="pencil">✎</span></span>
+      </div>`;
+    }
+    return `<div class="md-field"><label>${label}</label><span class="md-field-val">${displayValue}</span></div>`;
+  };
+
+  // Notes thread
+  const modelNotes = getModelNotes(brand, model);
+  const renderNote = (n, scope, scopeArgs) => {
+    const isDeleted = !!n.deletedAt;
+    const isLegacy = !!n.legacy;
+    const when = n.createdAt ? new Date(n.createdAt).toLocaleString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit' }) : '—';
+    const canDelete = isAdmin && !isDeleted && !isLegacy && n.id;
+    return `<div class="md-note ${isDeleted ? 'deleted' : ''}">
+      <div class="md-note-meta">
+        <span><span class="md-note-author">${escapeHtml(n.author || 'Unknown')}</span> · ${escapeHtml(when)}${isLegacy ? ' · <em>legacy</em>' : ''}${isDeleted ? ' · <em>removed by ' + escapeHtml((n.deletedBy || 'admin').split('@')[0]) + '</em>' : ''}</span>
+        ${canDelete ? `<button class="md-note-del" onclick="S.deleteNoteFromUI('${scope}','${scopeArgs}','${n.id}')" title="Remove this note (admin)">×</button>` : ''}
+      </div>
+      <div class="md-note-text ${isDeleted ? 'deleted' : ''}">${isDeleted ? '(note removed)' : escapeHtml(n.text)}</div>
+    </div>`;
+  };
+  const modelNotesHtml = `
+    <div class="md-card">
+      <div class="md-card-title">Notes (model-level)</div>
+      <div class="md-notes-list" id="md-model-notes-list">
+        ${modelNotes.length === 0 ? '<div class="md-empty-notes">No notes yet — add the first one below.</div>' : modelNotes.map(n => renderNote(n, 'model', safeBrand+'|'+safeModel)).join('')}
+      </div>
+      <div class="md-note-input-row">
+        <textarea class="md-note-input" id="md-model-note-input" placeholder="Add a note about this model (visible to all users)…" rows="2"></textarea>
+        <button class="md-note-add" onclick="S.submitModelNote('${safeBrand}','${safeModel}')">Add note</button>
+      </div>
+    </div>
+  `;
+
+  // Units table
+  const unitRowHtml = (u) => {
+    const tagCell = u.sold
+      ? `<span class="md-unit-tag sold">${escapeHtml(u.tag)}</span> <span class="md-sold-pill">SOLD</span>`
+      : `<span class="md-unit-tag">${escapeHtml(u.tag)}</span>`;
+    const ov = u._ov || {};
+    const cost = (typeof ov.costOverride === 'number') ? ov.costOverride : (u.cost || 0);
+    const listPrice = (typeof ov.listPriceOverride === 'number') ? ov.listPriceOverride : (u.list_price || 0);
+    const hasNotes = unitHasNotes(u.tag);
+    const flagSvg = u.sold
+      ? `<svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" stroke="none" style="color:#dc2626" aria-hidden="true"><path d="M5 3v18h2v-7h11l-1.5-4L18 6H7V3H5z"/></svg>`
+      : `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gray-300)" aria-hidden="true"><path d="M4 21V4"/><path d="M4 4h13l-1.5 4L17 12H4"/></svg>`;
+    const noteIcon = hasNotes
+      ? `<button class="md-unit-notes-toggle has-notes" onclick="S.toggleUnitNotesRow('${escapeAttr(u.tag)}')" title="View notes">📝</button>`
+      : `<button class="md-unit-notes-toggle" onclick="S.toggleUnitNotesRow('${escapeAttr(u.tag)}')" title="Add a note">+</button>`;
+    return `<tr id="md-unit-row-${escapeAttr(u.tag)}">
+      <td>${tagCell}</td>
+      <td><span class="md-unit-serial">${u.serial ? escapeHtml(u.serial) : '—'}</span></td>
+      <td class="ctr">${u.year ? escapeHtml(String(u.year)) : '—'}</td>
+      <td class="ctr">${u.location ? escapeHtml(u.location) : '—'}</td>
+      <td class="num">${cost > 0 ? '$'+Math.round(cost).toLocaleString() : '—'}</td>
+      <td class="num">${isAdmin
+          ? `<span style="cursor:pointer;border-bottom:1px dashed var(--gray-300)" onclick="S.editUnitListPrice('${escapeAttr(u.tag)}')" title="Edit list price">${listPrice > 0 ? '$'+Math.round(listPrice).toLocaleString() : '—'} <span style="font-size:9px;color:var(--gray-300)">✎</span></span>`
+          : (listPrice > 0 ? '$'+Math.round(listPrice).toLocaleString() : '—')}</td>
+      <td class="ctr">${noteIcon}</td>
+      <td class="ctr" style="cursor:pointer" onclick="S.openSoldModalByTag('${escapeAttr(u.tag)}')" title="${u.sold ? 'View sale info' : 'Mark sold'}">${flagSvg}</td>
+    </tr>
+    <tr class="md-unit-notes-row" id="md-unit-notes-${escapeAttr(u.tag)}" style="display:none">
+      <td colspan="8">${_renderUnitNotesPanel(u.tag)}</td>
+    </tr>`;
+  };
+
+  const unitsTableHtml = (units.length === 0)
+    ? '<div class="md-empty-notes" style="padding:14px;text-align:center">No units in inventory for this model.</div>'
+    : `<table class="md-units-table">
+        <thead><tr>
+          <th>Tag</th><th>Serial #</th><th class="ctr">Yr</th><th class="ctr">Loc</th>
+          <th class="num">Cost</th><th class="num">List</th>
+          <th class="ctr" style="width:40px">Notes</th>
+          <th class="ctr" style="width:40px">Sold</th>
+        </tr></thead>
+        <tbody>${units.map(unitRowHtml).join('')}</tbody>
+      </table>`;
+
+  container.innerHTML = `
+    <div class="md-back-bar">
+      <button class="md-back-btn" onclick="S.backFromModelDetail()">← Back</button>
+      <div class="md-breadcrumb">Price Book / <strong>${escapeHtml(brand)}</strong> / <strong>${escapeHtml(model)}</strong></div>
+    </div>
+    <div class="md-grid">
+      <div>${heroHtml}</div>
+      <div class="md-info">
+        <div class="md-title-row">
+          <div class="md-title">
+            <div class="md-brand-pill" style="background:${brandColor}1f;color:${brandColor}">${escapeHtml(brand)}</div>
+            <h1>${escapeHtml(model)}</h1>
+            <div class="md-model-id">${eff.category ? escapeHtml(eff.category) : ''}${sku && sku._synthetic ? ' <span style="font-size:10px;color:var(--amber);font-weight:600">(not in SKU catalog)</span>' : ''}</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+            <button class="brand-info-jump-btn" onclick="S.jumpToBrandInfo('${safeBrand}')" title="View ${escapeAttr(brand)} brand info">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              ${escapeHtml(brand)} brand info
+            </button>
+            ${sku && !sku._synthetic ? `<button class="brand-info-jump-btn" onclick="S.addToQuickQuote(${sku.id})" style="background:var(--orange);color:#fff;border-color:var(--orange)" title="Add to current quote">+ Quote</button>` : ''}
+          </div>
+        </div>
+
+        <div class="md-card">
+          <div class="md-card-title">Model details</div>
+          <div class="md-fields">
+            ${fieldHtml('msrp', 'MSRP', eff.msrp, fmtMoney(eff.msrp), 'money')}
+            ${fieldHtml('cost', 'Cost', eff.cost, fmtMoney(eff.cost), 'money')}
+            ${fieldHtml('category', 'Category', eff.category, eff.category ? escapeHtml(eff.category) : '<span style="color:var(--gray-300)">—</span>', 'text')}
+            <div class="md-field"><label>In stock</label><span class="md-field-val">${inStock.length}${sold.length ? ' <span style="color:var(--gray-400);font-size:11px;font-weight:500">· ' + sold.length + ' sold</span>' : ''}</span></div>
+          </div>
+          <div style="margin-top:14px">
+            ${isAdmin
+              ? `<label style="display:block;font-size:10px;color:var(--gray-500);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px">Description ${overridden.desc ? '<span style="color:var(--orange-dark);text-transform:none;letter-spacing:0;font-size:9px">(edited)</span>' : ''}</label>
+                 <span class="md-field-val editable" onclick="S.editModelField('${safeBrand}','${safeModel}','desc','textarea')" style="display:block;font-size:13px;font-weight:400;color:var(--gray-700);line-height:1.5">${eff.desc ? escapeHtml(eff.desc) : '<span style="color:var(--gray-300)">— click to add description —</span>'}<span class="pencil"> ✎</span></span>`
+              : `<label style="display:block;font-size:10px;color:var(--gray-500);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:4px">Description</label>
+                 <div class="md-desc">${eff.desc ? escapeHtml(eff.desc) : '<span style="color:var(--gray-300)">—</span>'}</div>`
+            }
+          </div>
+        </div>
+
+        ${modelNotesHtml}
+
+        <div class="md-card">
+          <div class="md-card-title">In-stock units${sold.length ? ' <span style="color:var(--gray-400);font-weight:500;text-transform:none;letter-spacing:0;font-size:10px">(includes ' + sold.length + ' sold for history)</span>' : ''}</div>
+          ${unitsTableHtml}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function _renderUnitNotesPanel(tag){
+  const notes = getUnitNotes(tag);
+  const isAdmin = (typeof isCurrentUserAdmin === 'function') && isCurrentUserAdmin();
+  const renderOne = (n) => {
+    const isDeleted = !!n.deletedAt;
+    const isLegacy = !!n.legacy;
+    const when = n.createdAt ? new Date(n.createdAt).toLocaleString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'numeric', minute:'2-digit' }) : '—';
+    const canDelete = isAdmin && !isDeleted && !isLegacy && n.id;
+    return `<div class="md-note ${isDeleted ? 'deleted' : ''}">
+      <div class="md-note-meta">
+        <span><span class="md-note-author">${escapeHtml(n.author || 'Unknown')}</span> · ${escapeHtml(when)}${isLegacy ? ' · <em>legacy</em>' : ''}${isDeleted ? ' · <em>removed by ' + escapeHtml((n.deletedBy || 'admin').split('@')[0]) + '</em>' : ''}</span>
+        ${canDelete ? `<button class="md-note-del" onclick="S.deleteNoteFromUI('unit','${escapeAttr(tag)}','${n.id}')" title="Remove this note (admin)">×</button>` : ''}
+      </div>
+      <div class="md-note-text ${isDeleted ? 'deleted' : ''}">${isDeleted ? '(note removed)' : escapeHtml(n.text)}</div>
+    </div>`;
+  };
+  return `
+    <div style="font-size:10px;color:var(--gray-500);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">Notes for ${escapeHtml(tag)}</div>
+    <div class="md-notes-list" id="md-unit-notes-list-${escapeAttr(tag)}">
+      ${notes.length === 0 ? '<div class="md-empty-notes">No notes yet for this unit.</div>' : notes.map(renderOne).join('')}
+    </div>
+    <div class="md-note-input-row">
+      <textarea class="md-note-input" id="md-unit-note-input-${escapeAttr(tag)}" placeholder="Add a note for unit ${escapeAttr(tag)}…" rows="2"></textarea>
+      <button class="md-note-add" onclick="S.submitUnitNote('${escapeAttr(tag)}')">Add note</button>
+    </div>
+  `;
+}
+
+/* === User-facing handlers wired to model detail page === */
+
+function backFromModelDetail(){
+  // Go back to where the user came from. If they came from Price Book that's
+  // the natural target; otherwise default there. We use history.back() if
+  // there's a prior shortline page on the stack, else go to Price Book.
+  const ref = document.referrer || '';
+  // Simpler heuristic: just route to Price Book (covers the dominant case).
+  HPE.router.go('shortline', 'pricebook');
+}
+
+function toggleUnitNotesRow(tag){
+  const row = document.getElementById('md-unit-notes-' + tag);
+  if(!row) return;
+  if(row.style.display === 'none' || !row.style.display){
+    row.style.display = '';
+    // Re-render the panel content so it reflects latest notes
+    const cell = row.querySelector('td');
+    if(cell) cell.innerHTML = _renderUnitNotesPanel(tag);
+  } else {
+    row.style.display = 'none';
+  }
+}
+
+function submitModelNote(brand, model){
+  const ta = document.getElementById('md-model-note-input');
+  if(!ta) return;
+  const text = ta.value.trim();
+  if(!text){ if(typeof showToast==='function') showToast('Type a note first.'); return; }
+  addModelNote(brand, model, text);
+  ta.value = '';
+  renderModelDetailPage();
+  if(typeof showToast==='function') showToast('Note added');
+}
+
+function submitUnitNote(tag){
+  const ta = document.getElementById('md-unit-note-input-' + tag);
+  if(!ta) return;
+  const text = ta.value.trim();
+  if(!text){ if(typeof showToast==='function') showToast('Type a note first.'); return; }
+  addUnitNote(tag, text);
+  ta.value = '';
+  // Re-render only the affected row's notes panel and the row's note icon.
+  // Easiest is to re-render the whole page since unitHasNotes() controls icon state.
+  renderModelDetailPage();
+  // Keep the notes drawer for this tag open after re-render
+  setTimeout(() => {
+    const row = document.getElementById('md-unit-notes-' + tag);
+    if(row) row.style.display = '';
+  }, 0);
+  if(typeof showToast==='function') showToast('Note added');
+}
+
+function deleteNoteFromUI(scope, scopeArgs, noteId){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast==='function') showToast('Admin access required to remove notes.');
+    return;
+  }
+  if(!confirm('Remove this note?\n\nThe entry stays visible as "removed" so the audit trail is preserved.')) return;
+  if(scope === 'model'){
+    const [brand, model] = scopeArgs.split('|');
+    if(deleteModelNote(brand, model, noteId)){
+      renderModelDetailPage();
+      if(typeof showToast==='function') showToast('Note removed');
+    }
+  } else if(scope === 'unit'){
+    const tag = scopeArgs;
+    if(deleteUnitNote(tag, noteId)){
+      renderModelDetailPage();
+      // Reopen the notes panel for this unit so the change is visible
+      setTimeout(() => {
+        const row = document.getElementById('md-unit-notes-' + tag);
+        if(row) row.style.display = '';
+      }, 0);
+      if(typeof showToast==='function') showToast('Note removed');
+    }
+  }
+}
+
+function editModelField(brand, model, field, type){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast==='function') showToast('Admin access required.');
+    return;
+  }
+  const sku = _findModelSku(brand, model);
+  let current;
+  if(field === 'msrp') current = sku ? effectiveModelMsrp(sku) : (getModelField(brand, model, 'msrp') || 0);
+  else if(field === 'cost') current = sku ? effectiveModelCost(sku) : (getModelField(brand, model, 'cost') || 0);
+  else if(field === 'category') current = sku ? effectiveModelCategory(sku) : (getModelField(brand, model, 'category') || '');
+  else if(field === 'desc') current = sku ? effectiveModelDesc(sku) : (getModelField(brand, model, 'desc') || '');
+  else current = '';
+  const labels = { msrp: 'MSRP', cost: 'Cost', category: 'Category', desc: 'Description' };
+  const label = labels[field] || field;
+  const note = (field === 'msrp' || field === 'cost')
+    ? '\n\nEnter a number, blank to clear the override and revert to the catalog value.'
+    : '\n\nLeave blank to clear the override and revert to the catalog value.';
+  const input = prompt(label + ' for ' + brand + ' ' + model + ':' + note, current ? String(current) : '');
+  if(input === null) return;
+  const trimmed = input.trim();
+  if(trimmed === ''){
+    setModelField(brand, model, field, '');
+    if(typeof showToast==='function') showToast('Cleared ' + label + ' override');
+  } else if(type === 'money'){
+    const num = parseFloat(trimmed.replace(/[$,]/g, ''));
+    if(isNaN(num) || num < 0){ if(typeof showToast==='function') showToast('Invalid number.'); return; }
+    setModelField(brand, model, field, num);
+    if(typeof showToast==='function') showToast(label + ' set to $' + Math.round(num).toLocaleString());
+  } else {
+    setModelField(brand, model, field, trimmed);
+    if(typeof showToast==='function') showToast(label + ' updated');
+  }
+  renderModelDetailPage();
+}
+
+function uploadModelDetailImage(brand, model){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast==='function') showToast('Admin access required.');
+    return;
+  }
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      MODEL_IMAGES[modelImageKey(brand, model)] = ev.target.result;
+      saveAppState();
+      renderModelDetailPage();
+      if(typeof showToast==='function') showToast('Image saved');
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+function removeModelDetailImage(brand, model){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    if(typeof showToast==='function') showToast('Admin access required.');
+    return;
+  }
+  if(!confirm('Remove image for ' + brand + ' ' + model + '?')) return;
+  delete MODEL_IMAGES[modelImageKey(brand, model)];
+  saveAppState();
+  renderModelDetailPage();
+  if(typeof showToast==='function') showToast('Image removed');
+}
+
+/* v2.0.1 — Entry from the inventory list "Notes" column: navigates to the
+   model detail page for this unit's brand+model, then auto-expands the
+   unit's notes panel so the user can immediately read or add notes.
+   Replaces the old prompt-based editInventoryNotesByTag flow. */
+function openUnitNotesFromInventory(tag){
+  const u = INVENTORY.find(x => x.tag === tag);
+  if(!u){ if(typeof showToast==='function') showToast('Unit not found: ' + tag); return; }
+  const brand = u.brand || u.make || '';
+  const model = u.model || '';
+  if(!brand || !model){
+    // Fallback: legacy editor for orphan units with no brand/model
+    if(typeof editInventoryNotesByTag === 'function') editInventoryNotesByTag(tag);
+    return;
+  }
+  navigateToModelDetail(brand, model);
+  // After the page renders, expand this unit's notes panel
+  setTimeout(() => {
+    const row = document.getElementById('md-unit-notes-' + tag);
+    if(row){
+      row.style.display = '';
+      const cell = row.querySelector('td');
+      if(cell) cell.innerHTML = _renderUnitNotesPanel(tag);
+      // Scroll into view
+      row.scrollIntoView({ behavior:'smooth', block:'center' });
+      // Focus the textarea so user can type immediately
+      setTimeout(() => {
+        const ta = document.getElementById('md-unit-note-input-' + tag);
+        if(ta) ta.focus();
+      }, 350);
+    }
+  }, 50);
 }
 
 function renderDrawerBody(s){
@@ -20645,13 +21344,25 @@ function renderInventoryPage(){
         const tagCell = isSold
           ? `<span style="text-decoration:line-through">${escapeHtml(u.tag)}</span> <span style="display:inline-block;font-size:9px;font-weight:700;color:#16a34a;background:#dcfce7;padding:1px 6px;border-radius:3px;margin-left:4px;letter-spacing:0.04em">SOLD</span>`
           : escapeHtml(u.tag);
-        // v0.33 — Notes column: icon + hover tooltip from INVENTORY_OVERRIDES
-        const noteText = (u._override && u._override.notes) ? u._override.notes : '';
-        const notesCell = noteText
+        // v0.33 — Notes column: icon + hover tooltip
+        // v2.0.1 — Empty when no note exists; icon only when there's an actual
+        // note (legacy single-string OR new thread). unitHasNotes() handles both.
+        const _hasNotes = unitHasNotes(u.tag);
+        // Tooltip preview: legacy `notes` string OR most recent thread entry
+        let _previewText = '';
+        if(_hasNotes){
+          const _ov = u._override || INVENTORY_OVERRIDES[u.tag] || {};
+          if(typeof _ov.notes === 'string' && _ov.notes.trim()) _previewText = _ov.notes.trim();
+          if(Array.isArray(_ov.notesThread)){
+            const live = _ov.notesThread.filter(n => !n.deletedAt);
+            if(live.length) _previewText = live[live.length - 1].text;
+          }
+        }
+        const notesCell = _hasNotes
           ? `<span style="color:var(--orange);font-size:14px">📝</span>`
-          : `<span style="color:var(--gray-200);font-size:14px">📝</span>`;
-        const notesTitle = noteText
-          ? `Note: ${noteText.replace(/"/g, '&quot;')}\n\n(Click to edit)`
+          : '';
+        const notesTitle = _hasNotes
+          ? ('Note: ' + _previewText.replace(/"/g, '&quot;').substring(0, 200) + (_previewText.length > 200 ? '…' : '') + '\n\n(Click to view all notes)')
           : 'Add a note for this unit';
         // v0.33 — Sold flag column
         // v1.2.1 — The 🚩 emoji ignores CSS `color` in most browsers, which made every
@@ -20668,7 +21379,7 @@ function renderInventoryPage(){
           <td style="padding:8px 12px;color:var(--gray-700)">${brandLabel}</td>
           <td style="padding:8px 12px;color:var(--gray-700)">${escapeHtml(u.model)}</td>
           <td style="padding:8px 12px;color:var(--gray-500);font-size:11px">${escapeHtml(u.desc)}</td>
-          <td style="padding:8px 6px;text-align:center;cursor:pointer" onclick="event.stopPropagation();S.editInventoryNotesByTag('${S.escapeAttr(u.tag)}')" title="${notesTitle}">${notesCell}</td>
+          <td style="padding:8px 6px;text-align:center;cursor:pointer" onclick="event.stopPropagation();S.openUnitNotesFromInventory('${S.escapeAttr(u.tag)}')" title="${notesTitle}">${notesCell}</td>
           <td style="padding:8px 12px;text-align:center;color:var(--gray-600);font-size:11px">${escapeHtml(u.year)}</td>
           <td style="padding:8px 12px;text-align:center"><span style="color:${locColor};font-weight:600;font-size:11px">${escapeHtml(u.location)}</span></td>
           <td style="padding:8px 12px;text-align:right;font-family:'DM Mono',monospace;color:var(--gray-700)">${u.cost > 0 ? '$'+Math.round(u.cost).toLocaleString() : '—'}</td>
@@ -24072,6 +24783,18 @@ function updateCommissionCodes(idx, value){
     toggleInStockOnly: typeof toggleInStockOnly === 'function' ? toggleInStockOnly : undefined,
     /* v1.2.2 — Inline edit of per-unit list price from model detail drawer */
     editUnitListPrice: typeof editUnitListPrice === 'function' ? editUnitListPrice : undefined,
+    /* v2.0.1 — Model detail page (replaces drawer) */
+    navigateToModelDetail: typeof navigateToModelDetail === 'function' ? navigateToModelDetail : undefined,
+    renderModelDetailPage: typeof renderModelDetailPage === 'function' ? renderModelDetailPage : undefined,
+    backFromModelDetail: typeof backFromModelDetail === 'function' ? backFromModelDetail : undefined,
+    toggleUnitNotesRow: typeof toggleUnitNotesRow === 'function' ? toggleUnitNotesRow : undefined,
+    submitModelNote: typeof submitModelNote === 'function' ? submitModelNote : undefined,
+    submitUnitNote: typeof submitUnitNote === 'function' ? submitUnitNote : undefined,
+    deleteNoteFromUI: typeof deleteNoteFromUI === 'function' ? deleteNoteFromUI : undefined,
+    editModelField: typeof editModelField === 'function' ? editModelField : undefined,
+    uploadModelDetailImage: typeof uploadModelDetailImage === 'function' ? uploadModelDetailImage : undefined,
+    removeModelDetailImage: typeof removeModelDetailImage === 'function' ? removeModelDetailImage : undefined,
+    openUnitNotesFromInventory: typeof openUnitNotesFromInventory === 'function' ? openUnitNotesFromInventory : undefined,
     openAdjustmentEditor: typeof openAdjustmentEditor === 'function' ? openAdjustmentEditor : undefined,
     openBrandFinanceFromQuote: typeof openBrandFinanceFromQuote === 'function' ? openBrandFinanceFromQuote : undefined,
     openCustomerImport: typeof openCustomerImport === 'function' ? openCustomerImport : undefined,
@@ -24268,6 +24991,7 @@ function updateCommissionCodes(idx, value){
   function onPageVisit(page){
     syncShellAuth();
     if (page === 'inventory' && typeof renderInventoryPage === 'function'){ renderInventoryPage(); return; }
+    if (page === 'model-detail' && typeof renderModelDetailPage === 'function'){ renderModelDetailPage(); return; }
     if (page === 'salespeople'){
       if(typeof renderSalespeople === 'function') renderSalespeople();
       if(typeof renderAdminPermissions === 'function') renderAdminPermissions();

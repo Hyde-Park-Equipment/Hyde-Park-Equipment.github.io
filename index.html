@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v2.0.3</title><!-- build:20260503_v203_bug_board -->
+<title>HPE Sales Platform v2.0.4</title><!-- build:20260503_v204_polish -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -434,6 +434,14 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 #section-used .page-header{margin-bottom:16px;display:flex;align-items:baseline;gap:10px;}
 #section-used .page-title{font-size:20px;font-weight:600;color:var(--gray-900);letter-spacing:-0.02em;}
 #section-used .page-sub{font-size:12px;color:var(--gray-500);}
+/* v2.0.4 — Used absorbs into a dynamicRender container (#content), not per-page
+   .page divs. So the global ".page { padding:32px 28px }" rule never reaches it
+   and content was sitting flush against the sidebar. Apply equivalent padding
+   here. Bottom padding gives breathing room before the page edge. */
+#section-used #content{padding:32px 28px 60px;max-width:1400px;}
+@media (max-width:720px){
+  #section-used #content{padding:18px 14px 60px;}
+}
 .section-label{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;margin-top:18px;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
 .dash-card{background:white;border:1px solid var(--gray-200);border-top:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;transition:box-shadow 0.15s;}
@@ -1064,16 +1072,7 @@ tbody td:last-child{border-right:none;}
 #section-shortline .quick-quote-btn{background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;}
 #section-shortline .quick-quote-btn:hover{background:var(--orange-dark);}
 /* DETAIL DRAWER */
-#section-shortline .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;}
-#section-shortline .drawer-overlay.open{display:block;}
-#section-shortline .drawer{position:fixed;top:0;right:0;bottom:0;width:560px;max-width:100%;background:white;z-index:201;transform:translateX(100%);transition:transform 0.25s ease;display:flex;flex-direction:column;}
-#section-shortline .drawer.open{transform:translateX(0);}
-#section-shortline .drawer-header{background:var(--black);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--orange);}
-#section-shortline .drawer-header-title{color:white;font-size:14px;font-weight:600;}
-#section-shortline .drawer-header-title span{display:block;font-size:10px;color:var(--gray-400);font-weight:400;margin-top:2px;}
-#section-shortline .drawer-close{background:none;border:none;color:var(--gray-400);font-size:22px;cursor:pointer;line-height:1;}
-#section-shortline .drawer-close:hover{color:white;}
-#section-shortline .drawer-body{flex:1;overflow-y:auto;padding:20px;}
+/* v2.0.4 — Drawer CSS removed. See drawer DOM removal note. */
 #section-shortline .section-block{margin-bottom:20px;}
 #section-shortline .section-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
 #section-shortline .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -1308,8 +1307,7 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
 #section-shortline .promo-price-card.selected{border-color:var(--orange);}
 #section-shortline .promo-price-card label{font-size:9px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em;}
 #section-shortline .promo-price-card .pp-cost{font-family:'DM Mono',monospace;font-size:14px;font-weight:700;color:var(--gray-900);margin-top:2px;}
-#section-shortline .drawer-footer{padding:14px 20px;border-top:1px solid var(--gray-200);display:flex;gap:10px;}
-#section-shortline .drawer-footer button{flex:1;padding:11px;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;}
+/* v2.0.4 — drawer-footer CSS removed alongside drawer DOM. */
 /* QUOTE BUILDER */
 #section-shortline .quote-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;}
 #section-shortline .quote-overlay.open{display:flex;}
@@ -1661,8 +1659,7 @@ body.admin-mode .popular-toggle-btn{display:inline-flex;}
 #section-shortline .table-wrap td:nth-child(4)::before{content:"MSRP: ";font-weight:600;color:var(--gray-500);font-size:10px;text-transform:uppercase;}
 #section-shortline .table-wrap td:nth-child(5)::before{content:"Cost: ";font-weight:600;color:var(--gray-500);font-size:10px;text-transform:uppercase;}
 #section-shortline .table-wrap td:nth-child(6)::before{content:"Stock: ";font-weight:600;color:var(--gray-500);font-size:10px;text-transform:uppercase;}
-#section-shortline .drawer{width:100%;}
-#section-shortline .drawer-body{padding:14px;}
+/* v2.0.4 — drawer mobile rules removed alongside drawer DOM. */
 #section-shortline .detail-grid{grid-template-columns:1fr;}
 #section-shortline .calc-row{grid-template-columns:80px 1fr 50px;gap:6px;}
 #section-shortline .calc-summary{grid-template-columns:1fr 1fr;}
@@ -2013,6 +2010,7 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.4</div>
     </div>
     <div class="topbar-search">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -3249,19 +3247,14 @@ body.admin-mode .admin-only { display: inline-flex; }
   </div>
 </div>
 
-<div class="drawer-overlay" id="drawer-overlay" onclick="S.closeDrawer()"></div>
-
-<div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <div class="drawer-header-title" id="drawer-title">—<span id="drawer-subtitle">—</span></div>
-    <button class="drawer-close" onclick="S.closeDrawer()">×</button>
-  </div>
-  <div class="drawer-body" id="drawer-body"></div>
-  <div class="drawer-footer">
-    <button class="btn-secondary" onclick="S.closeDrawer()">Close</button>
-    <button class="btn-orange" onclick="S.quoteFromDrawer()" style="padding:11px;font-size:13px">Add to Quote</button>
-  </div>
-</div>
+<!-- v2.0.4 — Drawer DOM removed. Was orphaned since v2.0.1 routed openDetail()
+     to the new model detail page. The associated functions (renderDrawerBody,
+     closeDrawer, quoteFromDrawer, selectPromoOption, recalcFromCost,
+     recalcFromPrice) and `currentDetailId` / `detailUseStandard` state were
+     stripped at the same time. The drawer's promo-pricing calculator was
+     unique to the drawer; if needed in future it can be ported to the model
+     detail page. The full Quote Builder overlay (#quote-overlay-sl) below is
+     unaffected — that's a different subsystem. -->
 
 <div class="quote-overlay" id="quote-overlay-sl" onclick="S.closeQuoteIfOutside(event)">
   <div class="quote-modal" onclick="event.stopPropagation()">
@@ -3434,8 +3427,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '2.0.3',
-    build: '20260503_v203_bug_board',
+    version: '2.0.4',
+    build: '20260503_v204_polish',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -7501,21 +7494,29 @@ async function renderDetail(c){
     '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Upload Photo</button>'+
     '<button class="upload-btn camera-btn" onclick="U.triggerCamera(window._currentDetailStock,window._currentDetailModel)">'+
     '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg> Take Photo</button>'+
-    // Row 2: Post on AGDealer (1/2) | (View HPE Listing 1/4 + Posted 1/4) OR Posted (1/2)
-    // Inner container uses grid (not flex) so widths are strictly proportional to outer row.
+    // Row 2: Post on AGDealer (col 1) | (View HPE Listing + Posted, nested in col 2) OR just Posted (col 2)
+    // v2.0.4 — Was using a nested 3-column grid (2fr 1fr 1fr) with `grid-column:1/-1`,
+    // which produced widths that didn't quite match adjacent 2-button rows because the
+    // nested grid created its own gap splits. Now the outer .btn-row 1fr 1fr grid
+    // owns the top-level layout: Post takes column 1; the listing+posted pair lives
+    // inside column 2 as a nested 1fr 1fr. Every gap is 8px so edges align cleanly.
     (function(){
       const hasListingUrl=!!getListingUrlForStock(window._currentDetailStock);
-      const postBtn='<button class="agdealer-btn" style="min-width:0" onclick="U.openAGDealer(window._currentDetailStock)">'+
+      const postBtn='<button class="agdealer-btn" style="min-width:0;width:100%" onclick="U.openAGDealer(window._currentDetailStock)">'+
         '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Post on AGDealer</button>';
       const listingBtn=hasListingUrl?
-        '<button class="upload-btn" style="min-width:0;padding:9px 12px;background:#7c3aed" onclick="U.openListingUrl(window._currentDetailStock)">'+
+        '<button class="upload-btn" style="min-width:0;width:100%;padding:9px 12px;background:#7c3aed" onclick="U.openListingUrl(window._currentDetailStock)">'+
           '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View HPE Listing</button>':'';
-      const postedBtn='<button class="posted-toggle '+(isPosted?'is-posted':'')+'" style="min-width:0" onclick="U.togglePosted(window._currentDetailStock)">'+
+      const postedBtn='<button class="posted-toggle '+(isPosted?'is-posted':'')+'" style="min-width:0;width:100%" onclick="U.togglePosted(window._currentDetailStock)">'+
         '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'+
         (isPosted?'&#10003; Posted':'Mark Posted')+'</button>';
-      // Grid: with URL = 2fr 1fr 1fr (Post=50%, HPE=25%, Posted=25%). Without URL = 1fr 1fr (Post=50%, Posted=50%).
-      const gridCols=hasListingUrl?'2fr 1fr 1fr':'1fr 1fr';
-      return '<div style="grid-column:1 / -1;display:grid;grid-template-columns:'+gridCols+';gap:8px">'+postBtn+listingBtn+postedBtn+'</div>';
+      if(hasListingUrl){
+        // Post in outer col 1 ; nested (Listing | Posted) in outer col 2
+        return postBtn +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0">'+listingBtn+postedBtn+'</div>';
+      }
+      // Post in outer col 1 ; Posted in outer col 2 — uses outer grid directly
+      return postBtn + postedBtn;
     })()+
     // Row 3: Build Quote (1/2) | Add to Favourites (1/2)
     '<button class="upload-btn" style="background:#1a6b3c" onclick="U.openQuote(window._currentDetailStock)">&#128196; Build Quote</button>'+
@@ -18427,8 +18428,7 @@ const HPE_LOGO = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1B
 let currentRole = 'sales';
 let currentSort = {field:'brand', dir:'asc'};
 let userSortActive = false;    // v0.9 — true when user has explicitly clicked a column header
-let currentDetailId = null;
-let detailUseStandard = true; // false = use promo
+// v2.0.4 — currentDetailId / detailUseStandard removed; legacy drawer is gone.
 let quoteLineItems = [];
 let recentlyQuotedSkuIds = []; // last N SKU ids added to quotes (most recent first) — v1.2.1 persisted via app-state
 let shortlineUserPrefs = {};   // v1.2.1 — per-user prefs: { [emailLower]: { brands:{...}, pricebookActiveOnly:bool, pricebookFavouritesOnly:bool } }
@@ -19294,10 +19294,9 @@ function editUnitListPrice(tag){
     saveAppState();
     if(typeof showToast === 'function') showToast('Updated list price for ' + tag + ' to $' + Math.round(num).toLocaleString());
   }
-  // Refresh the drawer so the new price shows immediately
-  if(currentDetailId !== null && typeof renderDrawerBody === 'function'){
-    const _s = SKUS.find(x => x.id === currentDetailId);
-    if(_s) renderDrawerBody(_s);
+  // v2.0.4 — Drawer is gone. Re-render the model detail page if it's open.
+  if(currentModelDetailKey && typeof renderModelDetailPage === 'function'){
+    renderModelDetailPage();
   }
 }
 
@@ -19355,11 +19354,8 @@ function refreshPricebookSortIndicators(){
   });
 }
 
-/* DETAIL DRAWER WITH 3-WAY CALCULATOR */
-/* v2.0.1 — Repointed from the legacy detail drawer to the new model detail
-   page. Callers pass a SKU id; we look up brand+model and navigate. The drawer
-   DOM and renderDrawerBody() are kept in place (unused) so anything else that
-   still references them keeps working until those call sites are migrated. */
+/* v2.0.1 — openDetail routes to the model detail page. v2.0.4 — drawer DOM
+   and renderDrawerBody now stripped; this is now the only path. */
 function openDetail(id){
   const s = SKUS.find(x=>x.id===id);
   if(!s) return;
@@ -19828,109 +19824,14 @@ function openUnitNotesFromInventory(tag){
   }, 50);
 }
 
-function renderDrawerBody(s){
-  const brandRule = BRANDS.find(b=>b.name===s.brand) || {default_margin:15};
-  const activeCost = detailUseStandard ? s.cost : (s.brand==='Walker' ? s.cost*0.98 : s.promo*0.78);
-  const suggestedPrice = activeCost / (1 - brandRule.default_margin/100);
-  const stockUnits = getStockForSku(s);
-  let stockBadge;
-  if (stockUnits.length === 0){
-    stockBadge = '<span class="badge b-stock-no">Not in stock</span>';
-  } else {
-    const exactCount = stockUnits.filter(u=>u.exact).length;
-    const fuzzyCount = stockUnits.length - exactCount;
-    const summary = fuzzyCount > 0
-      ? `<span class="badge b-stock-yes">${stockUnits.length} in stock</span> <span style="font-size:11px;color:var(--amber);margin-left:6px">(${fuzzyCount} fuzzy match)</span>`
-      : `<span class="badge b-stock-yes">${stockUnits.length} in stock</span>`;
-    stockBadge = summary + renderStockUnitTable(stockUnits);
-  }
-
-  let promoBlock = '';
-  if (s.promo){
-    const standardCost = s.cost;
-    const promoCost = s.brand==='Toro' ? Math.round(s.promo*0.78) : (s.brand==='Walker' ? s.cost*0.98 : s.cost);
-    promoBlock = `
-      <div class="section-block">
-        <div class="section-title">Active Promotion</div>
-        <div class="promo-card">
-          <div class="promo-card-header">
-            <div class="promo-title">${s.brand==='Toro'?'Toro 2026 promo pricing':'Walker 23/2 promotion'}</div>
-            <div class="promo-meta">Active until ${s.brand==='Toro'?'Aug 31, 2026':'Nov 30, 2026'}</div>
-          </div>
-          <div style="font-size:11px;color:var(--orange-dark)">Eligibility: ${s.notes&&s.notes.toLowerCase().includes('commercial')?'Commercial customers only':'All customers'}</div>
-          <div class="promo-pricing">
-            <div class="promo-price-card ${detailUseStandard?'selected':''}" onclick="S.selectPromoOption(true)">
-              <label>Standard Cost</label>
-              <div class="pp-cost">$${standardCost.toLocaleString('en-US',{maximumFractionDigits:0})}</div>
-            </div>
-            <div class="promo-price-card ${!detailUseStandard?'selected':''}" onclick="S.selectPromoOption(false)">
-              <label>Promo Cost</label>
-              <div class="pp-cost">$${promoCost.toLocaleString('en-US',{maximumFractionDigits:0})}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  document.getElementById('drawer-body').innerHTML = `
-    <div class="section-block">
-      <div class="section-title" style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-        <span>Overview</span>
-        <div style="display:flex;align-items:center;gap:8px">
-          <button class="popular-toggle-btn admin-only ${s.popular ? 'active' : ''}" onclick="S.toggleSkuPopular(${s.id})" title="${s.popular ? 'Currently flagged Popular — click to unflag' : 'Flag as Popular (anchors high in brand-filtered Price Book)'}">
-            <span class="pop-star">${s.popular ? '★' : '☆'}</span>
-            ${s.popular ? 'Popular' : 'Mark Popular'}
-          </button>
-          <button class="brand-info-jump-btn" onclick="S.jumpToBrandInfo('${S.escapeHtml(s.brand).replace(/'/g, '&#39;')}')" title="View ${s.brand} brand info">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            ${escapeHtml(s.brand)} brand info
-          </button>
-        </div>
-      </div>
-      <div class="detail-grid">
-        <div class="detail-field"><label>Brand</label><span>${s.brand}</span></div>
-        <div class="detail-field"><label>Category</label><span>${s.category||'—'}</span></div>
-        <div class="detail-field"><label>Model</label><span style="font-family:'DM Mono',monospace">${s.model}${s.popular ? ' <span class="popular-inline-pill">★ Popular</span>' : ''}</span></div>
-        <div class="detail-field"><label>Stock</label><span>${stockBadge}</span></div>
-        <div class="detail-field full"><label>Description</label><span>${s.desc}</span></div>
-        ${s.notes?`<div class="detail-field full"><label>Notes</label><span style="color:var(--orange-dark)">${s.notes}</span></div>`:''}
-      </div>
-    </div>
-
-    <!-- Product image (admin can upload, shows on quote PDFs) -->
-    <div class="section-block">
-      <div class="section-title" style="display:flex;align-items:center;justify-content:space-between">
-        <span>Product Image</span>
-        <small style="font-size:11px;font-weight:400;color:var(--gray-500)">Used on customer quotes &amp; PDFs</small>
-      </div>
-      <div class="sku-image-slot" id="sku-image-slot-${s.id}">
-        ${renderSkuImage(s)}
-      </div>
-    </div>
-
-    ${promoBlock}
-    <div class="section-block">
-      <div class="section-title">Pricing Calculator</div>
-      <div class="calc-box">
-        <div class="calc-row"><label>MSRP</label><input type="text" value="$${s.msrp.toLocaleString('en-US',{maximumFractionDigits:0})}" readonly><span class="calc-locked">locked</span></div>
-        <div class="calc-row cost"><label>Cost</label><input type="number" id="calc-cost" value="${activeCost.toFixed(2)}" oninput="S.recalcFromCost()"><span class="calc-locked">${detailUseStandard?'standard':'promo'}</span></div>
-        <div class="calc-row price"><label>Quote Price</label><input type="number" id="calc-price" value="${suggestedPrice.toFixed(0)}" oninput="S.recalcFromPrice()"><span class="calc-locked">editable</span></div>
-        <div class="calc-row margin"><label>Margin %</label><input type="number" id="calc-margin" value="${brandRule.default_margin}" step="0.5" oninput="S.recalcFromMargin()"><span class="calc-locked">editable</span></div>
-        <div class="calc-summary">
-          <div class="calc-summary-item"><label>Gross Profit</label><span id="calc-gp" class="">$${(suggestedPrice-activeCost).toLocaleString('en-US',{maximumFractionDigits:0})}</span></div>
-          <div class="calc-summary-item gp"><label>Discount off MSRP</label><span id="calc-discount">${s.msrp > 0 ? ((1-suggestedPrice/s.msrp)*100).toFixed(1) + '%' : '—'}</span></div>
-        </div>
-      </div>
-    </div>
-  `;
-}
+/* v2.0.4 — renderDrawerBody removed. Drawer was orphaned since v2.0.1
+   when openDetail() was repointed to the new model detail page. */
 
 /* v0.32 — Brand info now lives inline on the Price Book filtered view.
    Was: standalone Brand Info page. Now: select the brand in Price Book,
    auto-expand the inline info panel. */
 function jumpToBrandInfo(brandName){
-  closeDrawer();
+  // v2.0.4 — was: closeDrawer() — drawer is gone.
   // v0.32 — Mark this brand's inline info panel as expanded for next render
   pricebookInfoExpanded = brandName;
   selectBrandCard(brandName);
@@ -19941,8 +19842,12 @@ function toggleSkuPopular(skuId){
   const s = SKUS.find(x => x.id === skuId);
   if (!s) return;
   s.popular = !s.popular;
-  // Re-render the detail panel so the button + inline pill update
-  renderDrawerBody(s);
+  // v2.0.4 — Was: renderDrawerBody(s) — drawer no longer exists. If we're on
+  // the model detail page for this SKU, re-render that instead.
+  if(currentModelDetailKey && currentModelDetailKey.brand === s.brand && currentModelDetailKey.model === s.model
+     && typeof renderModelDetailPage === 'function'){
+    renderModelDetailPage();
+  }
   // If Price Book is currently filtered, refresh it so the position updates immediately
   if (typeof filterAndRender === 'function'){
     const search = (document.getElementById('search')?.value || '').trim();
@@ -20025,62 +19930,12 @@ function removeSkuImage(skuId){
   }
 }
 
-function selectPromoOption(useStandard){
-  detailUseStandard = useStandard;
-  const s = SKUS.find(x=>x.id===currentDetailId);
-  renderDrawerBody(s);
-}
-
-function recalcFromCost(){
-  const cost = parseFloat(document.getElementById('calc-cost').value) || 0;
-  const price = parseFloat(document.getElementById('calc-price').value) || 0;
-  if (price <= cost) return;
-  const margin = ((price - cost) / price * 100).toFixed(1);
-  document.getElementById('calc-margin').value = margin;
-  updateCalcSummary();
-}
-function recalcFromPrice(){
-  const cost = parseFloat(document.getElementById('calc-cost').value) || 0;
-  const price = parseFloat(document.getElementById('calc-price').value) || 0;
-  if (price <= cost) return;
-  const margin = ((price - cost) / price * 100).toFixed(1);
-  document.getElementById('calc-margin').value = margin;
-  updateCalcSummary();
-}
-function recalcFromMargin(){
-  const cost = parseFloat(document.getElementById('calc-cost').value) || 0;
-  const margin = parseFloat(document.getElementById('calc-margin').value) || 0;
-  if (margin >= 100) return;
-  const price = cost / (1 - margin/100);
-  document.getElementById('calc-price').value = price.toFixed(0);
-  updateCalcSummary();
-}
-function updateCalcSummary(){
-  const cost = parseFloat(document.getElementById('calc-cost').value) || 0;
-  const price = parseFloat(document.getElementById('calc-price').value) || 0;
-  const s = SKUS.find(x=>x.id===currentDetailId);
-  document.getElementById('calc-gp').textContent = '$' + (price-cost).toLocaleString('en-US',{maximumFractionDigits:0});
-  document.getElementById('calc-discount').textContent = (s && s.msrp > 0)
-    ? ((1-price/s.msrp)*100).toFixed(1) + '%'
-    : '—';
-}
-
-function closeDrawer(){
-  document.getElementById('drawer-overlay').classList.remove('open');
-  document.getElementById('drawer').classList.remove('open');
-}
-function quoteFromDrawer(){
-  if (currentDetailId!==null){
-    const cost = parseFloat(document.getElementById('calc-cost').value) || 0;
-    const price = parseFloat(document.getElementById('calc-price').value) || 0;
-    quickQuote(currentDetailId, {cost, price});
-    closeDrawer();
-    // v0.33 — Open the full Quote Builder so "+ Add Item / + Trade-In / + Additional Cost"
-    // are visible. quickQuote() already calls openQuoteBuilder() but closing the drawer
-    // can leave the user wondering where the quote went.
-    if(typeof openQuoteBuilder === 'function') openQuoteBuilder();
-  }
-}
+/* v2.0.4 — Removed: selectPromoOption, recalcFromCost, recalcFromPrice,
+   recalcFromMargin, updateCalcSummary, closeDrawer, quoteFromDrawer. All
+   were drawer-only; the drawer DOM and CSS were stripped at the same time.
+   The drawer's promo-pricing calculator was not yet ported to the model
+   detail page; if reps need that pricing tool back, it should live on
+   model-detail. */
 
 /* QUOTE BUILDER */
 function openQuoteBuilder(){
@@ -22216,13 +22071,7 @@ function confirmMarkSold(){
   if(typeof renderInventoryPage === 'function') renderInventoryPage();
   if(typeof filterAndRender === 'function') filterAndRender();
   if(typeof renderBrandCardsGrid === 'function') renderBrandCardsGrid();
-  // v1.2.1 — If the SKU detail drawer is currently open (this sale was triggered
-  // from the model detail view), re-render its body so the now-sold unit drops
-  // off the in-stock list immediately.
-  if(currentDetailId !== null && typeof renderDrawerBody === 'function'){
-    const _s = SKUS.find(x => x.id === currentDetailId);
-    if(_s) renderDrawerBody(_s);
-  }
+  // v2.0.4 — Drawer-refresh path removed (drawer gone).
   // v2.0.2 — If the model detail page is currently active, re-render it too.
   // Was not in the refresh chain before, so the red flag stayed gray after a
   // sale until something else triggered a re-render.
@@ -25171,7 +25020,6 @@ function updateCommissionCodes(idx, value){
     closeCustomerModal: typeof closeCustomerModal === 'function' ? closeCustomerModal : undefined,
     closeCustomerPicker: typeof closeCustomerPicker === 'function' ? closeCustomerPicker : undefined,
     closeDealDetail: typeof closeDealDetail === 'function' ? closeDealDetail : undefined,
-    closeDrawer: typeof closeDrawer === 'function' ? closeDrawer : undefined,
     closeFinanceInfoModal: typeof closeFinanceInfoModal === 'function' ? closeFinanceInfoModal : undefined,
     closeFlagDialog: typeof closeFlagDialog === 'function' ? closeFlagDialog : undefined,
     closeInventoryDetail: typeof closeInventoryDetail === 'function' ? closeInventoryDetail : undefined,
@@ -25338,13 +25186,9 @@ function updateCommissionCodes(idx, value){
     quickQuote: typeof quickQuote === 'function' ? quickQuote : undefined,
     quoteDisplayFields: typeof quoteDisplayFields === 'function' ? quoteDisplayFields : undefined,
     quoteFromBuilder: typeof quoteFromBuilder === 'function' ? quoteFromBuilder : undefined,
-    quoteFromDrawer: typeof quoteFromDrawer === 'function' ? quoteFromDrawer : undefined,
     quoteThisUnit: typeof quoteThisUnit === 'function' ? quoteThisUnit : undefined,
     readHubStateContent: typeof readHubStateContent === 'function' ? readHubStateContent : undefined,
     rebuildSkusFromInventory: typeof rebuildSkusFromInventory === 'function' ? rebuildSkusFromInventory : undefined,
-    recalcFromCost: typeof recalcFromCost === 'function' ? recalcFromCost : undefined,
-    recalcFromMargin: typeof recalcFromMargin === 'function' ? recalcFromMargin : undefined,
-    recalcFromPrice: typeof recalcFromPrice === 'function' ? recalcFromPrice : undefined,
     refreshBrandFilterOptions: typeof refreshBrandFilterOptions === 'function' ? refreshBrandFilterOptions : undefined,
     refreshCustomerDatalist: typeof refreshCustomerDatalist === 'function' ? refreshCustomerDatalist : undefined,
     refreshPricebookSortIndicators: typeof refreshPricebookSortIndicators === 'function' ? refreshPricebookSortIndicators : undefined,
@@ -25386,7 +25230,6 @@ function updateCommissionCodes(idx, value){
     renderDashCommsCompact: typeof renderDashCommsCompact === 'function' ? renderDashCommsCompact : undefined,
     renderDashboard: typeof renderDashboard === 'function' ? renderDashboard : undefined,
     renderDealNotesList: typeof renderDealNotesList === 'function' ? renderDealNotesList : undefined,
-    renderDrawerBody: typeof renderDrawerBody === 'function' ? renderDrawerBody : undefined,
     renderInventoryPage: typeof renderInventoryPage === 'function' ? renderInventoryPage : undefined,
     renderLineItems: typeof renderLineItems === 'function' ? renderLineItems : undefined,
     renderLinePicker: typeof renderLinePicker === 'function' ? renderLinePicker : undefined,
@@ -25425,7 +25268,6 @@ function updateCommissionCodes(idx, value){
     saveSkuCatalog: typeof saveSkuCatalog === 'function' ? saveSkuCatalog : undefined,
     selectBrandCard: typeof selectBrandCard === 'function' ? selectBrandCard : undefined,
     selectCustomerFromPicker: typeof selectCustomerFromPicker === 'function' ? selectCustomerFromPicker : undefined,
-    selectPromoOption: typeof selectPromoOption === 'function' ? selectPromoOption : undefined,
     setAllLinesMargin: typeof setAllLinesMargin === 'function' ? setAllLinesMargin : undefined,
     setCurrentUserFromAuth: typeof setCurrentUserFromAuth === 'function' ? setCurrentUserFromAuth : undefined,
     setCustomersScope: typeof setCustomersScope === 'function' ? setCustomersScope : undefined,
@@ -25467,7 +25309,6 @@ function updateCommissionCodes(idx, value){
     updateBrandField: typeof updateBrandField === 'function' ? updateBrandField : undefined,
     updateBrandFinanceInfoButton: typeof updateBrandFinanceInfoButton === 'function' ? updateBrandFinanceInfoButton : undefined,
     updateBrandNotes: typeof updateBrandNotes === 'function' ? updateBrandNotes : undefined,
-    updateCalcSummary: typeof updateCalcSummary === 'function' ? updateCalcSummary : undefined,
     updateCommissionCodes: typeof updateCommissionCodes === 'function' ? updateCommissionCodes : undefined,
     updateFinanceDisplay: typeof updateFinanceDisplay === 'function' ? updateFinanceDisplay : undefined,
     updateFinancePaymentsOnly: typeof updateFinancePaymentsOnly === 'function' ? updateFinancePaymentsOnly : undefined,

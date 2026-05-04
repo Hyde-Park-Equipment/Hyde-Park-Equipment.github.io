@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v2.0.8.2</title><!-- build:20260503_v2082_cleanup_logs_window_hpe -->
+<title>HPE Sales Platform v2.0.8.3</title><!-- build:20260503_v2083_drive_cache_drive_cleanup -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -2241,7 +2241,7 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.8.2</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.8.3</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="topbar-search">
@@ -2673,6 +2673,7 @@ body.admin-mode .admin-only { display: inline-flex; }
       <div class="pp-footer-left">
         <button class="pp-bulk" onclick="S.priceParserBulk('include')">Include all</button>
         <button class="pp-bulk" onclick="S.priceParserBulk('exclude')">Exclude all</button>
+        <button class="pp-bulk" id="pp-reparse-btn" onclick="S.priceParserReparse()" title="Bypass cache and re-parse from the Anthropic API" style="display:none">↻ Re-parse from API</button>
       </div>
       <div class="pp-footer-right">
         <button class="pp-cancel" onclick="S.closePriceParser()">Cancel</button>
@@ -2844,6 +2845,20 @@ body.admin-mode .admin-only { display: inline-flex; }
           <tr><td colspan="4" style="text-align:center;padding:32px;color:var(--gray-500);font-style:italic">No pending changes</td></tr>
         </tbody>
       </table>
+    </div>
+    <!-- v2.0.8.3 — Drive duplicate cleanup. Earlier "save retry" bugs created
+         sibling copies of config files (app-state.json, sku-catalog.json, etc.)
+         instead of updating in place. The bug is fixed but accumulated dupes
+         remain. This panel scans and lets you trash them in bulk. -->
+    <div class="admin-panel" id="drive-cleanup-panel">
+      <div class="admin-panel-title" style="display:flex;align-items:center;justify-content:space-between">
+        <span>Drive Duplicate Cleanup</span>
+        <span style="font-size:11px;font-weight:400;color:var(--gray-500)">Removes older sibling copies of canonical config files (kept in Drive trash for 30 days)</span>
+      </div>
+      <div id="drive-cleanup-body" style="padding:14px 16px">
+        <button class="btn-orange" onclick="S.scanDriveDuplicates()" style="padding:8px 14px;font-size:13px">Scan for duplicate config files</button>
+        <div id="drive-cleanup-results" style="margin-top:14px;font-size:13px;color:var(--gray-300)"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -14629,6 +14644,107 @@ async function _consolidateDuplicateFiles(files, label){
   }
 }
 
+/* v2.0.8.3 — Manual scan + cleanup of accumulated duplicate config files in
+   Drive. Surfaced as an admin button on the Imports & Sync page.
+
+   Looks in two folders:
+     - Shortline _config (configFolderId)        → app-state.json, sku-catalog.json, dashboard-summary.json
+     - HPE Link _config (hpeConfigFolderId)     → hub-state.json, salespeople.json, quotes.json
+   Lists each by canonical name, sorted by modifiedTime desc. Anything past
+   index 0 is a duplicate. The user clicks "Move to trash" to invoke the
+   existing _consolidateDuplicateFiles helper for each set. */
+const _DRIVE_CLEANUP_TARGETS = [
+  { folder: 'shortline', name: 'app-state.json' },
+  { folder: 'shortline', name: 'sku-catalog.json' },
+  { folder: 'shortline', name: 'dashboard-summary.json' },
+  { folder: 'hpe',       name: 'hub-state.json' },
+  { folder: 'hpe',       name: 'salespeople.json' },
+  { folder: 'hpe',       name: 'quotes.json' }
+];
+let _driveCleanupLastScan = null; // [{name, folder, files:[...], dupes:N}, ...]
+
+async function scanDriveDuplicates(){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    showToast('Admin access required.'); return;
+  }
+  const results = document.getElementById('drive-cleanup-results');
+  if(!results) return;
+  if(!accessToken){ results.innerHTML = '<span style="color:var(--gray-400)">Not authenticated to Drive yet — try again in a moment.</span>'; return; }
+  results.innerHTML = '<span style="color:var(--gray-400)">Scanning…</span>';
+  setSyncStatus('syncing', 'Scanning Drive…');
+  const findings = [];
+  for(const target of _DRIVE_CLEANUP_TARGETS){
+    const folderId = target.folder === 'shortline' ? configFolderId : hpeConfigFolderId;
+    if(!folderId) continue;
+    try {
+      const params = new URLSearchParams({
+        q: `name='${target.name}' and '${folderId}' in parents and trashed=false`,
+        fields: 'files(id,name,modifiedTime)',
+        orderBy: 'modifiedTime desc',
+        pageSize: '20',
+        supportsAllDrives: 'true', includeItemsFromAllDrives: 'true',
+        ...(sharedDriveId ? { driveId: sharedDriveId, corpora: 'drive' } : {})
+      });
+      const r = await fetch('https://www.googleapis.com/drive/v3/files?' + params,
+        { headers: { 'Authorization': 'Bearer ' + accessToken } });
+      if(!r.ok) continue;
+      const data = await r.json();
+      const files = data.files || [];
+      const dupes = Math.max(0, files.length - 1);
+      findings.push({ name: target.name, folder: target.folder, files, dupes });
+    } catch(e){
+      console.warn('[drive-cleanup] scan failed for', target.name, e);
+    }
+  }
+  _driveCleanupLastScan = findings;
+  setSyncStatus('saved');
+  // Render
+  const totalDupes = findings.reduce((s, f) => s + f.dupes, 0);
+  if(totalDupes === 0){
+    results.innerHTML = '<span style="color:#86efac">✓ No duplicate config files found. Drive is clean.</span>';
+    return;
+  }
+  let html = '<div style="margin-bottom:10px;color:#fca5a5"><strong>' + totalDupes + ' duplicate file' + (totalDupes===1?'':'s') + ' found</strong></div>';
+  html += '<table class="admin-table" style="margin-top:8px"><thead><tr><th>File</th><th>Folder</th><th>Total copies</th><th>Duplicates</th></tr></thead><tbody>';
+  for(const f of findings){
+    if(f.dupes === 0) continue;
+    html += '<tr><td><code>'+escapeHtml(f.name)+'</code></td>'
+         +  '<td>'+(f.folder === 'shortline' ? 'Shortline _config' : 'HPE Link _config')+'</td>'
+         +  '<td>'+f.files.length+'</td>'
+         +  '<td><strong style="color:#fca5a5">'+f.dupes+'</strong></td></tr>';
+  }
+  html += '</tbody></table>';
+  html += '<div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">'
+       +  '<button class="btn-orange" onclick="S.cleanupDriveDuplicates()" style="padding:8px 14px;font-size:13px">Move ' + totalDupes + ' duplicate' + (totalDupes===1?'':'s') + ' to trash</button>'
+       +  '<span style="font-size:11px;color:var(--gray-400)">Files go to Drive trash (recoverable for 30 days)</span>'
+       +  '</div>';
+  results.innerHTML = html;
+}
+
+async function cleanupDriveDuplicates(){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    showToast('Admin access required.'); return;
+  }
+  if(!_driveCleanupLastScan){ showToast('Scan first, then clean up.'); return; }
+  const totalDupes = _driveCleanupLastScan.reduce((s, f) => s + f.dupes, 0);
+  if(totalDupes === 0){ showToast('Nothing to clean up.'); return; }
+  if(!confirm('Move ' + totalDupes + ' duplicate file' + (totalDupes===1?'':'s') + ' to Drive trash?\n\nThe most recent copy of each file is kept. Trashed files are recoverable for 30 days from the Drive UI.')) return;
+  setSyncStatus('syncing', 'Cleaning up…');
+  let cleaned = 0;
+  for(const f of _driveCleanupLastScan){
+    if(f.dupes === 0) continue;
+    try {
+      await _consolidateDuplicateFiles(f.files, f.name);
+      cleaned += f.dupes;
+    } catch(e){
+      console.warn('[drive-cleanup] cleanup failed for', f.name, e);
+    }
+  }
+  setSyncStatus('saved');
+  showToast('✓ Moved ' + cleaned + ' file' + (cleaned===1?'':'s') + ' to trash');
+  await scanDriveDuplicates();
+}
+
 /* ============================================================
    SALESPEOPLE — shared list at HPE Link/_config/salespeople.json
    Loaded on bootstrap, edited via admin UI, saved back to Drive.
@@ -24815,8 +24931,38 @@ async function parseBrandPriceFile(brandName, fileIdx){
     return;
   }
 
-  _ppState = { brand:b, fileIdx, rows:[], parsing:true, cancelled:false, apiKey };
+  _ppState = { brand:b, fileIdx, rows:[], parsing:true, cancelled:false, apiKey,
+               cacheFileId:null, sourceMeta:null, fromCache:false, staleCache:null };
   _ppOpenModal(b, f);
+  _ppRenderStatus('loading', 'Checking cache…',
+                  `${escapeHtml(f.name)} · ${f.size}`);
+
+  // v2.0.8.3 — Try the Drive cache first. If we get a fresh hit, skip the
+  // API entirely. If we get a stale hit, hold it aside as a fallback in
+  // case the API call fails.
+  // The "↻ Re-parse from API" button sets _ppForceBypassCache=true to skip
+  // the lookup entirely on user demand.
+  const cacheLookup = _ppForceBypassCache ? { ok:false } : await _ppLookupCache(f);
+  if(cacheLookup.ok){
+    _ppState.cacheFileId = cacheLookup.fileId;
+    _ppState.sourceMeta = cacheLookup.sourceMeta;
+    if(!cacheLookup.stale){
+      // Fresh cache — use it directly.
+      const c = cacheLookup.cache;
+      _ppState.columns = Array.isArray(c.columns) ? c.columns : [];
+      _ppState.columnRoles = (c.columnRoles && typeof c.columnRoles === 'object')
+        ? c.columnRoles
+        : _ppGuessColumnRoles(_ppState.columns, b);
+      _ppState.rows = _ppNormalizeRows(Array.isArray(c.rows) ? c.rows : []);
+      _ppState.fromCache = true;
+      if(typeof showToast === 'function') showToast('Loaded from cache · ' + (c.parsedAt ? new Date(c.parsedAt).toLocaleDateString() : 'unknown date'));
+      _ppRenderTable();
+      return;
+    }
+    // Stale: stash for fallback, continue to API.
+    _ppState.staleCache = cacheLookup.cache;
+  }
+
   _ppRenderStatus('loading', 'Downloading file from Drive…',
                   `${escapeHtml(f.name)} · ${f.size}`);
 
@@ -24853,8 +24999,32 @@ async function parseBrandPriceFile(brandName, fileIdx){
     _ppState.columnRoles = _ppGuessColumnRoles(columns, b);
     _ppState.rows = _ppNormalizeRows(parsed.rows);
     _ppRenderTable();
+
+    // v2.0.8.3 — Write the cache so the next parse of the same file is instant.
+    // Fire-and-forget: failure here doesn't break the user's session.
+    _ppWriteCache(f, {
+      columns: _ppState.columns,
+      rows: parsed.rows,                     // raw rows (pre-_matchCache)
+      columnRoles: _ppState.columnRoles
+    }, _ppState.cacheFileId, _ppState.sourceMeta).then(id => {
+      if(id) _ppState.cacheFileId = id;
+    }).catch(() => {});
   } catch(err){
     console.error('[parser] failed:', err);
+    // v2.0.8.3 — If we have a stale cache, fall back to it silently rather
+    // than showing the user an error. They get the modal with a small note.
+    if(_ppState.staleCache && Array.isArray(_ppState.staleCache.rows) && _ppState.staleCache.rows.length > 0){
+      const c = _ppState.staleCache;
+      _ppState.columns = Array.isArray(c.columns) ? c.columns : [];
+      _ppState.columnRoles = (c.columnRoles && typeof c.columnRoles === 'object')
+        ? c.columnRoles
+        : _ppGuessColumnRoles(_ppState.columns, b);
+      _ppState.rows = _ppNormalizeRows(c.rows);
+      _ppState.fromCache = true;
+      if(typeof showToast === 'function') showToast('Using cached data — source has changed but API call failed.', 5000);
+      _ppRenderTable();
+      return;
+    }
     // v2.0.7.5 — Pass raw response through to the error UI when present
     // (set by _ppCallClaude on JSON parse failures).
     const raw = (err && err._raw) || _ppState.lastRawResponse || null;
@@ -24903,6 +25073,143 @@ function _ppRenderStatus(kind, title, detail, rawResponse){
       rawHtml +
     '</div>' +
   '</div>';
+}
+
+/* v2.0.8.3 — PRICE FILE PARSE CACHE (Drive)
+   ============================================================================
+   First parse hits the API; subsequent parses load instantly from a sibling
+   `<sourcefilename>.parsed.json` in the same Drive folder as the source.
+
+   Cache schema:
+     { parsedAt, parsedBy, modelVersion, sourceModifiedTime,
+       columns:[{key,label}], rows:[...], columnRoles:{key:role} }
+
+   Lookup flow (called from parseBrandPriceFile):
+     1. Resolve source's parent folder + modifiedTime via files.get
+     2. List `<sourcefilename>.parsed.json` in that folder
+     3. If found and modifiedTime matches → return parsed cache (fresh)
+     4. If found but stale → return parsed cache flagged stale
+     5. If not found → return null
+
+   Write flow:
+     - Called once after successful initial parse (with auto-guessed roles)
+     - Called again at commitPriceParser (with user's final roles)
+     - Updates existing cache file in place via PATCH; otherwise creates new
+   ========================================================================= */
+
+/* Build the cache filename: '2026 Toro Pricing.pdf' → '2026 Toro Pricing.pdf.parsed.json' */
+function _ppCacheFileName(sourceName){
+  return (sourceName || 'unknown') + '.parsed.json';
+}
+
+/* Get source's parent folder + modifiedTime. Returns {parentId, modifiedTime} or null on failure. */
+async function _ppFetchSourceMeta(driveFileId){
+  if(!accessToken || !driveFileId) return null;
+  try {
+    const resp = await fetch(
+      'https://www.googleapis.com/drive/v3/files/' + driveFileId + '?fields=parents,modifiedTime&supportsAllDrives=true',
+      { headers: { 'Authorization': 'Bearer ' + accessToken } });
+    if(!resp.ok) return null;
+    const data = await resp.json();
+    const parentId = (data.parents && data.parents[0]) || null;
+    return { parentId, modifiedTime: data.modifiedTime || '' };
+  } catch(e){ console.warn('[parser] source-meta lookup failed:', e); return null; }
+}
+
+/* Look for the cache file in the source's parent folder.
+   Returns {ok, cache, stale, fileId} — cache is the parsed JSON object.
+   Returns {ok:false} if no cache or if anything goes wrong (caller proceeds to API). */
+async function _ppLookupCache(sourceFile){
+  if(!sourceFile || !sourceFile.driveFileId || !accessToken) return { ok:false };
+  setSyncStatus('syncing', 'Checking cache…');
+  try {
+    const meta = await _ppFetchSourceMeta(sourceFile.driveFileId);
+    if(!meta || !meta.parentId){ setSyncStatus('saved'); return { ok:false }; }
+    const cacheName = _ppCacheFileName(sourceFile.name);
+    // Drive q-string requires escaping single quotes in filenames
+    const safeName = cacheName.replace(/'/g, "\\'");
+    const params = new URLSearchParams({
+      q: `name='${safeName}' and '${meta.parentId}' in parents and trashed=false`,
+      fields: 'files(id,name,modifiedTime)',
+      pageSize: '1',
+      supportsAllDrives: 'true', includeItemsFromAllDrives: 'true',
+      ...(sharedDriveId ? { driveId: sharedDriveId, corpora: 'drive' } : {})
+    });
+    const list = await fetch('https://www.googleapis.com/drive/v3/files?' + params,
+      { headers: { 'Authorization': 'Bearer ' + accessToken } });
+    if(!list.ok){ setSyncStatus('error'); return { ok:false }; }
+    const ld = await list.json();
+    if(!ld.files || ld.files.length === 0){ setSyncStatus('saved'); return { ok:false }; }
+    const cacheFileId = ld.files[0].id;
+    const content = await fetch(
+      'https://www.googleapis.com/drive/v3/files/' + cacheFileId + '?alt=media&supportsAllDrives=true',
+      { headers: { 'Authorization': 'Bearer ' + accessToken } });
+    if(!content.ok){ setSyncStatus('error'); return { ok:false }; }
+    const cache = await content.json();
+    const stale = !!(cache.sourceModifiedTime && meta.modifiedTime && cache.sourceModifiedTime !== meta.modifiedTime);
+    setSyncStatus('saved');
+    return { ok:true, cache, stale, fileId: cacheFileId, sourceMeta: meta };
+  } catch(e){
+    console.warn('[parser] cache lookup failed:', e);
+    setSyncStatus('error');
+    return { ok:false };
+  }
+}
+
+/* Write the cache file. If fileId is null, creates new. Otherwise PATCH-updates.
+   sourceMeta is what we got back from _ppFetchSourceMeta when looking up; if not
+   present, we re-fetch it. Returns the new/updated fileId, or null on failure. */
+async function _ppWriteCache(sourceFile, payload, fileId, sourceMeta){
+  if(!sourceFile || !sourceFile.driveFileId || !accessToken) return null;
+  setSyncStatus('syncing', 'Saving cache…');
+  try {
+    let meta = sourceMeta;
+    if(!meta) meta = await _ppFetchSourceMeta(sourceFile.driveFileId);
+    if(!meta || !meta.parentId){ setSyncStatus('error'); return null; }
+    const cacheBody = JSON.stringify({
+      parsedAt: new Date().toISOString(),
+      parsedBy: (userInfo && userInfo.email) || '',
+      modelVersion: 'claude-sonnet-4-5',
+      sourceModifiedTime: meta.modifiedTime || '',
+      columns: payload.columns || [],
+      rows: payload.rows || [],
+      columnRoles: payload.columnRoles || {}
+    });
+    if(fileId){
+      const resp = await fetch(
+        'https://www.googleapis.com/upload/drive/v3/files/' + fileId + '?uploadType=media&supportsAllDrives=true',
+        { method: 'PATCH',
+          headers: { 'Authorization': 'Bearer ' + accessToken, 'Content-Type': 'application/json' },
+          body: cacheBody });
+      if(!resp.ok){ setSyncStatus('error'); return null; }
+      setSyncStatus('saved');
+      return fileId;
+    } else {
+      const cacheName = _ppCacheFileName(sourceFile.name);
+      const metaPart = JSON.stringify({ name: cacheName, parents: [meta.parentId], mimeType: 'application/json' });
+      const boundary = '-------ppCacheBoundary' + Date.now();
+      const body =
+        `--${boundary}\r\n` +
+        `Content-Type: application/json; charset=UTF-8\r\n\r\n` +
+        metaPart + `\r\n` +
+        `--${boundary}\r\n` +
+        `Content-Type: application/json\r\n\r\n` +
+        cacheBody + `\r\n--${boundary}--`;
+      const resp = await fetch(
+        'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true',
+        { method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + accessToken, 'Content-Type': 'multipart/related; boundary=' + boundary },
+          body });
+      if(!resp.ok){ setSyncStatus('error'); return null; }
+      const data = await resp.json();
+      setSyncStatus('saved');
+      return data.id || null;
+    }
+  } catch(e){
+    console.warn('[parser] cache write failed:', e);
+    setSyncStatus('error');
+    return null;
+  }
 }
 
 async function _ppFetchFromDrive(fileMeta){
@@ -25315,8 +25622,36 @@ function _ppRenderTable(){
     '</div>';
   const ftr = document.getElementById('pp-footer');
   if(ftr) ftr.style.display = 'flex';
+  // v2.0.8.3 — Show "Re-parse from API" button only when the rows came from
+  // a cache hit (not freshly parsed via API in this session).
+  const reparseBtn = document.getElementById('pp-reparse-btn');
+  if(reparseBtn){
+    reparseBtn.style.display = (_ppState && _ppState.fromCache) ? 'inline-block' : 'none';
+  }
   _ppUpdateCommitCount();
 }
+
+/* v2.0.8.3 — Force a fresh API parse, bypassing the cache. Called by the
+   "↻ Re-parse from API" button. Re-runs parseBrandPriceFile but with a
+   marker that suppresses the cache lookup. */
+async function priceParserReparse(){
+  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
+    showToast('Admin access required.'); return;
+  }
+  if(!_ppState || !_ppState.brand){ return; }
+  if(!confirm('Re-parse this file from the Anthropic API?\n\nThis will bypass the saved cache and may take 10–30 seconds. Your in-progress mapping will be lost.')) return;
+  const brandName = _ppState.brand.name;
+  const fileIdx = _ppState.fileIdx;
+  // Force-bypass: stash a marker before close, then re-enter parse flow.
+  closePriceParser();
+  _ppForceBypassCache = true;
+  try {
+    await parseBrandPriceFile(brandName, fileIdx);
+  } finally {
+    _ppForceBypassCache = false;
+  }
+}
+let _ppForceBypassCache = false;
 
 function _ppRowHtml(r, roles, brand){
   const cls = r.includes ? '' : 'excluded';
@@ -25466,6 +25801,24 @@ function commitPriceParser(){
     if(typeof saveSkuCatalog === 'function') saveSkuCatalog();
   }
   saveAppState();
+  // v2.0.8.3 — Update the cache with the user's final column-role mapping
+  // so the next parse of this file uses their choices, not the auto-guess.
+  // We write the bare {model, description, values} rows so the cache stays
+  // schema-compatible with the API response shape; runtime fields (id,
+  // includes, _matchCache) are added back by _ppNormalizeRows on read.
+  try {
+    const f = (brand.files && brand.files[_ppState.fileIdx]) || null;
+    if(f && _ppState.cacheFileId !== undefined){
+      const cleanRows = (_ppState.rows || []).map(r => ({
+        model: r.model, description: r.description, values: r.values
+      }));
+      _ppWriteCache(f, {
+        columns: _ppState.columns,
+        rows: cleanRows,
+        columnRoles: _ppState.columnRoles
+      }, _ppState.cacheFileId, _ppState.sourceMeta).catch(() => {});
+    }
+  } catch(e){ console.warn('[parser] commit-time cache write failed:', e); }
   closePriceParser();
   if(typeof renderBrandHub === 'function') renderBrandHub();
   if(typeof filterAndRender === 'function') filterAndRender();
@@ -26700,6 +27053,7 @@ function updateCommissionCodes(idx, value){
     priceParserBulk: typeof priceParserBulk === 'function' ? priceParserBulk : undefined,
     priceParserEditField: typeof priceParserEditField === 'function' ? priceParserEditField : undefined,
     priceParserSetColumnRole: typeof priceParserSetColumnRole === 'function' ? priceParserSetColumnRole : undefined,
+    priceParserReparse: typeof priceParserReparse === 'function' ? priceParserReparse : undefined,
     commitPriceParser: typeof commitPriceParser === 'function' ? commitPriceParser : undefined,
     /* v1.2.2 — Real Drive-backed brand price file upload + download */
     uploadBrandFile: typeof uploadBrandFile === 'function' ? uploadBrandFile : undefined,
@@ -26933,6 +27287,8 @@ function updateCommissionCodes(idx, value){
     saveQuote: typeof saveQuote === 'function' ? saveQuote : undefined,
     saveSalespeople: typeof saveSalespeople === 'function' ? saveSalespeople : undefined,
     saveSkuCatalog: typeof saveSkuCatalog === 'function' ? saveSkuCatalog : undefined,
+    scanDriveDuplicates: typeof scanDriveDuplicates === 'function' ? scanDriveDuplicates : undefined,
+    cleanupDriveDuplicates: typeof cleanupDriveDuplicates === 'function' ? cleanupDriveDuplicates : undefined,
     selectBrandCard: typeof selectBrandCard === 'function' ? selectBrandCard : undefined,
     selectCustomerFromPicker: typeof selectCustomerFromPicker === 'function' ? selectCustomerFromPicker : undefined,
     setAllLinesMargin: typeof setAllLinesMargin === 'function' ? setAllLinesMargin : undefined,

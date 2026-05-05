@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v2.0.10.1</title><!-- build:20260505_v2101_packages_missing_helper -->
+<title>HPE Sales Platform v2.0.10.2</title><!-- build:20260505_v2102_packages_quote_builder -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -2333,6 +2333,37 @@ body.admin-mode .admin-only { display: inline-flex; }
 #quote-overlay-sl .qline-remove:hover{color:var(--red);border-color:var(--red);background:#fef2f2;}
 #quote-overlay-sl .qline-margin-input{width:100% !important;padding:5px 7px;border:1px solid var(--gray-200);border-radius:4px;font-size:11px;text-align:right;font-family:'DM Mono',monospace;background:rgba(22,163,74,0.05);color:var(--green);font-weight:600;}
 #quote-overlay-sl .qline-margin-input:focus{outline:none;border-color:var(--green);background:rgba(22,163,74,0.10);}
+/* v2.0.10.2 — Package edit mode visual treatment. When the quote-overlay-sl
+   has the .package-edit-mode class, swap the action bar buttons (qa-quote-only
+   hidden, qa-pkg-only shown) and hide the customer/financing/notes blocks
+   that aren't relevant to a template. */
+#quote-overlay-sl.package-edit-mode .qa-quote-only{display:none !important;}
+#quote-overlay-sl.package-edit-mode .qa-pkg-only{display:block !important;}
+/* Hide customer block, financing block, notes textarea — they're not relevant
+   to a package template. The id-based selectors are robust to refactors of
+   surrounding markup since these IDs are referenced from a lot of places. */
+#quote-overlay-sl.package-edit-mode #q-customer,
+#quote-overlay-sl.package-edit-mode #q-cust-phone,
+#quote-overlay-sl.package-edit-mode #q-cust-email,
+#quote-overlay-sl.package-edit-mode #q-salesperson-sl,
+#quote-overlay-sl.package-edit-mode #q-email,
+#quote-overlay-sl.package-edit-mode #q-notes{display:none;}
+/* The wrapping .quote-fields blocks need hiding too — find them via :has().
+   Browsers without :has() (older Safari/FF) just leave the labels visible
+   above empty inputs; not pretty but not broken. */
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-customer),
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-cust-phone),
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-cust-email),
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-salesperson-sl),
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-email),
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-notes){display:none !important;}
+#quote-overlay-sl.package-edit-mode .quote-customer,
+#quote-overlay-sl.package-edit-mode #quote-customer-block,
+#quote-overlay-sl.package-edit-mode .quote-financing,
+#quote-overlay-sl.package-edit-mode #q-finance-fields{display:none !important;}
+/* The package edit banner, inserted by _applyPackageEditModeUI at the top
+   of the modal body. */
+.pkg-edit-banner{background:linear-gradient(90deg,#fffbeb 0%,#fef3c7 100%);border:1px solid #fcd34d;border-radius:8px;padding:12px 14px;margin:12px 16px 0 16px;}
 #quote-overlay-sl .add-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
 #quote-overlay-sl .add-btn{background:white;border:1px dashed var(--gray-300);color:var(--gray-500);padding:9px;border-radius:var(--radius);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
 #quote-overlay-sl .add-btn:hover{border-color:var(--orange);color:var(--orange);}
@@ -2456,7 +2487,7 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.10.1</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v2.0.10.2</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="topbar-search">
@@ -3867,9 +3898,13 @@ body.admin-mode .admin-only { display: inline-flex; }
     </div>
     <div id="quote-editing-badge" style="display:none;background:var(--blue-light, #eff6ff);color:#1e40af;padding:8px 12px;border-radius:6px;font-size:12px;margin-top:10px;border:1px solid #bfdbfe"></div>
     <div class="quote-actions">
-      <button class="btn-secondary" style="flex:1" onclick="S.closeQuoteBuilder()">Cancel</button>
-      <button class="btn-secondary" style="flex:1" onclick="S.saveQuote()">Save quote</button>
-      <button class="btn-orange" style="flex:2" onclick="S.generateQuotePDF()">↓ Generate PDF Quote</button>
+      <button class="btn-secondary qa-quote-only" style="flex:1" onclick="S.closeQuoteBuilder()">Cancel</button>
+      <button class="btn-secondary qa-quote-only" style="flex:1" onclick="S.saveQuote()">Save quote</button>
+      <button class="btn-orange qa-quote-only" style="flex:2" onclick="S.generateQuotePDF()">↓ Generate PDF Quote</button>
+      <!-- v2.0.10.2 — Package edit mode action bar. Shown only when the
+           quote-overlay-sl has the package-edit-mode class. -->
+      <button class="btn-secondary qa-pkg-only" style="flex:1;display:none" onclick="S.cancelPackageEdit()">Cancel</button>
+      <button class="btn-orange qa-pkg-only" style="flex:3;display:none" onclick="S.savePackageFromBuilder()">📦 Save Package</button>
     </div>
   </div>
 </div>
@@ -14966,7 +15001,23 @@ async function loadAppState(){
           saveAppState();
         }
       }
-      if(Array.isArray(state.PACKAGES)) PACKAGES=state.PACKAGES;
+      if(Array.isArray(state.PACKAGES)){
+        // v2.0.10.2 — Old shape packages had lines like {model, qty} only.
+        // New shape is full quote-builder line items: {type, sku_id, brand,
+        // model, desc, cost, price, qty}. Migrate by wiping any package whose
+        // first line lacks `price` or `cost` — easier and cleaner than partial
+        // upgrade given how few packages exist in production.
+        const cleaned = state.PACKAGES.filter(p => {
+          if(!p || !Array.isArray(p.lines) || p.lines.length === 0) return true; // keep empty packages
+          const first = p.lines[0];
+          return first && (first.price !== undefined || first.cost !== undefined);
+        });
+        const wiped = state.PACKAGES.length - cleaned.length;
+        PACKAGES = cleaned;
+        if(wiped > 0){
+          console.log('[HPE] v2.0.10.2 migration: removed ' + wiped + ' legacy package(s) — recreate them with the new builder.');
+        }
+      }
       if(Array.isArray(state.CUSTOMERS) && state.CUSTOMERS.length>0){
         CUSTOMERS = state.CUSTOMERS.map(migrateCustomerRecord).filter(Boolean);
       }
@@ -19637,7 +19688,13 @@ let selectedBrandFilter = '';  // v0.7 — which brand card was clicked on Price
 let myQuotesOnly = false;      // v0.16 — default to All Quotes (was: My Quotes)
 
 /* QUOTE BUILDER STATE — for the active quote being edited.
-   currentQuoteId = id of the saved quote we're editing (null = new unsaved quote). */
+   currentQuoteId = id of the saved quote we're editing (null = new unsaved quote).
+   v2.0.10.2: currentPackageEditId is set when the builder is acting as a
+   package-template editor; quote-only flows (saveQuote, generateQuotePDF,
+   closeQuoteBuilder) check this and short-circuit to package handlers. The
+   actual declaration of currentPackageEditId is in the packages module
+   block (kept colocated with the rest of the package code); it's declared
+   with `let` so it's hoisted within this IIFE and can be read here. */
 let currentQuoteId = null;
 let brandSortMode = 'alpha';   // 'alpha' | 'popular' | 'category'
 
@@ -21849,6 +21906,16 @@ function openQuoteBuilder(){
   if (typeof updateBrandFinanceInfoButton === 'function') updateBrandFinanceInfoButton();
 }
 function closeQuoteBuilder(force){
+  // v2.0.10.2 — In package edit mode, route through cancelPackageEdit which
+  // confirms unsaved package changes and exits the mode cleanly.
+  if(currentPackageEditId && !force){
+    cancelPackageEdit();
+    return;
+  }
+  if(currentPackageEditId && force){
+    _exitPackageEditMode();
+    return;
+  }
   // Confirm before discarding if there's in-progress quote data — unless force=true
   // (e.g. called from generateQuotePDF which already saved + downloaded).
   if (!force){
@@ -22489,6 +22556,12 @@ function quoteFromBuilder(){
    Returns the saved quote. */
 function saveQuote(opts){
   opts = opts || {};
+  // v2.0.10.2 — When the builder is in package edit mode, redirect Save to
+  // savePackageFromBuilder. Keeps the existing button wiring working without
+  // each callsite needing to know the mode.
+  if(currentPackageEditId){
+    return savePackageFromBuilder();
+  }
   const builder = quoteFromBuilder();
   if (!builder.customer.name && builder.lineItems.length === 0){
     if (!opts.silent) showToast('Add a customer or at least one line before saving');
@@ -22644,6 +22717,12 @@ function updateQuoteEditingBadge(){
 }
 
 async function generateQuotePDF(){
+  // v2.0.10.2 — In package edit mode, the action bar shouldn't even show this
+  // button; defensive guard in case something fires it programmatically.
+  if(currentPackageEditId){
+    showToast('Save the package first — packages don\'t have customer-facing PDFs.');
+    return;
+  }
   const customer = document.getElementById('q-customer').value.trim() || 'Valued Customer';
   // v0.9 — Allow generating a quote with no customer and/or no line items.
   // Useful for blank/template quotes. We'll just render whatever fields are filled.
@@ -27559,48 +27638,68 @@ function showToast(msg){
 
 /* ============================================================
    v0.6: PACKAGES (admin Brand Hub)
-   v2.0.10.0: Full feature set —
-     • SKU picker modal for line management (replaces raw prompt)
-     • Optional flat-dollar discount on package
-     • Packages section rendered at top of brand price book
-     • Click-through to stock detail (tags + serials per line)
-     • "Quote this package" — adds each line as a quote item, marked as
-       part of the package via line.packageId for grouped removal later
+   v2.0.10.0: Initial full-feature pass (SKU picker, discount, price book
+              section, click-to-expand stock, quote-this-package).
+   v2.0.10.2: Quote-builder edit mode — packages are now full quote
+              templates with per-line cost/price/margin, custom fee lines
+              (setup/delivery/freight), and proper margin display. Old
+              {model,qty} shape was wiped on load (see migration in app
+              state hydration). The discount field was removed; per-line
+              pricing supersedes it.
    ============================================================ */
 
-/* v2.0.10.0 — Helper that was referenced in renderBrandCardBody since v0.6
-   but never defined, which made hasPackages perpetually false and
-   short-circuited the whole packages UI to its empty-state branch. Returning
-   the filtered list here lets renderBrandHub render existing packages and
-   thus show the per-package + Add line / × delete buttons. */
+/* Helper: get all packages for a brand. Was missing in v2.0.10.0; added
+   v2.0.10.1 to fix the renderBrandHub empty-state bug. */
 function getBrandPackages(brandName){
   return (PACKAGES || []).filter(p => p && p.brand === brandName);
 }
 
-/* Helper: aggregated price/cost/stock summary for a package across its lines.
-   Returns null if package has no lines. */
+/* v2.0.10.2 — Module-scoped state for the package edit mode. When set, the
+   shared Shortline quote builder is acting as a package editor instead of a
+   real quote. saveQuote() and the action-bar render branch on this. */
+let currentPackageEditId = null;
+
+/* Aggregated cost/price/stock summary for a package across all its lines.
+   New shape: each line is a full quote line item with cost/price stored.
+   Stock-availability is computed by matching line.sku_id (or model fallback)
+   against INVENTORY via getStockForSku.  Returns null if package empty. */
 function _pkgSummary(pkg){
   if(!pkg || !Array.isArray(pkg.lines) || pkg.lines.length === 0) return null;
-  let totalMsrp = 0;
   let totalCost = 0;
+  let totalPrice = 0;
   let allLinesStocked = true;
   let anyLineStocked = false;
+  let hasItemLines = false;
   const lineDetails = pkg.lines.map(l => {
-    const sku = SKUS.find(s => modelsMatch(l.model, s.model).match && (!l.brand || s.brand === pkg.brand));
-    const stockUnits = sku ? getStockForSku(sku) : [];
-    const lineMsrp = sku ? (effectiveModelMsrp(sku) || 0) : 0;
-    const lineCost = sku ? (effectiveModelCost ? (effectiveModelCost(sku) || sku.cost || 0) : (sku.cost || 0)) : 0;
-    totalMsrp += lineMsrp * (l.qty || 1);
-    totalCost += lineCost * (l.qty || 1);
-    if(stockUnits.length === 0) allLinesStocked = false;
-    if(stockUnits.length > 0) anyLineStocked = true;
-    return { line: l, sku, stockUnits, lineMsrp, lineCost };
+    const qty = l.qty || 1;
+    const lineCost = (+l.cost || 0) * qty;
+    const linePrice = (+l.price || 0) * qty;
+    totalCost += lineCost;
+    totalPrice += linePrice;
+    // Only 'item' lines (SKU-backed) count for stock display. Custom fee
+    // lines (setup/delivery/freight) don't have stock to look up.
+    let sku = null;
+    let stockUnits = [];
+    if(l.type === 'item'){
+      hasItemLines = true;
+      // Prefer sku_id when present (newer lines); fall back to brand/model match.
+      if(l.sku_id) sku = SKUS.find(s => s.id === l.sku_id);
+      if(!sku && l.model) sku = SKUS.find(s => modelsMatch(l.model, s.model).match && (!l.brand || s.brand === l.brand));
+      stockUnits = sku ? getStockForSku(sku) : [];
+      if(stockUnits.length === 0) allLinesStocked = false;
+      if(stockUnits.length > 0) anyLineStocked = true;
+    }
+    return { line: l, sku, stockUnits, lineCost, linePrice };
   });
-  const discount = +pkg.discount || 0;
-  const packagePrice = Math.max(0, totalMsrp - discount);
-  return { lineDetails, totalMsrp, totalCost, discount, packagePrice, allLinesStocked, anyLineStocked };
+  // If there are no SKU-backed lines, "all stocked" is meaningless; flag it.
+  if(!hasItemLines){ allLinesStocked = false; anyLineStocked = false; }
+  const margin = totalPrice > 0 ? ((totalPrice - totalCost) / totalPrice) * 100 : 0;
+  return { lineDetails, totalCost, totalPrice, margin, allLinesStocked, anyLineStocked, hasItemLines };
 }
 
+/* Brand Hub admin: render the per-package summary cards. With the v2.0.10.2
+   refactor this is a read-only summary — actual editing happens in the
+   quote builder (click "Edit lines" / package name). */
 function renderBrandPackages(brandName){
   const pkgs = PACKAGES.filter(p => p.brand === brandName)
     .sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
@@ -27609,43 +27708,27 @@ function renderBrandPackages(brandName){
   }
   return pkgs.map(p => {
     const sum = _pkgSummary(p);
-    const linesHtml = (p.lines || []).map((l, idx) => {
-      const sku = SKUS.find(s => modelsMatch(l.model, s.model).match);
-      const stock = sku ? getStockForSku(sku).length : 0;
-      const stockTxt = stock > 0
-        ? `<span style="color:var(--green);font-size:10px">${stock} stocked</span>`
-        : `<span style="color:var(--gray-400);font-size:10px">not stocked</span>`;
-      return `<div class="pkg-line-row">
-        <span><strong>${l.qty}×</strong> ${escapeHtml(l.model)} ${sku ? '— '+escapeHtml(sku.desc) : '<span style="color:var(--amber)">(SKU not found)</span>'}</span>
-        <span style="display:flex;gap:8px;align-items:center">
-          ${stockTxt}
-          <button class="pkg-btn-sm danger" onclick="S.removePackageLine(${p.id},${idx})" title="Remove this line" style="padding:2px 7px;font-size:10px">×</button>
-        </span>
-      </div>`;
-    }).join('');
-    const priceHtml = sum
-      ? `<div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--gray-200);font-size:11px;color:var(--gray-600);display:flex;justify-content:space-between;align-items:center">
-          <span>Sum of MSRPs: <strong>$${Math.round(sum.totalMsrp).toLocaleString()}</strong>${sum.discount>0?` − <span style="color:#dc2626">$${sum.discount.toLocaleString()} discount</span>`:''}</span>
-          <span style="font-size:13px;font-weight:700;color:var(--orange);font-family:'DM Mono',monospace">$${Math.round(sum.packagePrice).toLocaleString()}</span>
+    const lineCount = (p.lines || []).length;
+    const itemLines = (p.lines || []).filter(l => l.type === 'item').length;
+    const feeLines = lineCount - itemLines;
+    const summaryHtml = sum
+      ? `<div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--gray-200);font-size:11px;color:var(--gray-600);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <span>${itemLines} unit${itemLines===1?'':'s'}${feeLines>0?' + '+feeLines+' fee'+(feeLines===1?'':'s'):''} · cost <strong>$${Math.round(sum.totalCost).toLocaleString()}</strong></span>
+          <span>price <strong style="font-size:13px;color:var(--orange);font-family:'DM Mono',monospace">$${Math.round(sum.totalPrice).toLocaleString()}</strong> · margin <strong>${sum.margin.toFixed(1)}%</strong></span>
         </div>`
-      : '';
+      : '<div style="margin-top:6px;font-size:11px;color:var(--gray-400);font-style:italic">No lines yet. Click Edit to build it out.</div>';
     return `
       <div class="pkg-item${p.featured?' featured':''}">
         <div class="pkg-item-header">
           <span class="pkg-feature-toggle${p.featured?' active':''}" onclick="S.togglePackageFeatured(${p.id})" title="${p.featured?'Featured (anchored at top)':'Click to feature'}">★</span>
           <div class="pkg-item-name">
-            <input type="text" value="${(p.name||'').replace(/"/g,'&quot;')}" onchange="S.updatePackageField(${p.id},'name',this.value)" style="width:100%;background:none;border:none;font-weight:600;font-size:13px;color:var(--gray-900);padding:0;font-family:'DM Sans',sans-serif">
-            <input type="text" value="${(p.desc||'').replace(/"/g,'&quot;')}" placeholder="Short description" onchange="S.updatePackageField(${p.id},'desc',this.value)" style="width:100%;background:none;border:none;font-size:11px;color:var(--gray-500);padding:0;margin-top:2px;font-family:'DM Sans',sans-serif">
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-500)">
-            <span>Discount $</span>
-            <input type="number" value="${+p.discount||0}" min="0" step="50" onchange="S.updatePackageField(${p.id},'discount',+this.value||0)" style="width:80px;padding:3px 6px;border:1px solid var(--gray-200);border-radius:4px;font-family:'DM Mono',monospace;font-size:11px;text-align:right">
+            <div style="font-weight:600;font-size:13px;color:var(--gray-900)">${escapeHtml(p.name||'(unnamed)')}</div>
+            ${p.desc ? `<div style="font-size:11px;color:var(--gray-500);margin-top:2px">${escapeHtml(p.desc)}</div>` : ''}
           </div>
         </div>
-        <div class="pkg-lines">${linesHtml || '<span style="color:var(--gray-400);font-style:italic">No lines yet</span>'}</div>
-        ${priceHtml}
+        ${summaryHtml}
         <div class="pkg-actions">
-          <button class="pkg-btn-sm" onclick="S.openPackageLineModal(${p.id})" style="border-color:var(--orange);color:var(--orange)">+ Add line</button>
+          <button class="pkg-btn-sm" onclick="S.openPackageInBuilder(${p.id})" style="border-color:var(--orange);color:var(--orange)">Edit lines & pricing</button>
           <button class="pkg-btn-sm danger" style="margin-left:auto" onclick="S.deletePackage(${p.id})">Delete</button>
         </div>
       </div>
@@ -27654,21 +27737,21 @@ function renderBrandPackages(brandName){
 }
 
 function addPackage(brandName){
-  const name = prompt('Package name (e.g., "T23 + DC48 GHS package"):');
+  const name = prompt('Package name (e.g., "T23 + DC48 GHS Combo"):');
   if (!name) return;
   const newId = Math.max(0, ...PACKAGES.map(p => p.id)) + 1;
-  PACKAGES.push({
+  const pkg = {
     id: newId,
     brand: brandName,
     name: name,
     desc: '',
     featured: false,
-    discount: 0,  // v2.0.10.0 — flat dollar discount, applied to sum of MSRPs
-    lines: []
-  });
-  renderBrandHub();
-  showToast(`Created "${name}". Click + Add line to add SKUs.`);
+    lines: []  // v2.0.10.2 — full quote line items, not {model, qty}
+  };
+  PACKAGES.push(pkg);
   saveAppState();
+  // Open it directly in the builder so the admin can start adding lines.
+  openPackageInBuilder(newId);
 }
 
 function deletePackage(pkgId){
@@ -27696,142 +27779,123 @@ function updatePackageField(pkgId, field, value){
   const p = PACKAGES.find(x => x.id === pkgId);
   if (!p) return;
   p[field] = value;
-  // For discount changes, the price summary line needs a re-render. For
-  // name/desc text edits, don't re-render — would lose input focus mid-typing.
-  if(field === 'discount'){
-    renderBrandHub();
-    if(typeof filterAndRender === 'function') try{ filterAndRender(); }catch(e){}
-  }
   saveAppState();
 }
 
-/* v2.0.10.0 — SKU picker modal for adding a package line.
-   Replaces the raw prompt() flow. Filters SKUs to the package's brand. */
-function openPackageLineModal(pkgId){
+/* v2.0.10.2 — Open a package in the existing Shortline quote builder for
+   end-to-end edit. Loads the saved lines, opens the builder overlay, and
+   applies "package edit mode" — hides customer/financing fields (irrelevant
+   for a template), swaps the action bar to a single "Save Package" button. */
+function openPackageInBuilder(pkgId){
   const p = PACKAGES.find(x => x.id === pkgId);
-  if(!p) return;
+  if(!p){ showToast('Package not found'); return; }
   if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
     showToast('Admin access required.');
     return;
   }
-  const brandSkus = SKUS.filter(s => s.brand === p.brand)
-    .sort((a,b) => (a.model||'').localeCompare(b.model||''));
-  if(brandSkus.length === 0){
-    showToast('No SKUs found for ' + p.brand);
-    return;
+  // Snapshot current quote-in-progress (if any) so we can restore it after.
+  // Simple: just clobber for now. The builder is primarily admin-side here.
+  if(quoteLineItems && quoteLineItems.length > 0 && currentQuoteId === null && currentPackageEditId === null){
+    if(!confirm('You have an unsaved quote in progress. Editing a package will clear it. Continue?')) return;
   }
-  closePackageLineModal();
-  const overlay = document.createElement('div');
-  overlay.className = 'modal-overlay';
-  overlay.id = 'pkg-line-modal-overlay';
-  overlay.onclick = (e) => { if(e.target === overlay) closePackageLineModal(); };
-  overlay.innerHTML = `
-    <div class="modal-card" style="max-width:520px">
-      <div class="modal-title">Add line to "${escapeHtml(p.name)}"</div>
-      <div class="modal-sub">Pick a ${escapeHtml(p.brand)} SKU and a quantity.</div>
-      <label class="modal-label">SKU</label>
-      <input type="text" id="pkg-line-search" placeholder="Type to filter (model or description)..." autocomplete="off"
-        style="width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;margin-bottom:8px"
-        oninput="S._filterPackageLineModalList()">
-      <div id="pkg-line-list" style="max-height:300px;overflow-y:auto;border:1px solid var(--gray-200);border-radius:6px;margin-bottom:14px"></div>
-      <label class="modal-label">Quantity</label>
-      <input type="number" id="pkg-line-qty" value="1" min="1" step="1"
-        style="width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Mono',monospace;font-size:13px;margin-bottom:14px">
-      <div style="display:flex;gap:10px;justify-content:flex-end">
-        <button class="pkg-btn-sm" onclick="S.closePackageLineModal()">Cancel</button>
-        <button class="pkg-btn-sm" onclick="S.confirmPackageLineModal(${pkgId})" style="background:var(--orange);color:white;border-color:var(--orange);padding:7px 16px">Add line</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  // Stash brand SKUs for filter
-  overlay._brandSkus = brandSkus;
-  overlay._selectedSkuId = null;
-  _filterPackageLineModalList();
-  setTimeout(() => { document.getElementById('pkg-line-search').focus(); }, 50);
-}
-
-function _filterPackageLineModalList(){
-  const overlay = document.getElementById('pkg-line-modal-overlay');
-  if(!overlay) return;
-  const list = document.getElementById('pkg-line-list');
-  const q = (document.getElementById('pkg-line-search').value || '').toLowerCase().trim();
-  const skus = (overlay._brandSkus || []).filter(s => {
-    if(!q) return true;
-    return ((s.model||'').toLowerCase().includes(q) || (s.desc||'').toLowerCase().includes(q));
+  // Reset builder state and load the package.
+  quoteLineItems = JSON.parse(JSON.stringify(p.lines || []));
+  currentQuoteId = null;        // ensure we're not in quote-edit mode
+  currentPackageEditId = p.id;  // engage package edit mode
+  // Clear customer/notes fields (not relevant for a template)
+  ['q-customer','q-cust-phone','q-cust-email','q-salesperson-sl','q-email','q-notes'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.value = '';
   });
-  if(skus.length === 0){
-    list.innerHTML = '<div style="padding:18px;text-align:center;color:var(--gray-400);font-size:12px">No matches</div>';
-    return;
-  }
-  list.innerHTML = skus.slice(0, 200).map(s => {
-    const stock = getStockForSku(s).length;
-    const stockBadge = stock > 0
-      ? `<span style="color:var(--green);font-weight:600;font-size:10px;font-family:'DM Mono',monospace">${stock} in stock</span>`
-      : `<span style="color:var(--gray-400);font-size:10px;font-family:'DM Mono',monospace">0 stock</span>`;
-    const isSelected = (overlay._selectedSkuId === s.id);
-    return `<div onclick="S._selectPackageLineSku(${s.id})"
-      style="padding:9px 12px;border-bottom:1px solid var(--gray-100);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;${isSelected?'background:#fff7ed':'background:white'}">
-      <div style="min-width:0;flex:1">
-        <div style="font-weight:600;font-size:12px;color:var(--gray-900)">${escapeHtml(s.model)}</div>
-        <div style="font-size:11px;color:var(--gray-500);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(s.desc || '')}</div>
-      </div>
-      ${stockBadge}
-    </div>`;
-  }).join('');
+  // Disable financing too (not relevant for a template)
+  const fEnabled = document.getElementById('q-finance-enabled');
+  if(fEnabled){ fEnabled.checked = false; fEnabled.dispatchEvent(new Event('change')); }
+  // Apply UI mode (hide customer block, swap action bar, set title)
+  _applyPackageEditModeUI(p);
+  renderLineItems();
+  openQuoteBuilder();
 }
 
-function _selectPackageLineSku(skuId){
-  const overlay = document.getElementById('pkg-line-modal-overlay');
+/* Apply or remove the package-edit-mode visual treatment on the quote
+   builder. Hides customer + salesperson + financing + notes blocks (not
+   relevant to a template), swaps action bar to a single "Save Package"
+   button, sets a banner above the lines. Idempotent. */
+function _applyPackageEditModeUI(pkg){
+  const overlay = document.getElementById('quote-overlay-sl');
   if(!overlay) return;
-  overlay._selectedSkuId = skuId;
-  _filterPackageLineModalList();
+  const inMode = !!pkg;
+  overlay.classList.toggle('package-edit-mode', inMode);
+  // Banner — inserted once, content updated each time.
+  let banner = document.getElementById('pkg-edit-banner');
+  if(inMode){
+    if(!banner){
+      banner = document.createElement('div');
+      banner.id = 'pkg-edit-banner';
+      banner.className = 'pkg-edit-banner';
+      // Insert at the top of the quote-overlay's main content panel
+      const card = overlay.querySelector('.quote-card') || overlay.firstElementChild;
+      if(card) card.insertBefore(banner, card.firstChild);
+    }
+    banner.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">' +
+        '<div>' +
+          '<div style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#92400e">📦 Editing package</div>' +
+          '<div style="font-size:14px;font-weight:700;color:var(--gray-900);margin-top:2px">' + escapeHtml(pkg.name||'(unnamed)') + ' <span style="color:var(--gray-500);font-weight:500;font-size:12px">· ' + escapeHtml(pkg.brand||'') + '</span></div>' +
+          '<div style="margin-top:6px"><input type="text" id="pkg-edit-name" value="' + escapeAttr(pkg.name||'') + '" placeholder="Package name" style="width:280px;padding:5px 9px;border:1px solid #fcd34d;border-radius:5px;font-size:12px;font-family:\'DM Sans\',sans-serif;background:#fffbeb"> ' +
+            '<input type="text" id="pkg-edit-desc" value="' + escapeAttr(pkg.desc||'') + '" placeholder="Short description (optional)" style="width:280px;padding:5px 9px;border:1px solid #fcd34d;border-radius:5px;font-size:12px;font-family:\'DM Sans\',sans-serif;background:#fffbeb;margin-left:6px">' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-size:11px;color:#92400e;max-width:260px;line-height:1.4">' +
+          'Set per-line cost &amp; price. Sales reps will see this margin breakdown when they quote the package.' +
+        '</div>' +
+      '</div>';
+  } else {
+    if(banner) banner.remove();
+  }
 }
 
-function confirmPackageLineModal(pkgId){
-  const overlay = document.getElementById('pkg-line-modal-overlay');
-  if(!overlay) return;
-  const p = PACKAGES.find(x => x.id === pkgId);
-  if(!p) return;
-  const skuId = overlay._selectedSkuId;
-  if(!skuId){
-    showToast('Pick a SKU first');
-    return;
-  }
-  const sku = SKUS.find(s => s.id === skuId);
-  if(!sku){ showToast('SKU not found'); return; }
-  const qty = parseInt(document.getElementById('pkg-line-qty').value, 10) || 1;
-  p.lines.push({ model: sku.model, qty, brand: sku.brand });
-  closePackageLineModal();
+/* Save the current builder state back to the package being edited. Called
+   from the package-edit-mode action bar's Save button. */
+function savePackageFromBuilder(){
+  if(!currentPackageEditId){ showToast('Not in package edit mode'); return; }
+  const p = PACKAGES.find(x => x.id === currentPackageEditId);
+  if(!p){ showToast('Package vanished — was it deleted?'); _exitPackageEditMode(); return; }
+  // Pick up name/desc from banner inputs
+  const nameEl = document.getElementById('pkg-edit-name');
+  const descEl = document.getElementById('pkg-edit-desc');
+  if(nameEl) p.name = (nameEl.value || '').trim() || p.name;
+  if(descEl) p.desc = (descEl.value || '').trim();
+  // Deep-copy line items so mutating the builder later doesn't bleed back
+  p.lines = JSON.parse(JSON.stringify(quoteLineItems || []));
+  saveAppState();
+  showToast('Package saved');
+  _exitPackageEditMode();
   renderBrandHub();
   if(typeof filterAndRender === 'function') try{ filterAndRender(); }catch(e){}
-  showToast(`Added ${qty}× ${sku.model}`);
-  saveAppState();
 }
 
-function closePackageLineModal(){
-  const overlay = document.getElementById('pkg-line-modal-overlay');
-  if(overlay) overlay.remove();
+function _exitPackageEditMode(){
+  currentPackageEditId = null;
+  quoteLineItems = [];
+  _applyPackageEditModeUI(null);
+  // Close the builder overlay
+  const overlay = document.getElementById('quote-overlay-sl');
+  if(overlay) overlay.classList.remove('open');
+  const lp = document.getElementById('line-picker');
+  if(lp) lp.classList.remove('open');
 }
 
-function removePackageLine(pkgId, lineIdx){
-  const p = PACKAGES.find(x => x.id === pkgId);
-  if(!p || !Array.isArray(p.lines)) return;
-  if(lineIdx < 0 || lineIdx >= p.lines.length) return;
-  if(typeof isCurrentUserAdmin === 'function' && !isCurrentUserAdmin()){
-    showToast('Admin access required.');
-    return;
-  }
-  p.lines.splice(lineIdx, 1);
+/* Cancel button handler in package edit mode — confirm if changes, exit. */
+function cancelPackageEdit(){
+  if(!currentPackageEditId) return;
+  if(!confirm('Discard changes to this package?')) return;
+  _exitPackageEditMode();
   renderBrandHub();
-  if(typeof filterAndRender === 'function') try{ filterAndRender(); }catch(e){}
-  saveAppState();
 }
 
-/* v2.0.10.0 — Render the Packages section at the top of a brand's price book.
-   Called by filterAndRender() when a brand filter is active. Hidden when no
-   packages exist for the active brand. Featured packages sort first.
-   Each card supports click-to-expand stock detail and a Quote button. */
+/* v2.0.10.0 → v2.0.10.2 — Render the Packages section at the top of a
+   brand's price book. Keeps the same outward shape from v2.0.10.0; the
+   internal _pkgSummary now uses per-line stored cost/price. */
 function renderBrandPackagesPriceBook(brandName){
   const wrap = document.getElementById('pb-packages-section');
   if(!wrap) return;
@@ -27849,33 +27913,49 @@ function renderBrandPackagesPriceBook(brandName){
   }
   wrap.style.display = '';
   const expandedSet = _pbExpandedPackages;
+  const isAdmin = (typeof isCurrentUserAdmin === 'function') ? isCurrentUserAdmin() : false;
   wrap.innerHTML = '<div class="pbpkg-header">📦 Pre-built Packages <span class="pbpkg-count">(' + pkgs.length + ')</span></div>' +
     '<div class="pbpkg-list">' + pkgs.map(p => {
       const sum = _pkgSummary(p);
       const isExpanded = expandedSet.has(p.id);
-      const stockBadge = !sum
-        ? '<span class="pbpkg-stock zero">Empty</span>'
-        : sum.allLinesStocked
-          ? '<span class="pbpkg-stock ok">✓ All in stock</span>'
-          : sum.anyLineStocked
-            ? '<span class="pbpkg-stock partial">Partial stock</span>'
-            : '<span class="pbpkg-stock zero">Not in stock</span>';
+      // Stock badge only meaningful when there ARE item lines in the package.
+      let stockBadge;
+      if(!sum || !sum.hasItemLines){
+        stockBadge = '<span class="pbpkg-stock zero">' + (sum ? 'No units' : 'Empty') + '</span>';
+      } else if(sum.allLinesStocked){
+        stockBadge = '<span class="pbpkg-stock ok">✓ All in stock</span>';
+      } else if(sum.anyLineStocked){
+        stockBadge = '<span class="pbpkg-stock partial">Partial stock</span>';
+      } else {
+        stockBadge = '<span class="pbpkg-stock zero">Not in stock</span>';
+      }
+      const itemLines = (p.lines || []).filter(l => l.type === 'item').length;
+      const feeLines = (p.lines || []).length - itemLines;
       const summaryHtml = sum
         ? `<div class="pbpkg-summary">
-            <span class="pbpkg-lines-count">${p.lines.length} item${p.lines.length===1?'':'s'}</span>
+            <span class="pbpkg-lines-count">${itemLines} unit${itemLines===1?'':'s'}${feeLines>0?' + '+feeLines+' fee'+(feeLines===1?'':'s'):''}</span>
             ${stockBadge}
-            <span class="pbpkg-price">$${Math.round(sum.packagePrice).toLocaleString()}${sum.discount>0?'<span class="pbpkg-disc"> (save $'+sum.discount.toLocaleString()+')</span>':''}</span>
+            <span class="pbpkg-price">$${Math.round(sum.totalPrice).toLocaleString()}${isAdmin?' <span class="pbpkg-disc" style="color:var(--gray-500)">· '+sum.margin.toFixed(1)+'% margin</span>':''}</span>
           </div>`
         : `<div class="pbpkg-summary"><span class="pbpkg-lines-count" style="color:var(--gray-400)">No lines yet</span></div>`;
       const detailHtml = isExpanded && sum
         ? `<div class="pbpkg-detail">
             ${sum.lineDetails.map(d => {
+              if(d.line.type !== 'item'){
+                // Custom fee line — show the fee, not stock
+                return `<div class="pbpkg-line-block" style="background:#fffbeb">
+                  <div class="pbpkg-line-head">
+                    <span><strong>${d.line.qty||1}×</strong> ${escapeHtml(d.line.desc || d.line.model || 'Fee')} <span style="color:var(--gray-400);font-size:10px;text-transform:uppercase;letter-spacing:0.04em;margin-left:6px">${d.line.type||'fee'}</span></span>
+                    <span class="pbpkg-line-stock-count" style="font-family:'DM Mono',monospace;color:var(--gray-700)">$${Math.round(d.linePrice).toLocaleString()}</span>
+                  </div>
+                </div>`;
+              }
               const tagsHtml = d.stockUnits.length > 0
                 ? d.stockUnits.map(u => `<div class="pbpkg-unit"><span class="pbpkg-tag">#${escapeHtml(u.tag||'?')}</span>${u.serial?'<span class="pbpkg-serial">S/N '+escapeHtml(u.serial)+'</span>':''}${u.year?'<span class="pbpkg-year">'+escapeHtml(String(u.year))+'</span>':''}</div>`).join('')
                 : '<div class="pbpkg-nostock">No units in stock</div>';
               return `<div class="pbpkg-line-block">
                 <div class="pbpkg-line-head">
-                  <span><strong>${d.line.qty}×</strong> ${escapeHtml(d.line.model)}${d.sku ? ' — '+escapeHtml(d.sku.desc) : ' <span style="color:var(--amber)">(SKU not in catalog)</span>'}</span>
+                  <span><strong>${d.line.qty}×</strong> ${escapeHtml(d.line.model||'')}${d.sku ? ' — '+escapeHtml(d.sku.desc) : (d.line.desc?' — '+escapeHtml(d.line.desc):' <span style="color:var(--amber)">(SKU not in catalog)</span>')}</span>
                   <span class="pbpkg-line-stock-count">${d.stockUnits.length} available</span>
                 </div>
                 <div class="pbpkg-line-units">${tagsHtml}</div>
@@ -27901,72 +27981,43 @@ function renderBrandPackagesPriceBook(brandName){
     }).join('') + '</div>';
 }
 
-// Tracks which packages are expanded in the price book view (set, not array).
 let _pbExpandedPackages = new Set();
 
 function togglePackageExpand(pkgId){
   if(_pbExpandedPackages.has(pkgId)) _pbExpandedPackages.delete(pkgId);
   else _pbExpandedPackages.add(pkgId);
-  // Get the active brand from the filter so we re-render the right section
   const brandFilter = document.getElementById('brand-filter');
   const brandName = brandFilter ? brandFilter.value : '';
   renderBrandPackagesPriceBook(brandName);
 }
 
-/* v2.0.10.0 — Quote-this-package: pushes each line as its own quote line item,
-   tagged with a shared packageId for grouped behavior later. Applies the
-   package discount as a single negative-priced "Package discount" line so
-   it shows up clearly on the PDF. */
+/* v2.0.10.2 — Quote-this-package now copies the saved per-line pricing
+   directly. No re-derivation from MSRP/margin — what the admin saved is
+   what the rep gets, then they can adjust before sending. Each line carries
+   packageId / packageName so we can group/highlight in the future. */
 function quotePackage(pkgId){
   const p = PACKAGES.find(x => x.id === pkgId);
   if(!p){ showToast('Package not found'); return; }
-  const sum = _pkgSummary(p);
-  if(!sum || p.lines.length === 0){
+  if(!Array.isArray(p.lines) || p.lines.length === 0){
     showToast('Package has no lines to quote.');
     return;
   }
-  const brandRule = BRANDS.find(b => b.name === p.brand) || { default_margin: 15 };
-  const packageTag = 'PKG-' + p.id;
   let added = 0;
-  sum.lineDetails.forEach(d => {
-    if(!d.sku) return; // skip lines whose SKU isn't in the catalog
-    const cost = d.lineCost || 0;
-    const price = d.lineMsrp || Math.round(cost / (1 - brandRule.default_margin/100));
-    quoteLineItems.push({
-      sku_id: d.sku.id,
-      brand: d.sku.brand,
-      model: d.sku.model,
-      desc: d.sku.desc,
-      cost,
-      price,
-      qty: d.line.qty || 1,
-      type: 'item',
-      packageId: p.id,           // v2.0.10.0 — links lines belonging to this package
-      packageName: p.name
-    });
+  p.lines.forEach(l => {
+    // Deep-clone so editing the quote doesn't mutate the package template
+    const li = JSON.parse(JSON.stringify(l));
+    li.packageId = p.id;
+    li.packageName = p.name;
+    quoteLineItems.push(li);
     added++;
   });
-  // Discount line, if any
-  if(sum.discount > 0){
-    quoteLineItems.push({
-      type: 'item',
-      brand: p.brand,
-      model: 'PKG-DISCOUNT',
-      desc: 'Package discount: ' + p.name,
-      cost: 0,
-      price: -sum.discount,
-      qty: 1,
-      packageId: p.id,
-      packageName: p.name
-    });
-  }
   if(added === 0){
-    showToast('Package lines reference SKUs not in the catalog. Edit the package to fix.');
+    showToast('Package has no quotable lines.');
     return;
   }
   renderLineItems();
   openQuoteBuilder();
-  showToast(`Added "${p.name}" to quote (${added} line${added===1?'':'s'}${sum.discount>0?' + discount':''})`);
+  showToast(`Added "${p.name}" to quote (${added} line${added===1?'':'s'})`);
 }
 
 /* ============================================================
@@ -28539,13 +28590,10 @@ function updateCommissionCodes(idx, value){
     addPackage: typeof addPackage === 'function' ? addPackage : undefined,
     // v2.0.10.0 — Missing helper restored (see getBrandPackages comment)
     getBrandPackages: typeof getBrandPackages === 'function' ? getBrandPackages : undefined,
-    // v2.0.10.0 — Package line management (replaces addPackageLine + editPackageLines)
-    openPackageLineModal: typeof openPackageLineModal === 'function' ? openPackageLineModal : undefined,
-    closePackageLineModal: typeof closePackageLineModal === 'function' ? closePackageLineModal : undefined,
-    confirmPackageLineModal: typeof confirmPackageLineModal === 'function' ? confirmPackageLineModal : undefined,
-    _filterPackageLineModalList: typeof _filterPackageLineModalList === 'function' ? _filterPackageLineModalList : undefined,
-    _selectPackageLineSku: typeof _selectPackageLineSku === 'function' ? _selectPackageLineSku : undefined,
-    removePackageLine: typeof removePackageLine === 'function' ? removePackageLine : undefined,
+    // v2.0.10.2 — Package edit mode (uses the shared quote builder)
+    openPackageInBuilder: typeof openPackageInBuilder === 'function' ? openPackageInBuilder : undefined,
+    savePackageFromBuilder: typeof savePackageFromBuilder === 'function' ? savePackageFromBuilder : undefined,
+    cancelPackageEdit: typeof cancelPackageEdit === 'function' ? cancelPackageEdit : undefined,
     // v2.0.10.0 — Price-book package surface
     renderBrandPackagesPriceBook: typeof renderBrandPackagesPriceBook === 'function' ? renderBrandPackagesPriceBook : undefined,
     togglePackageExpand: typeof togglePackageExpand === 'function' ? togglePackageExpand : undefined,

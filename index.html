@@ -4753,24 +4753,18 @@ const HPE = (function(){
       try{
         if(quote.source === 'used'){
           router.go('used', 'list');
-          // v1.5.2.5 — Use U.tryEditQuote so the call waits for Used to finish
-          // loading inventory + quoteHistory before opening. setTimeout(0) was
-          // racing onFirstVisit and silently no-op'ing (editQuote returned
-          // because quoteHistory was still empty).
+          // Defer to next tick so Used's onFirstVisit can settle if first time
           setTimeout(() => {
             try{
-              if(window.U && typeof U.tryEditQuote === 'function'){
-                U.tryEditQuote(legacyId);
-                this._watchOverlayClose('used');
-              }else if(window.U && typeof U.editQuote === 'function'){
-                // Older build without tryEditQuote — fall back to direct call.
+              if(window.U && typeof U.editQuote === 'function'){
                 U.editQuote(legacyId);
+                // v1.5.2.2 — watch for overlay close, then return to My Quotes
                 this._watchOverlayClose('used');
               }else{
                 ui.toast('Used not ready — try again');
               }
             }catch(e){
-              console.error('[HPE.quotes] U.tryEditQuote failed:', e);
+              console.error('[HPE.quotes] U.editQuote failed:', e);
               ui.toast('Could not open quote: ' + (e.message || e));
             }
           }, 0);
@@ -4778,17 +4772,15 @@ const HPE = (function(){
           router.go('shortline', 'dashboard');
           setTimeout(() => {
             try{
-              if(window.S && typeof S.tryLoadQuoteIntoBuilder === 'function'){
-                S.tryLoadQuoteIntoBuilder(legacyId);
-                this._watchOverlayClose('shortline');
-              }else if(window.S && typeof S.loadQuoteIntoBuilder === 'function'){
+              if(window.S && typeof S.loadQuoteIntoBuilder === 'function'){
                 S.loadQuoteIntoBuilder(legacyId);
+                // v1.5.2.2 — watch for overlay close, then return to My Quotes
                 this._watchOverlayClose('shortline');
               }else{
                 ui.toast('Shortline not ready — try again');
               }
             }catch(e){
-              console.error('[HPE.quotes] S.tryLoadQuoteIntoBuilder failed:', e);
+              console.error('[HPE.quotes] S.loadQuoteIntoBuilder failed:', e);
               ui.toast('Could not open quote: ' + (e.message || e));
             }
           }, 0);
@@ -11724,33 +11716,9 @@ async function generateQrDataUrl(text,sizePx){
 }
 
 // ── QUOTE HISTORY EDIT ──
-// v5.9.16 — readiness probe + retrying entry point for cross-section opens.
-// Hub's My Quotes click handler races against Used's onFirstVisit (which
-// fetches inventory + quoteHistory from Drive). Calling editQuote() too
-// early would silently return because quoteHistory was still []. This
-// helper polls until both arrays are populated, then opens the overlay.
-function tryEditQuote(quoteId, attempt){
-  attempt = attempt || 0;
-  const ready = Array.isArray(inventory) && inventory.length > 0
-             && Array.isArray(quoteHistory) && quoteHistory.length > 0;
-  if(!ready){
-    if(attempt >= 40){ // ~6s at 150ms
-      console.warn('[U.tryEditQuote] gave up waiting for inventory/quoteHistory after', attempt, 'attempts');
-      if(typeof showToast === 'function') showToast('Used data still loading — try again',3000);
-      return;
-    }
-    setTimeout(()=>tryEditQuote(quoteId, attempt+1), 150);
-    return;
-  }
-  editQuote(quoteId);
-}
 function editQuote(quoteId){
   const q=quoteHistory.find(x=>x.id===quoteId);
-  if(!q){
-    console.warn('[editQuote] quote not found in quoteHistory:', quoteId, '(history len:',quoteHistory.length,')');
-    if(typeof showToast === 'function') showToast('Quote not found — it may have been deleted',3000);
-    return;
-  }
+  if(!q)return;
   const u=inventory.find(x=>x.stock===q.stock);
   if(!u){showToast('Unit no longer in inventory',3000);return;}
   currentQuoteUnit=u;
@@ -14308,7 +14276,6 @@ function buildFinTable(units){
     downloadSelectedPhotos: typeof downloadSelectedPhotos === 'function' ? downloadSelectedPhotos : undefined,
     editLead: typeof editLead === 'function' ? editLead : undefined,
     editQuote: typeof editQuote === 'function' ? editQuote : undefined,
-    tryEditQuote: typeof tryEditQuote === 'function' ? tryEditQuote : undefined,
     ensureStockFolder: typeof ensureStockFolder === 'function' ? ensureStockFolder : undefined,
     enterPhotoDeleteMode: typeof enterPhotoDeleteMode === 'function' ? enterPhotoDeleteMode : undefined,
     enterPhotoDownloadMode: typeof enterPhotoDownloadMode === 'function' ? enterPhotoDownloadMode : undefined,
@@ -23631,22 +23598,6 @@ function saveQuote(opts){
 }
 
 /* Load a saved quote back into the builder for editing. */
-// v0.24.x — readiness probe + retrying entry point for cross-section opens
-// (mirrors U.tryEditQuote). Hub's My Quotes click handler can race against
-// Shortline's onFirstVisit which populates SAMPLE_QUOTES from Drive.
-function tryLoadQuoteIntoBuilder(id, attempt){
-  attempt = attempt || 0;
-  if(!Array.isArray(SAMPLE_QUOTES) || SAMPLE_QUOTES.length === 0){
-    if(attempt >= 40){ // ~6s at 150ms
-      console.warn('[S.tryLoadQuoteIntoBuilder] gave up waiting for SAMPLE_QUOTES after', attempt, 'attempts');
-      if(typeof showToast === 'function') showToast('Shortline data still loading — try again');
-      return;
-    }
-    setTimeout(()=>tryLoadQuoteIntoBuilder(id, attempt+1), 150);
-    return;
-  }
-  loadQuoteIntoBuilder(id);
-}
 function loadQuoteIntoBuilder(id){
   const q = SAMPLE_QUOTES.find(x => x.id === id);
   if (!q){ showToast('Quote not found: ' + id); return; }
@@ -29972,7 +29923,6 @@ function updateCommissionCodes(idx, value){
     loadHubStateAndMigrate: typeof loadHubStateAndMigrate === 'function' ? loadHubStateAndMigrate : undefined,
     loadInventoryFile: typeof loadInventoryFile === 'function' ? loadInventoryFile : undefined,
     loadQuoteIntoBuilder: typeof loadQuoteIntoBuilder === 'function' ? loadQuoteIntoBuilder : undefined,
-    tryLoadQuoteIntoBuilder: typeof tryLoadQuoteIntoBuilder === 'function' ? tryLoadQuoteIntoBuilder : undefined,
     loadSalespeople: typeof loadSalespeople === 'function' ? loadSalespeople : undefined,
     loadSkuCatalog: typeof loadSkuCatalog === 'function' ? loadSkuCatalog : undefined,
     loadStihlData: typeof loadStihlData === 'function' ? loadStihlData : undefined,

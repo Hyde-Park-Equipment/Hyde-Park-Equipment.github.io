@@ -2341,7 +2341,7 @@ body.admin-mode .admin-only { display: inline-flex; }
 /* Hide customer block, financing block, notes textarea — they're not relevant
    to a package template. The id-based selectors are robust to refactors of
    surrounding markup since these IDs are referenced from a lot of places. */
-#quote-overlay-sl.package-edit-mode #q-customer,
+#quote-overlay-sl.package-edit-mode #q-customer-sl,
 #quote-overlay-sl.package-edit-mode #q-cust-phone,
 #quote-overlay-sl.package-edit-mode #q-cust-email,
 #quote-overlay-sl.package-edit-mode #q-salesperson-sl,
@@ -2350,7 +2350,7 @@ body.admin-mode .admin-only { display: inline-flex; }
 /* The wrapping .quote-fields blocks need hiding too — find them via :has().
    Browsers without :has() (older Safari/FF) just leave the labels visible
    above empty inputs; not pretty but not broken. */
-#quote-overlay-sl.package-edit-mode .quote-field:has(#q-customer),
+#quote-overlay-sl.package-edit-mode .quote-field:has(#q-customer-sl),
 #quote-overlay-sl.package-edit-mode .quote-field:has(#q-cust-phone),
 #quote-overlay-sl.package-edit-mode .quote-field:has(#q-cust-email),
 #quote-overlay-sl.package-edit-mode .quote-field:has(#q-salesperson-sl),
@@ -3780,7 +3780,7 @@ body.admin-mode .admin-only { display: inline-flex; }
           <div class="quote-field">
             <label>Customer</label>
             <div style="display:flex;gap:6px">
-              <input type="text" id="q-customer" placeholder="Type any customer name" oninput="S.onCustomerChange()" style="flex:1">
+              <input type="text" id="q-customer-sl" placeholder="Type any customer name" oninput="S.onCustomerChange()" style="flex:1">
               <button type="button" onclick="S.openCustomerPicker()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Pick a saved customer">📇 Select</button>
             </div>
           </div>
@@ -22907,7 +22907,7 @@ function closeQuoteBuilder(force){
   // (state is NOT lost), so we close silently. Users who want to start
   // fresh can use "New Quote" which explicitly clears the builder.
   if (!force && currentQuoteId){
-    const customer = (document.getElementById('q-customer')?.value || '').trim();
+    const customer = (document.getElementById('q-customer-sl')?.value || '').trim();
     const hasLines = Array.isArray(quoteLineItems) && quoteLineItems.length > 0;
     if (customer || hasLines){
       if (!confirm('Discard your unsaved edits to this quote? Click Save Quote first if you want to keep them.')) return;
@@ -23559,7 +23559,7 @@ function addAdditionalCost(){
    v0.3: CUSTOMER HISTORY
    ============================================================ */
 function onCustomerChange(){
-  const name = document.getElementById('q-customer').value.trim();
+  const name = document.getElementById('q-customer-sl').value.trim();
   const panel = document.getElementById('cust-history-panel');
   if (!name){ panel.classList.remove('show'); return; }
   // Match against saved quotes — handles both new shape (customer.name) and legacy flat shape
@@ -23679,7 +23679,7 @@ function nextQuoteId(){
 /* Capture the current quote-builder state into a quote object. */
 function quoteFromBuilder(){
   const customer = {
-    name: (document.getElementById('q-customer')?.value || '').trim(),
+    name: (document.getElementById('q-customer-sl')?.value || '').trim(),
     email: (document.getElementById('q-cust-email')?.value || '').trim(),
     phone: (document.getElementById('q-cust-phone')?.value || '').trim()
   };
@@ -23788,7 +23788,7 @@ function loadQuoteIntoBuilder(id){
   if (!q){ showToast('Quote not found: ' + id); return; }
   currentQuoteId = q.id;
   // Customer fields
-  if (document.getElementById('q-customer')) document.getElementById('q-customer').value = q.customer?.name || '';
+  if (document.getElementById('q-customer-sl')) document.getElementById('q-customer-sl').value = q.customer?.name || '';
   if (document.getElementById('q-cust-email')) document.getElementById('q-cust-email').value = q.customer?.email || '';
   if (document.getElementById('q-cust-phone')) document.getElementById('q-cust-phone').value = q.customer?.phone || '';
   if (document.getElementById('q-notes')) document.getElementById('q-notes').value = q.notes || '';
@@ -23823,7 +23823,7 @@ function loadQuoteIntoBuilder(id){
 function clearQuoteBuilder(){
   currentQuoteId = null;
   quoteLineItems = [];
-  ['q-customer','q-cust-email','q-cust-phone','q-notes','q-finance-down'].forEach(id => {
+  ['q-customer-sl','q-cust-email','q-cust-phone','q-notes','q-finance-down'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
   });
   const f = document.getElementById('q-finance-enabled');
@@ -23879,7 +23879,7 @@ async function generateQuotePDF(){
     showToast('Save the package first — packages don\'t have customer-facing PDFs.');
     return;
   }
-  const customer = document.getElementById('q-customer').value.trim() || 'Valued Customer';
+  const customer = document.getElementById('q-customer-sl').value.trim() || 'Valued Customer';
   // v0.9 — Allow generating a quote with no customer and/or no line items.
   // Useful for blank/template quotes. We'll just render whatever fields are filled.
 
@@ -24288,7 +24288,7 @@ async function generateQuotePDF(){
       closeQuoteBuilder(true);
       // Reset state for next quote
       quoteLineItems = [];
-      ['q-customer','q-cust-email','q-cust-phone','q-notes','q-finance-down'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      ['q-customer-sl','q-cust-email','q-cust-phone','q-notes','q-finance-down'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
       document.getElementById('q-finance-enabled').checked = false;
       document.getElementById('q-finance-fields').classList.remove('show');
       document.getElementById('q-finance-rate').value = '4.99';
@@ -24634,7 +24634,7 @@ function selectCustomerFromPicker(id){
   const c = CUSTOMERS.find(x => x.id === id);
   if(!c){ showToast('Customer not found'); return; }
   // Fill the quote builder fields
-  if(document.getElementById('q-customer')) document.getElementById('q-customer').value = c.name || '';
+  if(document.getElementById('q-customer-sl')) document.getElementById('q-customer-sl').value = c.name || '';
   if(document.getElementById('q-cust-email')) document.getElementById('q-cust-email').value = c.email || '';
   if(document.getElementById('q-cust-phone')) document.getElementById('q-cust-phone').value = c.phone || '';
   // Trigger the customer-change handler so history panel + salesperson sync
@@ -29119,7 +29119,7 @@ function openPackageInBuilder(pkgId){
   currentQuoteId = null;        // ensure we're not in quote-edit mode
   currentPackageEditId = p.id;  // engage package edit mode
   // Clear customer/notes fields (not relevant for a template)
-  ['q-customer','q-cust-phone','q-cust-email','q-salesperson-sl','q-email','q-notes'].forEach(id => {
+  ['q-customer-sl','q-cust-phone','q-cust-email','q-salesperson-sl','q-email','q-notes'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.value = '';
   });

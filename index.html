@@ -33098,56 +33098,72 @@ function renderCommissionsFlagReview(){
         : `No flags match the current filters.`}
     </div>`;
   } else {
-    html += `<table class="admin-table" style="width:100%;font-size:12px">
-      <thead><tr>
-        <th>Status</th>
-        <th>Flagged</th>
-        <th>Year</th>
-        <th>Rep</th>
-        <th>Customer</th>
-        <th>Invoice</th>
-        <th>Item</th>
-        <th style="text-align:right">Amount</th>
-        <th style="text-align:right">Margin</th>
-        <th>Reason</th>
-        <th>Flagged by</th>
-        <th>Resolved</th>
-        <th>Resolved by</th>
-        <th>Resolution notes</th>
-        <th></th>
-      </tr></thead>
-      <tbody>
+    // v3.1.25 — Card layout (replaced the 15-column table that overflowed the
+    // panel). Each flag is one block: a top row of key facts (status, rep,
+    // customer, invoice, amount, margin) and a detail grid below (reason +
+    // resolution). Wraps cleanly at any width; free-text reads naturally.
+    html += `<div style="display:flex;flex-direction:column;gap:10px">
         ${flags.map(f => {
           const flagTs = f.flaggedAt ? new Date(f.flaggedAt).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) : '';
           const resTs  = f.resolvedAt ? new Date(f.resolvedAt).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) : '';
           const margin = (f.blendedMargin*100);
           const statusBadge = f.resolved
-            ? `<span style="display:inline-block;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap">✓ RESOLVED</span>`
-            : `<span style="display:inline-block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap">⚑ PENDING</span>`;
-          const actionsHtml = f.resolved
-            ? `<button onclick="S.openFlaggedDealFromAdmin('${escapeAttr(f.dealKey)}','${f.kind}','${escapeAttr(f.invoice)}','${escapeAttr(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>`
-            : `<button onclick="S.openFlaggedDealFromAdmin('${escapeAttr(f.dealKey)}','${f.kind}','${escapeAttr(f.invoice)}','${escapeAttr(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>
-               <button onclick="S.resolveFlagFromAdmin('${escapeAttr(f.dealKey)}')" style="padding:4px 8px;border:1px solid #dcfce7;background:#dcfce7;color:#166534;border-radius:4px;font-size:10px;cursor:pointer;font-weight:600">✓ Resolve</button>`;
-          return `<tr style="${f.resolved ? 'background:#fafffa' : ''}">
-            <td>${statusBadge}</td>
-            <td style="font-size:11px;color:var(--gray-500);white-space:nowrap">${flagTs}</td>
-            <td style="font-family:'DM Mono',monospace;font-size:11px">${f.year || '—'}</td>
-            <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(f.repCode || '')}</td>
-            <td>${escapeHtml(f.customer || '—')}</td>
-            <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(f.invoice || '')}</td>
-            <td style="font-size:11px">${escapeHtml(f.summary || '—')}</td>
-            <td style="text-align:right;font-family:'DM Mono',monospace;font-weight:600">${CM_FMT$(f.totalAmount)}</td>
-            <td style="text-align:right;font-family:'DM Mono',monospace;${margin<5?'color:#dc2626':''}">${margin.toFixed(1)}%</td>
-            <td style="font-size:11px;max-width:220px"><div style="white-space:pre-wrap;color:var(--gray-700)">${escapeHtml(f.reason || '')}</div></td>
-            <td style="font-size:11px;color:var(--gray-600)">${escapeHtml(f.flaggedByName || f.flaggedBy || '')}</td>
-            <td style="font-size:11px;color:var(--gray-500);white-space:nowrap">${resTs || '—'}</td>
-            <td style="font-size:11px;color:var(--gray-600)">${escapeHtml(f.resolvedByName || f.resolvedBy || '—')}</td>
-            <td style="font-size:11px;max-width:220px"><div style="white-space:pre-wrap;color:var(--gray-700)">${escapeHtml(f.resolutionNotes || (f.resolved ? '—' : ''))}</div></td>
-            <td style="text-align:right;white-space:nowrap">${actionsHtml}</td>
-          </tr>`;
+            ? `<span style="display:inline-block;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;font-size:10px;font-weight:700;padding:3px 9px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap">✓ RESOLVED</span>`
+            : `<span style="display:inline-block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;font-size:10px;font-weight:700;padding:3px 9px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap">⚑ PENDING</span>`;
+          const resolveBtn = f.resolved ? '' :
+            `<button onclick="S.resolveFlagFromAdmin('${escapeAttr(f.dealKey)}')" style="padding:5px 12px;border:1px solid #16a34a;background:#16a34a;color:white;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;font-family:inherit">✓ Resolve</button>`;
+          const openBtn =
+            `<button onclick="S.openFlaggedDealFromAdmin('${escapeAttr(f.dealKey)}','${f.kind}','${escapeAttr(f.invoice)}','${escapeAttr(f.repCode)}',${f.year})" style="padding:5px 12px;border:1px solid var(--gray-200);background:white;color:var(--gray-700);border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit">Open deal</button>`;
+
+          const cardBg = f.resolved ? '#fafffa' : 'white';
+          const cardBorder = f.resolved ? '#d9f0df' : 'var(--gray-200)';
+          const accentBar = f.resolved ? '#16a34a' : '#dc2626';
+
+          // Key/value chip used in the facts row
+          const fact = (label, value, mono) =>
+            `<div style="display:flex;flex-direction:column;gap:1px;min-width:0">
+              <span style="font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-400);font-weight:600">${label}</span>
+              <span style="font-size:12px;color:var(--gray-700);${mono?"font-family:'DM Mono',monospace;":''}overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${value}</span>
+            </div>`;
+
+          return `<div style="border:1px solid ${cardBorder};border-left:3px solid ${accentBar};border-radius:8px;background:${cardBg};padding:12px 14px">
+
+            <!-- Top row: status + facts + actions -->
+            <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
+              <div style="flex-shrink:0;padding-top:2px">${statusBadge}</div>
+              <div style="flex:1;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px 16px">
+                ${fact('Rep', escapeHtml(f.repCode || '—'), true)}
+                ${fact('Customer', escapeHtml(f.customer || '—'), false)}
+                ${fact('Invoice', escapeHtml(f.invoice || '—'), true)}
+                ${fact('Item', escapeHtml(f.summary || '—'), false)}
+                ${fact('Amount', CM_FMT$(f.totalAmount), true)}
+                ${fact('Margin', `<span style="${margin<5?'color:#dc2626;font-weight:600':''}">${margin.toFixed(1)}%</span>`, true)}
+                ${fact('Year', f.year || '—', true)}
+              </div>
+              <div style="flex-shrink:0;display:flex;gap:6px;align-items:center">${openBtn}${resolveBtn}</div>
+            </div>
+
+            <!-- Detail row: reason + resolution -->
+            <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--gray-200);display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <div style="min-width:0">
+                <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-400);font-weight:600;margin-bottom:3px">Flag reason</div>
+                <div style="font-size:12px;color:var(--gray-700);white-space:pre-wrap;word-break:break-word">${escapeHtml(f.reason || '(no reason given)')}</div>
+                <div style="font-size:10px;color:var(--gray-400);margin-top:4px">Flagged by ${escapeHtml(f.flaggedByName || f.flaggedBy || 'unknown')}${flagTs ? ' · ' + flagTs : ''}</div>
+              </div>
+              <div style="min-width:0">
+                ${f.resolved ? `
+                  <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:#15803d;font-weight:600;margin-bottom:3px">Resolution</div>
+                  <div style="font-size:12px;color:var(--gray-700);white-space:pre-wrap;word-break:break-word">${escapeHtml(f.resolutionNotes || '—')}</div>
+                  <div style="font-size:10px;color:var(--gray-400);margin-top:4px">Resolved by ${escapeHtml(f.resolvedByName || f.resolvedBy || 'unknown')}${resTs ? ' · ' + resTs : ''}</div>
+                ` : `
+                  <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-400);font-weight:600;margin-bottom:3px">Resolution</div>
+                  <div style="font-size:12px;color:var(--gray-400);font-style:italic">Awaiting review</div>
+                `}
+              </div>
+            </div>
+          </div>`;
         }).join('')}
-      </tbody>
-    </table>`;
+    </div>`;
   }
 
   html += `

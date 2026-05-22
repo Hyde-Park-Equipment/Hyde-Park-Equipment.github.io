@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v3.1.24</title><!-- build:20260521_v3124_deadcode_cleanup -->
+<title>HPE Sales Platform v3.1.25</title><!-- build:20260521_v3125_flag_review_screen -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -2577,7 +2577,7 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.1.24</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.1.25</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="topbar-search">
@@ -2815,6 +2815,19 @@ body.admin-mode .admin-only { display: inline-flex; }
           <div class="page-header">
             <div>
               <div class="page-title">Commissions Admin</div>
+              <div class="page-sub">Loading…</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- v3.1.25 — Flag Review screen. Audit trail of all commission deal
+             flags (pending + resolved). Admin-only via internal isAdmin guard
+             in renderCommissionsFlagReview. Renders via HPE.commissions.renderFlagReview()
+             which proxies into SL's renderCommissionsFlagReview. -->
+        <div class="page admin-page" id="page-hub-commissions-flag-review" data-page="commissions-flag-review">
+          <div class="page-header">
+            <div>
+              <div class="page-title">Flag Review</div>
               <div class="page-sub">Loading…</div>
             </div>
           </div>
@@ -4201,8 +4214,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '3.1.24',
-    build: '20260521_v3124_deadcode_cleanup',
+    version: '3.1.25',
+    build: '20260521_v3125_flag_review_screen',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -4276,7 +4289,10 @@ const HPE = (function(){
         // to wrap this item with the `admin-only` class and add an "Admin"
         // section divider above it. Visible only when body.admin-mode is on
         // (set by the role switcher when the user is a real admin).
-        {id:'commissions-admin', label:'Commissions Admin', admin:true, icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'}
+        {id:'commissions-admin', label:'Commissions Admin', admin:true, icon:'<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
+        // v3.1.25 — Dedicated audit screen for all commission deal flags
+        // (pending + resolved). Admin-only; sits under Commissions Admin.
+        {id:'commissions-flag-review', label:'Flag Review', admin:true, icon:'<path d="M4 22V4a2 2 0 0 1 2-2h11l4 4v6"/><path d="M4 15h16"/><circle cx="18" cy="18" r="3"/><path d="m20 20-1.5-1.5"/>'}
       ],
       bottomNav: buildMyBottomNav(null)
     },
@@ -5833,6 +5849,13 @@ const HPE = (function(){
       if(SL && typeof SL.renderCommissionsAdmin === 'function') SL.renderCommissionsAdmin();
     },
 
+    // v3.1.25 — Render the flag-review audit screen. Same proxy pattern as
+    // renderAdmin; the function body lives in SL section code.
+    renderFlagReview(){
+      const SL = (typeof HPE !== 'undefined' && HPE.sectionImpl && HPE.sectionImpl.shortline) || null;
+      if(SL && typeof SL.renderCommissionsFlagReview === 'function') SL.renderCommissionsFlagReview();
+    },
+
     // Trigger a (re)load of commissions xlsx files from Drive. Returns the
     // load promise so callers can await it. Used by the admin "Refresh"
     // button. v3.1.9 — Route through SL exports.
@@ -6167,6 +6190,10 @@ const HPE = (function(){
           // Internal isAdmin guard inside renderCommissionsAdmin blocks
           // non-admins regardless of how they got to the URL.
           HPE.commissions.renderAdmin();
+        }else if(page === 'commissions-flag-review'){
+          // v3.1.25 — Audit trail screen for all commission deal flags.
+          // Same admin-guard pattern as renderAdmin.
+          HPE.commissions.renderFlagReview();
         }
       }
 
@@ -20474,6 +20501,20 @@ function isDealFlagged(dealKey){
 function getFlagForDeal(dealKey){
   return COMMISSIONS_FLAGS.find(f => f.dealKey === dealKey && !f.resolved) || null;
 }
+/* v3.1.25 — Returns true if the deal has at least one RESOLVED flag and no
+   active one. Used by the row indicator + detail-view banner to show that
+   admin review has already happened. */
+function wasDealFlaggedResolved(dealKey){
+  if(isDealFlagged(dealKey)) return false;
+  return COMMISSIONS_FLAGS.some(f => f.dealKey === dealKey && f.resolved);
+}
+/* v3.1.25 — Returns the most recently resolved flag for a deal (or null).
+   Sorts by resolvedAt desc so the freshest resolution shows in the banner. */
+function getResolvedFlagForDeal(dealKey){
+  const resolved = COMMISSIONS_FLAGS.filter(f => f.dealKey === dealKey && f.resolved);
+  if(!resolved.length) return null;
+  return resolved.slice().sort((a,b) => (b.resolvedAt||'').localeCompare(a.resolvedAt||''))[0];
+}
 
 /* ----------- COST OVERRIDES (v0.42, admin-only) -----------
    Separate file (commissions_cost_overrides.json). Persists across xlsx re-uploads.
@@ -21719,8 +21760,17 @@ function renderCommissionsInvoiceList(repCodes){
     const marginPct = eff.effectiveMargin * 100;
     const lineNote = d.lineCount > 1 ? `<span style="color:var(--gray-400);margin-left:4px">·${d.lineCount} lines</span>` : '';
     const flagged = isDealFlagged(d.persistKey);
+    // v3.1.25 — Also surface deals that were previously flagged and have been
+    // resolved. Renders as a small faded green ✓ so reviewers can spot them
+    // at a glance in the deal list.
+    const wasResolved = !flagged && wasDealFlaggedResolved(d.persistKey);
+    const resolvedFlag = wasResolved ? getResolvedFlagForDeal(d.persistKey) : null;
+    const resolvedTs = resolvedFlag && resolvedFlag.resolvedAt
+      ? new Date(resolvedFlag.resolvedAt).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})
+      : '';
     const noteCount = noteCountForDeal(d.persistKey);
     const indicators = (flagged ? '<span title="Flagged for admin review" style="color:#dc2626;margin-left:4px">⚑</span>' : '')
+                     + (wasResolved ? `<span title="Previously flagged — resolved ${resolvedTs}" style="color:#86efac;margin-left:4px;font-size:11px;font-weight:700">✓</span>` : '')
                      + (noteCount > 0 ? `<span title="${noteCount} note${noteCount===1?'':'s'}" style="color:var(--gray-500);margin-left:4px;font-size:10px">📝${noteCount}</span>` : '')
                      + (eff.hasOverride ? '<span title="Cost overridden by admin" style="color:#7c3aed;margin-left:4px;font-size:10px">✎</span>' : '');
     return `<tr style="cursor:pointer${flagged?';background:#fef9f9':''}" onclick="S.openDealDetail('${S.escapeHtml(d.dealKey)}','${kind}')" title="Click for deal detail">
@@ -21817,9 +21867,15 @@ function openDealDetail(dealKey, kind){
     </tr>`).join('');
 
   const flag = getFlagForDeal(deal.persistKey);
+  // v3.1.25 — Show a green banner when the deal was previously flagged and
+  // resolved (no active flag). Aids reviewers spotting deals that have
+  // already been through admin review.
+  const resolvedFlag = !flag ? getResolvedFlagForDeal(deal.persistKey) : null;
   const flagBadge = flag
     ? `<span style="display:inline-block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">⚑ FLAGGED</span>`
-    : '';
+    : (resolvedFlag
+      ? `<span style="display:inline-block;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">✓ REVIEWED</span>`
+      : '');
   const overrideBadge = eff.hasOverride
     ? `<span style="display:inline-block;background:#f3e8ff;color:#7c3aed;border:1px solid #ddd6fe;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">✎ COSTS OVERRIDDEN</span>`
     : '';
@@ -21847,6 +21903,12 @@ function openDealDetail(dealKey, kind){
             ${flag ? `<div style="margin-top:8px;padding:8px 10px;background:#fef2f2;border-left:3px solid #dc2626;font-size:12px;color:#7f1d1d;border-radius:0 4px 4px 0">
               <strong>Flagged for review${flag.flaggedByName ? ' by ' + escapeHtml(flag.flaggedByName) : ''}:</strong> ${escapeHtml(flag.reason || '(no reason given)')}
               <span style="color:#a78b8b;font-size:11px;margin-left:6px">${flag.flaggedAt ? new Date(flag.flaggedAt).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : ''}</span>
+            </div>` : ''}
+            ${resolvedFlag ? `<div style="margin-top:8px;padding:8px 10px;background:#f0fdf4;border-left:3px solid #16a34a;font-size:12px;color:#14532d;border-radius:0 4px 4px 0">
+              <strong>Previously reviewed${resolvedFlag.resolvedByName ? ' by ' + escapeHtml(resolvedFlag.resolvedByName) : (resolvedFlag.resolvedBy ? ' by ' + escapeHtml(resolvedFlag.resolvedBy) : '')}</strong>
+              <span style="color:#5d8b6e;font-size:11px;margin-left:6px">${resolvedFlag.resolvedAt ? new Date(resolvedFlag.resolvedAt).toLocaleString(undefined,{year:'numeric',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) : ''}</span>
+              ${resolvedFlag.reason ? `<div style="margin-top:4px;color:#3f6b4e"><span style="color:#15803d;font-weight:600">Original reason:</span> ${escapeHtml(resolvedFlag.reason)}</div>` : ''}
+              ${resolvedFlag.resolutionNotes ? `<div style="margin-top:4px;color:#3f6b4e"><span style="color:#15803d;font-weight:600">Resolution notes:</span> ${escapeHtml(resolvedFlag.resolutionNotes)}</div>` : ''}
             </div>` : ''}
           </div>
           <button onclick="S.closeDealDetail()" style="border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:22px;line-height:1;padding:0 4px">×</button>
@@ -22205,17 +22267,25 @@ function submitFlagDeal(kind, dealKey){
   showToast('Deal flagged for admin review');
 }
 function resolveDealFlag(persistKey, kind, dealKey){
-  if(!confirm('Mark this flag as resolved? It will be removed from the admin review list.')) return;
+  // v3.1.25 — Resolution notes are now required (captured at resolve time so
+  // the audit trail has context on every resolved flag).
+  const notes = prompt('Resolution notes (required) — describe how this was reviewed/resolved:');
+  if(notes === null) return; // user cancelled
+  const trimmed = (notes||'').trim();
+  if(!trimmed){ showToast('Resolution notes are required'); return; }
   const flag = COMMISSIONS_FLAGS.find(f => f.dealKey === persistKey && !f.resolved);
   if(!flag) return;
   flag.resolved = true;
   flag.resolvedAt = new Date().toISOString();
   flag.resolvedBy = (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || 'unknown';
+  flag.resolvedByName = (CURRENT_USER && CURRENT_USER.name) || (userInfo && userInfo.name) || '';
+  flag.resolutionNotes = trimmed;
   saveCommissionsFlags();
   closeDealDetail();
   openDealDetail(dealKey, kind);
   // Refresh admin page if visible
   if(document.querySelector('.page.active')?.id === 'page-hub-commissions-admin') renderCommissionsAdmin();
+  if(document.querySelector('.page.active')?.id === 'page-hub-commissions-flag-review') renderCommissionsFlagReview();
   showToast('Flag resolved');
 }
 
@@ -22239,14 +22309,23 @@ function openFlaggedDealFromAdmin(persistKey, kind, invoice, repCode, year){
 
 /* Admin-side: resolve directly from the review list without opening the modal. */
 function resolveFlagFromAdmin(persistKey){
-  if(!confirm('Mark this flag as resolved?')) return;
+  // v3.1.25 — Resolution notes now required (same change as resolveDealFlag).
+  const notes = prompt('Resolution notes (required) — describe how this was reviewed/resolved:');
+  if(notes === null) return; // user cancelled
+  const trimmed = (notes||'').trim();
+  if(!trimmed){ showToast('Resolution notes are required'); return; }
   const flag = COMMISSIONS_FLAGS.find(f => f.dealKey === persistKey && !f.resolved);
   if(!flag) return;
   flag.resolved = true;
   flag.resolvedAt = new Date().toISOString();
   flag.resolvedBy = (CURRENT_USER && CURRENT_USER.email) || (userInfo && userInfo.email) || 'unknown';
+  flag.resolvedByName = (CURRENT_USER && CURRENT_USER.name) || (userInfo && userInfo.name) || '';
+  flag.resolutionNotes = trimmed;
   saveCommissionsFlags();
-  renderCommissionsAdmin();
+  // Refresh whichever admin page is currently visible.
+  const activeId = document.querySelector('.page.active')?.id;
+  if(activeId === 'page-hub-commissions-admin') renderCommissionsAdmin();
+  if(activeId === 'page-hub-commissions-flag-review') renderCommissionsFlagReview();
   showToast('Flag resolved');
 }
 
@@ -32834,50 +32913,10 @@ function renderCommissionsAdmin(){
     // 2.25 Cost Components Summary (admin only — what we ate in CC fees, handling, etc.)
     html += renderCostComponentsSummaryPanel();
 
-    // 2.5 Deals Needing Review (flagged deals)
-    const flaggedThisYear = COMMISSIONS_FLAGS.filter(f => f.year === commissionsCurrentYear && !f.resolved)
-      .slice().sort((a,b) => (b.flaggedAt||'').localeCompare(a.flaggedAt||''));
-    const resolvedThisYear = COMMISSIONS_FLAGS.filter(f => f.year === commissionsCurrentYear && f.resolved).length;
-    html += `
-      <div class="admin-panel" style="margin-top:14px">
-        <div class="admin-panel-title" style="display:flex;justify-content:space-between;align-items:center">
-          <span>Deals Needing Review ${flaggedThisYear.length > 0 ? '<span style="display:inline-block;background:#dc2626;color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:9px;margin-left:6px;letter-spacing:0.3px">'+flaggedThisYear.length+'</span>' : ''}</span>
-          <span style="font-size:11px;font-weight:400;color:var(--gray-500)">${resolvedThisYear > 0 ? resolvedThisYear+' resolved this year' : 'Anyone can flag a deal from its detail view'}</span>
-        </div>
-        <div style="padding:0 14px 14px">
-          ${flaggedThisYear.length === 0
-            ? `<div style="text-align:center;padding:24px;color:var(--gray-500);font-size:12px">No flagged deals.<br><span style="color:var(--gray-400);font-size:11px">When a rep flags a deal for review (from any deal detail view), it'll show up here.</span></div>`
-            : `<table class="admin-table" style="width:100%;font-size:12px">
-              <thead><tr>
-                <th>Flagged</th><th>Rep</th><th>Customer</th><th>Invoice</th><th>Item</th>
-                <th style="text-align:right">Amount</th><th style="text-align:right">Margin</th>
-                <th>Reason</th><th>Flagged by</th><th></th>
-              </tr></thead>
-              <tbody>
-                ${flaggedThisYear.map(f => {
-                  const ts = f.flaggedAt ? new Date(f.flaggedAt).toLocaleDateString(undefined,{month:'short',day:'numeric'}) : '';
-                  const margin = (f.blendedMargin*100);
-                  return `<tr>
-                    <td style="font-size:11px;color:var(--gray-500)">${ts}</td>
-                    <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(f.repCode)}</td>
-                    <td>${escapeHtml(f.customer || '—')}</td>
-                    <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(f.invoice)}</td>
-                    <td style="font-size:11px">${escapeHtml(f.summary || '—')}</td>
-                    <td style="text-align:right;font-family:'DM Mono',monospace;font-weight:600">${CM_FMT$(f.totalAmount)}</td>
-                    <td style="text-align:right;font-family:'DM Mono',monospace;${margin<5?'color:#dc2626':''}">${margin.toFixed(1)}%</td>
-                    <td style="font-size:11px;max-width:240px"><div style="white-space:pre-wrap;color:var(--gray-700)">${escapeHtml(f.reason || '')}</div></td>
-                    <td style="font-size:11px;color:var(--gray-600)">${escapeHtml(f.flaggedByName || f.flaggedBy || '')}</td>
-                    <td style="text-align:right;white-space:nowrap">
-                      <button onclick="S.openFlaggedDealFromAdmin('${S.escapeHtml(f.dealKey)}','${f.kind}','${S.escapeHtml(f.invoice)}','${S.escapeHtml(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>
-                      <button onclick="S.resolveFlagFromAdmin('${S.escapeHtml(f.dealKey)}')" style="padding:4px 8px;border:1px solid #dcfce7;background:#dcfce7;color:#166534;border-radius:4px;font-size:10px;cursor:pointer;font-weight:600">✓ Resolve</button>
-                    </td>
-                  </tr>`;
-                }).join('')}
-              </tbody>
-            </table>`
-          }
-        </div>
-      </div>`;
+    // 2.5 Deals Needing Review — REMOVED in v3.1.25.
+    // The Flag Review screen (page-hub-commissions-flag-review) is now the
+    // canonical place for all flag-related triage (pending + resolved + audit).
+    // Access via the "Flag Review" entry in the admin sidebar.
 
     // 3. Adjustments
     const adj = COMMISSIONS_ADJUSTMENTS.filter(a => a.year === commissionsCurrentYear).slice().sort((a,b) => (b.date||'').localeCompare(a.date||''));
@@ -32927,6 +32966,196 @@ function renderCommissionsAdmin(){
   el.innerHTML = html;
   // Render the codes table after main HTML is in DOM
   if(years.length > 0) renderCommissionCodes();
+}
+
+/* v3.1.25 — FLAG REVIEW SCREEN
+   Dedicated audit-trail view for all commission deal flags (pending + resolved).
+   Admin-only. Lives at page-hub-commissions-flag-review. Replaces the inline
+   "Deals Needing Review" panel that used to live on the main Commissions Admin
+   page.
+
+   State:
+     _flagReviewStatusFilter — 'all' | 'pending' | 'resolved' (default 'all')
+     _flagReviewYearFilter   — int year or 'all' (default 'all')
+     _flagReviewSearch       — free-text filter (rep code, customer, invoice, reason)
+*/
+let _flagReviewStatusFilter = 'all';
+let _flagReviewYearFilter = 'all';
+let _flagReviewSearch = '';
+
+function setFlagReviewStatusFilter(status){
+  _flagReviewStatusFilter = status;
+  renderCommissionsFlagReview();
+}
+function setFlagReviewYearFilter(y){
+  _flagReviewYearFilter = (y === 'all') ? 'all' : parseInt(y, 10);
+  renderCommissionsFlagReview();
+}
+function setFlagReviewSearch(s){
+  // v3.1.25 — Store the raw user input (no normalization) so what the user
+  // typed is what they see in the input. Normalization happens at filter
+  // application time. Cursor position is captured BEFORE re-render and
+  // restored AFTER, so editing in the middle of a string doesn't jump to end.
+  const oldInp = document.getElementById('flag-review-search');
+  const selStart = oldInp ? oldInp.selectionStart : null;
+  const selEnd   = oldInp ? oldInp.selectionEnd : null;
+  _flagReviewSearch = (s == null) ? '' : String(s);
+  renderCommissionsFlagReview();
+  const inp = document.getElementById('flag-review-search');
+  if(inp){
+    inp.focus();
+    if(selStart != null){
+      try { inp.setSelectionRange(selStart, selEnd); } catch(e){ /* ignore */ }
+    }
+  }
+}
+
+function renderCommissionsFlagReview(){
+  const el = document.getElementById('page-hub-commissions-flag-review');
+  if(!el) return;
+
+  const isAdmin = (typeof isCurrentUserAdmin === 'function') && isCurrentUserAdmin();
+  if(!isAdmin){
+    el.innerHTML = `<div class="page-header"><div><div class="page-title">Flag Review</div></div></div>
+      <div class="panel" style="text-align:center;padding:36px;color:var(--gray-500)">Admin access required.</div>`;
+    return;
+  }
+
+  // Apply filters
+  let flags = COMMISSIONS_FLAGS.slice();
+  if(_flagReviewStatusFilter === 'pending') flags = flags.filter(f => !f.resolved);
+  else if(_flagReviewStatusFilter === 'resolved') flags = flags.filter(f => f.resolved);
+  if(_flagReviewYearFilter !== 'all') flags = flags.filter(f => f.year === _flagReviewYearFilter);
+  if(_flagReviewSearch && _flagReviewSearch.trim()){
+    const q = _flagReviewSearch.toLowerCase().trim();
+    flags = flags.filter(f =>
+      (f.repCode||'').toLowerCase().includes(q) ||
+      (f.repName||'').toLowerCase().includes(q) ||
+      (f.customer||'').toLowerCase().includes(q) ||
+      (f.invoice||'').toLowerCase().includes(q) ||
+      (f.summary||'').toLowerCase().includes(q) ||
+      (f.reason||'').toLowerCase().includes(q) ||
+      (f.flaggedByName||'').toLowerCase().includes(q) ||
+      (f.resolutionNotes||'').toLowerCase().includes(q)
+    );
+  }
+  // Sort: pending first (newest flag date), then resolved (newest resolution date)
+  flags.sort((a,b) => {
+    if(!!a.resolved !== !!b.resolved) return a.resolved ? 1 : -1;
+    if(a.resolved){
+      return (b.resolvedAt||'').localeCompare(a.resolvedAt||'');
+    }
+    return (b.flaggedAt||'').localeCompare(a.flaggedAt||'');
+  });
+
+  // Year selector — all years that appear in COMMISSIONS_FLAGS
+  const yearsInFlags = Array.from(new Set(COMMISSIONS_FLAGS.map(f => f.year).filter(Boolean))).sort((a,b)=>b-a);
+
+  // Counters for the status pills
+  const totalAll = COMMISSIONS_FLAGS.length;
+  const totalPending = COMMISSIONS_FLAGS.filter(f => !f.resolved).length;
+  const totalResolved = COMMISSIONS_FLAGS.filter(f => f.resolved).length;
+
+  // Pill builder for the status filter
+  const statusPill = (key, label, count, color) => {
+    const active = _flagReviewStatusFilter === key;
+    const bg = active ? color : 'white';
+    const fg = active ? 'white' : 'var(--gray-700)';
+    const border = active ? color : 'var(--gray-200)';
+    return `<button onclick="S.setFlagReviewStatusFilter('${key}')" style="padding:6px 12px;border:1px solid ${border};background:${bg};color:${fg};border-radius:14px;font-size:11px;cursor:pointer;font-weight:600;font-family:inherit">${label} <span style="opacity:0.7;margin-left:3px">${count}</span></button>`;
+  };
+
+  const yearOpts = `<option value="all">All years</option>` +
+    yearsInFlags.map(y => `<option value="${y}" ${_flagReviewYearFilter===y?'selected':''}>${y}</option>`).join('');
+
+  let html = `
+    <div class="admin-page">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Flag Review</div>
+          <div class="page-sub">Audit trail of all commission deal flags · pending and resolved</div>
+        </div>
+      </div>
+
+      <div class="admin-panel">
+        <div class="admin-panel-title" style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            ${statusPill('all', 'All', totalAll, '#475569')}
+            ${statusPill('pending', '⚑ Pending', totalPending, '#dc2626')}
+            ${statusPill('resolved', '✓ Resolved', totalResolved, '#16a34a')}
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <select onchange="S.setFlagReviewYearFilter(this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit">${yearOpts}</select>
+            <input id="flag-review-search" type="text" placeholder="Search rep, customer, invoice, reason…" value="${escapeHtml(_flagReviewSearch)}" oninput="S.setFlagReviewSearch(this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit;width:240px">
+          </div>
+        </div>
+        <div style="padding:0 14px 14px">`;
+
+  if(flags.length === 0){
+    html += `<div style="text-align:center;padding:36px;color:var(--gray-500);font-size:12px">
+      ${totalAll === 0
+        ? `No flags recorded yet.<br><span style="color:var(--gray-400);font-size:11px">When a rep flags a deal for review (from any deal detail view), it'll show up here.</span>`
+        : `No flags match the current filters.`}
+    </div>`;
+  } else {
+    html += `<table class="admin-table" style="width:100%;font-size:12px">
+      <thead><tr>
+        <th>Status</th>
+        <th>Flagged</th>
+        <th>Year</th>
+        <th>Rep</th>
+        <th>Customer</th>
+        <th>Invoice</th>
+        <th>Item</th>
+        <th style="text-align:right">Amount</th>
+        <th style="text-align:right">Margin</th>
+        <th>Reason</th>
+        <th>Flagged by</th>
+        <th>Resolved</th>
+        <th>Resolved by</th>
+        <th>Resolution notes</th>
+        <th></th>
+      </tr></thead>
+      <tbody>
+        ${flags.map(f => {
+          const flagTs = f.flaggedAt ? new Date(f.flaggedAt).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) : '';
+          const resTs  = f.resolvedAt ? new Date(f.resolvedAt).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) : '';
+          const margin = (f.blendedMargin*100);
+          const statusBadge = f.resolved
+            ? `<span style="display:inline-block;background:#dcfce7;color:#166534;border:1px solid #bbf7d0;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap">✓ RESOLVED</span>`
+            : `<span style="display:inline-block;background:#fef2f2;color:#dc2626;border:1px solid #fecaca;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px;letter-spacing:0.3px;white-space:nowrap">⚑ PENDING</span>`;
+          const actionsHtml = f.resolved
+            ? `<button onclick="S.openFlaggedDealFromAdmin('${escapeAttr(f.dealKey)}','${f.kind}','${escapeAttr(f.invoice)}','${escapeAttr(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>`
+            : `<button onclick="S.openFlaggedDealFromAdmin('${escapeAttr(f.dealKey)}','${f.kind}','${escapeAttr(f.invoice)}','${escapeAttr(f.repCode)}',${f.year})" style="padding:4px 8px;border:1px solid var(--gray-200);background:white;border-radius:4px;font-size:10px;cursor:pointer">Open</button>
+               <button onclick="S.resolveFlagFromAdmin('${escapeAttr(f.dealKey)}')" style="padding:4px 8px;border:1px solid #dcfce7;background:#dcfce7;color:#166534;border-radius:4px;font-size:10px;cursor:pointer;font-weight:600">✓ Resolve</button>`;
+          return `<tr style="${f.resolved ? 'background:#fafffa' : ''}">
+            <td>${statusBadge}</td>
+            <td style="font-size:11px;color:var(--gray-500);white-space:nowrap">${flagTs}</td>
+            <td style="font-family:'DM Mono',monospace;font-size:11px">${f.year || '—'}</td>
+            <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(f.repCode || '')}</td>
+            <td>${escapeHtml(f.customer || '—')}</td>
+            <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(f.invoice || '')}</td>
+            <td style="font-size:11px">${escapeHtml(f.summary || '—')}</td>
+            <td style="text-align:right;font-family:'DM Mono',monospace;font-weight:600">${CM_FMT$(f.totalAmount)}</td>
+            <td style="text-align:right;font-family:'DM Mono',monospace;${margin<5?'color:#dc2626':''}">${margin.toFixed(1)}%</td>
+            <td style="font-size:11px;max-width:220px"><div style="white-space:pre-wrap;color:var(--gray-700)">${escapeHtml(f.reason || '')}</div></td>
+            <td style="font-size:11px;color:var(--gray-600)">${escapeHtml(f.flaggedByName || f.flaggedBy || '')}</td>
+            <td style="font-size:11px;color:var(--gray-500);white-space:nowrap">${resTs || '—'}</td>
+            <td style="font-size:11px;color:var(--gray-600)">${escapeHtml(f.resolvedByName || f.resolvedBy || '—')}</td>
+            <td style="font-size:11px;max-width:220px"><div style="white-space:pre-wrap;color:var(--gray-700)">${escapeHtml(f.resolutionNotes || (f.resolved ? '—' : ''))}</div></td>
+            <td style="text-align:right;white-space:nowrap">${actionsHtml}</td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+  }
+
+  html += `
+        </div>
+      </div>
+    </div>`;
+
+  el.innerHTML = html;
 }
 
 /* Upload xlsx into Commissions Reports/ folder */
@@ -33442,6 +33671,12 @@ function updateCommissionCodes(idx, value){
     renderCommissionCodes: typeof renderCommissionCodes === 'function' ? renderCommissionCodes : undefined,
     renderCommissions: typeof renderCommissions === 'function' ? renderCommissions : undefined,
     renderCommissionsAdmin: typeof renderCommissionsAdmin === 'function' ? renderCommissionsAdmin : undefined,
+    // v3.1.25 — Flag Review screen + its filter setters (used by inline
+    // onclick/onchange handlers in the rendered HTML).
+    renderCommissionsFlagReview: typeof renderCommissionsFlagReview === 'function' ? renderCommissionsFlagReview : undefined,
+    setFlagReviewStatusFilter: typeof setFlagReviewStatusFilter === 'function' ? setFlagReviewStatusFilter : undefined,
+    setFlagReviewYearFilter: typeof setFlagReviewYearFilter === 'function' ? setFlagReviewYearFilter : undefined,
+    setFlagReviewSearch: typeof setFlagReviewSearch === 'function' ? setFlagReviewSearch : undefined,
     renderCommissionsInto: typeof renderCommissionsInto === 'function' ? renderCommissionsInto : undefined,
     renderCommissionsBrandMix: typeof renderCommissionsBrandMix === 'function' ? renderCommissionsBrandMix : undefined,
     renderCommissionsInvoiceList: typeof renderCommissionsInvoiceList === 'function' ? renderCommissionsInvoiceList : undefined,

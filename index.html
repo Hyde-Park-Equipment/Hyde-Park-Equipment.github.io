@@ -34131,39 +34131,70 @@ HPE.sectionImpl.kubota = (function(){
     const make = String((r && r.make) || '').toLowerCase();
     return make.indexOf('kubota') !== -1;
   }
+  function slHelper(name){
+    return (window.S && typeof window.S[name] === 'function') ? window.S[name] : null;
+  }
+  // v3.2.0 — Sales scope state. Reps see only their own codes; admins/managers
+  // (canViewAllCommissions) get Me / All toggles + a per-rep dropdown.
+  // _salesScope: '__me__' | '__all__' | '<repCode>'
+  let _salesScope = '__me__';
+
+  function canSeeAll(){
+    const fn = slHelper('canViewAllCommissions');
+    return !!(fn && fn());
+  }
+  function myCodes(){
+    const fn = slHelper('getMyCommissionCodes');
+    return fn ? (fn() || []) : [];
+  }
+  // Returns the set of rep codes the current view should include. Empty array = all reps.
+  function effectiveCodes(){
+    if(!canSeeAll()) return myCodes();           // reps locked to their own
+    if(_salesScope === '__all__') return [];     // all reps
+    if(_salesScope === '__me__') return myCodes();
+    return [_salesScope];                         // a specific rep code
+  }
+
   function salesSummaryHtml(){
     const byYear = getCommissionsByYear();
+    const titleSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;color:var(--purple)"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>`;
     if(!byYear || Object.keys(byYear).length === 0){
-      return `<div class="udc-panel"><div class="udc-head"><div class="udc-title-row">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;color:var(--purple)"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      return `<div class="udc-panel"><div class="udc-head"><div class="udc-title-row">${titleSvg}
         <span>Kubota Sales</span></div></div>
         <div style="padding:18px;color:var(--gray-500);font-size:13px;text-align:center">No commissions data loaded yet. Sales figures will appear once the commissions reports are loaded.</div></div>`;
     }
     const years = Object.keys(byYear).map(y => parseInt(y,10)).filter(y=>!isNaN(y)).sort((a,b)=>b-a);
     const now = new Date();
     const curYear = now.getFullYear();
-    const curMonth = now.getMonth() + 1; // 1-12
-    // Pick the most recent data year as "this year" anchor; fall back gracefully.
+    const curMonth = now.getMonth() + 1;
     const thisYear = years.includes(curYear) ? curYear : years[0];
     const lastYear = thisYear - 1;
 
-    const sumKubota = (year, monthFilter) => {
+    const codes = effectiveCodes();           // [] = all
+    const codeSet = codes.length ? new Set(codes.map(c => String(c).toUpperCase())) : null;
+    const rowMatches = (r) => {
+      if(!isKubotaRow(r)) return false;
+      if(!codeSet) return true;                // all reps
+      return codeSet.has(String(r.repCode||'').toUpperCase());
+    };
+
+    const sumMonth = (year, month) => {
       const d = byYear[year];
       if(!d || !Array.isArray(d.sales)) return {count:0, amount:0, profit:0};
       let count=0, amount=0, profit=0;
       for(const r of d.sales){
-        if(!isKubotaRow(r)) continue;
-        if(monthFilter && r.month !== monthFilter) continue;
+        if(!rowMatches(r)) continue;
+        if(month && r.month !== month) continue;
         count++; amount += (r.amount||0); profit += (r.totalProfit||r.profit||0);
       }
       return {count, amount, profit};
     };
-    const sumKubotaYTD = (year, throughMonth) => {
+    const sumYTD = (year, throughMonth) => {
       const d = byYear[year];
       if(!d || !Array.isArray(d.sales)) return {count:0, amount:0, profit:0};
       let count=0, amount=0, profit=0;
       for(const r of d.sales){
-        if(!isKubotaRow(r)) continue;
+        if(!rowMatches(r)) continue;
         if(r.month > throughMonth) continue;
         count++; amount += (r.amount||0); profit += (r.totalProfit||r.profit||0);
       }
@@ -34171,10 +34202,10 @@ HPE.sectionImpl.kubota = (function(){
     };
 
     const monthName = new Date(thisYear, curMonth-1, 1).toLocaleString(undefined,{month:'long'});
-    const thisMonth = sumKubota(thisYear, curMonth);
-    const lastYearSameMonth = sumKubota(lastYear, curMonth);
-    const ytdThis = sumKubotaYTD(thisYear, curMonth);
-    const ytdLast = sumKubotaYTD(lastYear, curMonth);
+    const thisMonth = sumMonth(thisYear, curMonth);
+    const lastYearSameMonth = sumMonth(lastYear, curMonth);
+    const ytdThis = sumYTD(thisYear, curMonth);
+    const ytdLast = sumYTD(lastYear, curMonth);
 
     const pctDelta = (cur, prev) => {
       if(!prev) return cur > 0 ? {txt:'new', pos:true} : {txt:'—', pos:null};
@@ -34189,7 +34220,6 @@ HPE.sectionImpl.kubota = (function(){
       const bg = d.pos ? '#dcfce7' : '#fef2f2';
       return `<span style="font-size:11px;font-weight:600;color:${col};background:${bg};padding:1px 7px;border-radius:8px">${d.txt} YoY</span>`;
     };
-
     const card = (label, val, sub, delta) => `
       <div style="flex:1;min-width:150px;background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:14px 16px">
         <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-500);font-weight:600;margin-bottom:6px">${label}</div>
@@ -34200,22 +34230,105 @@ HPE.sectionImpl.kubota = (function(){
         </div>
       </div>`;
 
+    // ── Monthly bar chart (this year vs last year) ──
+    const monthlyThis = []; const monthlyLast = [];
+    for(let m=1; m<=12; m++){ monthlyThis.push(sumMonth(thisYear, m).amount); monthlyLast.push(sumMonth(lastYear, m).amount); }
+    const chartHtml = monthlyBarChart(monthlyThis, monthlyLast, thisYear, lastYear);
+
+    // ── Scope controls ──
+    let scopeControls = '';
+    if(canSeeAll()){
+      const repList = slHelper('getAllRepCodesForYear') ? (slHelper('getAllRepCodesForYear')(thisYear) || []) : [];
+      const labelFn = slHelper('getRepLabel');
+      const meActive = _salesScope === '__me__';
+      const allActive = _salesScope === '__all__';
+      const btn = (val, txt, active) => `<button onclick="HPE.sectionImpl.kubota.setSalesScope('${val}')" style="padding:5px 12px;border:1px solid ${active?'var(--purple)':'var(--gray-200)'};background:${active?'var(--purple)':'#fff'};color:${active?'#fff':'var(--gray-700)'};border-radius:14px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit">${txt}</button>`;
+      const repOpts = `<option value="">— specific rep —</option>` + repList.map(r => {
+        const lbl = labelFn ? (labelFn(r.code) || r.label || r.code) : (r.label || r.code);
+        const sel = (_salesScope === r.code) ? 'selected' : '';
+        return `<option value="${escAttr(r.code)}" ${sel}>${esc(lbl)} (${esc(r.code)})</option>`;
+      }).join('');
+      scopeControls = `
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+          ${btn('__me__','Me',meActive)}
+          ${btn('__all__','All reps',allActive)}
+          <select onchange="HPE.sectionImpl.kubota.setSalesScope(this.value)" style="padding:5px 10px;border:1px solid ${(!meActive&&!allActive)?'var(--purple)':'var(--gray-200)'};border-radius:14px;font-size:11px;font-family:inherit;background:#fff">${repOpts}</select>
+        </div>`;
+    }
+    const scopeLabel = (() => {
+      if(!canSeeAll()) {
+        const mc = myCodes();
+        const lf = slHelper('getRepLabel');
+        return mc.length ? ((lf && lf(mc[0])) || 'You') : 'You';
+      }
+      if(_salesScope === '__all__') return 'All reps';
+      if(_salesScope === '__me__'){ const mc = myCodes(); const lf = slHelper('getRepLabel'); return mc.length ? ((lf && lf(mc[0]))||'You') : 'You'; }
+      const lf = slHelper('getRepLabel'); return (lf && lf(_salesScope)) || _salesScope;
+    })();
+
     return `
       <div class="udc-panel" style="padding-bottom:4px">
         <div class="udc-head">
-          <div class="udc-title-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;color:var(--purple)"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-            <span>Kubota Sales</span>
+          <div class="udc-title-row">${titleSvg}<span>Kubota Sales</span>
+            <span style="font-size:11px;font-weight:500;color:var(--purple);background:var(--purple-light);padding:1px 9px;border-radius:8px;margin-left:4px">${esc(scopeLabel)}</span>
           </div>
           <span style="font-size:11px;color:var(--gray-400)">${thisYear} vs ${lastYear}</span>
         </div>
+        ${scopeControls ? `<div style="padding:2px 2px 12px">${scopeControls}</div>` : ''}
         <div style="display:flex;gap:12px;flex-wrap:wrap;padding:4px 2px 12px">
           ${card(monthName + ' (MTD)', FMT$(thisMonth.amount), thisMonth.count + ' unit' + (thisMonth.count===1?'':'s'), deltaPill(yoyMonth))}
           ${card('Year to Date', FMT$(ytdThis.amount), ytdThis.count + ' unit' + (ytdThis.count===1?'':'s'), deltaPill(yoyYtd))}
           ${card('YTD Profit', FMT$(ytdThis.profit), 'vs ' + FMT$(ytdLast.profit) + ' last yr', null)}
         </div>
-        <div style="font-size:10px;color:var(--gray-400);padding:0 2px 8px">Kubota-make sales pulled from commissions reports. MTD/YTD compared to the same period last year.</div>
+        ${chartHtml}
+        <div style="font-size:10px;color:var(--gray-400);padding:6px 2px 8px">Kubota-make sales pulled from commissions reports${canSeeAll()?'':' (your sales only)'}. MTD/YTD compared to the same period last year.</div>
       </div>`;
+  }
+
+  // SVG grouped bar chart: 12 months, this year (purple) vs last year (gray).
+  function monthlyBarChart(thisArr, lastArr, thisYear, lastYear){
+    const MN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const max = Math.max(1, ...thisArr, ...lastArr);
+    const W = 660, H = 200, padL = 44, padB = 26, padT = 10, padR = 8;
+    const plotW = W - padL - padR, plotH = H - padB - padT;
+    const groupW = plotW / 12;
+    const barW = Math.max(4, (groupW - 6) / 2);
+    const y = (v) => padT + plotH - (v/max)*plotH;
+    // gridlines (4 steps)
+    let grid = '';
+    for(let i=0;i<=4;i++){
+      const gy = padT + plotH - (i/4)*plotH;
+      const val = (max*i/4);
+      grid += `<line x1="${padL}" y1="${gy.toFixed(1)}" x2="${W-padR}" y2="${gy.toFixed(1)}" stroke="#eee" stroke-width="1"/>`;
+      grid += `<text x="${padL-6}" y="${(gy+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#999" font-family="'DM Mono',monospace">${val>=1000?('$'+Math.round(val/1000)+'k'):('$'+Math.round(val))}</text>`;
+    }
+    let bars = '';
+    for(let m=0;m<12;m++){
+      const gx = padL + m*groupW;
+      const xLast = gx + (groupW/2) - barW - 1;
+      const xThis = gx + (groupW/2) + 1;
+      const hLast = plotH - (y(lastArr[m]) - padT);
+      const hThis = plotH - (y(thisArr[m]) - padT);
+      if(lastArr[m] > 0) bars += `<rect x="${xLast.toFixed(1)}" y="${y(lastArr[m]).toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(0,hLast).toFixed(1)}" fill="#cbd5e1" rx="1.5"><title>${MN[m]} ${lastYear}: ${FMT$(lastArr[m])}</title></rect>`;
+      if(thisArr[m] > 0) bars += `<rect x="${xThis.toFixed(1)}" y="${y(thisArr[m]).toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(0,hThis).toFixed(1)}" fill="#7c3aed" rx="1.5"><title>${MN[m]} ${thisYear}: ${FMT$(thisArr[m])}</title></rect>`;
+      bars += `<text x="${(gx+groupW/2).toFixed(1)}" y="${H-padB+13}" text-anchor="middle" font-size="9" fill="#999">${MN[m]}</text>`;
+    }
+    return `
+      <div style="background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:12px 14px;margin:0 2px 6px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:12px;font-weight:600;color:var(--gray-700)">Monthly Sales</span>
+          <span style="display:flex;gap:12px;font-size:10px;color:var(--gray-500)">
+            <span><span style="display:inline-block;width:9px;height:9px;background:#7c3aed;border-radius:2px;margin-right:4px;vertical-align:middle"></span>${thisYear}</span>
+            <span><span style="display:inline-block;width:9px;height:9px;background:#cbd5e1;border-radius:2px;margin-right:4px;vertical-align:middle"></span>${lastYear}</span>
+          </span>
+        </div>
+        <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block">${grid}${bars}</svg>
+      </div>`;
+  }
+
+  function setSalesScope(val){
+    _salesScope = (val === '' || val == null) ? '__me__' : val;
+    renderDashboard();
   }
 
   function renderDashboard(){
@@ -34239,8 +34352,30 @@ HPE.sectionImpl.kubota = (function(){
   };
   let _invSearch = '';
 
+  let _invLoadAttempted = false;
   function kInv(){
     return (window.U && typeof window.U.getKubotaInventory === 'function') ? window.U.getKubotaInventory() : [];
+  }
+
+  // v3.2.0 — The parts inventory file is loaded by Shortline's onFirstVisit
+  // (loadStihlData -> loadPartsInventoryFile), which is async + fire-and-forget,
+  // and itself depends on the Drive folder ID being resolved first. If a user
+  // lands on the 660 page before any of that settles, KUBOTA_INVENTORY is empty.
+  // We kick the load ourselves and re-render when it resolves. We only latch the
+  // attempt flag once data actually arrives, so an early call (before Drive is
+  // ready) doesn't permanently block a later successful load.
+  function ensureInventoryLoaded(){
+    if(_invLoadAttempted) return;
+    if(kInv().length > 0){ _invLoadAttempted = true; return; }
+    if(window.U && typeof window.U.loadPartsInventoryFile === 'function'){
+      Promise.resolve()
+        .then(() => window.U.loadPartsInventoryFile())
+        .then(() => {
+          if(kInv().length > 0) _invLoadAttempted = true;  // latch only on success
+          render660();
+        })
+        .catch(e => { console.warn('[kubota/660] inventory load failed:', e); render660(); });
+    }
   }
 
   function render660(){
@@ -34380,7 +34515,7 @@ HPE.sectionImpl.kubota = (function(){
     const tdNum = td + ';text-align:right;font-variant-numeric:tabular-nums';
     const tdMono = td + ';font-family:"DM Mono",monospace;font-size:12px';
     const body = rows.length === 0
-      ? `<tr><td colspan="7" style="padding:34px;text-align:center;color:var(--gray-500)">${inv.length===0 ? 'No vendor-660 inventory loaded yet.' : 'No parts match your search.'}</td></tr>`
+      ? `<tr><td colspan="7" style="padding:34px;text-align:center;color:var(--gray-500)">${inv.length===0 ? 'Vendor-660 inventory hasn\'t loaded yet. <button onclick="HPE.sectionImpl.kubota.refreshInventory()" style="margin-left:6px;padding:4px 10px;border:1px solid var(--gray-200);background:#fff;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit">Refresh</button>' : 'No parts match your search.'}</td></tr>`
       : rows.map(p => {
           const m = (p.qtyByLocation && p.qtyByLocation.M) || 0;
           const s = (p.qtyByLocation && p.qtyByLocation.S) || 0;
@@ -34536,7 +34671,17 @@ Put each real wholegood part under its section. If a section has no parts to che
   // ── Router hook ────────────────────────────────────────────────────
   function onPageVisit(page){
     if(page === 'dashboard'){ renderDashboard(); }
-    else if(page === '660-checker'){ render660(); }
+    else if(page === '660-checker'){ render660(); ensureInventoryLoaded(); }
+  }
+
+  // v3.2.0 — Manual inventory reload (empty-state button + belt-and-suspenders).
+  function refreshInventory(){
+    if(window.U && typeof window.U.loadPartsInventoryFile === 'function'){
+      Promise.resolve()
+        .then(() => window.U.loadPartsInventoryFile())
+        .then(() => { if(kInv().length > 0) _invLoadAttempted = true; render660(); })
+        .catch(e => { console.warn('[kubota/660] manual refresh failed:', e); render660(); });
+    }
   }
 
   return {
@@ -34544,7 +34689,9 @@ Put each real wholegood part under its section. If a section has no parts to che
     renderDashboard,
     render660,
     onQuoteUpload,
-    onInvSearch
+    onInvSearch,
+    refreshInventory,
+    setSalesScope
   };
 })();
 

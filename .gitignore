@@ -1,0 +1,2 @@
+# Per-user Claude Code permissions cache — never commit
+.claude/settings.local.json

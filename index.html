@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v3.10.2</title><!-- build:20260522_v3102_models_input_refocus -->
+<title>HPE Sales Platform v3.11.0</title><!-- build:20260522_v3110_dashboard_cockpit -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -81,11 +81,7 @@ a{color:inherit;text-decoration:none;}
 .topbar-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .topbar-title{font-size:13px;font-weight:600;color:white;line-height:1.2;white-space:nowrap;flex-shrink:0;}
 .topbar-title span{display:block;font-size:10px;font-weight:400;color:#9ca3af;white-space:nowrap;}
-.topbar-spacer{flex:1;min-width:0;}
-.topbar-search{position:relative;flex:0 1 280px;min-width:140px;opacity:0.5;}
-.topbar-search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;color:var(--frame-muted);pointer-events:none;}
-.topbar-search input{width:100%;padding:6px 10px 6px 28px;border-radius:6px;border:1px solid #2a2a2a;background:#1a1a1a;font-family:'DM Sans',sans-serif;font-size:12px;color:white;cursor:not-allowed;}
-.topbar-search input::placeholder{color:var(--frame-muted);}
+.topbar-spacer{flex:0 1 280px;min-width:140px;}
 
 /* APP-SWITCHER (now internal-route links, not cross-app navigation)
    Absolutely positioned in topbar center so the tabs sit at the viewport
@@ -284,12 +280,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .dash-comms-row .dcr-date{font-size:10px;color:var(--gray-500);font-family:'DM Mono',monospace;flex-shrink:0;}
 .dash-comms-empty{padding:14px;text-align:center;color:var(--gray-400);font-size:12px;font-style:italic;}
 
-/* Kubota placeholder card on dashboard */
-.kubota-placeholder{background:var(--card);border:1px solid var(--gray-200);border-top:3px solid var(--purple);border-radius:var(--radius-lg);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px;}
-.kubota-placeholder-left{display:flex;align-items:baseline;gap:14px;}
-.kubota-placeholder h3{color:var(--gray-900);font-size:16px;font-weight:600;}
-.kubota-placeholder .placeholder-tag{display:inline-block;font-size:11px;background:var(--purple-light);color:var(--purple);font-weight:500;padding:4px 11px;border-radius:5px;margin-bottom:0;}
-.kubota-placeholder .placeholder-status{color:var(--gray-500);font-size:12px;}
+/* Kubota placeholder card removed in v3.10.4 — module shipped, card was stale */
 
 /* Module cards */
 .modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-bottom:18px;}
@@ -427,7 +418,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 @media(max-width:780px){
   .topbar{padding:0 12px;gap:8px;}
   .topbar-title span{display:none;}
-  .topbar-search{display:none;}
+  .topbar-spacer{display:none;}
   .app-switcher{padding:2px;}
   .app-tab{padding:6px 10px;min-width:64px;font-size:12px;}
   .topbar-hamburger{display:inline-flex;}
@@ -436,7 +427,6 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
   .page{padding:20px 14px;}
   .qq-options{grid-template-columns:1fr;}
   .modules-grid{grid-template-columns:1fr;}
-  .kubota-placeholder{flex-direction:column;align-items:flex-start;}
   .cust-form{grid-template-columns:1fr;}
   .cust-table{min-width:540px;}
   .comms-item{grid-template-columns:1fr;gap:6px;}
@@ -2560,6 +2550,97 @@ body.admin-mode .admin-only { display: inline-flex; }
 .sync-status.s-error{background:rgba(239,68,68,0.18);color:#fca5a5;}
 .sync-status .sync-spin{display:inline-block;width:9px;height:9px;border:1.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:syncSpin 0.7s linear infinite;}
 @keyframes syncSpin{to{transform:rotate(360deg);}}
+
+/* ════════════ DASHBOARD REVAMP (v3.11.0) ════════════ */
+@keyframes dxbRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+#page-hub-dashboard .dxb-hero,#page-hub-dashboard #dxb-rep,#page-hub-dashboard #dxb-mgmt{animation:dxbRise .5s cubic-bezier(.2,.7,.3,1) both;}
+.dxb-hero{position:relative;background:linear-gradient(135deg,#0c0c0d 0%,#1a1a1d 60%,#241a12 100%);border-radius:var(--radius-lg);padding:22px 26px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 12px 30px -12px rgba(0,0,0,.4);}
+.dxb-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:34px 34px;-webkit-mask-image:radial-gradient(circle at 80% 30%,#000,transparent 75%);mask-image:radial-gradient(circle at 80% 30%,#000,transparent 75%);pointer-events:none;}
+.dxb-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,93,4,.22),transparent 65%);pointer-events:none;}
+.dxb-hero-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;margin-bottom:20px;}
+.dxb-greeting{font-size:13px;color:#a1a1aa;font-weight:500;}
+.dxb-name{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-top:2px;}
+.dxb-name b{color:var(--orange);}
+.dxb-date{text-align:right;font-size:11px;color:#71717a;font-family:'DM Mono',monospace;line-height:1.7;}
+.dxb-live{color:#4ade80;}
+.dxb-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-right:5px;animation:dxbPulse 2s infinite;vertical-align:middle;}
+@keyframes dxbPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.dxb-readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07);border-radius:11px;overflow:hidden;position:relative;z-index:1;}
+.dxb-readout{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));padding:15px 16px 14px;position:relative;}
+.dxb-readout-label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#8b8b93;font-weight:600;margin-bottom:9px;}
+.dxb-readout-value{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:#fff;letter-spacing:-.02em;line-height:1;}
+.dxb-readout-value .c{font-size:14px;color:#a1a1aa;}
+.dxb-readout-sub{font-size:11px;margin-top:7px;color:#a1a1aa;font-weight:500;}
+.dxb-readout-sub .up{color:#4ade80;}.dxb-readout-sub .down{color:#f87171;}
+.dxb-ra{position:absolute;left:0;top:0;bottom:0;width:3px;}
+.dxb-ra-orange{background:var(--orange);}.dxb-ra-green{background:#4ade80;}.dxb-ra-purple{background:#a78bfa;}.dxb-ra-blue{background:#60a5fa;}
+@media(max-width:720px){.dxb-readouts{grid-template-columns:repeat(2,1fr)}}
+
+.dxb-grid{display:grid;grid-template-columns:1fr 330px;gap:16px;align-items:start;}
+@media(max-width:880px){.dxb-grid{grid-template-columns:1fr}}
+.dxb-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);font-weight:700;margin:4px 2px 11px;display:flex;align-items:center;gap:8px;}
+.dxb-eyebrow::after{content:"";flex:1;height:1px;background:var(--gray-200);}
+
+.dxb-strengths{background:linear-gradient(160deg,#1a1410,#0c0c0d);border:1px solid #2a2118;border-radius:var(--radius-lg);padding:17px 18px;margin-bottom:16px;position:relative;overflow:hidden;}
+.dxb-strengths::after{content:"";position:absolute;left:-40px;bottom:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(212,160,23,.16),transparent 65%);pointer-events:none;}
+.dxb-strengths h3{font-size:12px;font-weight:700;color:#d4a017;text-transform:uppercase;letter-spacing:.06em;margin-bottom:13px;position:relative;z-index:1;}
+.dxb-str-grid{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:1;}
+.dxb-str-badge{flex:1 1 calc(50% - 5px);min-width:200px;background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(212,160,23,.22);border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:12px;}
+.dxb-str-medal{font-size:18px;}
+.dxb-str-rank{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:#d4a017;min-width:30px;text-align:center;line-height:1;}
+.dxb-str-rank .h{font-size:13px;opacity:.6;}
+.dxb-str-t{font-size:13px;font-weight:700;color:#fff;line-height:1.2;}
+.dxb-str-s{font-size:11px;color:#a1a1aa;margin-top:3px;font-family:'DM Mono',monospace;}
+.dxb-str-empty{color:#a1a1aa;font-size:12px;position:relative;z-index:1;}
+
+.dxb-grow{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:16px;}
+.dxb-grow h3{font-size:12px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin-bottom:13px;}
+.dxb-grow-grid{display:flex;flex-direction:column;gap:10px;}
+.dxb-grow-item{display:flex;align-items:center;gap:13px;padding:11px 13px;background:#f8fafc;border:1px solid #e8eef5;border-radius:11px;}
+.dxb-grow-ic{width:32px;height:32px;border-radius:9px;background:#eff6ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+.dxb-grow-t{font-size:13px;font-weight:600;color:var(--gray-900);}
+.dxb-grow-s{font-size:11px;color:var(--text-2);margin-top:2px;}
+.dxb-grow-bar{height:5px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin-top:7px;}
+.dxb-grow-bar-fill{height:100%;background:linear-gradient(90deg,#60a5fa,#2563eb);border-radius:3px;}
+.dxb-grow-empty{font-size:12px;color:var(--gray-500);padding:4px 0;}
+
+.dxb-attn{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:16px;}
+.dxb-attn-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:linear-gradient(90deg,#fffbeb,transparent);border-bottom:1px solid var(--gray-200);}
+.dxb-attn-head h3{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;color:var(--gray-900);}
+.dxb-pulse{width:7px;height:7px;border-radius:50%;background:#d97706;animation:dxbRing 1.8s infinite;}
+@keyframes dxbRing{0%{box-shadow:0 0 0 0 rgba(217,119,6,.45)}70%{box-shadow:0 0 0 7px rgba(217,119,6,0)}100%{box-shadow:0 0 0 0 rgba(217,119,6,0)}}
+.dxb-attn-count{font-family:'DM Mono',monospace;font-size:11px;color:#d97706;background:#fffbeb;border:1px solid #fcd9a4;padding:2px 8px;border-radius:20px;}
+.dxb-attn-item{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .12s;}
+.dxb-attn-item:last-child{border-bottom:none;}.dxb-attn-item:hover{background:var(--gray-50);}
+.dxb-attn-sev{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dxb-sev-warn{background:#dc2626;}.dxb-sev-info{background:#d97706;}
+.dxb-attn-label{font-size:13px;font-weight:500;color:var(--gray-900);}
+.dxb-attn-meta{font-size:11px;color:var(--text-3);margin-top:1px;}
+.dxb-attn-arrow{color:var(--gray-300);transition:transform .12s,color .12s;flex-shrink:0;}
+.dxb-attn-item:hover .dxb-attn-arrow{transform:translateX(2px);color:var(--orange);}
+.dxb-attn-clear{padding:24px 16px;text-align:center;color:#16a34a;font-size:13px;font-weight:500;}
+
+.dxb-pipe{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;}
+.dxb-pipe-row{display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .12s;}
+.dxb-pipe-row:last-child{border-bottom:none;}.dxb-pipe-row:hover{background:var(--gray-50);}
+.dxb-pipe-stat{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.dxb-ps-sent{background:#60a5fa;}.dxb-ps-draft{background:var(--gray-300);}.dxb-ps-won{background:#16a34a;}.dxb-ps-hot{background:var(--orange);}
+.dxb-pipe-cust{font-size:13px;font-weight:600;color:var(--gray-900);}
+.dxb-pipe-meta{font-size:11px;color:var(--text-3);margin-top:1px;}
+.dxb-pipe-amt{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--gray-900);}
+.dxb-pipe-age{font-size:10px;color:var(--text-3);font-family:'DM Mono',monospace;margin-top:2px;text-align:right;}
+.dxb-pipe-empty{padding:20px 16px;text-align:center;color:var(--gray-500);font-size:13px;}
+
+.dxb-side{display:flex;flex-direction:column;gap:16px;}
+.dxb-mine{background:linear-gradient(165deg,#fff,var(--orange-light));border:1px solid #fde4cf;border-radius:var(--radius-lg);padding:15px 16px;}
+.dxb-mine h3{font-size:12px;font-weight:700;color:var(--orange-dark);text-transform:uppercase;letter-spacing:.05em;margin-bottom:13px;}
+.dxb-mine-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.dxb-mine-l{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--orange-dark);font-weight:600;opacity:.75;margin-bottom:4px;}
+.dxb-mine-v{font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:var(--gray-900);}
+.dxb-mine-v .c{font-size:11px;color:var(--text-3);}
+
+.dxb-mgmt-banner{background:#1f1f1f;color:#fff;border-radius:var(--radius);padding:10px 15px;font-size:12px;margin-bottom:16px;display:flex;align-items:center;gap:9px;font-family:'DM Mono',monospace;}
+.dxb-mgmt-banner .b{color:var(--orange);font-weight:600;}
 </style>
 
   <!-- v1.3.0 — External deps (XLSX, jsPDF) for Shortline + Used -->
@@ -2598,13 +2679,10 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.10.2</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.11.0</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>
-    <div class="topbar-search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" placeholder="Search…" disabled>
-    </div>
+    <div class="topbar-spacer" aria-hidden="true"></div>
     <nav class="app-switcher" aria-label="Section switcher">
       <a class="app-tab" data-section="hub" href="#/" onclick="HPE.router.go('hub','dashboard');return false;">Home</a>
       <a class="app-tab" data-section="used" href="#/used" onclick="HPE.router.go('used');return false;">Used</a>
@@ -2637,11 +2715,12 @@ body.admin-mode .admin-only { display: inline-flex; }
           <div class="page-header">
             <div>
               <div class="page-title">Dashboard</div>
-              <div class="page-sub">Cross-section overview</div>
+              <div class="page-sub" id="dash-sub">Your sales cockpit</div>
             </div>
             <div class="last-updated" id="last-updated"></div>
           </div>
 
+          <!-- COMMUNICATIONS (top, unchanged renderer) -->
           <div class="dash-comms-panel" id="dash-comms-panel">
             <div class="dash-comms-head">
               <div class="dash-comms-title">
@@ -2656,16 +2735,62 @@ body.admin-mode .admin-only { display: inline-flex; }
             </div>
           </div>
 
-          <div class="kubota-placeholder" id="kubota-placeholder">
-            <div class="kubota-placeholder-left">
-              <h3>Kubota Sales Module</h3>
-              <span class="placeholder-tag">Coming soon</span>
+          <!-- HERO / readout strip (personal in rep mode, business in mgmt mode) -->
+          <div class="dxb-hero" id="dxb-hero">
+            <div class="dxb-hero-top">
+              <div>
+                <div class="dxb-greeting" id="dxb-greeting">Welcome back</div>
+                <div class="dxb-name" id="dxb-name">Hyde Park <b>Equipment</b></div>
+              </div>
+              <div class="dxb-date"><div><span class="dxb-dot"></span><span class="dxb-live">LIVE</span></div><div id="dxb-datestr">—</div></div>
             </div>
-            <div class="placeholder-status">No data yet — module under development</div>
+            <div class="dxb-readouts" id="dxb-readouts"></div>
           </div>
 
-          <div id="modules-area">
-            <div class="loading-state"><span class="spinner"></span> &nbsp; Loading modules…</div>
+          <!-- REP COCKPIT -->
+          <div id="dxb-rep">
+            <div class="dxb-grid">
+              <div>
+                <div class="dxb-eyebrow">Where You Lead</div>
+                <div class="dxb-strengths">
+                  <h3>★ Your Strengths · <span id="dxb-str-year"></span> YTD</h3>
+                  <div class="dxb-str-grid" id="dxb-strGrid"></div>
+                </div>
+
+                <div class="dxb-eyebrow">Room to Grow</div>
+                <div class="dxb-grow">
+                  <h3>↗ Your Biggest Opportunities</h3>
+                  <div class="dxb-grow-grid" id="dxb-growGrid"></div>
+                </div>
+
+                <div class="dxb-eyebrow">Your To-Do</div>
+                <div class="dxb-attn">
+                  <div class="dxb-attn-head"><h3><span class="dxb-pulse"></span> Your Trades Needing Info</h3><span class="dxb-attn-count" id="dxb-attnCount">—</span></div>
+                  <div class="dxb-attn-list" id="dxb-attnList"></div>
+                </div>
+
+                <div class="dxb-eyebrow">Your Open Quotes</div>
+                <div class="dxb-pipe" id="dxb-pipeList"></div>
+              </div>
+
+              <div class="dxb-side">
+                <div class="dxb-mine">
+                  <h3>◆ Your Year</h3>
+                  <div class="dxb-mine-grid" id="dxb-mineGrid"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MANAGEMENT CONSOLE (admin only, behind role toggle) -->
+          <div id="dxb-mgmt" style="display:none">
+            <div class="dxb-mgmt-banner"><span class="b">&#9881; MANAGEMENT CONSOLE</span> &middot; operational &amp; all-rep data</div>
+            <div class="dxb-eyebrow">Operational</div>
+            <div id="modules-area">
+              <div class="loading-state"><span class="spinner"></span> &nbsp; Loading modules…</div>
+            </div>
+            <div class="dxb-eyebrow" style="margin-top:18px">All Reps &middot; Sales YTD</div>
+            <div class="dxb-pipe" id="dxb-repTable"></div>
           </div>
 
           <div class="debug-section">
@@ -4236,8 +4361,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '3.10.2',
-    build: '20260522_v3102_models_input_refocus',
+    version: '3.11.0',
+    build: '20260522_v3110_dashboard_cockpit',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -5187,6 +5312,13 @@ const HPE = (function(){
       // side, but only when called from certain paths. Refresh shell button
       // unconditionally to keep the label in sync.
       ui.applyAdminPermissions();
+      // v3.11.0 — If the hub dashboard is showing, swap rep/management view live.
+      try{
+        const dash = document.getElementById('page-hub-dashboard');
+        if(dash && dash.classList.contains('active') && sectionImpl.hub && typeof sectionImpl.hub.renderDashboardCockpit === 'function'){
+          sectionImpl.hub.renderDashboardCockpit();
+        }
+      }catch(e){ console.warn('[HPE] cockpit toggle failed', e); }
     },
     /* Sidebar badge utility. Sets/clears a small count pill on a nav button.
        The button is identified by its data-page attribute within the active
@@ -6164,6 +6296,7 @@ const HPE = (function(){
         renderComms();
         updateCommsBadge();
         renderDashCommsPanel();
+        try{ renderDashboardCockpit(); }catch(e){ console.warn('[HPE/hub] cockpit render failed', e); }
 
         // Start loading dashboard module summaries (async, non-blocking)
         loadAllSummaries().catch(e => console.warn('[HPE/hub] summary load failed', e));
@@ -6193,6 +6326,7 @@ const HPE = (function(){
         }else if(page === 'dashboard'){
           renderDashCommsPanel();
           updateCommsBadge();
+          try{ renderDashboardCockpit(); }catch(e){ console.warn('[HPE/hub] cockpit render failed', e); }
         }else if(page === 'quotes'){
           // v1.5.2 — refresh unified quotes.json on every visit
           HPE.quotes.refresh();
@@ -6964,6 +7098,265 @@ const HPE = (function(){
         }).join('');
       }
 
+      // ── DASHBOARD COCKPIT (v3.11.0) ─────────────────────────────────────
+      // Rep-first cockpit. Personal sales/profit, "Your Strengths" superlatives,
+      // "Room to Grow" opportunities, your-trades-missing, open quotes. Admins
+      // get a Management console via the existing role toggle (body.admin-mode).
+      // All cross-section reads are guarded; if commission/inventory data isn't
+      // loaded yet the panels degrade to neutral placeholders (never throw).
+      function dxbMoney(n){
+        n = Number(n)||0; const a = Math.abs(n);
+        if(a >= 1e6) return {c:'$', v:(n/1e6).toFixed(2), u:'M'};
+        if(a >= 1e3) return {c:'$', v:Math.round(n/1e3).toString(), u:'K'};
+        return {c:'$', v:Math.round(n).toLocaleString(), u:''};
+      }
+      function dxbMoneyHtml(n){ const m = dxbMoney(n); return '<span class="c">'+m.c+'</span>'+m.v+(m.u?'<span class="c">'+m.u+'</span>':''); }
+      function dxbCurrentRepName(){
+        const email = (state.user && state.user.email || '').toLowerCase();
+        const sp = SALESPEOPLE.find(s => (s.email||'').toLowerCase() === email);
+        return sp ? (sp.name || '') : (state.user && state.user.name || '');
+      }
+      function dxbCurrentRepCodes(){
+        // A salesperson record may carry one or more rep codes. Fall back to matching
+        // by name against the commission rep-code list if no explicit code.
+        const email = (state.user && state.user.email || '').toLowerCase();
+        const sp = SALESPEOPLE.find(s => (s.email||'').toLowerCase() === email);
+        if(sp && sp.repCodes && sp.repCodes.length) return sp.repCodes.slice();
+        if(sp && sp.repCode) return [sp.repCode];
+        return [];
+      }
+      // Loop all reps through S.aggregateCommissions for the year, return per-rep
+      // dimension values plus the team max for each dimension. Cached per render.
+      function dxbComputeRepStats(year){
+        const out = { reps:{}, byBrandReps:{}, maxes:{}, ok:false };
+        if(!window.S || typeof window.S.getAllRepCodesForYear !== 'function' || typeof window.S.aggregateCommissions !== 'function') return out;
+        let codes = [];
+        try{ codes = window.S.getAllRepCodesForYear(year) || []; }catch(e){ return out; }
+        if(!codes.length) return out;
+        const dims = ['totalSales','totalProfit','avgDeal','marginPct'];
+        dims.forEach(d => out.maxes[d] = {val:-Infinity, code:null});
+        const brandMax = {}; // brand -> {val, code}
+        codes.forEach(code => {
+          let a; try{ a = window.S.aggregateCommissions(year, [code]); }catch(e){ return; }
+          if(!a) return;
+          out.reps[code] = a;
+          dims.forEach(d => { const v = Number(a[d])||0; if(v > out.maxes[d].val){ out.maxes[d] = {val:v, code}; } });
+          (a.byBrand||[]).forEach(b => {
+            const k = (b.brand||'').trim(); if(!k || k === '— Other') return;
+            const v = Number(b.sales)||0;
+            if(!brandMax[k] || v > brandMax[k].val) brandMax[k] = {val:v, code, brand:k};
+          });
+        });
+        out.brandMax = brandMax;
+        out.ok = true;
+        return out;
+      }
+      // Build the current rep's strength badges + grow opportunities from the stats.
+      function dxbBuildStrengths(stats, myCodes){
+        const mine = new Set(myCodes.map(c => String(c).toUpperCase()));
+        const isMine = (code) => code && mine.has(String(code).toUpperCase());
+        const str = [], grow = [];
+        if(!stats.ok || !myCodes.length) return {str, grow};
+        const dimLabel = {totalSales:'Sales', totalProfit:'Profit', avgDeal:'Average Deal Size', marginPct:'Blended Margin'};
+        // Aggregate my own numbers across my codes
+        let me = null;
+        try{ me = window.S.aggregateCommissions(stats._year, myCodes); }catch(e){}
+        // Top-level dimension wins (#1 on the team)
+        ['totalSales','totalProfit','avgDeal','marginPct'].forEach(d => {
+          if(isMine(stats.maxes[d] && stats.maxes[d].code)){
+            let sub = '';
+            if(d === 'marginPct') sub = ((me && me.marginPct*100)||0).toFixed(1)+'% blended';
+            else if(d === 'avgDeal') sub = dxbMoney(me && me.avgDeal).c+dxbMoney(me && me.avgDeal).v+dxbMoney(me && me.avgDeal).u+' per deal';
+            else { const m = dxbMoney(me && me[d]); sub = m.c+m.v+m.u+' · most on the team'; }
+            str.push({rank:1, medal:'🥇', title:'Highest '+dimLabel[d], sub});
+          }
+        });
+        // Per-brand leadership
+        Object.values(stats.brandMax||{}).forEach(b => {
+          if(isMine(b.code)){
+            const m = dxbMoney(b.val);
+            str.push({rank:1, medal:'🥇', title:'#1 in '+b.brand+' Sales', sub:m.c+m.v+m.u+' · most on the team'});
+          }
+        });
+        // Room to grow: brands where I'm well behind the leader (opportunity, never a rank)
+        if(me){
+          const myBrand = {}; (me.byBrand||[]).forEach(b => { const k=(b.brand||'').trim(); if(k && k!=='— Other') myBrand[k] = Number(b.sales)||0; });
+          const gaps = [];
+          Object.values(stats.brandMax||{}).forEach(b => {
+            if(isMine(b.code)) return;            // I already lead it → not a gap
+            const myVal = myBrand[b.brand] || 0;
+            if(b.val > 0 && myVal < b.val * 0.6){  // meaningfully behind
+              gaps.push({brand:b.brand, mine:myVal, lead:b.val, pct: b.val>0 ? Math.round(myVal/b.val*100) : 0});
+            }
+          });
+          gaps.sort((a,b) => (b.lead-b.mine) - (a.lead-a.mine));
+          gaps.slice(0,2).forEach(g => {
+            const mm = dxbMoney(g.mine), ml = dxbMoney(g.lead);
+            grow.push({ic:'🌱', t:g.brand+' line has room',
+              s:'You\'re at '+mm.c+mm.v+mm.u+' — the line\'s top seller is at '+ml.c+ml.v+ml.u+'. Worth a push.',
+              pct: Math.max(6, Math.min(g.pct, 100))});
+          });
+        }
+        return {str, grow, me};
+      }
+
+      function dxbRenderReadouts(rep){
+        const el = document.getElementById('dxb-readouts'); if(!el) return;
+        const cards = rep
+          ? [
+              {ra:'orange', label:'Sales YTD', val:dxbMoneyHtml(rep.me && rep.me.totalSales), sub:rep.me ? (rep.me.dealCount||0)+' deals closed' : '—'},
+              {ra:'green', label:'Profit YTD', val:dxbMoneyHtml(rep.me && rep.me.totalProfit), sub:rep.me ? ((rep.me.marginPct*100)||0).toFixed(1)+'% blended margin' : '—'},
+              {ra:'blue', label:'Open Quotes', val:String(rep.openQuotes||0), sub:rep.quotePotential ? dxbMoney(rep.quotePotential).c+dxbMoney(rep.quotePotential).v+dxbMoney(rep.quotePotential).u+' potential' : 'in your pipeline'},
+              {ra:'purple', label:'Needs Your Attention', val:String(rep.tradesMissing||0), sub:'your trades missing info'}
+            ]
+          : [
+              {ra:'orange', label:'Total Inventory Value', val:dxbMoneyHtml(rep && rep.invValue), sub:'across all sections'},
+              {ra:'blue', label:'Units In Stock', val:String((rep && rep.unitsInStock)||0), sub:'used + wholegoods'},
+              {ra:'green', label:'Team Sales YTD', val:dxbMoneyHtml(rep && rep.teamSales), sub:(rep && rep.repCount||0)+' reps'},
+              {ra:'purple', label:'Team Profit YTD', val:dxbMoneyHtml(rep && rep.teamProfit), sub:'all sections'}
+            ];
+        el.innerHTML = cards.map(c =>
+          '<div class="dxb-readout"><div class="dxb-ra dxb-ra-'+c.ra+'"></div>'+
+          '<div class="dxb-readout-label">'+c.label+'</div>'+
+          '<div class="dxb-readout-value">'+c.val+'</div>'+
+          '<div class="dxb-readout-sub">'+c.sub+'</div></div>'
+        ).join('');
+      }
+
+      function dxbRenderStrengths(str){
+        const el = document.getElementById('dxb-strGrid'); if(!el) return;
+        if(!str || !str.length){ el.innerHTML = '<div class="dxb-str-empty">Your standout numbers will appear here as deals post this year. Keep at it.</div>'; return; }
+        el.innerHTML = str.map(s =>
+          '<div class="dxb-str-badge"><span class="dxb-str-medal">'+s.medal+'</span>'+
+          '<div class="dxb-str-rank"><span class="h">#</span>'+s.rank+'</div>'+
+          '<div><div class="dxb-str-t">'+escapeHtml(s.title)+'</div><div class="dxb-str-s">'+escapeHtml(s.sub)+'</div></div></div>'
+        ).join('');
+      }
+      function dxbRenderGrow(grow){
+        const el = document.getElementById('dxb-growGrid'); if(!el) return;
+        if(!grow || !grow.length){ el.innerHTML = '<div class="dxb-grow-empty">No standout gaps right now — you\'re well-rounded across the board.</div>'; return; }
+        el.innerHTML = grow.map(g =>
+          '<div class="dxb-grow-item"><div class="dxb-grow-ic">'+g.ic+'</div>'+
+          '<div style="flex:1;min-width:0"><div class="dxb-grow-t">'+escapeHtml(g.t)+'</div><div class="dxb-grow-s">'+escapeHtml(g.s)+'</div>'+
+          '<div class="dxb-grow-bar"><div class="dxb-grow-bar-fill" style="width:'+g.pct+'%"></div></div></div></div>'
+        ).join('');
+      }
+      function dxbRenderMine(me){
+        const el = document.getElementById('dxb-mineGrid'); if(!el) return;
+        const cells = [
+          {l:'Sales YTD', v:dxbMoneyHtml(me && me.totalSales)},
+          {l:'Profit YTD', v:dxbMoneyHtml(me && me.totalProfit)},
+          {l:'Avg Deal Size', v:dxbMoneyHtml(me && me.avgDeal)},
+          {l:'Blended Margin', v:(((me && me.marginPct*100)||0).toFixed(1))+'<span class="c">%</span>'}
+        ];
+        el.innerHTML = cells.map(c => '<div><div class="dxb-mine-l">'+c.l+'</div><div class="dxb-mine-v">'+c.v+'</div></div>').join('');
+      }
+      // Your trades missing info — delegate to Used (window.U) which owns the data.
+      function dxbRenderTrades(){
+        const list = document.getElementById('dxb-attnList'); const cnt = document.getElementById('dxb-attnCount');
+        if(!list) return [];
+        let units = [];
+        try{ if(window.U && typeof window.U.getMyTradesMissing === 'function') units = window.U.getMyTradesMissing() || []; }catch(e){ units = []; }
+        if(cnt) cnt.textContent = units.length + ' unit' + (units.length===1?'':'s');
+        if(!units.length){ list.innerHTML = '<div class="dxb-attn-clear">✓ All your trades have photos and prices. Nice work.</div>'; return units; }
+        list.innerHTML = units.slice(0,8).map(u => {
+          const sev = (!u.hasPhotos && !u.hasPrice) ? 'warn' : 'warn';
+          const miss = []; if(!u.hasPhotos) miss.push('no photos'); if(!u.hasPrice) miss.push('no list price');
+          return '<div class="dxb-attn-item" onclick="HPE.router.go(\'used\')">'+
+            '<span class="dxb-attn-sev dxb-sev-'+sev+'"></span>'+
+            '<div style="flex:1;min-width:0"><div class="dxb-attn-label">'+escapeHtml(u.label||u.stock||'Unit')+' — '+miss.join(' & ')+'</div>'+
+            '<div class="dxb-attn-meta">'+escapeHtml(u.meta||('#'+(u.stock||'')))+'</div></div>'+
+            '<svg class="dxb-attn-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>';
+        }).join('');
+        return units;
+      }
+      // Your open quotes — delegate to Used (owns quotes); falls back to empty.
+      function dxbRenderPipe(){
+        const el = document.getElementById('dxb-pipeList'); if(!el) return 0;
+        let quotes = [];
+        try{ if(window.U && typeof window.U.getMyOpenQuotes === 'function') quotes = window.U.getMyOpenQuotes() || []; }catch(e){ quotes = []; }
+        if(!quotes.length){ el.innerHTML = '<div class="dxb-pipe-empty">No open quotes right now.</div>'; return 0; }
+        el.innerHTML = quotes.slice(0,6).map(q => {
+          const stat = q.hot ? 'hot' : (q.status||'sent');
+          return '<div class="dxb-pipe-row" onclick="HPE.router.go(\'used\')">'+
+            '<span class="dxb-pipe-stat dxb-ps-'+escapeAttr(stat)+'"></span>'+
+            '<div style="flex:1;min-width:0"><div class="dxb-pipe-cust">'+escapeHtml(q.customer||'(no customer)')+'</div>'+
+            '<div class="dxb-pipe-meta">'+escapeHtml(q.meta||'')+'</div></div>'+
+            '<div style="text-align:right"><div class="dxb-pipe-amt">'+(q.amount!=null?(dxbMoney(q.amount).c+dxbMoney(q.amount).v+dxbMoney(q.amount).u):'—')+'</div>'+
+            '<div class="dxb-pipe-age">'+escapeHtml(q.age||'')+'</div></div></div>';
+        }).join('');
+        return quotes.length;
+      }
+      function dxbRenderRepTable(stats){
+        const el = document.getElementById('dxb-repTable'); if(!el) return;
+        if(!stats.ok){ el.innerHTML = '<div class="dxb-pipe-empty">Commission data not loaded.</div>'; return; }
+        const rows = Object.keys(stats.reps).map(code => {
+          const a = stats.reps[code];
+          const sp = SALESPEOPLE.find(s => (s.repCodes&&s.repCodes.includes(code)) || s.repCode===code);
+          return {name: sp ? sp.name : code, sales:a.totalSales||0, profit:a.totalProfit||0, deals:a.dealCount||0};
+        }).sort((a,b) => b.sales - a.sales);
+        el.innerHTML = rows.map((r,i) => {
+          const sm = dxbMoney(r.sales), pm = dxbMoney(r.profit);
+          return '<div class="dxb-pipe-row">'+
+            '<span style="font-family:\'DM Mono\',monospace;color:var(--text-3);min-width:20px">'+(i+1)+'</span>'+
+            '<div style="flex:1;min-width:0"><div class="dxb-pipe-cust">'+escapeHtml(r.name)+'</div>'+
+            '<div class="dxb-pipe-meta">'+r.deals+' deals · '+pm.c+pm.v+pm.u+' profit</div></div>'+
+            '<div class="dxb-pipe-amt">'+sm.c+sm.v+sm.u+'</div></div>';
+        }).join('');
+      }
+
+      // Main entry — called on dashboard render + role toggle.
+      function renderDashboardCockpit(){
+        const hero = document.getElementById('dxb-hero'); if(!hero) return;
+        const isAdmin = document.body.classList.contains('admin-mode');
+        const year = (window.S && window.S.debug && window.S.debug.commissionsCurrentYear) || new Date().getFullYear();
+        const repName = dxbCurrentRepName();
+        const myCodes = dxbCurrentRepCodes();
+        // Header strings
+        const g = document.getElementById('dxb-greeting');
+        const h = new Date().getHours();
+        if(g) g.textContent = h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+        const nm = document.getElementById('dxb-name');
+        const ds = document.getElementById('dxb-datestr');
+        if(ds) ds.textContent = new Date().toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric'}).toUpperCase();
+        const yEl = document.getElementById('dxb-str-year'); if(yEl) yEl.textContent = year;
+        const sub = document.getElementById('dash-sub');
+
+        const repView = document.getElementById('dxb-rep');
+        const mgmtView = document.getElementById('dxb-mgmt');
+
+        if(isAdmin){
+          // Management console
+          if(nm) nm.innerHTML = 'Hyde Park <b>Equipment</b>';
+          if(sub) sub.textContent = 'Management console';
+          if(repView) repView.style.display = 'none';
+          if(mgmtView) mgmtView.style.display = '';
+          const stats = dxbComputeRepStats(year); stats._year = year;
+          // Aggregate team totals + inventory from summaries
+          let teamSales=0, teamProfit=0;
+          if(stats.ok) Object.values(stats.reps).forEach(a => { teamSales+=a.totalSales||0; teamProfit+=a.totalProfit||0; });
+          let invValue=0, unitsInStock=0;
+          (summaries||[]).forEach(s => { const m=s.metrics||{}; invValue += Number(m.totalInventoryValue)||0; unitsInStock += Number(m.totalActive)||0; });
+          dxbRenderReadouts({invValue, unitsInStock, teamSales, teamProfit, repCount:stats.ok?Object.keys(stats.reps).length:0});
+          dxbRenderRepTable(stats);
+          if(typeof renderModules === 'function') renderModules();
+        } else {
+          // Rep cockpit
+          if(nm) nm.innerHTML = repName ? escapeHtml(repName).replace(/^(\S+)\s+(.+)$/, '$1 <b>$2</b>') : 'Welcome <b>back</b>';
+          if(sub) sub.textContent = 'Your sales cockpit';
+          if(repView) repView.style.display = '';
+          if(mgmtView) mgmtView.style.display = 'none';
+          const stats = dxbComputeRepStats(year); stats._year = year;
+          const built = dxbBuildStrengths(stats, myCodes);
+          const trades = dxbRenderTrades();
+          const openQ = dxbRenderPipe();
+          dxbRenderStrengths(built.str);
+          dxbRenderGrow(built.grow);
+          dxbRenderMine(built.me);
+          dxbRenderReadouts({me:built.me, openQuotes:openQ, tradesMissing:trades.length});
+        }
+      }
+
       // ── Customers ──────────────────────────────────────────────────────
       function migrateCustomerRecord(c){
         if(!c || typeof c !== 'object') return null;
@@ -7178,6 +7571,7 @@ const HPE = (function(){
           summaries = loaded;
           renderModules();
           renderDebug();
+          try{ renderDashboardCockpit(); }catch(e){ console.warn('[HPE/hub] cockpit render failed', e); }
           const lu = document.getElementById('last-updated');
           if(lu) lu.textContent = 'Refreshed ' + new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
         }catch(e){
@@ -7519,6 +7913,8 @@ const HPE = (function(){
         renderHubDeals,
         openDealStagesEditor, closeDealStagesEditor, saveDealStages,
         addDealStage, removeDealStage, moveDealStage, editDealStage,
+        // v3.11.0 — Dashboard cockpit (rep + management views)
+        renderDashboardCockpit, renderDashCommsPanel,
         _migrateLegacyUserSettings
       };
     })()
@@ -7935,9 +8331,10 @@ let sortCol=null,sortDir=1;
 
 // ── TOPBAR SEARCH ──
 // Removed in v2.0.10.5 — topbarSearchFocus, topbarSearch, syncTopbarSearchToList
-// targeted a #topbar-search-input element that no longer exists. The shell's
-// topbar shows a disabled placeholder Search input; if a wired-up topbar search
-// is reintroduced, restore from git history.
+// targeted a #topbar-search-input element that no longer exists. The disabled
+// placeholder search input was removed entirely in v3.10.3 (replaced by a layout
+// spacer); each section has its own contextual search. If a wired-up global topbar
+// search is ever reintroduced, restore from git history.
 
 // photoMap[stock] = array of {id, name} sorted by number suffix
 
@@ -13547,6 +13944,60 @@ function renderMyTrades(c){
   c.innerHTML=html;
 }
 
+// ── DASHBOARD-COCKPIT DATA HELPERS (v3.11.0) ──
+// Data-only accessors the Hub dashboard reads (no DOM). Mirror the same filters
+// the visual views use, so the cockpit and the full pages always agree.
+function getMyTradesMissing(){
+  const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
+  const myStaffName = (STAFF.find(function(s){return s.email===email;})||{name:''}).name;
+  if(!myStaffName) return [];
+  return inventory.filter(function(u){
+    if(!u||!u.stock) return false;
+    if(tradedBy[u.stock]!==myStaffName) return false;
+    if(soldUnits && soldUnits[u.stock]) return false;
+    if(u.reserved && String(u.reserved).trim()) return false;
+    if(serviceFlags && serviceFlags[u.stock] && serviceFlags[u.stock].active) return false;
+    const photos = (photoMap && photoMap[u.stock]) || [];
+    const hasPhotos = photos.length>0;
+    const hasPrice = u.listPrice && Number(u.listPrice)>0;
+    return !hasPhotos || !hasPrice;
+  }).map(function(u){
+    const photos = (photoMap && photoMap[u.stock]) || [];
+    const days = u.inDate ? Math.floor((Date.now()-new Date(u.inDate).getTime())/86400000) : null;
+    return {
+      stock: u.stock,
+      label: [u.year,u.make,u.model].filter(Boolean).join(' ') || u.stock,
+      hasPhotos: photos.length>0,
+      hasPrice: !!(u.listPrice && Number(u.listPrice)>0),
+      meta: (days!=null?('traded in '+days+' days ago · '):'')+'#'+u.stock
+    };
+  });
+}
+function getMyOpenQuotes(){
+  const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
+  const myStaffName = ((STAFF.find(function(s){return s.email===email;})||{name:''}).name||'').toLowerCase();
+  if(!Array.isArray(quoteHistory)) return [];
+  const open = quoteHistory.filter(function(q){
+    const st = (q.status||'').toLowerCase();
+    if(st==='won'||st==='lost'||st==='declined'||st==='expired') return false;
+    const sp = (q.salesperson||'').toLowerCase();
+    return myStaffName && sp===myStaffName;
+  });
+  return open.map(function(q){
+    const sent = q.sentDate||q.date||q.created||'';
+    let age=''; let ageDays=null;
+    if(sent){ const d=Math.floor((Date.now()-new Date(sent).getTime())/86400000); if(!isNaN(d)){ age=d+'d'; ageDays=d; } }
+    const st=(q.status||'sent').toLowerCase();
+    return {
+      customer: q.customer||q.customerName||'(no customer)',
+      meta: [q.unitName, st].filter(Boolean).join(' · '),
+      amount: Number(q.total||q.amount||q.price||0)||null,
+      age, status: st,
+      hot: (st==='sent' && ageDays!=null && ageDays>=7)
+    };
+  }).sort(function(a,b){ return (b.amount||0)-(a.amount||0); });
+}
+
 function renderMyTradesMissing(c){
   // Drill-down: units tradedBy current user AND missing photo or list price AND not sold/reserved.
   // Sorted oldest-first by In Date (matches Ready-to-Post convention).
@@ -16162,6 +16613,8 @@ function buildFinTable(units){
     renderMyPendingTrades: typeof renderMyPendingTrades === 'function' ? renderMyPendingTrades : undefined,
     renderMyTrades: typeof renderMyTrades === 'function' ? renderMyTrades : undefined,
     renderMyTradesMissing: typeof renderMyTradesMissing === 'function' ? renderMyTradesMissing : undefined,
+    getMyTradesMissing: typeof getMyTradesMissing === 'function' ? getMyTradesMissing : undefined,
+    getMyOpenQuotes: typeof getMyOpenQuotes === 'function' ? getMyOpenQuotes : undefined,
     renderPictures: typeof renderPictures === 'function' ? renderPictures : undefined,
     renderQuotes: typeof renderQuotes === 'function' ? renderQuotes : undefined,
     renderService: typeof renderService === 'function' ? renderService : undefined,
@@ -34485,7 +34938,7 @@ HPE.sectionImpl.kubota = (function(){
   let _invSearch = '';
   // v3.3.0 — 660 inventory browser: sortable columns, stock-only filter, and
   // shared part categories (persisted to _config/kubota_part_categories.json).
-  let _invSortKey = 'partNumber';   // partNumber|series|category|description|scotland|mallard|available|onHand
+  let _invSortKey = 'partNumber';   // partNumber|category|series|description|available (the only clickable 660 headers)
   let _invSortDir = 'asc';          // asc|desc
   let _invStockOnly = false;        // header toggle: available > 0 only
   // v3.5.0 — Category + Series filter dropdowns (independent; '' = All).
@@ -35211,16 +35664,6 @@ HPE.sectionImpl.kubota = (function(){
     const dir = _invSortDir === 'desc' ? -1 : 1;
     rows.sort((a,b) => {
       let av, bv;
-      if(_invSortKey === 'scotland'){
-        av = (a.qtyByLocation && a.qtyByLocation.S) || 0;
-        bv = (b.qtyByLocation && b.qtyByLocation.S) || 0;
-        return (av - bv) * dir;
-      }
-      if(_invSortKey === 'mallard'){
-        av = (a.qtyByLocation && a.qtyByLocation.M) || 0;
-        bv = (b.qtyByLocation && b.qtyByLocation.M) || 0;
-        return (av - bv) * dir;
-      }
       if(_invSortKey === 'category'){
         av = resolveCategory(a).value.toLowerCase();
         bv = resolveCategory(b).value.toLowerCase();
@@ -35241,10 +35684,6 @@ HPE.sectionImpl.kubota = (function(){
         if(av > bv) return 1 * dir;
         return 0;
       }
-      if(_invSortKey === 'onReserve'){
-        av = a.reserved || 0; bv = b.reserved || 0;
-        return (av - bv) * dir;
-      }
       av = a[_invSortKey]; bv = b[_invSortKey];
       if(typeof av === 'number' && typeof bv === 'number') return (av - bv) * dir;
       av = String(av || '').toLowerCase();
@@ -35262,10 +35701,6 @@ HPE.sectionImpl.kubota = (function(){
     // widths to fit the longest realistic entry (no flex-grow eating the table).
     const tdPart = tdMono + ';width:108px;white-space:nowrap';
     const tdDesc = td + ';width:150px';
-    // v3.5.0 — Quantity column colors: Available green, On Hand black, On Reserve red.
-    const tdAvail   = tdNum + ';color:#16a34a;font-weight:600';   // green
-    const tdOnHand  = tdNum + ';color:var(--gray-900)';           // black
-    const tdReserve = tdNum + ';color:#dc2626';                   // red
     const arrow = (k) => k === _invSortKey ? (_invSortDir === 'asc' ? ' ↑' : ' ↓') : '';
     const cats = allKnownCategories();
     // v3.7.0 — Per-division inline columns (Mallard | Scotland) + a single Total

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v3.12.0</title><!-- build:20260522_v3120_topbar_status_pills -->
+<title>HPE Sales Platform v3.13.0</title><!-- build:20260522_v3130_team_view_repswitcher -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -2591,6 +2591,13 @@ body.admin-mode .admin-only { display: inline-flex; }
 .dxb-readout-sub{font-size:11px;margin-top:7px;color:var(--text-2);font-weight:500;}
 .dxb-readout-sub .up{color:#16a34a;}.dxb-readout-sub .down{color:#dc2626;}
 .dxb-ra{position:absolute;left:0;top:0;bottom:0;width:3px;}
+/* rep-picker (team-view) */
+.dxb-picker{display:flex;align-items:center;gap:7px;background:var(--orange-light);border:1px solid #fde4cf;border-radius:8px;padding:5px 8px 5px 11px;}
+.dxb-picker-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-dark);}
+.dxb-picker-sel{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--gray-900);background:#fff;border:1px solid #fdd9bf;border-radius:6px;padding:4px 8px;cursor:pointer;max-width:170px;}
+.dxb-picker-sel:focus{outline:none;border-color:var(--orange);}
+.dxb-picker-clear{border:none;background:none;color:var(--orange-dark);font-size:13px;cursor:pointer;padding:2px 4px;line-height:1;border-radius:4px;}
+.dxb-picker-clear:hover{background:#fdd9bf;}
 .dxb-ra-orange{background:var(--orange);}.dxb-ra-green{background:#4ade80;}.dxb-ra-purple{background:#a78bfa;}.dxb-ra-blue{background:#60a5fa;}
 @media(max-width:720px){.dxb-readouts{grid-template-columns:repeat(2,1fr)}}
 
@@ -2697,7 +2704,7 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.12.0</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.13.0</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="data-status" id="data-status" aria-label="Data load status"></div>
@@ -2745,7 +2752,10 @@ body.admin-mode .admin-only { display: inline-flex; }
                 <div class="dxb-greeting" id="dxb-greeting">Welcome back</div>
                 <div class="dxb-name" id="dxb-name">Hyde Park <b>Equipment</b></div>
               </div>
-              <div class="dxb-date"><div><span class="dxb-dot"></span><span class="dxb-live">LIVE</span></div><div id="dxb-datestr">—</div></div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <div class="dxb-picker" id="dxb-picker" style="display:none"></div>
+                <div class="dxb-date"><div><span class="dxb-dot"></span><span class="dxb-live">LIVE</span></div><div id="dxb-datestr">—</div></div>
+              </div>
             </div>
             <div class="dxb-readouts" id="dxb-readouts"></div>
           </div>
@@ -4379,8 +4389,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '3.12.0',
-    build: '20260522_v3120_topbar_status_pills',
+    version: '3.13.0',
+    build: '20260522_v3130_team_view_repswitcher',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -7180,7 +7190,30 @@ const HPE = (function(){
         return {c:'$', v:Math.round(n).toLocaleString(), u:''};
       }
       function dxbMoneyHtml(n){ const m = dxbMoney(n); return '<span class="c">'+m.c+'</span>'+m.v+(m.u?'<span class="c">'+m.u+'</span>':''); }
+      // v3.13.0 — Team-view: who can view other reps' dashboards, and which rep
+      // is currently being viewed (null = the logged-in user's own).
+      let _dxbViewRepCode = null;   // a commission code string, or null for self
+      function dxbCanViewTeam(){
+        const email = (state.user && state.user.email || '').toLowerCase();
+        if(!email) return false;
+        // Bootstrap admins always can; otherwise the explicit can_view_team flag.
+        try{ if(window.S && typeof window.S.isBootstrapAdmin === 'function' && window.S.isBootstrapAdmin(email)) return true; }catch(e){}
+        const sp = SALESPEOPLE.find(s => (s.email||'').toLowerCase() === email);
+        return !!(sp && sp.can_view_team);
+      }
       function dxbCurrentRepName(){
+        // If viewing another rep, show that rep's name.
+        if(_dxbViewRepCode){
+          try{
+            const list = (window.S && window.S.getAllRepCodesForYear) ? (window.S.getAllRepCodesForYear((HPE.commissions&&HPE.commissions.currentYear)||new Date().getFullYear())||[]) : [];
+            const rc = list.find(r => r.code === _dxbViewRepCode);
+            if(rc) return rc.label || _dxbViewRepCode;
+          }catch(e){}
+          // fall back to salesperson record with that code
+          const sp = SALESPEOPLE.find(s => (s.commission_codes||[]).indexOf(_dxbViewRepCode) >= 0);
+          if(sp) return sp.name || _dxbViewRepCode;
+          return _dxbViewRepCode;
+        }
         const email = (state.user && state.user.email || '').toLowerCase();
         const sp = SALESPEOPLE.find(s => (s.email||'').toLowerCase() === email);
         return (sp && sp.name) || (state.user && state.user.name) || '';
@@ -7188,11 +7221,12 @@ const HPE = (function(){
       // Normalize a name for fuzzy matching (lowercase, collapse spaces, strip punctuation).
       function dxbNormName(s){ return String(s||'').toLowerCase().replace(/[^a-z\s]/g,'').replace(/\s+/g,' ').trim(); }
       function dxbCurrentRepCodes(year){
-        // Preferred: explicit rep codes on the salesperson record.
+        // Viewing another rep → just that rep's code.
+        if(_dxbViewRepCode) return [_dxbViewRepCode];
+        // Preferred: explicit commission_codes on the salesperson record.
         const email = (state.user && state.user.email || '').toLowerCase();
         const sp = SALESPEOPLE.find(s => (s.email||'').toLowerCase() === email);
-        if(sp && sp.repCodes && sp.repCodes.length) return sp.repCodes.slice();
-        if(sp && sp.repCode) return [sp.repCode];
+        if(sp && sp.commission_codes && sp.commission_codes.length) return sp.commission_codes.slice();
         // Robust fallback: match my NAME against the commission rep list (label = repName).
         const myName = dxbNormName(dxbCurrentRepName());
         if(!myName) return [];
@@ -7334,11 +7368,11 @@ const HPE = (function(){
         el.innerHTML = cells.map(c => '<div><div class="dxb-mine-l">'+c.l+'</div><div class="dxb-mine-v">'+c.v+'</div></div>').join('');
       }
       // Your trades missing info — delegate to Used (window.U) which owns the data.
-      function dxbRenderTrades(){
+      function dxbRenderTrades(forName){
         const list = document.getElementById('dxb-attnList'); const cnt = document.getElementById('dxb-attnCount');
         if(!list) return [];
         let units = [];
-        try{ if(window.U && typeof window.U.getMyTradesMissing === 'function') units = window.U.getMyTradesMissing() || []; }catch(e){ units = []; }
+        try{ if(window.U && typeof window.U.getMyTradesMissing === 'function') units = window.U.getMyTradesMissing(forName) || []; }catch(e){ units = []; }
         if(cnt) cnt.textContent = units.length + ' unit' + (units.length===1?'':'s');
         if(!units.length){ list.innerHTML = '<div class="dxb-attn-clear">✓ All your trades have photos and prices. Nice work.</div>'; return units; }
         list.innerHTML = units.slice(0,8).map(u => {
@@ -7353,10 +7387,10 @@ const HPE = (function(){
         return units;
       }
       // Your open quotes — delegate to Used (owns quotes); falls back to empty.
-      function dxbRenderPipe(){
+      function dxbRenderPipe(forName){
         const el = document.getElementById('dxb-pipeList'); if(!el) return 0;
         let quotes = [];
-        try{ if(window.U && typeof window.U.getMyOpenQuotes === 'function') quotes = window.U.getMyOpenQuotes() || []; }catch(e){ quotes = []; }
+        try{ if(window.U && typeof window.U.getMyOpenQuotes === 'function') quotes = window.U.getMyOpenQuotes(forName) || []; }catch(e){ quotes = []; }
         if(!quotes.length){ el.innerHTML = '<div class="dxb-pipe-empty">No open quotes right now.</div>'; return 0; }
         el.innerHTML = quotes.slice(0,6).map(q => {
           const stat = q.hot ? 'hot' : (q.status||'sent');
@@ -7451,21 +7485,46 @@ const HPE = (function(){
           dxbRenderReadouts({invValue, unitsInStock, teamSales, teamProfit, repCount:stats.ok?Object.keys(stats.reps).length:0});
           dxbRenderRepTable(stats);
           if(typeof renderModules === 'function') renderModules();
+          const pk = document.getElementById('dxb-picker'); if(pk){ pk.style.display='none'; }
         } else {
-          // Rep cockpit
+          // Rep cockpit (own, or another rep's if a viewer selected one)
+          const viewingOther = !!_dxbViewRepCode;
           if(nm) nm.innerHTML = repName ? escapeHtml(repName).replace(/^(\S+)\s+(.+)$/, '$1 <b>$2</b>') : 'Welcome <b>back</b>';
-          if(sub) sub.textContent = 'Your sales cockpit';
+          if(sub) sub.textContent = viewingOther ? ('Viewing '+repName+'\u2019s cockpit') : 'Your sales cockpit';
           if(repView) repView.style.display = '';
           if(mgmtView) mgmtView.style.display = 'none';
           const stats = dxbComputeRepStats(year); stats._year = year;
           const built = dxbBuildStrengths(stats, myCodes);
-          const trades = dxbRenderTrades();
-          const openQ = dxbRenderPipe();
+          // Trades + open quotes filter by the viewed rep's NAME (null = self).
+          const forName = viewingOther ? repName : null;
+          const trades = dxbRenderTrades(forName);
+          const openQ = dxbRenderPipe(forName);
           dxbRenderStrengths(built.str);
           dxbRenderGrow(built.grow);
           dxbRenderMine(built.me);
           dxbRenderReadouts({me:built.me, openQuotes:openQ, tradesMissing:trades.length});
+          dxbRenderRepPicker(stats);
         }
+      }
+
+      // Rep-picker — only for users with can_view_team. Lets them switch the
+      // whole cockpit to any rep's view (read-only). Renders into #dxb-picker.
+      function dxbRenderRepPicker(stats){
+        const host = document.getElementById('dxb-picker'); if(!host) return;
+        if(!dxbCanViewTeam() || !stats || !stats.ok){ host.innerHTML = ''; host.style.display='none'; return; }
+        host.style.display = '';
+        const codes = Object.keys(stats.reps);
+        const opts = ['<option value="">— My dashboard —</option>'].concat(
+          codes.map(c => '<option value="'+escapeAttr(c)+'"'+(_dxbViewRepCode===c?' selected':'')+'>'+escapeHtml(stats.nameByCode[c]||c)+'</option>')
+        ).join('');
+        host.innerHTML =
+          '<span class="dxb-picker-label">Viewing</span>'+
+          '<select class="dxb-picker-sel" onchange="HPE.sectionImpl.hub.setViewRep(this.value)">'+opts+'</select>'+
+          (_dxbViewRepCode ? '<button class="dxb-picker-clear" onclick="HPE.sectionImpl.hub.setViewRep(\'\')" title="Back to my dashboard">\u2715</button>' : '');
+      }
+      function setViewRep(code){
+        _dxbViewRepCode = code || null;
+        try{ renderDashboardCockpit(); }catch(e){ console.warn('[HPE/hub] view-rep render failed', e); }
       }
 
       // ── Customers ──────────────────────────────────────────────────────
@@ -8026,6 +8085,8 @@ const HPE = (function(){
         addDealStage, removeDealStage, moveDealStage, editDealStage,
         // v3.11.0 — Dashboard cockpit (rep + management views)
         renderDashboardCockpit, renderDashCommsPanel,
+        // v3.13.0 — team-view rep switcher
+        setViewRep,
         // v3.12.0 — data-status pill reload hook
         reloadSummaries: loadAllSummaries,
         _migrateLegacyUserSettings
@@ -14074,9 +14135,12 @@ function getActiveCount(){
   if(!Array.isArray(inventory)) return 0;
   return inventory.filter(function(u){ return u && u.stock && !(soldUnits && soldUnits[u.stock]); }).length;
 }
-function getMyTradesMissing(){
-  const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
-  const myStaffName = (STAFF.find(function(s){return s.email===email;})||{name:''}).name;
+function getMyTradesMissing(forName){
+  let myStaffName = forName;
+  if(!myStaffName){
+    const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
+    myStaffName = (STAFF.find(function(s){return s.email===email;})||{name:''}).name;
+  }
   if(!myStaffName) return [];
   return inventory.filter(function(u){
     if(!u||!u.stock) return false;
@@ -14100,9 +14164,13 @@ function getMyTradesMissing(){
     };
   });
 }
-function getMyOpenQuotes(){
-  const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
-  const myStaffName = ((STAFF.find(function(s){return s.email===email;})||{name:''}).name||'').toLowerCase();
+function getMyOpenQuotes(forName){
+  let myStaffName = forName;
+  if(!myStaffName){
+    const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
+    myStaffName = (STAFF.find(function(s){return s.email===email;})||{name:''}).name;
+  }
+  myStaffName = (myStaffName||'').toLowerCase();
   if(!Array.isArray(quoteHistory)) return [];
   const open = quoteHistory.filter(function(q){
     const st = (q.status||'').toLowerCase();
@@ -17773,6 +17841,7 @@ async function loadSalespeople(){
           active: s.active !== false,
           is_admin: !!s.is_admin,             // v0.30 — admin permission flag
           can_view_all_commissions: !!s.can_view_all_commissions, // v3.1.12 — see-everyone for commissions
+          can_view_team: !!s.can_view_team,   // v3.13.0 — can view other reps' dashboards
           commission_codes: Array.isArray(s.commission_codes) ? s.commission_codes.filter(Boolean) : []   // v0.37
         })).filter(s => s.name);
       }

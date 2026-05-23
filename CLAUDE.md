@@ -140,6 +140,19 @@ anchors only — not a fill everywhere.** (See color-discipline notes below.)
 
 ---
 
+## ⚠️ COMMON PITFALLS (read before writing guards/checks)
+
+- **`HPE` is NOT on `window`.** It's declared as `const HPE = (function(){...})()`
+  at script top level (~line 4455). Top-level `const`/`let` in classic scripts
+  do NOT become `window` properties — only `var` does. So `window.HPE` is always
+  `undefined`. **Never** write `if(window.HPE && ...)` — the guard short-circuits
+  and your code silently no-ops. Guard with `HPE.ui && ...` /
+  `HPE.sectionImpl && ...` instead (see `loadCommissionsFiles` for the canonical
+  pattern). If you need an "is HPE in scope at all" check (rare, early-boot only),
+  use `typeof HPE !== 'undefined'`. This bug cost v3.13.20 → v3.13.23 to fully
+  clean up; the worst casualty was the changelog modal silently showing "No
+  changelog entries yet" because the same `window.HPE` guard was in `showChangelog`.
+
 ## 👥 SALESPEOPLE (STAFF list) — all @hydeparkequipment.ca
 John Williams (johnwilliams@), Larry Annaert (larry@), Bryan Macpherson (bryan@),
 Kris Zantingh (zinger@), Nick Stub (nick@), Tyler Talbot (tyler@),

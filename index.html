@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v3.11.1</title><!-- build:20260522_v3111_cockpit_realdata_palette -->
+<title>HPE Sales Platform v3.12.0</title><!-- build:20260522_v3120_topbar_status_pills -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -81,7 +81,23 @@ a{color:inherit;text-decoration:none;}
 .topbar-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .topbar-title{font-size:13px;font-weight:600;color:white;line-height:1.2;white-space:nowrap;flex-shrink:0;}
 .topbar-title span{display:block;font-size:10px;font-weight:400;color:#9ca3af;white-space:nowrap;}
-.topbar-spacer{flex:0 1 280px;min-width:140px;}
+/* v3.12.0 — Topbar data-status pills */
+.data-status{flex:0 1 auto;min-width:0;display:flex;align-items:center;gap:6px;overflow:hidden;}
+@media(max-width:1180px){.data-status .dsp-text{display:none;}}
+@media(max-width:760px){.data-status{display:none;}}
+.dsp{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:4px 8px;cursor:default;transition:background .14s,border-color .14s;white-space:nowrap;}
+.dsp.clickable{cursor:pointer;}
+.dsp.clickable:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.2);}
+.dsp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dsp-dot.ok{background:#22c55e;}
+.dsp-dot.loading{background:#f59e0b;animation:dspPulse 1s infinite;}
+.dsp-dot.err{background:#ef4444;}
+.dsp-dot.idle{background:#6b7280;}
+@keyframes dspPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.dsp-spin{width:8px;height:8px;border:1.4px solid #f59e0b;border-right-color:transparent;border-radius:50%;animation:syncSpin .7s linear infinite;flex-shrink:0;}
+.dsp-text{font-size:10px;font-weight:600;color:#cbd5e1;font-family:'DM Mono',monospace;letter-spacing:.01em;}
+.dsp.err .dsp-text{color:#fca5a5;}
+.dsp-tip{position:relative;}
 
 /* APP-SWITCHER (now internal-route links, not cross-app navigation)
    Absolutely positioned in topbar center so the tabs sit at the viewport
@@ -418,7 +434,6 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 @media(max-width:780px){
   .topbar{padding:0 12px;gap:8px;}
   .topbar-title span{display:none;}
-  .topbar-spacer{display:none;}
   .app-switcher{padding:2px;}
   .app-tab{padding:6px 10px;min-width:64px;font-size:12px;}
   .topbar-hamburger{display:inline-flex;}
@@ -2552,28 +2567,29 @@ body.admin-mode .admin-only { display: inline-flex; }
 @keyframes syncSpin{to{transform:rotate(360deg);}}
 
 /* ════════════ DASHBOARD REVAMP (v3.11.0) ════════════ */
-#page-hub-dashboard{background:linear-gradient(180deg,#faf7f2,#f6f5f3 340px);margin:-24px -28px -60px;padding:24px 28px 60px;border-radius:0;}
-@media(max-width:760px){#page-hub-dashboard{margin:-20px -14px;padding:20px 14px 40px;}}
+#page-hub-dashboard{background:linear-gradient(180deg,#faf7f2,#f6f5f3 340px);margin:-24px -28px -60px;padding:28px 44px 60px;border-radius:0;}
+@media(max-width:760px){#page-hub-dashboard{margin:-20px -14px;padding:20px 18px 40px;}}
 @keyframes dxbRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 #page-hub-dashboard .dxb-hero,#page-hub-dashboard #dxb-rep,#page-hub-dashboard #dxb-mgmt{animation:dxbRise .5s cubic-bezier(.2,.7,.3,1) both;}
-.dxb-hero{position:relative;background:linear-gradient(135deg,#1c1b1a 0%,#252320 55%,#2e2419 100%);border-radius:var(--radius-lg);padding:22px 26px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.05),0 14px 32px -14px rgba(46,36,25,.5);}
-.dxb-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:34px 34px;-webkit-mask-image:radial-gradient(circle at 80% 30%,#000,transparent 75%);mask-image:radial-gradient(circle at 80% 30%,#000,transparent 75%);pointer-events:none;}
-.dxb-hero::after{content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,93,4,.22),transparent 65%);pointer-events:none;}
+.dxb-hero{position:relative;background:linear-gradient(135deg,#ffffff 0%,#fffaf3 100%);border:1px solid #f0e6d8;border-radius:var(--radius-lg);padding:22px 26px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 10px 26px -16px rgba(232,93,4,.25);}
+.dxb-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(232,93,4,.05) 1px,transparent 0);background-size:20px 20px;-webkit-mask-image:radial-gradient(circle at 88% 20%,#000,transparent 70%);mask-image:radial-gradient(circle at 88% 20%,#000,transparent 70%);pointer-events:none;}
+.dxb-hero::after{content:"";position:absolute;right:-50px;top:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(232,93,4,.10),transparent 65%);pointer-events:none;}
 .dxb-hero-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;margin-bottom:20px;}
-.dxb-greeting{font-size:13px;color:#a1a1aa;font-weight:500;}
-.dxb-name{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-top:2px;}
+.dxb-greeting{font-size:13px;color:var(--text-2);font-weight:500;}
+.dxb-name{font-size:24px;font-weight:700;color:var(--gray-900);letter-spacing:-.02em;line-height:1.1;margin-top:2px;}
 .dxb-name b{color:var(--orange);}
-.dxb-date{text-align:right;font-size:11px;color:#71717a;font-family:'DM Mono',monospace;line-height:1.7;}
-.dxb-live{color:#4ade80;}
-.dxb-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#4ade80;margin-right:5px;animation:dxbPulse 2s infinite;vertical-align:middle;}
+.dxb-date{text-align:right;font-size:11px;color:var(--text-3);font-family:'DM Mono',monospace;line-height:1.7;}
+.dxb-live{color:#16a34a;}
+.dxb-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#16a34a;margin-right:5px;animation:dxbPulse 2s infinite;vertical-align:middle;}
 @keyframes dxbPulse{0%,100%{opacity:1}50%{opacity:.35}}
-.dxb-readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.07);border-radius:11px;overflow:hidden;position:relative;z-index:1;}
-.dxb-readout{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));padding:15px 16px 14px;position:relative;}
-.dxb-readout-label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:#8b8b93;font-weight:600;margin-bottom:9px;}
-.dxb-readout-value{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:#fff;letter-spacing:-.02em;line-height:1;}
-.dxb-readout-value .c{font-size:14px;color:#a1a1aa;}
-.dxb-readout-sub{font-size:11px;margin-top:7px;color:#a1a1aa;font-weight:500;}
-.dxb-readout-sub .up{color:#4ade80;}.dxb-readout-sub .down{color:#f87171;}
+.dxb-readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;position:relative;z-index:1;}
+.dxb-readout{background:#fff;border:1px solid var(--gray-200);border-radius:11px;padding:14px 15px 13px;position:relative;overflow:hidden;transition:transform .14s,box-shadow .14s;}
+.dxb-readout:hover{transform:translateY(-2px);box-shadow:0 8px 20px -12px rgba(0,0,0,.16);}
+.dxb-readout-label{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-2);font-weight:600;margin-bottom:9px;}
+.dxb-readout-value{font-family:'DM Mono',monospace;font-size:25px;font-weight:500;color:var(--gray-900);letter-spacing:-.02em;line-height:1;}
+.dxb-readout-value .c{font-size:14px;color:var(--text-3);}
+.dxb-readout-sub{font-size:11px;margin-top:7px;color:var(--text-2);font-weight:500;}
+.dxb-readout-sub .up{color:#16a34a;}.dxb-readout-sub .down{color:#dc2626;}
 .dxb-ra{position:absolute;left:0;top:0;bottom:0;width:3px;}
 .dxb-ra-orange{background:var(--orange);}.dxb-ra-green{background:#4ade80;}.dxb-ra-purple{background:#a78bfa;}.dxb-ra-blue{background:#60a5fa;}
 @media(max-width:720px){.dxb-readouts{grid-template-columns:repeat(2,1fr)}}
@@ -2681,10 +2697,10 @@ body.admin-mode .admin-only { display: inline-flex; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.11.1</div>
+      <div class="topbar-version" id="topbar-version" title="Build version" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0">v3.12.0</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>
-    <div class="topbar-spacer" aria-hidden="true"></div>
+    <div class="data-status" id="data-status" aria-label="Data load status"></div>
     <nav class="app-switcher" aria-label="Section switcher">
       <a class="app-tab" data-section="hub" href="#/" onclick="HPE.router.go('hub','dashboard');return false;">Home</a>
       <a class="app-tab" data-section="used" href="#/used" onclick="HPE.router.go('used');return false;">Used</a>
@@ -2722,7 +2738,19 @@ body.admin-mode .admin-only { display: inline-flex; }
             <div class="last-updated" id="last-updated"></div>
           </div>
 
-          <!-- COMMUNICATIONS (top, unchanged renderer) -->
+          <!-- HERO / readout strip (welcome — personal in rep mode, business in mgmt mode) -->
+          <div class="dxb-hero" id="dxb-hero">
+            <div class="dxb-hero-top">
+              <div>
+                <div class="dxb-greeting" id="dxb-greeting">Welcome back</div>
+                <div class="dxb-name" id="dxb-name">Hyde Park <b>Equipment</b></div>
+              </div>
+              <div class="dxb-date"><div><span class="dxb-dot"></span><span class="dxb-live">LIVE</span></div><div id="dxb-datestr">—</div></div>
+            </div>
+            <div class="dxb-readouts" id="dxb-readouts"></div>
+          </div>
+
+          <!-- COMMUNICATIONS (under welcome, unchanged renderer) -->
           <div class="dash-comms-panel" id="dash-comms-panel">
             <div class="dash-comms-head">
               <div class="dash-comms-title">
@@ -2735,18 +2763,6 @@ body.admin-mode .admin-only { display: inline-flex; }
             <div class="dash-comms-rows" id="dash-comms-rows">
               <div class="dash-comms-empty">Loading communications…</div>
             </div>
-          </div>
-
-          <!-- HERO / readout strip (personal in rep mode, business in mgmt mode) -->
-          <div class="dxb-hero" id="dxb-hero">
-            <div class="dxb-hero-top">
-              <div>
-                <div class="dxb-greeting" id="dxb-greeting">Welcome back</div>
-                <div class="dxb-name" id="dxb-name">Hyde Park <b>Equipment</b></div>
-              </div>
-              <div class="dxb-date"><div><span class="dxb-dot"></span><span class="dxb-live">LIVE</span></div><div id="dxb-datestr">—</div></div>
-            </div>
-            <div class="dxb-readouts" id="dxb-readouts"></div>
           </div>
 
           <!-- REP COCKPIT -->
@@ -4363,8 +4379,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '3.11.1',
-    build: '20260522_v3111_cockpit_realdata_palette',
+    version: '3.12.0',
+    build: '20260522_v3120_topbar_status_pills',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     driveScope: 'https://www.googleapis.com/auth/drive',
     sharedTokenKey: 'hpe_shared_token',
@@ -5157,6 +5173,57 @@ const HPE = (function(){
 
   // -- UI -------------------------------------------------------------------
   const ui = {
+    // ── DATA-STATUS PILLS (v3.12.0) ──────────────────────────────────────
+    // Persistent topbar pills, one per data source, showing loaded/loading/
+    // failed/idle. Sources register a {label, loader} and report state changes
+    // via ui.dataStatus.set(key, state). Clicking a failed/idle pill re-runs
+    // its loader. Distinct from setSyncStatus() (transient save flasher).
+    dataStatus: {
+      _sources: {},
+      _order: [],
+      // Register a source. loader is an optional async fn used for retry/load.
+      register(key, label, loader){
+        if(!this._sources[key]){ this._order.push(key); }
+        this._sources[key] = Object.assign(this._sources[key] || {state:'idle', detail:''}, {label, loader});
+        ui.dataStatus.render();
+      },
+      set(key, state, detail){
+        const s = this._sources[key];
+        if(!s) return;
+        s.state = state;                 // 'ok' | 'loading' | 'err' | 'idle'
+        if(detail != null) s.detail = detail;
+        ui.dataStatus.render();
+      },
+      // Re-run a source's loader (for retry/load clicks).
+      reload(key){
+        const s = this._sources[key];
+        if(!s || typeof s.loader !== 'function' || s.state === 'loading') return;
+        ui.dataStatus.set(key, 'loading');
+        Promise.resolve().then(() => s.loader())
+          .then(() => { if(this._sources[key] && this._sources[key].state === 'loading') ui.dataStatus.set(key, 'ok'); })
+          .catch(e => { ui.dataStatus.set(key, 'err', (e && e.message) || 'Load failed'); });
+      },
+      render(){
+        const host = document.getElementById('data-status');
+        if(!host) return;
+        const esc = (s) => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+        host.innerHTML = this._order.map(key => {
+          const s = this._sources[key];
+          const clickable = (s.state === 'err' || s.state === 'idle') && typeof s.loader === 'function';
+          const dot = s.state === 'loading'
+            ? '<span class="dsp-spin"></span>'
+            : '<span class="dsp-dot '+s.state+'"></span>';
+          const tip = s.state === 'err' ? (s.detail || 'Failed to load')
+                    : s.state === 'idle' ? 'Not loaded — click to load'
+                    : s.state === 'loading' ? 'Loading…'
+                    : (s.detail || 'Loaded');
+          return '<div class="dsp'+(s.state==='err'?' err':'')+(clickable?' clickable':'')+'" title="'+
+            esc(s.label+' — '+tip)+'"'+
+            (clickable ? ' onclick="HPE.ui.dataStatus.reload(\''+key+'\')"' : '')+'>'+
+            dot+'<span class="dsp-text">'+esc(s.label)+'</span></div>';
+        }).join('');
+      }
+    },
     renderSidebar(){
       const sec = sections[state.currentSection];
       const sidenav = document.getElementById('sidenav');
@@ -7320,17 +7387,37 @@ const HPE = (function(){
       }
 
       // Main entry — called on dashboard render + role toggle.
-      let _dxbRetried = false;
+      let _dxbLoadingComms = false;
+      function dxbSyncStatusPills(){
+        // Reflect observable load-state for the non-commissions sources. Commissions
+        // reports its own state from loadCommissionsFiles. Only upgrade idle→ok when
+        // data is actually present; never downgrade a 'loading'/'err' pill.
+        try{
+          const ds = HPE.ui && HPE.ui.dataStatus; if(!ds) return;
+          const cur = (k) => (ds._sources[k] || {}).state;
+          // Inventory (660/Stihl)
+          let invMeta = null; try{ invMeta = (window.S && window.S.getPartsInventoryMeta) ? window.S.getPartsInventoryMeta() : null; }catch(e){}
+          if(invMeta && invMeta.partCount && cur('inventory')!=='loading'){ ds.set('inventory','ok', invMeta.partCount.toLocaleString()+' parts'); }
+          // Used equipment
+          let usedN = 0; try{ usedN = (window.U && window.U.getActiveCount) ? window.U.getActiveCount() : 0; }catch(e){}
+          if(usedN && cur('used')!=='loading'){ ds.set('used','ok', usedN.toLocaleString()+' active units'); }
+          // Module summaries
+          if(summaries && summaries.length && cur('summaries')!=='loading'){ ds.set('summaries','ok', summaries.length+' modules'); }
+        }catch(e){}
+      }
       function renderDashboardCockpit(){
         const hero = document.getElementById('dxb-hero'); if(!hero) return;
-        // Commissions load asynchronously; if they're not in yet, paint what we
-        // can now and retry shortly so the panels fill in once data arrives.
+        dxbSyncStatusPills();
+        // Commissions load lazily (historically only when the Commissions page is
+        // visited). The cockpit needs them, so trigger the load here if needed and
+        // re-render once it resolves. Guard so we only kick it off once.
         const commsLoaded = !!(HPE.commissions && HPE.commissions.loaded);
-        if(!commsLoaded && !_dxbRetried){
-          _dxbRetried = true;
-          setTimeout(() => { try{ renderDashboardCockpit(); }catch(e){} }, 1500);
-        } else if(commsLoaded){
-          _dxbRetried = false; // reset for next visit
+        if(!commsLoaded && !_dxbLoadingComms && HPE.commissions && typeof HPE.commissions.load === 'function'){
+          _dxbLoadingComms = true;
+          Promise.resolve(HPE.commissions.load())
+            .then(() => { try{ renderDashboardCockpit(); }catch(e){} })
+            .catch(e => console.warn('[HPE/hub] commissions load failed', e))
+            .then(() => { _dxbLoadingComms = false; });
         }
         const isAdmin = document.body.classList.contains('admin-mode');
         const year = (HPE.commissions && HPE.commissions.currentYear) || new Date().getFullYear();
@@ -7939,6 +8026,8 @@ const HPE = (function(){
         addDealStage, removeDealStage, moveDealStage, editDealStage,
         // v3.11.0 — Dashboard cockpit (rep + management views)
         renderDashboardCockpit, renderDashCommsPanel,
+        // v3.12.0 — data-status pill reload hook
+        reloadSummaries: loadAllSummaries,
         _migrateLegacyUserSettings
       };
     })()
@@ -7990,6 +8079,16 @@ const HPE = (function(){
     document.body.dataset.build = config.build;
     document.title = 'HPE Sales Platform v' + config.version;
     console.log('%c[HPE] v' + config.version + ' — ' + config.build, 'color:#e85d04;font-weight:600');
+
+    // v3.12.0 — Register topbar data-status pills. Loaders route through the
+    // section impls (registered post-IIFE) and are looked up lazily at click
+    // time, so registration order doesn't matter. Each loader resolves to set
+    // 'ok'; a throw sets 'err' (handled by dataStatus.reload's catch).
+    const mkLoader = (key, fn) => () => Promise.resolve().then(fn).then(r => { ui.dataStatus.set(key, 'ok'); return r; });
+    ui.dataStatus.register('commissions', 'Commissions', mkLoader('commissions', () => (HPE.commissions && HPE.commissions.load) ? HPE.commissions.load() : null));
+    ui.dataStatus.register('inventory', 'Inventory', mkLoader('inventory', () => (window.S && window.S.loadPartsInventoryFile) ? window.S.loadPartsInventoryFile() : null));
+    ui.dataStatus.register('used', 'Used', mkLoader('used', () => (window.U && window.U.syncFromDrive) ? window.U.syncFromDrive() : null));
+    ui.dataStatus.register('summaries', 'Modules', mkLoader('summaries', () => (sectionImpl.hub && sectionImpl.hub.reloadSummaries) ? sectionImpl.hub.reloadSummaries() : null));
 
     // Try cached token first
     const cached = auth.readCachedToken();
@@ -13971,6 +14070,10 @@ function renderMyTrades(c){
 // ── DASHBOARD-COCKPIT DATA HELPERS (v3.11.0) ──
 // Data-only accessors the Hub dashboard reads (no DOM). Mirror the same filters
 // the visual views use, so the cockpit and the full pages always agree.
+function getActiveCount(){
+  if(!Array.isArray(inventory)) return 0;
+  return inventory.filter(function(u){ return u && u.stock && !(soldUnits && soldUnits[u.stock]); }).length;
+}
 function getMyTradesMissing(){
   const email = userInfo ? (userInfo.email||'').toLowerCase() : '';
   const myStaffName = (STAFF.find(function(s){return s.email===email;})||{name:''}).name;
@@ -16638,6 +16741,7 @@ function buildFinTable(units){
     renderMyTrades: typeof renderMyTrades === 'function' ? renderMyTrades : undefined,
     renderMyTradesMissing: typeof renderMyTradesMissing === 'function' ? renderMyTradesMissing : undefined,
     getMyTradesMissing: typeof getMyTradesMissing === 'function' ? getMyTradesMissing : undefined,
+    getActiveCount: typeof getActiveCount === 'function' ? getActiveCount : undefined,
     getMyOpenQuotes: typeof getMyOpenQuotes === 'function' ? getMyOpenQuotes : undefined,
     renderPictures: typeof renderPictures === 'function' ? renderPictures : undefined,
     renderQuotes: typeof renderQuotes === 'function' ? renderQuotes : undefined,
@@ -20513,6 +20617,7 @@ async function loadCommissionsFiles(){
     return;
   }
   console.log('[commissions] loading from folder', commissionsFolderId);
+  try { if(HPE.ui && HPE.ui.dataStatus) HPE.ui.dataStatus.set('commissions','loading'); } catch(e){}
   try {
     const params = new URLSearchParams({
       q: `'${commissionsFolderId}' in parents and trashed=false and (name contains '.xlsx' or name contains '.xls')`,
@@ -20531,6 +20636,7 @@ async function loadCommissionsFiles(){
       COMMISSIONS_BY_YEAR = {};
       _invalidateDealCache();
       commissionsLoaded = true;
+      try { if(HPE.ui && HPE.ui.dataStatus) HPE.ui.dataStatus.set('commissions','ok','no files yet'); } catch(e){}
       // v2.0.10.25 — Refresh whichever commissions view the user is currently
       // looking at. The read view ('page-commissions' = Shortline legacy,
       // 'page-hub-commissions' = Hub canonical) and the admin upload view
@@ -20586,6 +20692,13 @@ async function loadCommissionsFiles(){
     COMMISSIONS_BY_YEAR = newByYear;
     commissionsLoaded = true;
     console.log('[commissions] loaded', Object.keys(newByYear).length, 'year(s):', Object.keys(newByYear).sort());
+    try {
+      if(HPE.ui && HPE.ui.dataStatus){
+        const yrs = Object.keys(newByYear).map(y=>parseInt(y,10)).sort();
+        let rowCount = 0; Object.values(newByYear).forEach(d => { rowCount += (d.sales?d.sales.length:0) + (d.parts?d.parts.length:0); });
+        HPE.ui.dataStatus.set('commissions','ok', rowCount.toLocaleString()+' rows · '+(yrs.length?yrs[0]+'–'+yrs[yrs.length-1]:'no data'));
+      }
+    } catch(e){}
     _invalidateDealCache();
     const years = Object.keys(COMMISSIONS_BY_YEAR).map(y => parseInt(y,10)).sort((a,b)=>b-a);
     if(years.length > 0 && !COMMISSIONS_BY_YEAR[commissionsCurrentYear]){
@@ -20604,7 +20717,7 @@ async function loadCommissionsFiles(){
         renderCommissionsAdmin();
       }
     }
-  } catch(e){ console.warn('loadCommissionsFiles failed:', e); }
+  } catch(e){ console.warn('loadCommissionsFiles failed:', e); try { if(HPE.ui && HPE.ui.dataStatus) HPE.ui.dataStatus.set('commissions','err','Drive load failed'); } catch(_){} }
 }
 
 function parseCommissionsWorkbook(wb, year){
@@ -34305,7 +34418,8 @@ function updateCommissionCodes(idx, value){
     getPartsInventoryMeta: function(){
       return {
         fileName: (typeof partsInventoryFileName !== 'undefined') ? partsInventoryFileName : '',
-        modifiedTime: (typeof partsInventoryFileModified !== 'undefined') ? partsInventoryFileModified : ''
+        modifiedTime: (typeof partsInventoryFileModified !== 'undefined') ? partsInventoryFileModified : '',
+        partCount: (typeof INVENTORY !== 'undefined' && Array.isArray(INVENTORY)) ? INVENTORY.length : 0
       };
     },
     lookupKubotaPart: function(partNumber){

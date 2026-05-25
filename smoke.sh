@@ -7,6 +7,20 @@
 # ---------------------------------------------------------------------------
 set -uo pipefail
 
+# Windows fallback: if the standard winget install locations exist
+# but aren't on PATH (common in shells started before install), use them.
+# No-op on macOS/Linux — paths just don't exist.
+if ! command -v node >/dev/null 2>&1 && [[ -x "/c/Program Files/nodejs/node.exe" ]]; then
+  PATH="/c/Program Files/nodejs:$PATH"
+fi
+if ! python3 --version >/dev/null 2>&1; then
+  # NB: command -v isn't enough — Windows ships an MS-Store python3 STUB
+  # that exists but errors at runtime. Probing --version detects the stub.
+  for p in "$HOME"/AppData/Local/Programs/Python/Python3*; do
+    [[ -x "$p/python3.exe" ]] && PATH="$p:$PATH" && break
+  done
+fi
+
 FILE="${1:-index.html}"
 EXPECTED_DUP_IDS=6
 fail=0

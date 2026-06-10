@@ -28,11 +28,14 @@ Worker proxy (so the API key never touches the browser).
 | In-app positive-path test (login → live search → pick → prefill) | ✅ **PASSED 2026-06-10** — John quoted a Used unit picking a live DIS customer |
 | DIS lookup modal (Used/SL quotes) wired live too | ✅ **done 2026-06-10** — v3.14.1, merged to `main` |
 
-**The integration is LIVE in production (v3.14.1).** Both customer-lookup
-surfaces (Hub inline typeahead + the Used/SL lookup modal) search DIS live with
-automatic offline-XLSX fallback. Remaining open item: §6 question 3 (key write
-scope / sandbox — John to ask DIS). Possible future: add a DIS lookup to the
-Shortline "My Customers" modal (it has none today, live or static).
+| Shortline "My Customers" modal: 🔍 DIS button added (had no lookup at all) | ✅ **done 2026-06-10** — v3.14.2 |
+
+**The integration is LIVE in production (v3.14.2).** All three customer-lookup
+surfaces (Hub inline typeahead, the Used/SL quote-builder lookup modal, and the
+SL My Customers add/edit modal) search DIS live with automatic offline-XLSX
+fallback. Only remaining open item: §6 question 3 (key write scope / sandbox —
+John to ask DIS). Keep dropping a fresh Contact List export into
+`HPE Link/All Customers/` occasionally so the offline fallback doesn't go stale.
 
 ---
 
@@ -175,7 +178,8 @@ open it in a browser and check its network tab if the full schema is ever needed
 
 ---
 
-## 3. How the app's typeahead works today (what you're changing)
+## 3. How the app's typeahead worked PRE-v3.14 (historical reference — the
+## static flow below is now the FALLBACK path only)
 
 - **`dis` module** (`index.html` ~line 5045, inside `HPE.shared`): loads the static
   "Contact List" XLSX from Drive into in-memory `_contacts`, exposes **synchronous**
@@ -192,13 +196,29 @@ open it in a browser and check its network tab if the full schema is ever needed
 
 ---
 
-## 4. NEXT TASK — wire the typeahead to the Worker
+## 4. Wiring plan — ✅ COMPLETED 2026-06-10 (v3.14.0–v3.14.2, merged to main)
 
-**Scope update (2026-06-10):** the original "lean v1, name + customer# only" scope
-existed because phone/email looked unavailable. §2a removes that blocker — **full
-prefill parity is now possible** (search still on `customerName`; on pick, 2 extra
-GETs fill phone/email/city/province). Confirm with John whether to ship full-parity
-v1 directly or still stage it lean-first.
+**As built (where the code lives in `index.html`):**
+- `HPE.config.disProxyUrl` next to `googleClientId` (~line 4660).
+- Live helpers in the **Hub IIFE** next to `onDISSearchInput`:
+  `disProxyFetch` (Worker GET via `drive.gfetch` → free silent token-refresh on
+  401), `searchDISCustomersLive` (digits → `customerNumber:{q}*`, else
+  `customerName:*{q}*`; applies the dis module's `isNoiseRow`),
+  `fetchLiveDISDetails` (on-pick: communicationDetail by `addressId` +
+  addresses by `webId`), `staticDISSearch` (fallback), debounce 250ms +
+  stale-`seq` guard. Exposed cross-module via `HPE.sectionImpl.hub.searchDISLive`
+  / `.fetchDISDetails`.
+- `HPE.disLookup` (the Used/SL 🔍 modal) is live-first via those hub exports,
+  falling back to the old static flow (v3.14.1). Subtitle shows "Live DIS
+  Quantum lookup" vs the xlsx filename; footer names the source.
+- SL "My Customers" add/edit modal: 🔍 DIS button →
+  `S.openDISLookupForCustomerModal()` (v3.14.2).
+- Dropdown/footer always indicate source ("Live DIS lookup" / "Offline contact
+  list") — that's how you tell which path served results.
+- Prefill rules everywhere: **name always overwritten; email/phone/address only
+  filled when empty** (never clobber user-typed values).
+
+**The original step-by-step plan (kept for context):**
 
 **Plan:** *(all code steps below DONE 2026-06-10 on branch `dis-live-lookup`)*
 0. ~~Worker whitelist + redeploy~~ ✅ deployed `fa874317`.

@@ -10,19 +10,21 @@ Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 - **Deployed to:** GitHub Pages under the `Hyde-Park-Equipment` org.
 - **Backend:** Google Drive via OAuth, restricted to `@hydeparkequipment.ca`.
 - **Developer & primary user:** John Williams.
-- **Current version:** v3.14.0 (bump this line whenever you ship — see below).
+- **Current version:** v3.14.2 (bump this line whenever you ship — see below).
 
 This is a real production tool reps use daily. Default to caution: small,
 reviewable diffs; never break `main`.
 
-## 🔭 DIS live customer lookup — SHIPPED ✅ (v3.14.0/v3.14.1, 2026-06-10)
-Customer lookups (Hub inline typeahead + the Used/SL "DIS contact lookup" modal)
-now search the **live DIS Quantum API** through the Cloudflare Worker proxy
+## 🔭 DIS live customer lookup — SHIPPED ✅ (v3.14.0–v3.14.2, 2026-06-10)
+All three customer-lookup surfaces — the Hub inline typeahead, the Used/SL
+"DIS contact lookup" modal (🔍 DIS on quote builders), and the Shortline
+My Customers add/edit modal (🔍 DIS button, added v3.14.2) — now search the
+**live DIS Quantum API** through the Cloudflare Worker proxy
 (`dis-proxy.johnwilliams.workers.dev`, version `fa874317`), with on-pick
 phone/email/address prefill and automatic fallback to the static Contact-List
-XLSX if the live path fails. **Tested in production by John 2026-06-10 — working.**
-Still open: DIS key write-scope/sandbox question (John to ask DIS); possible
-future DIS lookup in the Shortline "My Customers" modal (has none today).
+XLSX if the live path fails. **Tested in production by John 2026-06-10 — working**
+(quote-builder flow verified end-to-end with a live DIS customer).
+Only open item: DIS key write-scope/sandbox question (John to ask DIS/Lauren).
 Full reference in **[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)** — read it before
 touching anything DIS/customer-lookup related.
 

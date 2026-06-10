@@ -10,7 +10,7 @@ Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 - **Deployed to:** GitHub Pages under the `Hyde-Park-Equipment` org.
 - **Backend:** Google Drive via OAuth, restricted to `@hydeparkequipment.ca`.
 - **Developer & primary user:** John Williams.
-- **Current version:** v3.15.0 (bump this line whenever you ship — see below).
+- **Current version:** v3.15.1 (bump this line whenever you ship — see below).
 
 This is a real production tool reps use daily. Default to caution: small,
 reviewable diffs; never break `main`.

@@ -37,6 +37,16 @@ fallback. Only remaining open item: §6 question 3 (key write scope / sandbox �
 John to ask DIS). Keep dropping a fresh Contact List export into
 `HPE Link/All Customers/` occasionally so the offline fallback doesn't go stale.
 
+**NEXT PHASE — live INVENTORY feed (v3.15.0, soak-testing since 2026-06-10):**
+the admin-only **Shortline → DIS Feed (beta)** page diffs the live equipment
+pull against the daily xlsx, in-app through the Worker (whitelist v2,
+`cba254b7`). First production run: **4.4s for the full pull**, used matched
+89/89 with 0 ghosts, every new-side diff explained (sold-since-upload, new
+arrivals, blank-New/Used placeholder rows, dead-stock locations). John soaks
+it across real business days before any rep-facing cutover. Remaining gaps
+(reserved, Location codes) ride the xlsx as an overlay — DIS support email
+sent 2026-06-10 (q5–q9 condensed; see §6).
+
 ---
 
 ## 1. The Worker (server side) — DONE, do not rebuild

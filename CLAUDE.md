@@ -15,15 +15,16 @@ Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 This is a real production tool reps use daily. Default to caution: small,
 reviewable diffs; never break `main`.
 
-## 🔭 ACTIVE WORK — DIS live customer lookup
-Update 2026-06-10: phone/email **found** in the API (`contact` + `communicationDetail`,
-singular paths) — full-parity typeahead wiring is **done on branch `dis-live-lookup`**
-(v3.14.0, live search + on-pick phone/email/address prefill, static-XLSX fallback).
-Worker redeployed with `contact`/`communicationDetail` whitelisted (version
-`fa874317`, 2026-06-10). Remaining: (1) John tests the live lookup in the
-deployed/preview app, (2) merge to `main`. Full status/plan in
-**[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)** — read it before touching anything
-DIS/customer-lookup related.
+## 🔭 DIS live customer lookup — SHIPPED ✅ (v3.14.0/v3.14.1, 2026-06-10)
+Customer lookups (Hub inline typeahead + the Used/SL "DIS contact lookup" modal)
+now search the **live DIS Quantum API** through the Cloudflare Worker proxy
+(`dis-proxy.johnwilliams.workers.dev`, version `fa874317`), with on-pick
+phone/email/address prefill and automatic fallback to the static Contact-List
+XLSX if the live path fails. **Tested in production by John 2026-06-10 — working.**
+Still open: DIS key write-scope/sandbox question (John to ask DIS); possible
+future DIS lookup in the Shortline "My Customers" modal (has none today).
+Full reference in **[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)** — read it before
+touching anything DIS/customer-lookup related.
 
 ---
 

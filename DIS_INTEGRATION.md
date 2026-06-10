@@ -25,10 +25,14 @@ Worker proxy (so the API key never touches the browser).
 | Phone/email source found & verified (`contact`/`communicationDetail`, §2a) | ✅ **done 2026-06-10** |
 | Worker whitelist extended with `contact` + `communicationDetail` + redeploy | ✅ **done 2026-06-10** (version `fa874317`) |
 | `index.html` typeahead wired to the Worker (full prefill parity) | ✅ **done 2026-06-10** — branch `dis-live-lookup`, v3.14.0 |
-| In-app positive-path test (login → live search → pick → prefill) | ⬜ **John to do — the only remaining step before merge** |
+| In-app positive-path test (login → live search → pick → prefill) | ✅ **PASSED 2026-06-10** — John quoted a Used unit picking a live DIS customer |
+| DIS lookup modal (Used/SL quotes) wired live too | ✅ **done 2026-06-10** — v3.14.1, merged to `main` |
 
-**Next step = John tests the live lookup in the deployed/preview app, then merge
-`dis-live-lookup` to `main`.**
+**The integration is LIVE in production (v3.14.1).** Both customer-lookup
+surfaces (Hub inline typeahead + the Used/SL lookup modal) search DIS live with
+automatic offline-XLSX fallback. Remaining open item: §6 question 3 (key write
+scope / sandbox — John to ask DIS). Possible future: add a DIS lookup to the
+Shortline "My Customers" modal (it has none today, live or static).
 
 ---
 

@@ -288,6 +288,39 @@ report has that the API lacks: Suggested List Price, List Price, Cost (full),
 Replacement Value, Flooring Amount/Due Date, Meter, Sold By / Sale Date /
 Sale Amount, Location, Rental Status, Class, Attachment, Trade In.
 
+**Ground-truth validation ROUND 2 (2026-06-10, the big one):** John exported
+the FULL desktop report — every Status-A unit, new+used, all brands, all
+locations (`UnitsDefineSearchExpanded (15).xlsx`, 849 rows, 100 columns).
+Diff vs the complete API feed (884):
+- **Coverage 849/849 — zero missing.** Division matches **849/849**. The only
+  new/used mismatches are 13 desktop rows with BLANK New/Used (placeholders:
+  CREDIT, FLOOR, PKG00x, V-11, …).
+- **All 3x extras are pre-2020 orphans → ORPHAN RULE, validated 0 FP / 0 FN:
+  exclude units with `dateUpdated` < 2020-01-01.** Orphans' last-touch range
+  is 2013→2019-12; every real unit has been touched since 2022-09. (q9
+  answered ourselves — no DIS needed.)
+- **Cost: 712 exact-to-the-penny matches;** only 18 desktop-only costs (all
+  2020–22 in-dates, financials never backfilled). ~97% parity.
+- **The list-price "blocker" mostly evaporated:** even in the DESKTOP report,
+  NEW units have essentially no list price (1/717!) — Shortline new pricing
+  never came from this file (SKU catalog prices quotes). Used: desktop
+  suggested-list 48/119 vs API `priceSuggestedList` ~50 — **API is at parity
+  on used pricing**. Desktop List Price on used is only 20/119 (reps override
+  in-app anyway, `unitPriceOverrides`). Replacement Value is 0 on ALL 849
+  desktop rows — field unused, drop it from q7.
+- **Flooring is the one real data gap:** desktop has flooring on 403/717 new
+  + 39/119 used; API has nothing. The Used module actively uses it (floored
+  vs owned dashboards, 270-day interest risk, equity column ~line 12838).
+- **Reserved: definitively NOT in the API (live experiment, q6 closed as a
+  wall):** two units reserved in the desktop (T56803/EM31374, 90860/EM31090,
+  18 reserved total that day) show NO trace — equipment record unchanged
+  (status stays AVAILABLE_SALE; only `dateUpdated` bumps), the EM-prefix Unit
+  Sale documents don't sync to `invoice` (only closed W/I invoices do), no
+  `invoiceLine`, no `ledgerEntry` until finalized. The spec's RESERVED_SALE
+  status exists but HPE's desktop flow never sets it. Workaround options:
+  keep an occasional xlsx as reserved+flooring overlay, or mark reservations
+  in-app.
+
 **Local test harness:** `C:\Users\johnw\dis-feed-test\build_feed.js` (work PC,
 outside the repo so Pages never serves it) simulates the full feed with the
 app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
@@ -401,27 +434,31 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
    URL behind their swagger-ui (for per-entity field schemas).
 3. **Write scope** of the issued key + is there a **sandbox/test environment**? (Until confirmed: **reads only, never write against production.**)
 4. ~~Confirm canonical customer lookup entity/fields~~ **Confirmed** — `customer(s).customerName` is it (list has no other customer-name-bearing entity).
-5. **Unit List Price / Suggested List Price** (2026-06-10 probe, §2c): the All
-   Inventory *report* shows them for every unit, but `equipmentFinancials` has
-   retail/suggested-list on ~0% of in-stock units (only `priceCost` is ~half
-   populated). Where does the report's List Price come from, and is it exposed
-   (or exposable) via the Quantum API?
-6. **Reserved units** (§2c): how does a reserved unit (the report's Reserved
-   Employee/Customer/Invoice columns) appear in the API? All recent `invoice`
-   rows are `status:closed`; no reserved marker found on `equipment`.
-7. **Replacement value & flooring** (§2c): present on the report, not found in
-   any probed entity — exposed anywhere?
-8. **Unit Location codes** (§2c): the desktop system tracks per-unit Location
-   (observed values: `S M SC YD HP BM LA R`) separately from Division —
-   `branchId` in the API is the **Division** (verified 119/119 against a
-   manual pull); the Location code is not in any probed entity. Is it exposed
-   (or exposable)? Needed both to filter dead stock out of rep-facing
-   inventory and for a planned admin dead-stock report.
-9. **Orphaned "available" records** (§2c): 5 units created 2014–15 are still
-   `equipmentStatus:AVAILABLE_SALE, deleted:false` in the API but no longer
-   appear as Status A in the desktop system (some tag numbers were later
-   re-used by other units). What field/cleanup distinguishes them, so the
-   live feed can exclude them without date heuristics?
+> **Note (2026-06-10):** John prefers figuring things out ourselves over
+> asking DIS — only escalate at a true brick wall. q5/q7/q9 were since
+> answered by our own testing (see §2c round-2 validation); q6/q8 are
+> confirmed walls with workarounds:
+
+5. ~~Unit List Price / Suggested List~~ **ANSWERED OURSELVES:** the desktop
+   barely has list prices either (1/717 new!); used suggested-list syncs to
+   the API at parity (~50). Not a blocker.
+6. **Reserved units — CONFIRMED WALL (live experiment §2c):** reservations
+   (EM-prefix Unit Sale docs) leave zero API trace until finalized. Workaround
+   required: occasional xlsx overlay or in-app reservation marking. (If we
+   ever DO talk to DIS: ask whether the desktop reserve flow can set
+   RESERVED_SALE, which the API supports but their sync never sets.)
+7. ~~Replacement value~~ **unused even in the desktop (0/849)**. **Flooring**
+   is a real gap (403 new + 39 used have amounts; Used dashboards consume it)
+   — workaround: occasional xlsx overlay for flooring only.
+8. **Unit Location codes — CONFIRMED WALL:** desktop Location (`S M SC YD HP
+   BM LA R`) is separate from Division (= API `branchId`, verified 849/849)
+   and is not exposed anywhere. Dead stock is therefore indistinguishable in
+   the API. Workaround candidates: in-app admin "hide unit" list, or the
+   occasional-xlsx overlay carrying Location. (If asking DIS: can their sync
+   populate `equipment.location`, which exists in the schema but is null?)
+9. ~~Orphaned "available" records~~ **ANSWERED OURSELVES:** exclude
+   `dateUpdated < 2020-01-01` — validated 0 false positives / 0 false
+   negatives against the 849-unit ground truth.
 
 ---
 

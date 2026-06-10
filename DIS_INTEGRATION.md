@@ -44,8 +44,9 @@ pull against the daily xlsx, in-app through the Worker (whitelist v2,
 89/89 with 0 ghosts, every new-side diff explained (sold-since-upload, new
 arrivals, blank-New/Used placeholder rows, dead-stock locations). John soaks
 it across real business days before any rep-facing cutover. Remaining gaps
-(reserved, Location codes) ride the xlsx as an overlay — DIS support email
-sent 2026-06-10 (q5–q9 condensed; see §6).
+(reserved, Location codes) ride the xlsx as an overlay — a DIS support email
+was DRAFTED 2026-06-10 (the asks are §6 q6/q8 + the NOTE_BALANCE 500 bug;
+reconstruct from §6 if needed — confirm with John whether he actually sent it).
 
 ---
 
@@ -503,13 +504,35 @@ AFTER the file date, i.e. the live feed is simply fresher.
 
 ---
 
-## 5. Environment notes (work PC)
+## 5. Environment notes (PER-MACHINE STATE — updated 2026-06-10)
 
-- The work PC already runs `smoke.sh`, so Node + python3 are presumably installed there.
-- **No API key needed locally to wire the app** — the app just calls the Worker URL; the key lives only in the Worker secret.
-- If you want to **probe DIS directly** from the work PC (optional), set the key as a user env var and read it without printing:
-  `[Environment]::SetEnvironmentVariable('DIS_API_KEY','<key>','User')` then in curl use `-H "X-API-Key: $k"` where `$k=[Environment]::GetEnvironmentVariable('DIS_API_KEY','User')`.
-- Repo sync is plain git (`git pull` at start, `git push` when done). The home PC has auto-sync hooks; the work PC can too (ask John).
+What does NOT travel between PCs (Claude memory, env vars, tool auth):
+
+**Work PC (johnw) — set up 2026-06-10:**
+- `DIS_API_KEY` user env var SET (read without printing:
+  `[Environment]::GetEnvironmentVariable('DIS_API_KEY','User')`).
+- **wrangler OAuth-authed** + `C:\Users\johnw\dis-proxy-worker\` (worker.js v2
+  + wrangler.toml) → `npx wrangler deploy` just works.
+- Probe/test harnesses in `C:\Users\johnw\dis-feed-test\` (NOT in the repo —
+  Pages would serve them): `build_feed.js` (units feed sim + CSVs),
+  `flooring_check.js`, `parts_feed.js`, `kubota_lookup_check.js`,
+  `spec_dig.py` + `api-docs.yaml` (the full OpenAPI spec, 872 KB), various
+  compare_*.py ground-truth diff scripts.
+- openpyxl installed (pandas NOT); playwright installed.
+
+**Home PC (johnr):**
+- `DIS_API_KEY` user env var SET (John set it there first).
+- `C:\Users\johnr\dis-proxy-worker\` exists but holds the OLD v1 worker.js —
+  **copy v2 from §7 below if editing there**; wrangler auth status unknown
+  (re-run `npx wrangler login` if needed — approve the browser prompt
+  PROMPTLY, the localhost listener times out).
+- No dis-feed-test harnesses — recreate from §2c/2d recipes if needed, or do
+  the work on the work PC.
+- The spec is re-downloadable:
+  `https://hy2303.disprism.com/api/swagger-ui/yaml/api-docs.yaml` (X-API-Key header).
+
+**Both:** repo sync is plain git (`git pull` at start, `git push` when done).
+No API key is needed to wire the app itself — the app only calls the Worker.
 
 ---
 

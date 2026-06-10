@@ -20,13 +20,28 @@ All three customer-lookup surfaces — the Hub inline typeahead, the Used/SL
 "DIS contact lookup" modal (🔍 DIS on quote builders), and the Shortline
 My Customers add/edit modal (🔍 DIS button, added v3.14.2) — now search the
 **live DIS Quantum API** through the Cloudflare Worker proxy
-(`dis-proxy.johnwilliams.workers.dev`, version `fa874317`), with on-pick
-phone/email/address prefill and automatic fallback to the static Contact-List
-XLSX if the live path fails. **Tested in production by John 2026-06-10 — working**
-(quote-builder flow verified end-to-end with a live DIS customer).
-Only open item: DIS key write-scope/sandbox question (John to ask DIS/Lauren).
+(`dis-proxy.johnwilliams.workers.dev`), with on-pick phone/email/address
+prefill and automatic fallback to the static Contact-List XLSX if the live
+path fails. **Tested in production by John 2026-06-10 — working.**
 Full reference in **[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)** — read it before
 touching anything DIS/customer-lookup related.
+
+## 🔭 DIS live INVENTORY feed — VALIDATED, SOAK-TESTING (v3.15.0–v3.15.2, 2026-06-10)
+Goal: kill the daily All Inventory xlsx upload (and later the Parts one).
+**Status:** the live equipment pull is proven 1:1 against John's desktop
+ground truth (849/849; cost to the penny; flooring derived exactly from
+`ledgerEntry NOTE_BALANCE`; orphan rule `dateUpdated >= 2020` validated
+0FP/0FN), and the admin-only **Shortline → DIS Feed (beta)** page (v3.15.0)
+diffs live-vs-file in-app — **John is soak-testing it across business days.**
+Parts feed also validated (Stihl bulk / Kubota per-part lookup with
+latest-product-wins dedup — §2d). Worker whitelist v2 deployed (`cba254b7`).
+**Two confirmed API gaps** (reserved units + desktop Location codes — they're
+host-side data the Prism sync doesn't replicate): questions drafted for DIS
+(§6 q5–q9); until answered they ride the xlsx as an overlay. **Critical API
+gotchas:** every paginated query needs `sort=webId` (unstable paging
+double-counts/drops rows — fixed in-app v3.15.2) and never mix `|`-OR with
+AND terms in one query. Everything is in **[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)**
+§2c (units), §2d (parts) — read those before touching DIS/inventory code.
 
 ---
 

@@ -318,17 +318,30 @@ Diff vs the complete API feed (884):
   `equipmentFinancialCategory:NOTE_BALANCE` 500s server-side — OR-batch by
   equipmentId instead (40/call, ~22 calls for the fleet; see
   `flooring_check.js` in dis-feed-test).
-- **Reserved: the one remaining wall (precisely mapped, live experiment):**
+- **Reserved: the one remaining wall — now EXHAUSTIVELY confirmed:**
   EM/ES Unit-Sale invoices DO sync to `invoice` — 24,744 EM* + 7,355 ES*
   rows — but **only once finalized/closed**. Queried all 16 reserved-invoice
   numbers from the 18 currently-reserved units: 15 absent (drafts), 1 found
   but only as a closed $565 deposit invoice (ES08780). The equipment record
   shows nothing (status stays AVAILABLE_SALE; only `dateUpdated` bumps on
-  reserve day). The spec's RESERVED_SALE status exists but HPE's desktop flow
-  never sets it. notificationRecord/scheduleEvent/task = webhook-log/calendar/
-  boards, not reservations. Workaround options: occasional xlsx overlay for
-  reserved only, or mark reservations in-app. (`webHook` entity exists —
-  real-time push subscriptions are a future possibility.)
+  reserve day — the reservation transaction even bumps the unit's OLD closed
+  work-order segments' dateUpdated, so the host touches the object graph but
+  writes the reserve data somewhere unreplicated). Full REST sweep done:
+  open work orders DO sync (`workOrderHeader` w/ dateClosed:null, 40,347
+  rows) but EM31374 is not there (`orderDocumentId:EM31374` → 0, segments =
+  only the unit's 3 old shop jobs); `customerPurchaseOrder`,
+  `consolidatedInvoice`, `agreement`, `operation`, `signature` are ALL EMPTY
+  (0 rows) for HPE; notificationRecord/scheduleEvent/task = webhook-log/
+  calendar/boards. **John's Quantum host UI (AS/400 session, QPADEV device)
+  displays both "On Reserve" + the open EM doc (Unit Sale Warning) AND the
+  unit Location code — so both exist host-side and simply are not replicated
+  to the Prism REST database.** The precise DIS ask, if/when John wants it:
+  (a) can the sync populate `equipment.location` (schema field exists, always
+  null), and (b) can unposted Unit-Sale documents be replicated (or the
+  reserve flow set RESERVED_SALE, which the schema supports)? Until then:
+  occasional xlsx overlay for reserved+location, or in-app marking.
+  (`webHook` entity exists — real-time push subscriptions are a future
+  possibility.)
 
 **Local test harness:** `C:\Users\johnw\dis-feed-test\build_feed.js` (work PC,
 outside the repo so Pages never serves it) simulates the full feed with the

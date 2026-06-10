@@ -43,7 +43,7 @@ John to ask DIS). Keep dropping a fresh Contact List export into
 
 - **Live URL:** `https://dis-proxy.johnwilliams.workers.dev`
 - **Cloudflare account:** `421b266ca743101979e4d08af668b8cd` (johnwilliams@hydeparkequipment.ca), subdomain `johnwilliams.workers.dev`
-- **Deployed version:** `fa874317` (2026-06-10 — added `contact` + `communicationDetail` to the entity whitelist; previous: `b3d4d5a1`). **Whitelist v2 (7 inventory entities, §7) is written and PENDING John's paste-deploy.**
+- **Deployed version:** `cba254b7` (2026-06-10 — whitelist v2: + product, manufacturer, branch, equipmentFinancials, ledgerEntry, inventory, stockArea for the inventory feed; previous: `fa874317`). Deployed via **wrangler from the work PC** (now authed — see §5); verified unauth → 401, OPTIONS → 204 post-deploy.
 - **Secret:** `DIS_API_KEY` is set in the Worker (Settings → Variables & Secrets). Never in code/repo.
 - **Canonical source:** on the home PC at `C:\Users\johnr\dis-proxy-worker\` AND embedded in §7 below. **Not yet its own git repo** (a good follow-up; for now this doc is the backup).
 - **Endpoint shape:** `GET /dis/{entity}?query=…&page=&size=&sort=`
@@ -68,9 +68,15 @@ So the **client must send the app's existing access token**:
 `Authorization: Bearer <access_token>`.
 
 ### Redeploying the Worker (only if you change it)
-Dashboard: Workers & Pages → `dis-proxy` → Edit code → paste `src/worker.js` →
-Deploy. (No Node needed.) Or with Node: `cd dis-proxy-worker && npx wrangler deploy`
-(needs `wrangler login` first; secret already set).
+**Work PC (preferred, set up 2026-06-10):** `cd C:\Users\johnw\dis-proxy-worker;
+npx wrangler deploy` — wrangler is OAuth-authed on this machine and
+`wrangler.toml` exists; the secret persists across deploys. (Gotcha: the
+first `wrangler login` timed out because the OAuth "Allow" click came after
+the local listener gave up — re-run and approve promptly.)
+Fallback: Dashboard → Workers & Pages → `dis-proxy` → Edit code → paste
+`src/worker.js` → Deploy. **Note:** the dashboard editor is a cross-origin
+iframe — the Claude-in-Chrome extension cannot click/type inside it, so
+dashboard deploys are manual-only.
 
 ---
 
@@ -488,12 +494,11 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
 
 ## 7. Worker source (canonical copy — `dis-proxy-worker/src/worker.js`)
 
-> **Whitelist v2 (inventory entities) PENDING DEPLOY** — the block below is
-> the v2 source; deployed Worker is still `fa874317` (customer-lookup
-> whitelist) until John pastes this into the Cloudflare dashboard. Local
-> copies: home PC `C:\Users\johnr\dis-proxy-worker\src\worker.js`, work PC
-> `C:\Users\johnw\dis-proxy-worker\src\worker.js`. No secrets here (the key
-> is a Worker secret). If you edit, update both this block and the deployment.
+> Deployed as version `cba254b7` (2026-06-10, whitelist v2). Local copies:
+> home PC `C:\Users\johnr\dis-proxy-worker\src\worker.js`, work PC
+> `C:\Users\johnw\dis-proxy-worker\src\worker.js` (+ `wrangler.toml`). No
+> secrets here (the key is a Worker secret; secrets persist across deploys).
+> If you edit, update both this block and the deployment.
 
 ```js
 /**

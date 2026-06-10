@@ -2,8 +2,13 @@
 
 > **Purpose of this doc:** let any Claude Code session (esp. John's work PC) pick
 > up the DIS live-lookup integration without re-discovering anything. Last
-> updated **2026-06-09** by the home-PC session. Supersedes the original
+> updated **2026-06-10** by the home-PC session. Supersedes the original
 > `Downloads/DIS_API_HANDOFF.md` (which had two wrong assumptions — noted below).
+>
+> **2026-06-10 BREAKTHROUGH:** DIS sent the official GET-entity list — **phone &
+> email DO exist** in the API (`contact` + `communicationDetail` entities, singular
+> paths). The §6 "phone/email blocked" question is ANSWERED; full prefill parity is
+> achievable. See §2a. The Worker whitelist must be extended before wiring (§4).
 
 ---
 
@@ -17,11 +22,13 @@ Worker proxy (so the API key never touches the browser).
 |---|---|
 | DIS API reverse-engineered (auth, format, entities, query lang) | ✅ done |
 | Cloudflare Worker proxy built, deployed, secured, verified | ✅ **done & live** |
+| Phone/email source found & verified (`contact`/`communicationDetail`, §2a) | ✅ **done 2026-06-10** |
+| Worker whitelist extended with `contact` + `communicationDetail` + redeploy | ⬜ **needed before wiring** |
 | `index.html` typeahead wired to the Worker | ⬜ **NOT started — this is the next task** |
-| Phone/email field parity | ⛔ blocked — needs DIS/Lauren (see §6) |
 | In-app positive-path auth test | ⬜ John to do once wired |
 
-**Next task = wire the app (§4).** Everything it needs is below.
+**Next task = extend the Worker whitelist (1-line change, §4 step 0), then wire
+the app (§4).** Everything it needs is below.
 
 ---
 
@@ -65,10 +72,16 @@ Deploy. (No Node needed.) Or with Node: `cd dis-proxy-worker && npx wrangler dep
 - **Base:** `https://hy2303.disprism.com/api`
 - **Auth header:** `X-API-Key: <key>` (raw key — **NOT** `Authorization: Bearer`; Bearer returns 403)
 - **Response:** HAL / Spring-Data-REST — records under `_embedded.{entity}[]`, paging under `.page` (`size`, `totalElements`, `totalPages`, `number`)
-- **Entities confirmed live:** `equipment`, `customers` (38,568 rows), `addresses` (68,031 rows). No `contacts`/`persons` entity (404).
+- **⚠️ Path naming gotcha:** DIS's query doc says endpoints are "the pluralized
+  form" of the model, and `customers`/`addresses` do work pluralized — but the
+  official entity list (sent by DIS 2026-06-10, full list in §2b) uses the model
+  names **as-is**, and `contact`/`communicationDetail` only respond on the
+  **singular** path (`/contacts` → 404, `/contact` → 200). When probing a new
+  entity, try the list's exact name first, then the plural.
+- **Entities confirmed live:** `equipment`, `customers` (38,568 rows), `addresses`
+  (68,031 rows), `contact` (38,154 rows), `communicationDetail` (~49k rows).
 - **`customers` fields:** `webId, customerNumber, customerName (single combined name — NO first/last), active, businessEntity, mainAddressId, contactId, branchId, …` (`contact`/`contactId` were empty on the records sampled).
-- **`addresses` fields:** `webId, name, name2, city, state, street, postalCode, customerId, addressType, useForShipTo/BillTo/Main, …` (linked to a customer via `customerId`; **no phone/email**).
-- A customer's `_links` expose `mainAddress`, `defaultShipToAddress`, `defaultBillToAddress`, `branch` — all addresses. **No phone/email anywhere in the probed API.**
+- **`addresses` fields:** `webId, name, name2, city, state, street, postalCode, customerId, addressType, useForShipTo/BillTo/Main, …` (linked to a customer via `customerId`; no phone/email on the address itself — they're in `communicationDetail`, §2a).
 
 ### Query language
 `?query={field}{op}{value}`, comma-separated = AND, prefix `|` (URL-encode `%7C`) = OR. Paging: `page`, `size`, `sort`.
@@ -79,6 +92,82 @@ Strings (case-insensitive): `:` eq · `!` ne · `:foo*` startsWith · `:*foo` en
 GET /dis/customers?query=customerName:*{input}*&size=10&sort=customerName
 ```
 (e.g. `customerName:*construction*` → 193 matches, returns customerNumber + customerName + active). **NOTE:** the old handoff's `lastName:{input}*` is WRONG — there is no `lastName` field; use `customerName`.
+
+---
+
+## 2a. Phone & email — FOUND (verified live 2026-06-10)
+
+The earlier "no phone/email anywhere" conclusion was wrong — the probe only tried
+pluralized paths. Two singular-path entities hold everything the Contact List
+XLSX had:
+
+- **`/contact`** (38,154 rows ≈ the XLSX row count): `webId, firstName, lastName,
+  middleName, nickname, organizationName, title, notes, addressId, customerId,
+  usedForWorkOrderRecipient, deleted, …` + `_links` to `customer`, `address`,
+  `communicationDetails`.
+- **`/communicationDetail`** (~49k rows): `webId, communicationMethod
+  (enum: PHONE | EMAIL | CELL | FAX — case-sensitive), information (the actual
+  number/email string), extension, main (bool), addressId, contactId, deleted`.
+  A detail links to an address OR a contact (either id can be null).
+
+### Verified lookup chain for the typeahead (per selected customer)
+1. Typeahead search (unchanged): `/customers?query=customerName:*{q}*&size=10&sort=customerName`
+   → take `webId`, `customerNumber`, `customerName`, **`mainAddressId`**.
+2. Phone/email on pick: **`/communicationDetail?query=addressId:{mainAddressId}&size=10`**
+   → filter `deleted`, prefer `main:true`; `communicationMethod` tells you which
+   field each `information` value fills. Verified on 5 random customers — every
+   one returned its PHONE (and EMAIL where present).
+3. City/province on pick (optional): `/addresses?query=webId:{mainAddressId}&size=1`
+   → `city`, `state`.
+
+So a pick costs 2 small extra GETs and achieves **full prefill parity** (name,
+customer#, phone, email, city, province). Note the reverse direction does NOT
+work: `communicationDetail?query=address.customerId:{custId}` returns 0 because
+customer-main addresses carry `customerId: null` — always go customer →
+`mainAddressId` → `addressId`.
+
+### Worker prerequisite
+`ALLOWED_ENTITIES` in the Worker (§7) must gain `"contact"` and
+`"communicationDetail"` and be **redeployed** before the app can use them.
+(Read-only GETs, same gate — no other Worker change needed.)
+
+---
+
+## 2b. Official GET-entity list (from DIS, 2026-06-10)
+
+Full catalog DIS sent (use exact names; singular unless confirmed otherwise):
+`accountReceivablePayment, address, agreementGroup, agreement, branch, checklist,
+checklistAcceptedResult, checklistCategory, checklistDisclaimer, checklistItem,
+checklistItemDisclaimer, communicationDetail, consolidatedInvoice, company,
+configurationDescription, configurationKey, configurationOption, contact,
+customer, customerPoRules, customerPurchaseOrder, department, equipment,
+equipmentGroup, updateEquipmentHourMeter, equipmentHistory, equipmentMeter,
+equipmentWarranty, equipmentFinancials, file, folder, generalLedgerAccount,
+generalLedgerAccountGroup, generalLedgerAccountRelationship,
+generalLedgerSummary, inventory, invoice, invoiceLine, invoiceSegment, laborCode,
+laborTimeType, ledgerEntry, ledgerEntryAging, ledgerEntryDocument,
+ledgerEntryMatch, manufacturer, metadata, notificationRecord, operation,
+partsOrder, partsOrderLine, periodicMaintenance, periodicMaintenanceSchedule,
+product, productBranch, requestedPartsOrderLine, scheduleEvent, serviceType,
+signature, solvencyCode, standardJobCode, standardJobCodeManufacturer,
+standardJobCodeManufacturerStructure,
+standardJobCodeManufacturerStructureFieldName, standardJobCodeName, statement,
+stockArea, stockAreaAssignment, submittedPartsOrderLine, task, taskBoard,
+taskComment, team, technicianClock, timeCard, timeCardLine, truck, vendor,
+webHook, webUser, workOrderFreeField, workOrderHeader, workOrderLine,
+workInProcess, workOrderSegment, workOrderTechnician`
+plus special routes: `public/v1/file/{list,urls,resolve}`,
+`workOrderHeader/convert`, `workOrderSegment/{webId}/workOrderTechnicians`,
+`configurationOption/{webId}`.
+
+Interesting for future features: `invoice`/`invoiceLine`, `workOrderHeader`
+(service status for customers), `inventory`, `partsOrder`, `equipmentHistory`.
+
+DIS also sent the query-language doc (operators, wildcards, `,` = AND,
+`|`-prefix = OR, dot-notation nesting) — it matches what §2 already documents.
+Swagger UI exists at `https://hy2303.disprism.com/api/swagger-ui/index.html`
+(browser; the raw spec URL behind it hasn't been found via common api-docs paths —
+open it in a browser and check its network tab if the full schema is ever needed).
 
 ---
 
@@ -99,15 +188,18 @@ GET /dis/customers?query=customerName:*{input}*&size=10&sort=customerName
 
 ---
 
-## 4. NEXT TASK — wire the typeahead to the Worker (lean v1)
+## 4. NEXT TASK — wire the typeahead to the Worker
 
-**Scope (decided with John): name + customer# only.** Phone/email are NOT available
-from the live API yet (§6), so v1 does live search on `customerName`, prefills
-name + customerNumber, and leaves phone/email blank (no regression — they just
-aren't auto-filled). City is *optionally* obtainable via the customer→`mainAddress`
-link on select (nice-to-have, can defer).
+**Scope update (2026-06-10):** the original "lean v1, name + customer# only" scope
+existed because phone/email looked unavailable. §2a removes that blocker — **full
+prefill parity is now possible** (search still on `customerName`; on pick, 2 extra
+GETs fill phone/email/city/province). Confirm with John whether to ship full-parity
+v1 directly or still stage it lean-first.
 
 **Plan:**
+0. **Worker first:** add `"contact"` and `"communicationDetail"` to
+   `ALLOWED_ENTITIES` in `dis-proxy-worker/src/worker.js`, redeploy (dashboard
+   paste or `npx wrangler deploy`), update the §7 copy + deployed-version note.
 1. Add a config constant, e.g. `disProxyUrl: 'https://dis-proxy.johnwilliams.workers.dev'` near `googleClientId` (~line 4658).
 2. Add an **async** live-search helper (in the `dis` module or alongside the consumers) that calls:
    `GET {disProxyUrl}/dis/customers?query=customerName:*{q}*&size=10&sort=customerName`
@@ -115,11 +207,13 @@ link on select (nice-to-have, can defer).
    `{ name: r.customerName, customerNumber: r.customerNumber, isCompany: true, active: r.active }`.
    On non-200 return null so the UI can show a graceful message (don't hard-crash the quote builder — handoff rule).
 3. Rework **`onDISSearchInput`** to be **debounced (~250ms) + async**, calling the live
-   helper instead of `dis.searchContacts`. Render name + `#customerNumber` (drop the
-   phone/email/city line for v1, or show only what's present).
+   helper instead of `dis.searchContacts`. Render name + `#customerNumber` (show
+   phone/email/city only if fetched — see step 4).
 4. Rework **`pickDISSearchResult`** to use the live result set (keep the last results
-   array keyed by customerNumber) → `applyDISContactToModal` with the available
-   fields; ensure missing phone/email/city degrade gracefully (verify `applyDISContactToModal`
+   array keyed by customerNumber) → on pick, fetch phone/email (+city) via the §2a
+   chain (`communicationDetail?query=addressId:{mainAddressId}` +
+   `addresses?query=webId:{mainAddressId}`) → `applyDISContactToModal`; ensure any
+   still-missing fields degrade gracefully (verify `applyDISContactToModal`
    ~9329 doesn't choke on undefined).
 5. Decide whether to also switch **Consumer B** (`disLookup` modal) now or leave it on
    the static source for v1 — the handoff wants both eventually; smallest safe step is
@@ -146,12 +240,16 @@ link on select (nice-to-have, can defer).
 
 ---
 
-## 6. Open questions for DIS / Lauren (blocks full parity — John to ask)
+## 6. Open questions for DIS / Lauren
 
-1. **Phone & email** — where do they live in the Quantum API? (Not in `customers`/`addresses`; no `contacts` entity. The "Contact List" XLSX clearly had them, so they exist somewhere.)
-2. Location of the **full callable api-docs spec** (the one with `paths`) for the complete entity/field catalog.
+1. ~~**Phone & email** — where do they live?~~ **ANSWERED 2026-06-10:** in
+   `contact` + `communicationDetail` (singular paths) — see §2a. DIS's entity
+   list + query-doc link confirmed it; verified live.
+2. ~~Location of the full entity catalog~~ **Mostly answered:** DIS sent the GET-entity
+   list (§2b) + the query-language doc. Still nice-to-have: the raw OpenAPI spec
+   URL behind their swagger-ui (for per-entity field schemas).
 3. **Write scope** of the issued key + is there a **sandbox/test environment**? (Until confirmed: **reads only, never write against production.**)
-4. Confirm canonical **customer lookup** entity/fields (we're using `customers.customerName`).
+4. ~~Confirm canonical customer lookup entity/fields~~ **Confirmed** — `customer(s).customerName` is it (list has no other customer-name-bearing entity).
 
 ---
 
@@ -159,6 +257,9 @@ link on select (nice-to-have, can defer).
 
 > Deployed as version `b3d4d5a1`. No secrets here (the key is a Worker secret).
 > If you edit, update both this block and the deployment.
+> **⚠️ PENDING CHANGE (2026-06-10):** `ALLOWED_ENTITIES` below still lacks
+> `"contact"` and `"communicationDetail"` — add them + redeploy before wiring the
+> app (§4 step 0), then update this block and the deployed-version line.
 
 ```js
 /**

@@ -43,7 +43,7 @@ John to ask DIS). Keep dropping a fresh Contact List export into
 
 - **Live URL:** `https://dis-proxy.johnwilliams.workers.dev`
 - **Cloudflare account:** `421b266ca743101979e4d08af668b8cd` (johnwilliams@hydeparkequipment.ca), subdomain `johnwilliams.workers.dev`
-- **Deployed version:** `fa874317` (2026-06-10 — added `contact` + `communicationDetail` to the entity whitelist; previous: `b3d4d5a1`)
+- **Deployed version:** `fa874317` (2026-06-10 — added `contact` + `communicationDetail` to the entity whitelist; previous: `b3d4d5a1`). **Whitelist v2 (7 inventory entities, §7) is written and PENDING John's paste-deploy.**
 - **Secret:** `DIS_API_KEY` is set in the Worker (Settings → Variables & Secrets). Never in code/repo.
 - **Canonical source:** on the home PC at `C:\Users\johnr\dis-proxy-worker\` AND embedded in §7 below. **Not yet its own git repo** (a good follow-up; for now this doc is the backup).
 - **Endpoint shape:** `GET /dis/{entity}?query=…&page=&size=&sort=`
@@ -488,8 +488,12 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
 
 ## 7. Worker source (canonical copy — `dis-proxy-worker/src/worker.js`)
 
-> Deployed as version `fa874317` (2026-06-10). No secrets here (the key is a
-> Worker secret). If you edit, update both this block and the deployment.
+> **Whitelist v2 (inventory entities) PENDING DEPLOY** — the block below is
+> the v2 source; deployed Worker is still `fa874317` (customer-lookup
+> whitelist) until John pastes this into the Cloudflare dashboard. Local
+> copies: home PC `C:\Users\johnr\dis-proxy-worker\src\worker.js`, work PC
+> `C:\Users\johnw\dis-proxy-worker\src\worker.js`. No secrets here (the key
+> is a Worker secret). If you edit, update both this block and the deployment.
 
 ```js
 /**
@@ -524,7 +528,14 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 const DIS_BASE = "https://hy2303.disprism.com/api";
-const ALLOWED_ENTITIES = new Set(["equipment", "customers", "addresses", "contact", "communicationDetail"]); // expand as confirmed
+// 2026-06-10 v2: + product, manufacturer, branch, equipmentFinancials,
+// ledgerEntry (flooring via NOTE_BALANCE netting), inventory, stockArea —
+// for the live inventory feed (units + parts). See DIS_INTEGRATION.md §2c.
+const ALLOWED_ENTITIES = new Set([
+  "equipment", "customers", "addresses", "contact", "communicationDetail",
+  "product", "manufacturer", "branch", "equipmentFinancials", "ledgerEntry",
+  "inventory", "stockArea",
+]);
 const ALLOWED_ORIGIN = "https://hyde-park-equipment.github.io";            // GitHub Pages origin (no CNAME)
 const GOOGLE_CLIENT_ID =
   "659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com"; // HPE app's OAuth client

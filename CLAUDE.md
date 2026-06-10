@@ -15,6 +15,14 @@ Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 This is a real production tool reps use daily. Default to caution: small,
 reviewable diffs; never break `main`.
 
+## 🔭 ACTIVE WORK — DIS live customer lookup
+In progress (2026-06-09): wiring the customer typeahead to a **live DIS Quantum
+API** lookup via a deployed Cloudflare Worker proxy (`dis-proxy.johnwilliams.workers.dev`).
+The server side is **done & live**; the **next task is the `index.html` typeahead
+wiring (lean v1: name + customer#)**. Full status, the Worker source, the exact
+wiring plan, and the open questions for DIS are in **[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)** —
+read it before touching anything DIS/customer-lookup related.
+
 ---
 
 ## ⚙️ WORKFLOW (Claude Code)

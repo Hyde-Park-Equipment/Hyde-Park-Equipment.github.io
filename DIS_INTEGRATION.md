@@ -203,14 +203,21 @@ prices & reserved flags = not exposed (blockers, ask DIS — §6 q5–7).**
   (often 0 with real hours buried in `notes` text), `dateInventory` (= xlsx
   In Date), `description` (short), `notes` (long desc), `branchId`,
   `productId`, `location` (always null — use branchId) ·
-  **❌ the desktop system's unit Location codes (S, M, + dead-stock/etc codes
-  the app's xlsx filters rely on) are NOT exposed:** `location`/`addressId`
-  always null, `departmentId` merely mirrors `branchId` (only 2 values),
-  `equipmentGroup` is empty (0 rows). The API feed therefore INCLUDES
-  dead-stock units, indistinguishable from real M/S stock (§6 q8). Desktop
-  status list (per John's screenshot): A=Available, F=Fixed Asset, R=Rental,
-  S=Sold, T=Transfer, O=On Order — desktop A ≈ API
-  `AVAILABLE_SALE,deleted:false`.
+  **`branchId` = the desktop DIVISION column, NOT Location** — verified
+  119/119 against John's manual desktop pull (USED MANUAL PULL.xlsx,
+  2026-06-10). **❌ the desktop Location codes (`S M SC YD HP BM LA R` —
+  dead-stock/yard/etc codes the app's xlsx filters rely on) are NOT exposed
+  anywhere:** `location`/`addressId` always null, `departmentId` merely
+  mirrors `branchId`, `equipmentGroup` is empty (0 rows). The API feed
+  therefore INCLUDES dead-stock units, indistinguishable from real M/S stock
+  (§6 q8). Desktop status list (per John's screenshot): A=Available, F=Fixed
+  Asset, R=Rental, S=Sold, T=Transfer, O=On Order — desktop A ≈ API
+  `AVAILABLE_SALE,deleted:false`, **but not exactly:** ground-truth comparison
+  of the used pool found **0 missing and 5 extras** — orphan records created
+  2014–15 and frozen since (never deleted, desktop no longer lists them as A;
+  tag re-use observed, e.g. 48135 exists as both a 2014 AVAILABLE_SALE and a
+  2015 SOLD record). ~4% junk; filterable by ancient `dateUpdated` heuristic
+  or ask DIS (§6 q9).
 - **`branch`** (embedded key `branches`, 2 rows): `374` = `M` (Mallard),
   `3215379434` = `S` (Scotland) — `branchNumber` is the xlsx location code.
 - **`product`** (102,074): `productCode` = model, `description`,
@@ -261,6 +268,15 @@ current app's xlsx filter excluding dead-stock locations is intentional today,
 but with the API that distinction isn't available anyway, see q8). Eventually
 he wants an **admin-only table of all non-M/S "available" inventory** (dead
 stock surfacing) — blocked on q8.
+
+**Ground-truth validation (2026-06-10):** John exported the desktop "Unit
+List" report filtered to all Status-A used units (119 rows, `USED MANUAL
+PULL.xlsx`) and we diffed it against the simulated API feed (124 rows):
+**all 119 present; 5 extras = the 2014–15 orphans (q9); branchId↔Division
+match 119/119.** The desktop report header also confirms which fields the
+report has that the API lacks: Suggested List Price, List Price, Cost (full),
+Replacement Value, Flooring Amount/Due Date, Meter, Sold By / Sale Date /
+Sale Amount, Location, Rental Status, Class, Attachment, Trade In.
 
 **Local test harness:** `C:\Users\johnw\dis-feed-test\build_feed.js` (work PC,
 outside the repo so Pages never serves it) simulates the full feed with the
@@ -386,11 +402,16 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
 7. **Replacement value & flooring** (§2c): present on the report, not found in
    any probed entity — exposed anywhere?
 8. **Unit Location codes** (§2c): the desktop system tracks per-unit Location
-   (S, M, plus codes used for dead stock etc.) and Status (A/F/R/S/T/O), but
-   the API only exposes the 2 branches — `location` is always null and no
-   probed entity carries the desktop location code. Is it exposed (or
-   exposable)? Needed both to filter dead stock out of rep-facing inventory
-   and for a planned admin dead-stock report.
+   (observed values: `S M SC YD HP BM LA R`) separately from Division —
+   `branchId` in the API is the **Division** (verified 119/119 against a
+   manual pull); the Location code is not in any probed entity. Is it exposed
+   (or exposable)? Needed both to filter dead stock out of rep-facing
+   inventory and for a planned admin dead-stock report.
+9. **Orphaned "available" records** (§2c): 5 units created 2014–15 are still
+   `equipmentStatus:AVAILABLE_SALE, deleted:false` in the API but no longer
+   appear as Status A in the desktop system (some tag numbers were later
+   re-used by other units). What field/cleanup distinguishes them, so the
+   live feed can exclude them without date heuristics?
 
 ---
 

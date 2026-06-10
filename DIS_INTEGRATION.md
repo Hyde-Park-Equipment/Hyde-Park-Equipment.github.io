@@ -308,18 +308,27 @@ Diff vs the complete API feed (884):
   on used pricing**. Desktop List Price on used is only 20/119 (reps override
   in-app anyway, `unitPriceOverrides`). Replacement Value is 0 on ALL 849
   desktop rows — field unused, drop it from q7.
-- **Flooring is the one real data gap:** desktop has flooring on 403/717 new
-  + 39/119 used; API has nothing. The Used module actively uses it (floored
-  vs owned dashboards, 270-day interest risk, equity column ~line 12838).
-- **Reserved: definitively NOT in the API (live experiment, q6 closed as a
-  wall):** two units reserved in the desktop (T56803/EM31374, 90860/EM31090,
-  18 reserved total that day) show NO trace — equipment record unchanged
-  (status stays AVAILABLE_SALE; only `dateUpdated` bumps), the EM-prefix Unit
-  Sale documents don't sync to `invoice` (only closed W/I invoices do), no
-  `invoiceLine`, no `ledgerEntry` until finalized. The spec's RESERVED_SALE
-  status exists but HPE's desktop flow never sets it. Workaround options:
-  keep an occasional xlsx as reserved+flooring overlay, or mark reservations
-  in-app.
+- **FLOORING: SOLVED via `ledgerEntry` (John pushed back on "not exposed" —
+  he was right).** A unit's Flooring Amount = the NET of its ledgerEntry rows
+  with `equipmentFinancialCategory:NOTE_BALANCE` (desc "FLOOR PLAN"); the due
+  date is on those entries. **Validated 849/849 EXACT amount matches (zero
+  mismatches, all 443 floored units + all zeros)**; due-date 392/443 (the
+  rest = picking which entry's dueDate when several — refine: prefer the
+  positive-amount entry with latest datePosted). ⚠️ The bulk query
+  `equipmentFinancialCategory:NOTE_BALANCE` 500s server-side — OR-batch by
+  equipmentId instead (40/call, ~22 calls for the fleet; see
+  `flooring_check.js` in dis-feed-test).
+- **Reserved: the one remaining wall (precisely mapped, live experiment):**
+  EM/ES Unit-Sale invoices DO sync to `invoice` — 24,744 EM* + 7,355 ES*
+  rows — but **only once finalized/closed**. Queried all 16 reserved-invoice
+  numbers from the 18 currently-reserved units: 15 absent (drafts), 1 found
+  but only as a closed $565 deposit invoice (ES08780). The equipment record
+  shows nothing (status stays AVAILABLE_SALE; only `dateUpdated` bumps on
+  reserve day). The spec's RESERVED_SALE status exists but HPE's desktop flow
+  never sets it. notificationRecord/scheduleEvent/task = webhook-log/calendar/
+  boards, not reservations. Workaround options: occasional xlsx overlay for
+  reserved only, or mark reservations in-app. (`webHook` entity exists —
+  real-time push subscriptions are a future possibility.)
 
 **Local test harness:** `C:\Users\johnw\dis-feed-test\build_feed.js` (work PC,
 outside the repo so Pages never serves it) simulates the full feed with the
@@ -442,14 +451,16 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
 5. ~~Unit List Price / Suggested List~~ **ANSWERED OURSELVES:** the desktop
    barely has list prices either (1/717 new!); used suggested-list syncs to
    the API at parity (~50). Not a blocker.
-6. **Reserved units — CONFIRMED WALL (live experiment §2c):** reservations
-   (EM-prefix Unit Sale docs) leave zero API trace until finalized. Workaround
+6. **Reserved units — THE one remaining wall (live experiment §2c):**
+   EM/ES sale invoices sync only once finalized; the 15 unfinalized reserved
+   docs are absent and the equipment record carries no marker. Workaround
    required: occasional xlsx overlay or in-app reservation marking. (If we
    ever DO talk to DIS: ask whether the desktop reserve flow can set
-   RESERVED_SALE, which the API supports but their sync never sets.)
-7. ~~Replacement value~~ **unused even in the desktop (0/849)**. **Flooring**
-   is a real gap (403 new + 39 used have amounts; Used dashboards consume it)
-   — workaround: occasional xlsx overlay for flooring only.
+   RESERVED_SALE, which the API supports but their sync never sets — or
+   whether draft Unit Sale docs can be exposed.)
+7. ~~Replacement value & flooring~~ **BOTH CLOSED:** replacement value unused
+   even in the desktop (0/849); **flooring SOLVED via ledgerEntry
+   NOTE_BALANCE netting — validated 849/849 exact** (§2c).
 8. **Unit Location codes — CONFIRMED WALL:** desktop Location (`S M SC YD HP
    BM LA R`) is separate from Division (= API `branchId`, verified 849/849)
    and is not exposed anywhere. Dead stock is therefore indistinguishable in

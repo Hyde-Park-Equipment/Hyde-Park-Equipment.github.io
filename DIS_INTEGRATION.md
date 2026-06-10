@@ -172,9 +172,19 @@ Interesting for future features: `invoice`/`invoiceLine`, `workOrderHeader`
 
 DIS also sent the query-language doc (operators, wildcards, `,` = AND,
 `|`-prefix = OR, dot-notation nesting) — it matches what §2 already documents.
-Swagger UI exists at `https://hy2303.disprism.com/api/swagger-ui/index.html`
-(browser; the raw spec URL behind it hasn't been found via common api-docs paths —
-open it in a browser and check its network tab if the full schema is ever needed).
+**The full OpenAPI spec WAS found (2026-06-10):**
+`https://hy2303.disprism.com/api/swagger-ui/yaml/api-docs.yaml` (~872 KB; the
+swagger-ui HTML references `./yaml/api-docs.yaml`). Local copy:
+`C:\Users\johnw\dis-feed-test\api-docs.yaml` + a schema-digger script
+`spec_dig.py` (`list` / `fields <Schema>` / `find <substring>`). Spec-settled
+facts: `Equipment` has exactly 39 props — **no unit-level list price / MSRP /
+replacement value / flooring fields exist anywhere in the API** (`listPrice`
+only on transaction lines: InvoiceLine, PartsOrderLine); `equipment.location`
+exists in the schema but HPE's sync leaves it null; the full `equipmentStatus`
+enum includes `RESERVED_SALE` / `RESERVED_RENT` / `ON_ORDER_INVENTORY` /
+`ON_ORDER_RESERVE` / `DOWN` / `LOST` / `TRADE_IN` / `INTERNAL_ASSET` etc., but
+HPE's data uses almost none of them (RESERVED_SALE = 0 rows, ON_ORDER = 0;
+only INTERNAL_ASSET = 7) — reservations evidently don't sync to status.
 
 ---
 

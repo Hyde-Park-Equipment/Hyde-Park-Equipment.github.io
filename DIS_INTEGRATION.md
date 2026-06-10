@@ -191,13 +191,26 @@ prices & reserved flags = not exposed (blockers, ask DIS — §6 q5–7).**
   `equipmentStatus` enum observed: `AVAILABLE_SALE` (1,511) / `SOLD` (69,421) /
   `AVAILABLE_RENT` (3) / `ON_SERVICE` / `RETURNED_SUPPLIER` / `UNDEFINED` —
   invalid enum values in a query → 400 error, valid-but-empty → 0 ·
+  **⚠️ `deleted:false` IS MANDATORY in every equipment query** — DIS
+  soft-deletes long-gone units but leaves `equipmentStatus` frozen at
+  `AVAILABLE_SALE`: of the 1,511, **627 were `deleted:true` ghosts** (caught by
+  John: tag 66206, sold ~2020, still "available"). Real available pool =
+  **884 (760 NEW / 124 used)** ·
   `glEquipmentStatus`: **`NEW` = new, `UNDEFINED` = used** (`USED` is a valid
-  enum but 0 rows!) — available pool splits 1,340 NEW / 171 used ·
+  enum but 0 rows!) ·
   `ownerType`: `DEALER` vs `CUSTOMER` (**79,853 customer-owned units** — the
   customer-fleet feature dataset) · `modelYear`, `serialNumber`, `hourMeter`
   (often 0 with real hours buried in `notes` text), `dateInventory` (= xlsx
   In Date), `description` (short), `notes` (long desc), `branchId`,
-  `productId`, `location` (always null — use branchId).
+  `productId`, `location` (always null — use branchId) ·
+  **❌ the desktop system's unit Location codes (S, M, + dead-stock/etc codes
+  the app's xlsx filters rely on) are NOT exposed:** `location`/`addressId`
+  always null, `departmentId` merely mirrors `branchId` (only 2 values),
+  `equipmentGroup` is empty (0 rows). The API feed therefore INCLUDES
+  dead-stock units, indistinguishable from real M/S stock (§6 q8). Desktop
+  status list (per John's screenshot): A=Available, F=Fixed Asset, R=Rental,
+  S=Sold, T=Transfer, O=On Order — desktop A ≈ API
+  `AVAILABLE_SALE,deleted:false`.
 - **`branch`** (embedded key `branches`, 2 rows): `374` = `M` (Mallard),
   `3215379434` = `S` (Scotland) — `branchNumber` is the xlsx location code.
 - **`product`** (102,074): `productCode` = model, `description`,
@@ -207,10 +220,9 @@ prices & reserved flags = not exposed (blockers, ask DIS — §6 q5–7).**
   incremental client-side cache is viable.
 - **`equipmentFinancials`** (17,188; embedded key `equipmentFinancials`):
   fields `priceCost, salePrice, priceRetail, priceSuggestedList,
-  priceDealerCost`, keyed by `equipmentId`. **Coverage against the 1,511
-  available units (full join, verified):** NEW units — 781 have a row, 598
-  cost>0, **0 retail>0, 0 suggestedList>0**; used units — 130/171 rows,
-  115 cost>0, 50 suggestedList>0, 1 retail. ⇒ **cost is partial; LIST PRICE
+  priceDealerCost`, keyed by `equipmentId`. **Coverage against the REAL
+  (deleted:false) available pool:** Shortline-new 290/373 cost>0 (78%), used
+  115/124 cost>0 (93%) — but **0 retail / 0 suggestedList on new; LIST PRICE
   IS EFFECTIVELY ABSENT** even though the xlsx report has it for everything.
   `salePrice` (9,924>0 API-wide) appears to be set at/after sale.
 - **`invoice`** (265,891; embedded key `invoices`): `invoiceNumber, status,
@@ -232,14 +244,29 @@ prices & reserved flags = not exposed (blockers, ask DIS — §6 q5–7).**
 - **`productBranch`** (151,106): product↔branch activation only, no pricing.
 
 ### Parity verdict — All Inventory xlsx → `equipment`
-✅ stock#, new/used, status, location, year, serial, in-date, short+long desc,
-make/model (join), sold-detection (status flip beats drop-off-the-file
-inference). ⚠️ cost partial, hours mostly 0 (likely same in xlsx; reps already
-override hours/prices in-app). ❌ **list price, suggested list, replacement
-value, flooring, reserved-**columns* — not exposed anywhere found. **Full
-replacement is blocked on §6 q5–7; a hybrid (live status/arrivals + xlsx-or-
-in-app prices) or a DIS answer is needed.** Parts xlsx replacement looks MORE
-viable today since parts pricing already comes from price files, not this xlsx.
+✅ stock#, new/used, status (`AVAILABLE_SALE,deleted:false` ≈ desktop A),
+branch, year, serial, in-date, short+long desc, make/model (join, 100% success
+on all 884), sold-detection (status flip beats drop-off-the-file inference).
+⚠️ cost partial (78% new / 93% used), hours mostly 0 (likely same in xlsx;
+reps already override hours/prices in-app). ❌ **list price, suggested list,
+replacement value, flooring, reserved-columns, and the desktop Location codes
+(dead-stock filtering)** — not exposed anywhere found. **Full replacement is
+blocked on §6 q5–8; a hybrid (live status/arrivals + xlsx-or-in-app prices) or
+DIS answers are needed.** Parts xlsx replacement looks MORE viable today since
+parts pricing already comes from price files, not this xlsx.
+
+**Product decisions from John (2026-06-10):** the Used list should contain
+**ALL available used inventory regardless of location** (no S/M gate — the
+current app's xlsx filter excluding dead-stock locations is intentional today,
+but with the API that distinction isn't available anyway, see q8). Eventually
+he wants an **admin-only table of all non-M/S "available" inventory** (dead
+stock surfacing) — blocked on q8.
+
+**Local test harness:** `C:\Users\johnw\dis-feed-test\build_feed.js` (work PC,
+outside the repo so Pages never serves it) simulates the full feed with the
+app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
+`kubota_new.csv` for side-by-side comparison. Run:
+`$env:DIS_API_KEY=[Environment]::GetEnvironmentVariable('DIS_API_KEY','User'); node build_feed.js`
 
 ### Practical notes for the wiring (when unblocked)
 - HAL embedded keys are sometimes pluralized (`branches`, `invoices`,
@@ -358,6 +385,12 @@ viable today since parts pricing already comes from price files, not this xlsx.
    rows are `status:closed`; no reserved marker found on `equipment`.
 7. **Replacement value & flooring** (§2c): present on the report, not found in
    any probed entity — exposed anywhere?
+8. **Unit Location codes** (§2c): the desktop system tracks per-unit Location
+   (S, M, plus codes used for dead stock etc.) and Status (A/F/R/S/T/O), but
+   the API only exposes the 2 branches — `location` is always null and no
+   probed entity carries the desktop location code. Is it exposed (or
+   exposable)? Needed both to filter dead stock out of rep-facing inventory
+   and for a planned admin dead-stock report.
 
 ---
 

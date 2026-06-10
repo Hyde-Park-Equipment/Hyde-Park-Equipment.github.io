@@ -178,6 +178,82 @@ open it in a browser and check its network tab if the full schema is ever needed
 
 ---
 
+## 2c. Equipment & parts-inventory probe (2026-06-10, work PC, direct API)
+
+Goal: can the live API replace the two manual uploads — the daily **All
+Inventory xlsx** (feeds Shortline new-equipment AND the whole Used module) and
+the **Parts Inventory xlsx** (Stihl/Kubota 660 on-hand)? Probed with the key as
+a local env var (§5 pattern). Headline: **structure/status/identity = yes;
+prices & reserved flags = not exposed (blockers, ask DIS — §6 q5–7).**
+
+### Entities probed (all live; embedded keys in parentheses where non-obvious)
+- **`equipment`** (93,115 rows): `dealerEquipmentId` = stock number/tag ·
+  `equipmentStatus` enum observed: `AVAILABLE_SALE` (1,511) / `SOLD` (69,421) /
+  `AVAILABLE_RENT` (3) / `ON_SERVICE` / `RETURNED_SUPPLIER` / `UNDEFINED` —
+  invalid enum values in a query → 400 error, valid-but-empty → 0 ·
+  `glEquipmentStatus`: **`NEW` = new, `UNDEFINED` = used** (`USED` is a valid
+  enum but 0 rows!) — available pool splits 1,340 NEW / 171 used ·
+  `ownerType`: `DEALER` vs `CUSTOMER` (**79,853 customer-owned units** — the
+  customer-fleet feature dataset) · `modelYear`, `serialNumber`, `hourMeter`
+  (often 0 with real hours buried in `notes` text), `dateInventory` (= xlsx
+  In Date), `description` (short), `notes` (long desc), `branchId`,
+  `productId`, `location` (always null — use branchId).
+- **`branch`** (embedded key `branches`, 2 rows): `374` = `M` (Mallard),
+  `3215379434` = `S` (Scotland) — `branchNumber` is the xlsx location code.
+- **`product`** (102,074): `productCode` = model, `description`,
+  `manufacturerId`. **`manufacturer`** (1,046): `internalId`/`description` =
+  make (e.g. GENERAC). So make/model = 2-hop join `equipment.productId →
+  product → manufacturer`. Products/manufacturers have `dateUpdated` →
+  incremental client-side cache is viable.
+- **`equipmentFinancials`** (17,188; embedded key `equipmentFinancials`):
+  fields `priceCost, salePrice, priceRetail, priceSuggestedList,
+  priceDealerCost`, keyed by `equipmentId`. **Coverage against the 1,511
+  available units (full join, verified):** NEW units — 781 have a row, 598
+  cost>0, **0 retail>0, 0 suggestedList>0**; used units — 130/171 rows,
+  115 cost>0, 50 suggestedList>0, 1 retail. ⇒ **cost is partial; LIST PRICE
+  IS EFFECTIVELY ABSENT** even though the xlsx report has it for everything.
+  `salePrice` (9,924>0 API-wide) appears to be set at/after sale.
+- **`invoice`** (265,891; embedded key `invoices`): `invoiceNumber, status,
+  dateCreated/Closed, total, customerId, equipmentId, salesMan, soldBy,
+  branchId, poNumber`. **All 500 most-recent are `status:closed`** (even
+  same-day) — open/working deals are not visible, so **"Reserved
+  Employee/Customer/Invoice" (xlsx) could NOT be located in the API.**
+  `workInProcess` is just 8 WIP category codes, not reserved tracking.
+- **`invoiceLine`** (1,448,023; embedded key `invoiceLines`): `invoiceId,
+  equipmentId, productId, type, description, quantity, unitPrice, listPrice,
+  cost, extendedAmount, hourMeterIn/Out, warranty*` — purchase-history gold.
+- **`inventory`** (150,870 — PARTS stock): `quantityInStock,
+  quantityAllocatedToCustomer, quantity*Backorder, binName, lastDateIn,
+  lastDateOut, productId, stockAreaId, mainBin`. **`stockArea`** (4):
+  `areaName` e.g. `Warehouse-M`, `areaType MAIN_WAREHOUSE`, `branchId` → the
+  xlsx Division. Parts parity looks strong (part# / desc via `product`,
+  on-hand/allocated/bins/dates live); quick-code + vendor-code(486/660)
+  mapping still to confirm via `manufacturer.internalId`.
+- **`productBranch`** (151,106): product↔branch activation only, no pricing.
+
+### Parity verdict — All Inventory xlsx → `equipment`
+✅ stock#, new/used, status, location, year, serial, in-date, short+long desc,
+make/model (join), sold-detection (status flip beats drop-off-the-file
+inference). ⚠️ cost partial, hours mostly 0 (likely same in xlsx; reps already
+override hours/prices in-app). ❌ **list price, suggested list, replacement
+value, flooring, reserved-**columns* — not exposed anywhere found. **Full
+replacement is blocked on §6 q5–7; a hybrid (live status/arrivals + xlsx-or-
+in-app prices) or a DIS answer is needed.** Parts xlsx replacement looks MORE
+viable today since parts pricing already comes from price files, not this xlsx.
+
+### Practical notes for the wiring (when unblocked)
+- HAL embedded keys are sometimes pluralized (`branches`, `invoices`,
+  `invoiceLines`, `workInProcesses`) and sometimes not (`equipment`,
+  `equipmentFinancials`) — never hardcode without checking.
+- Numeric query ops work: `priceCost>0`, `field!0`; enum fields 400 on
+  unknown values.
+- Bulk pulls: 500/page works fine; `equipmentFinancials` full table = 35
+  pages; equipment AVAILABLE_SALE = 4 pages. A nightly Worker-cron snapshot
+  into KV (app downloads one JSON) is the likely architecture vs. doing the
+  product/manufacturer joins in the browser per boot.
+
+---
+
 ## 3. How the app's typeahead worked PRE-v3.14 (historical reference — the
 ## static flow below is now the FALLBACK path only)
 
@@ -272,6 +348,16 @@ open it in a browser and check its network tab if the full schema is ever needed
    URL behind their swagger-ui (for per-entity field schemas).
 3. **Write scope** of the issued key + is there a **sandbox/test environment**? (Until confirmed: **reads only, never write against production.**)
 4. ~~Confirm canonical customer lookup entity/fields~~ **Confirmed** — `customer(s).customerName` is it (list has no other customer-name-bearing entity).
+5. **Unit List Price / Suggested List Price** (2026-06-10 probe, §2c): the All
+   Inventory *report* shows them for every unit, but `equipmentFinancials` has
+   retail/suggested-list on ~0% of in-stock units (only `priceCost` is ~half
+   populated). Where does the report's List Price come from, and is it exposed
+   (or exposable) via the Quantum API?
+6. **Reserved units** (§2c): how does a reserved unit (the report's Reserved
+   Employee/Customer/Invoice columns) appear in the API? All recent `invoice`
+   rows are `status:closed`; no reserved marker found on `equipment`.
+7. **Replacement value & flooring** (§2c): present on the report, not found in
+   any probed entity — exposed anywhere?
 
 ---
 

@@ -23,12 +23,12 @@ Worker proxy (so the API key never touches the browser).
 | DIS API reverse-engineered (auth, format, entities, query lang) | ✅ done |
 | Cloudflare Worker proxy built, deployed, secured, verified | ✅ **done & live** |
 | Phone/email source found & verified (`contact`/`communicationDetail`, §2a) | ✅ **done 2026-06-10** |
-| Worker whitelist extended with `contact` + `communicationDetail` + redeploy | ⬜ **needed before wiring** |
-| `index.html` typeahead wired to the Worker | ⬜ **NOT started — this is the next task** |
-| In-app positive-path auth test | ⬜ John to do once wired |
+| Worker whitelist extended with `contact` + `communicationDetail` + redeploy | ✅ **done 2026-06-10** (version `fa874317`) |
+| `index.html` typeahead wired to the Worker (full prefill parity) | ✅ **done 2026-06-10** — branch `dis-live-lookup`, v3.14.0 |
+| In-app positive-path test (login → live search → pick → prefill) | ⬜ **John to do — the only remaining step before merge** |
 
-**Next task = extend the Worker whitelist (1-line change, §4 step 0), then wire
-the app (§4).** Everything it needs is below.
+**Next step = John tests the live lookup in the deployed/preview app, then merge
+`dis-live-lookup` to `main`.**
 
 ---
 
@@ -36,7 +36,7 @@ the app (§4).** Everything it needs is below.
 
 - **Live URL:** `https://dis-proxy.johnwilliams.workers.dev`
 - **Cloudflare account:** `421b266ca743101979e4d08af668b8cd` (johnwilliams@hydeparkequipment.ca), subdomain `johnwilliams.workers.dev`
-- **Deployed version:** `b3d4d5a1` (2026-06-09)
+- **Deployed version:** `fa874317` (2026-06-10 — added `contact` + `communicationDetail` to the entity whitelist; previous: `b3d4d5a1`)
 - **Secret:** `DIS_API_KEY` is set in the Worker (Settings → Variables & Secrets). Never in code/repo.
 - **Canonical source:** on the home PC at `C:\Users\johnr\dis-proxy-worker\` AND embedded in §7 below. **Not yet its own git repo** (a good follow-up; for now this doc is the backup).
 - **Endpoint shape:** `GET /dis/{entity}?query=…&page=&size=&sort=`
@@ -127,9 +127,9 @@ customer-main addresses carry `customerId: null` — always go customer →
 `mainAddressId` → `addressId`.
 
 ### Worker prerequisite
-`ALLOWED_ENTITIES` in the Worker (§7) must gain `"contact"` and
-`"communicationDetail"` and be **redeployed** before the app can use them.
-(Read-only GETs, same gate — no other Worker change needed.)
+~~`ALLOWED_ENTITIES` must gain `"contact"` and `"communicationDetail"`~~
+**DONE 2026-06-10** — deployed as version `fa874317`; verified unauth → 401,
+OPTIONS → 204 after deploy.
 
 ---
 
@@ -196,10 +196,8 @@ prefill parity is now possible** (search still on `customerName`; on pick, 2 ext
 GETs fill phone/email/city/province). Confirm with John whether to ship full-parity
 v1 directly or still stage it lean-first.
 
-**Plan:**
-0. **Worker first:** add `"contact"` and `"communicationDetail"` to
-   `ALLOWED_ENTITIES` in `dis-proxy-worker/src/worker.js`, redeploy (dashboard
-   paste or `npx wrangler deploy`), update the §7 copy + deployed-version note.
+**Plan:** *(all code steps below DONE 2026-06-10 on branch `dis-live-lookup`)*
+0. ~~Worker whitelist + redeploy~~ ✅ deployed `fa874317`.
 1. Add a config constant, e.g. `disProxyUrl: 'https://dis-proxy.johnwilliams.workers.dev'` near `googleClientId` (~line 4658).
 2. Add an **async** live-search helper (in the `dis` module or alongside the consumers) that calls:
    `GET {disProxyUrl}/dis/customers?query=customerName:*{q}*&size=10&sort=customerName`
@@ -255,11 +253,8 @@ v1 directly or still stage it lean-first.
 
 ## 7. Worker source (canonical copy — `dis-proxy-worker/src/worker.js`)
 
-> Deployed as version `b3d4d5a1`. No secrets here (the key is a Worker secret).
-> If you edit, update both this block and the deployment.
-> **⚠️ PENDING CHANGE (2026-06-10):** `ALLOWED_ENTITIES` below still lacks
-> `"contact"` and `"communicationDetail"` — add them + redeploy before wiring the
-> app (§4 step 0), then update this block and the deployed-version line.
+> Deployed as version `fa874317` (2026-06-10). No secrets here (the key is a
+> Worker secret). If you edit, update both this block and the deployment.
 
 ```js
 /**
@@ -294,7 +289,7 @@ v1 directly or still stage it lean-first.
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 const DIS_BASE = "https://hy2303.disprism.com/api";
-const ALLOWED_ENTITIES = new Set(["equipment", "customers", "addresses"]); // expand as confirmed
+const ALLOWED_ENTITIES = new Set(["equipment", "customers", "addresses", "contact", "communicationDetail"]); // expand as confirmed
 const ALLOWED_ORIGIN = "https://hyde-park-equipment.github.io";            // GitHub Pages origin (no CNAME)
 const GOOGLE_CLIENT_ID =
   "659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com"; // HPE app's OAuth client

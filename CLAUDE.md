@@ -19,10 +19,9 @@ reviewable diffs; never break `main`.
 Update 2026-06-10: phone/email **found** in the API (`contact` + `communicationDetail`,
 singular paths) — full-parity typeahead wiring is **done on branch `dis-live-lookup`**
 (v3.14.0, live search + on-pick phone/email/address prefill, static-XLSX fallback).
-Remaining: (1) **redeploy the Worker** with `contact`/`communicationDetail` added to
-its entity whitelist (source already updated at `dis-proxy-worker/src/worker.js`;
-Cloudflare dashboard was unreachable when attempted), (2) John tests the live lookup
-in the deployed/preview app, (3) merge to `main`. Full status/plan in
+Worker redeployed with `contact`/`communicationDetail` whitelisted (version
+`fa874317`, 2026-06-10). Remaining: (1) John tests the live lookup in the
+deployed/preview app, (2) merge to `main`. Full status/plan in
 **[`DIS_INTEGRATION.md`](DIS_INTEGRATION.md)** — read it before touching anything
 DIS/customer-lookup related.
 

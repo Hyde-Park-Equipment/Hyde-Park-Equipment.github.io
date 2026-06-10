@@ -371,10 +371,61 @@ app's exact filters and writes `new_inventory.csv` / `used_inventory.csv` /
   `equipmentFinancials`) — never hardcode without checking.
 - Numeric query ops work: `priceCost>0`, `field!0`; enum fields 400 on
   unknown values.
+- **⚠️ `sort=webId` is MANDATORY on every paginated query.** Without an
+  explicit sort the backend's page order is unstable — multi-page pulls
+  double-count some rows and silently drop others (caught 2026-06-10 when
+  parts quantities literally doubled between runs; fixed in-app v3.15.2).
+  Dedupe by webId as belt-and-suspenders.
+- **Don't mix `|`-OR terms with AND terms in one query** (`|a,|b,c` semantics
+  are murky and changed which rows came back) — keep queries pure-OR or
+  pure-AND and filter the rest client-side.
 - Bulk pulls: 500/page works fine; `equipmentFinancials` full table = 35
-  pages; equipment AVAILABLE_SALE = 4 pages. A nightly Worker-cron snapshot
-  into KV (app downloads one JSON) is the likely architecture vs. doing the
-  product/manufacturer joins in the browser per boot.
+  pages; equipment AVAILABLE_SALE = 4 pages. Very large joined queries can
+  504 (e.g. inventory across 7 manufacturerIds with sort) — keep them scoped.
+  A nightly Worker-cron snapshot into KV (app downloads one JSON) is the
+  likely architecture vs. doing the product/manufacturer joins in the
+  browser per boot.
+
+---
+
+## 2d. PARTS inventory probe (2026-06-10 — replaces the Stihl/Kubota On Hand xlsx)
+
+Validated against `Stihl and Kubota On Hand_20260608-063308.xlsx` (3,245
+part+division rows; vendor 486 = 815, vendor 660 = 2,430). The file was 2
+days old at test time — quantity "drift" rows all showed API lastDateIn/Out
+AFTER the file date, i.e. the live feed is simply fresher.
+
+- **Vendor mapping:** xlsx Vendor Code = `manufacturer.internalId`. 486 =
+  webId `54436263002` (STIHL WHOLEGOODS). 660 = webId `43518216992`
+  (KUB - NON SERIAL) — **but Kubota parts are duplicated across a 7-record
+  manufacturer family** (`660`, `650/KUBOTA`, `KUBOTA` 265275971, `KUKBOTA`
+  typo 4982188547, `KUBOTA1`, `NEW KUBOTA`, `KUBOTA Z78`).
+- **Duplicate-product gotcha:** the same part number exists as several
+  product records (one per manufacturer duplicate), and EACH can carry its
+  own inventory rows for the same physical stock — most are frozen snapshots,
+  one is actively maintained. **Rule (validated): per division, sum bins
+  within each product, then keep only the product whose inventory rows have
+  the latest dateUpdated. Never sum across duplicate products.**
+- **Stihl (486) = bulk pull works:** `inventory?query=product.manufacturerId:
+  54436263002` + products by manufacturerId → 827 rows, ~94% exact onHand vs
+  the stale file (drift = real activity), reserved 99.4% exact.
+- **Kubota (660 checker) = per-part live lookup, NOT bulk:** the desktop's
+  vendor scoping isn't reproducible (no vendor field on product; the
+  manufacturer-family union pulls the entire 41k-product catalog and 504s).
+  Per part: `product?query=productCode:{part}` (all duplicates) →
+  `inventory` by `|productId:` ORs → latest-product-wins per division.
+  **Validated on 144 sampled parts: 100% found (incl. tires that bulk
+  missed), 138/144 onHand exact, 6 drift = post-file sales.**
+- **Division:** `stockAreaId` → stockArea.branchId → branch letter.
+  Areas: 31011442560+31011442563 = M, 31011442561+31011442562 = S.
+- **Quantity mapping:** On Hand = `quantityInStock`, Sales Reservations =
+  `quantityAllocatedToCustomer`, Available = inStock − allocated.
+- **Gap: Quick Code** (e.g. FS56RC) is not in the API (`product.internalId`
+  just repeats productCode). Stihl quick codes also live in the Stihl
+  Pricing xlsx the app already loads; assess impact when wiring the 660
+  checker (it displays/searches quickCode).
+- Test harnesses in `dis-feed-test`: `parts_feed.js` (bulk) +
+  `kubota_lookup_check.js` (per-part design validation).
 
 ---
 

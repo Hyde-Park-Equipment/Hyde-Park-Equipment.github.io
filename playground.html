@@ -89,17 +89,17 @@
 :root{
   --black:#0a0a0a; --black-2:#141414; --black-3:#1c1c1c;
   --frame-text:#ffffff; --frame-muted:#9a9a9a;
-  --bg:#f5f5f5;
+  --bg:#f4f4f4;
   --card:#ffffff;
-  --border:#e5e5e5;
-  --border-strong:#d4d4d4;
+  --border:#dcdcdc;
+  --border-strong:#cbcbcb;
   --text:#0a0a0a;
   --text-2:#525252;
   --text-3:#737373;
   --gray-50:#f9fafb;--gray-100:#f3f4f6;--gray-200:#e5e7eb;
   --gray-300:#d1d5db;--gray-400:#9ca3af;--gray-500:#6b7280;
   --gray-600:#4b5563;--gray-700:#374151;--gray-800:#1f2937;--gray-900:#111827;
-  --orange:#e85d04; --orange-dark:#c44d04; --orange-light:#fff7ed;
+  --orange:#eb421b; --orange-dark:#c9381a; --orange-light:#fdebe6;
   --green:#16a34a; --green-light:#dcfce7;
   --blue:#2563eb;  --blue-bg:#eff6ff; --blue-light:#dbeafe;
   --amber:#d97706; --amber-light:#fef3c7;
@@ -108,6 +108,7 @@
   --green-bg:#ecfdf5;
   --topbar-h:54px;
   --sidenav-w:240px;
+  --rail:#eb421b;
   --radius:8px;
   --radius-lg:14px;
   --shadow:0 1px 3px rgba(0,0,0,0.1);
@@ -131,24 +132,24 @@ a{color:inherit;text-decoration:none;}
 .auth-loading{font-size:12px;color:#a3a3a3;margin-top:14px;display:none;}
 
 /* TOPBAR */
-.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--black);border-bottom:2px solid var(--orange);display:flex;align-items:center;padding:0 20px;z-index:100;gap:18px;}
-.topbar-hamburger{display:none;background:none;border:none;color:white;cursor:pointer;padding:6px;margin-right:4px;border-radius:6px;align-items:center;justify-content:center;}
-.topbar-hamburger:active{background:rgba(255,255,255,0.1);}
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:#ffffff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;z-index:100;gap:18px;}
+.topbar-hamburger{display:none;background:none;border:none;color:var(--text-2);cursor:pointer;padding:6px;margin-right:4px;border-radius:6px;align-items:center;justify-content:center;}
+.topbar-hamburger:active{background:rgba(0,0,0,0.06);}
 .topbar-hamburger svg{width:24px;height:24px;}
 .topbar-left{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .topbar-logo{width:32px;height:32px;background:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;font-size:16px;font-weight:700;color:var(--orange);}
 .topbar-logo img{width:100%;height:100%;object-fit:contain;display:block;}
-.topbar-title{font-size:13px;font-weight:600;color:white;line-height:1.2;white-space:nowrap;flex-shrink:0;}
-.topbar-title span{display:block;font-size:10px;font-weight:400;color:#9ca3af;white-space:nowrap;}
+.topbar-title{font-size:13px;font-weight:700;color:var(--text);line-height:1.2;white-space:nowrap;flex-shrink:0;}
+.topbar-title span{display:block;font-size:10px;font-weight:400;color:var(--text-3);white-space:nowrap;}
 /* v3.12.0 — Topbar data-status pills */
 .data-status{flex:0 1 auto;min-width:0;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;}
 /* Collapse pill labels to dots-only when the topbar gets tight, so all four
    pills stay visible rather than the last ones being clipped off. */
 @media(max-width:1320px){.data-status .dsp-text{display:none;}.data-status .dsp{padding:5px 7px;}}
 @media(max-width:680px){.data-status{display:none;}}
-.dsp{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:4px 8px;cursor:default;transition:background .14s,border-color .14s;white-space:nowrap;flex:0 0 auto;}
+.dsp{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 8px;cursor:default;transition:background .14s,border-color .14s;white-space:nowrap;flex:0 0 auto;}
 .dsp.clickable{cursor:pointer;}
-.dsp.clickable:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.2);}
+.dsp.clickable:hover{background:#ececec;border-color:var(--border-strong);}
 .dsp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .dsp-dot.ok{background:#22c55e;}
 .dsp-dot.loading{background:#f59e0b;animation:dspPulse 1s infinite;}
@@ -156,8 +157,8 @@ a{color:inherit;text-decoration:none;}
 .dsp-dot.idle{background:#6b7280;}
 @keyframes dspPulse{0%,100%{opacity:1}50%{opacity:.3}}
 .dsp-spin{width:8px;height:8px;border:1.4px solid #f59e0b;border-right-color:transparent;border-radius:50%;animation:syncSpin .7s linear infinite;flex-shrink:0;}
-.dsp-text{font-size:10px;font-weight:600;color:#cbd5e1;font-family:'DM Mono',monospace;letter-spacing:.01em;}
-.dsp.err .dsp-text{color:#fca5a5;}
+.dsp-text{font-size:10px;font-weight:600;color:var(--text-2);font-family:'DM Mono',monospace;letter-spacing:.01em;}
+.dsp.err .dsp-text{color:#b91c1c;}
 /* v3.13.20 — Collapse to just a dot when ok. Labels stay for idle/loading/err
    where the rep actually needs to know what's pending. */
 .dsp:has(.dsp-dot.ok) .dsp-text{display:none;}
@@ -167,17 +168,17 @@ a{color:inherit;text-decoration:none;}
 /* APP-SWITCHER (now internal-route links, not cross-app navigation)
    Absolutely positioned in topbar center so the tabs sit at the viewport
    midpoint regardless of left-side content width. */
-.app-switcher{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2px;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:3px;}
-.app-tab{display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:#cbd5e1;font-size:13px;font-weight:600;padding:7px 14px;min-width:84px;border-radius:6px;text-decoration:none;transition:background .12s,color .12s;cursor:pointer;}
-.app-tab:hover{color:#ffffff;background:rgba(255,255,255,0.08);}
+.app-switcher{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:2px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:3px;}
+.app-tab{display:flex;align-items:center;justify-content:center;background:transparent;border:none;color:var(--text-2);font-size:13px;font-weight:600;padding:7px 14px;min-width:84px;border-radius:6px;text-decoration:none;transition:background .12s,color .12s;cursor:pointer;}
+.app-tab:hover{color:var(--text);background:rgba(0,0,0,0.05);}
 .app-tab.active{background:var(--orange);color:white;}
 .app-tab.active:hover{background:var(--orange-dark);color:white;}
 
 /* ROLE SWITCHER (admin-only — hidden by default; HPE.ui.applyAdminPermissions
    shows it when SALESPEOPLE loads and the current user is an admin).
    Pinned to the right edge so it doesn't disturb the centered .app-switcher. */
-.role-switcher-btn{position:absolute;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;background:#1f1f1f;border:1px solid #333;border-radius:8px;padding:6px 12px;color:#cbd5e1;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s,color .12s,border-color .12s;}
-.role-switcher-btn:hover{background:rgba(255,255,255,0.08);color:#ffffff;}
+.role-switcher-btn{position:absolute;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 12px;color:var(--text-2);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s,color .12s,border-color .12s;}
+.role-switcher-btn:hover{background:rgba(0,0,0,0.05);color:var(--text);}
 .role-switcher-btn svg{width:14px;height:14px;flex-shrink:0;}
 body.admin-mode .role-switcher-btn{background:var(--orange);border-color:var(--orange);color:white;}
 body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-color:var(--orange-dark);color:white;}
@@ -186,22 +187,22 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .app-body-with-sidebar{display:flex;padding-top:var(--topbar-h);min-height:100vh;background:var(--bg);}
 
 /* SIDEBAR */
-.sidenav{width:var(--sidenav-w);background:var(--black);border-right:2px solid var(--orange);position:fixed;top:var(--topbar-h);left:0;bottom:0;z-index:50;display:flex;flex-direction:column;padding:14px 0 0;overflow-y:auto;}
-.sidenav-bottom{margin-top:auto;border-top:1px solid #1f1f1f;padding-top:2px;padding-bottom:14px;display:flex;flex-direction:column;}
-.sidenav-section-label{font-size:9.5px;color:#6b7280;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;padding:14px 20px 7px;}
+.sidenav{width:var(--sidenav-w);background:var(--rail);border-right:1px solid var(--orange-dark);position:fixed;top:var(--topbar-h);left:0;bottom:0;z-index:50;display:flex;flex-direction:column;padding:14px 0 0;overflow-y:auto;}
+.sidenav-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,0.22);padding-top:2px;padding-bottom:14px;display:flex;flex-direction:column;}
+.sidenav-section-label{font-size:9.5px;color:rgba(255,255,255,0.72);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;padding:14px 20px 7px;}
 .sidenav-bottom .sidenav-section-label{padding-top:10px;}
-.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:11px 20px;color:#d1d5db;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
+.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:11px 20px;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
 .nav-btn svg{width:16px;height:16px;flex-shrink:0;}
-.nav-btn:hover{color:#f1f5f9;background:rgba(255,255,255,0.04);}
-.nav-btn.active{color:white;background:rgba(232,93,4,0.12);border-left-color:var(--orange);}
+.nav-btn:hover{color:#ffffff;background:rgba(255,255,255,0.12);}
+.nav-btn.active{color:#ffffff;font-weight:600;background:rgba(255,255,255,0.18);border-left-color:#ffffff;}
 /* v1.4.0 — Sidebar nav badge. Pill on the right edge of a nav-btn. Set/cleared
    by HPE.ui.setNavBadge(section, pageId, count); refreshed from each section's
    refreshBadges() hook after every renderSidebar() call. */
 .nav-badge{margin-left:auto;background:#dc2626;color:white;font-size:10px;font-weight:700;line-height:1;padding:3px 6px;min-width:16px;text-align:center;border-radius:8px;flex-shrink:0;}
 .nav-btn .nav-label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
-.nav-btn.is-cross-link::after{content:'\2197';font-size:10px;color:var(--frame-muted);margin-left:4px;}
-.nav-btn.nav-quick-quote{background:linear-gradient(135deg,#e85d04 0%,#f97316 100%);color:white !important;font-weight:600;margin:0 12px 10px;padding:10px 14px;border-radius:8px;border-left:none;width:auto;justify-content:center;box-shadow:0 1px 3px rgba(232,93,4,0.4);}
-.nav-btn.nav-quick-quote:hover{background:linear-gradient(135deg,#d04400 0%,#e85500 100%);color:white !important;}
+.nav-btn.is-cross-link::after{content:'\2197';font-size:10px;color:rgba(255,255,255,0.7);margin-left:4px;}
+.nav-btn.nav-quick-quote{background:#ffffff;color:var(--orange) !important;font-weight:700;margin:0 12px 10px;padding:10px 14px;border-radius:8px;border-left:none;width:auto;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.18);}
+.nav-btn.nav-quick-quote:hover{background:#fff3ef;color:var(--orange-dark) !important;}
 .nav-btn.nav-quick-quote svg{width:14px;height:14px;}
 
 /* MAIN content area — hosts all section pages, only one visible at a time */
@@ -2972,7 +2973,7 @@ body.admin-mode .admin-only-block { display: block; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#9ca3af;background:rgba(255,255,255,0.06);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v3.15.2</div>
+      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v3.15.2</div>
       <div id="playground-badge" title="This is the PLAYGROUND build — UI experiments only. Not the live site." style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:#fff;background:var(--orange,#e85d04);padding:3px 8px;border-radius:4px;letter-spacing:0.06em;flex-shrink:0">🚧 PLAYGROUND</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
     </div>

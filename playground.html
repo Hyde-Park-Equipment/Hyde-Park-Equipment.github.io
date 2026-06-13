@@ -2,6 +2,65 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+/* ══ PLAYGROUND READ-ONLY GUARD ════════════════════════════════════════════
+   playground.html is a sandbox COPY of the live app (index.html). It may READ
+   all Google Drive JSON freely, but must NEVER write to the production Drive.
+
+   Every Drive call — whether through HPE.drive.gfetch OR one of the many raw
+   fetch() write paths (orphan-quote PATCH, multipart uploads, appState/dashboard
+   saves, etc.) — ultimately funnels through the global window.fetch. So we wrap
+   fetch ONCE here, before any app script runs, and block any *mutating* Drive
+   request: POST/PUT/PATCH/DELETE to googleapis.com, or anything on the /upload/
+   endpoint. Reads (GET) pass straight through. Non-Drive traffic (DIS Worker,
+   Anthropic, Google OAuth/userinfo) is untouched.
+
+   Blocked writes return a synthetic 200 so save flows degrade gracefully (a
+   toast, no crash) — but NOTHING is ever written to Drive.
+
+   To turn this file back into the real app, delete THIS <script> block only. */
+(function(){
+  if (window.__HPE_PLAYGROUND_READONLY__) return;
+  window.__HPE_PLAYGROUND_READONLY__ = true;
+  var _fetch = window.fetch.bind(window);
+  var _lastToast = 0;
+  function notify(){
+    try{
+      var now = Date.now();
+      if (now - _lastToast < 4000) return;
+      _lastToast = now;
+      if (window.HPE && HPE.ui && HPE.ui.toast)
+        HPE.ui.toast('🚧 Playground is read-only — nothing was saved to Drive.', 3500);
+    }catch(e){}
+  }
+  function isDriveWrite(url, method){
+    if (!url) return false;
+    var u = String(url);
+    if (u.indexOf('googleapis.com') === -1) return false;       // only guard Google APIs
+    if (u.indexOf('/drive/') === -1 && u.indexOf('/upload/') === -1) return false; // leave oauth2/userinfo etc.
+    if (u.indexOf('/upload/') !== -1) return true;              // upload endpoint == always a write
+    var m = (method || 'GET').toUpperCase();
+    return m !== 'GET' && m !== 'HEAD';                         // mutating method on Drive
+  }
+  window.fetch = function(input, init){
+    var url, method;
+    try{
+      if (input && typeof input === 'object' && 'url' in input){ // Request object
+        url = input.url; method = (init && init.method) || input.method;
+      } else { url = input; method = init && init.method; }
+    }catch(e){}
+    if (isDriveWrite(url, method)){
+      console.warn('[PLAYGROUND read-only] blocked Drive write:', (method||'GET'), url);
+      notify();
+      return Promise.resolve(new Response(
+        JSON.stringify({ id:'playground-readonly', playgroundReadOnly:true, name:'playground-readonly' }),
+        { status:200, headers:{ 'Content-Type':'application/json' } }
+      ));
+    }
+    return _fetch(input, init);
+  };
+})();
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>HPE Sales Platform v3.15.2</title><!-- build:20260610_v3152_feed_stable_paging -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->

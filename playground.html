@@ -333,6 +333,15 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .hub-quotes-search{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--card);color:var(--gray-900);}
 .hub-quotes-search:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,93,4,0.08);}
 .hub-quotes-list{display:flex;flex-direction:column;gap:8px;}
+/* v-redesign — Insights stat rail (right side of a list view) */
+.hub-quotes-layout{display:flex;gap:16px;align-items:flex-start;}
+.hub-quotes-layout .hub-quotes-list{flex:1;min-width:0;}
+.insights-rail{width:150px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;position:sticky;top:68px;}
+.insight-tile{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:13px 12px;text-align:center;}
+.insight-ico{width:18px;height:18px;color:var(--orange);}
+.insight-num{font-size:22px;font-weight:700;color:var(--text);line-height:1.15;margin-top:5px;font-family:'DM Mono',monospace;}
+.insight-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:3px;}
+@media(max-width:980px){.insights-rail{display:none;}}
 .hub-quotes-empty{padding:32px 16px;text-align:center;color:var(--gray-500);font-size:13px;background:var(--card);border:1px dashed var(--gray-200);border-radius:var(--radius-lg);}
 .hub-quotes-retry{margin-left:8px;background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 .hub-quote-card{background:var(--card);border:1px solid var(--gray-200);border-left:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color 120ms,box-shadow 120ms;}
@@ -3287,10 +3296,13 @@ body.admin-mode .admin-only-block { display: block; }
             </div>
             <input type="text" class="hub-quotes-search" placeholder="Search by customer name…" oninput="HPE.quotes.setFilter('search', this.value)">
           </div>
-          <div id="hub-quotes-list" class="hub-quotes-list">
-            <div class="hub-quote-skel" aria-hidden="true"><div class="skel-line" style="width:42%"></div><div class="skel-line" style="width:68%;height:8px"></div></div>
-            <div class="hub-quote-skel" aria-hidden="true"><div class="skel-line" style="width:38%"></div><div class="skel-line" style="width:60%;height:8px"></div></div>
-            <div class="hub-quote-skel" aria-hidden="true"><div class="skel-line" style="width:46%"></div><div class="skel-line" style="width:64%;height:8px"></div></div>
+          <div class="hub-quotes-layout">
+            <div id="hub-quotes-list" class="hub-quotes-list">
+              <div class="hub-quote-skel" aria-hidden="true"><div class="skel-line" style="width:42%"></div><div class="skel-line" style="width:68%;height:8px"></div></div>
+              <div class="hub-quote-skel" aria-hidden="true"><div class="skel-line" style="width:38%"></div><div class="skel-line" style="width:60%;height:8px"></div></div>
+              <div class="hub-quote-skel" aria-hidden="true"><div class="skel-line" style="width:46%"></div><div class="skel-line" style="width:64%;height:8px"></div></div>
+            </div>
+            <aside id="hub-quotes-insights" class="insights-rail" aria-label="Quote insights"></aside>
           </div>
         </div>
 
@@ -6479,6 +6491,27 @@ const HPE = (function(){
       return true;
     },
 
+    _renderInsights(list){
+      const el = document.getElementById('hub-quotes-insights');
+      if(!el) return;
+      const arr = Array.isArray(list) ? list : [];
+      const st = q => (q.status || 'active');
+      const isOpen = s => s==='active'||s==='draft'||s==='sent';
+      const isWon = s => s==='won'||s==='accepted';
+      const isLost = s => s==='lost'||s==='declined';
+      const open = arr.filter(q => isOpen(st(q)));
+      const won = arr.filter(q => isWon(st(q)));
+      const lost = arr.filter(q => isLost(st(q)));
+      const pipe = open.reduce((s,q) => s + (typeof q.total === 'number' ? q.total : 0), 0);
+      const money = n => n>=1e6 ? '$'+(n/1e6).toFixed(1)+'M' : n>=1e3 ? '$'+Math.round(n/1e3)+'k' : '$'+Math.round(n);
+      const tile = (icon,num,lbl) => '<div class="insight-tile"><svg class="insight-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+icon+'</svg><div class="insight-num">'+num+'</div><div class="insight-lbl">'+lbl+'</div></div>';
+      el.innerHTML =
+        tile('<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>', arr.length, 'Quotes') +
+        tile('<path d="M3 7h5l2 3h11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>', open.length, 'Open') +
+        tile('<path d="M20 6L9 17l-5-5"/>', won.length, 'Won') +
+        tile('<path d="M18 6L6 18M6 6l12 12"/>', lost.length, 'Lost') +
+        tile('<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', money(pipe), 'Pipeline');
+    },
     _render(){
       const list = document.getElementById('hub-quotes-list');
       if(!list) return;  // page DOM not yet present
@@ -6522,6 +6555,7 @@ const HPE = (function(){
         return;
       }
       const filtered = this._filtered();
+      try{ HPE.quotes._renderInsights(filtered); }catch(e){}
       if(!filtered.length){
         list.innerHTML = '<div class="hub-quotes-empty">No quotes match the current filters.</div>';
         return;

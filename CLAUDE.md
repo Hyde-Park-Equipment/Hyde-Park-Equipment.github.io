@@ -4,15 +4,16 @@
 > current — when something here goes stale, fix it in the same change that made
 > it stale. This file replaces the old "re-upload + paste handoff" ritual.
 
-> 🎨 **Active UI redesign in progress (2026-06-13)** — Kubota-style rebuild. All
-> redesign work lives on the **`playground` branch**, NOT `main` — this keeps the
-> 40k-line `playground.html` sandbox off GitHub Pages (which serves the `main`
-> root publicly). To work on it: `git fetch && git checkout playground`;
-> `playground.html` is an isolated, Drive-read-only copy of the app, and
-> `PLAYGROUND.md` (on that branch) is the handoff. **Never** do redesign work in
-> `index.html` (the live app), and don't merge `playground.html` into `main`.
-> When `main` gets a real fix the sandbox needs, cherry-pick it `main` →
-> `playground` so the playground stays current.
+> 🎨 **Active UI redesign in progress (2026-06-13)** — Kubota-style rebuild. The
+> sandbox is **`playground-9k3xq7m2.html`** on `main` — an isolated,
+> Drive-read-only copy of the app. It's served live (so Google login + Drive work)
+> but at a deliberately **obscure, unguessable URL** so reps don't stumble onto it:
+> `https://hyde-park-equipment.github.io/playground-9k3xq7m2.html` (it's also
+> login-gated to `@hydeparkequipment.ca`). Do **all** redesign work in that file —
+> **never** in `index.html` (the live app). Read **[`PLAYGROUND.md`](PLAYGROUND.md)**
+> first. `./smoke.sh` only checks `index.html`; smoke the sandbox explicitly with
+> `./smoke.sh playground-9k3xq7m2.html`. (If you rename the sandbox for fresh
+> obscurity, update this pointer + PLAYGROUND.md + the URL in the same change.)
 
 ## What this is
 Single-file internal sales platform for **Hyde Park Equipment (HPE)**.

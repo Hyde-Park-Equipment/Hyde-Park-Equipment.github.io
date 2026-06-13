@@ -348,6 +348,8 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .insight-num{font-size:22px;font-weight:700;color:var(--text);line-height:1.15;margin-top:5px;font-family:'DM Mono',monospace;}
 .insight-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:3px;}
 @media(max-width:980px){.insights-rail{display:none;}}
+.list-body-layout{display:flex;gap:16px;align-items:flex-start;}
+.list-body-layout #table-container{flex:1;min-width:0;}
 .hub-quotes-empty{padding:32px 16px;text-align:center;color:var(--gray-500);font-size:13px;background:var(--card);border:1px dashed var(--gray-200);border-radius:var(--radius-lg);}
 .hub-quotes-retry{margin-left:8px;background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 .hub-quote-card{background:var(--card);border:1px solid var(--gray-200);border-left:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color 120ms,box-shadow 120ms;}
@@ -850,7 +852,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .list-count{margin-left:auto;font-size:12px;color:var(--gray-500);background:var(--gray-100);padding:3px 10px;border-radius:20px;}
 .search-wrap{position:relative;margin-bottom:10px;}
 .search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);}
-.search-input{width:100%;padding:8px 10px 8px 30px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
+.search-input{width:100%;padding:8px 10px 8px 30px;border-radius:999px;border:1px solid var(--border);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 .search-input:focus{outline:none;border-color:var(--orange);}
 .table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--border);background:white;}
 table{width:100%;border-collapse:collapse;font-size:12px;}
@@ -1542,7 +1544,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .toolbar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
 #section-shortline .search-wrap{position:relative;flex:1;min-width:240px;}
 #section-shortline .search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);}
-#section-shortline .search-input{width:100%;padding:9px 10px 9px 32px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
+#section-shortline .search-input{width:100%;padding:9px 10px 9px 32px;border-radius:999px;border:1px solid var(--border);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 #section-shortline .search-input:focus{outline:none;border-color:var(--orange);}
 /* v2.0.8.8 — Global price-book search (Brand Hub landing) */
 #section-shortline #pb-global-search:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,93,4,0.10);}
@@ -1561,7 +1563,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline #pb-global-search-results .pb-search-empty{padding:20px;text-align:center;color:var(--gray-400);font-size:13px;}
 #section-shortline #pb-global-search-results .pb-search-footer{padding:9px 14px;text-align:center;font-size:11px;color:var(--gray-500);background:var(--gray-50);border-top:1px solid var(--gray-200);}
 #section-shortline #pb-global-search-results mark{background:rgba(232,93,4,0.18);color:inherit;padding:0;border-radius:2px;}
-#section-shortline .filter-select{padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-700);cursor:pointer;}
+#section-shortline .filter-select{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-700);cursor:pointer;}
 #section-shortline .filter-select:focus{outline:none;border-color:var(--orange);}
 #section-shortline .toolbar-stats{font-size:12px;color:var(--gray-500);margin-left:auto;}
 /* TABLE */
@@ -12520,6 +12522,21 @@ function renderList(c){
   const hideReserved=!!prefs.hideReserved;
   // Apply pre-filter to the count so it reflects what the user will actually see
   const visibleData=hideReserved?data.filter(function(u){return !u.reservedEmp;}):data;
+  // v-redesign — Used Full List Insights rail (reflects current location/age/search filters)
+  const _nM=visibleData.filter(function(u){return u.loc==='M';}).length;
+  const _nS=visibleData.filter(function(u){return u.loc==='S';}).length;
+  const _ages=visibleData.map(function(u){return daysAgo(u.inDate);}).filter(function(d){return typeof d==='number'&&isFinite(d);});
+  const _avg=_ages.length?Math.round(_ages.reduce(function(a,b){return a+b;},0)/_ages.length):0;
+  const _val=visibleData.reduce(function(s,u){return s+(parseFloat(String(u.price==null?'':u.price).replace(/[^0-9.]/g,''))||0);},0);
+  const _money=function(n){return n>=1e6?'$'+(n/1e6).toFixed(1)+'M':n>=1e3?'$'+Math.round(n/1e3)+'k':'$'+Math.round(n);};
+  const _tile=function(ic,n,l){return '<div class="insight-tile"><svg class="insight-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+ic+'</svg><div class="insight-num">'+n+'</div><div class="insight-lbl">'+l+'</div></div>';};
+  const insightsHtml='<aside class="insights-rail" aria-label="Inventory insights">'+
+    _tile('<rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/>',visibleData.length,'Units')+
+    _tile('<path d="M12 21s7-6.7 7-12a7 7 0 0 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/>',_nM,'Mallard')+
+    _tile('<path d="M12 21s7-6.7 7-12a7 7 0 0 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/>',_nS,'Scotland')+
+    _tile('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',_avg,'Avg days')+
+    _tile('<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',_money(_val),'List value')+
+    '</aside>';
   c.innerHTML=
     '<div class="list-header">'+
     '<button class="back-btn" onclick="U.navigate(\'dashboard\')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>'+
@@ -12538,7 +12555,7 @@ function renderList(c){
     '<button type="button" id="loc-toggle-m" class="loc-toggle'+(currentLocFilter==='M'?' active':'')+'" onclick="U.toggleListLocFilter(\'M\')" title="Show Mallard units only" style="padding:6px 12px;border:1px solid '+(currentLocFilter==='M'?'var(--orange)':'var(--gray-200)')+';background:'+(currentLocFilter==='M'?'rgba(232,93,4,0.08)':'white')+';color:'+(currentLocFilter==='M'?'var(--orange)':'var(--gray-700)')+';border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;white-space:nowrap">Mallard Only</button>'+
     '<button type="button" id="loc-toggle-s" class="loc-toggle'+(currentLocFilter==='S'?' active':'')+'" onclick="U.toggleListLocFilter(\'S\')" title="Show Scotland units only" style="padding:6px 12px;border:1px solid '+(currentLocFilter==='S'?'var(--orange)':'var(--gray-200)')+';background:'+(currentLocFilter==='S'?'rgba(232,93,4,0.08)':'white')+';color:'+(currentLocFilter==='S'?'var(--orange)':'var(--gray-700)')+';border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;white-space:nowrap">Scotland Only</button>'+
     '</div>'+
-    '<div id="table-container">'+buildTable(data)+'</div>';
+    '<div class="list-body-layout"><div id="table-container">'+buildTable(data)+'</div>'+insightsHtml+'</div>';
 }
 
 function filterSearch(){

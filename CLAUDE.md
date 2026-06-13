@@ -4,6 +4,11 @@
 > current — when something here goes stale, fix it in the same change that made
 > it stale. This file replaces the old "re-upload + paste handoff" ritual.
 
+> 🎨 **Active UI redesign in progress (2026-06-13)** — Kubota-style rebuild. All
+> redesign work happens in **`playground.html`** (an isolated, Drive-read-only
+> sandbox), **NOT** `index.html` (the live app). Read **[`PLAYGROUND.md`](PLAYGROUND.md)**
+> before doing any redesign work, and only edit `playground.html` for it.
+
 ## What this is
 Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 - **One file:** `index.html` (~36,700 lines / ~2.5 MB). All HTML, CSS, JS inline.

@@ -110,6 +110,8 @@
   --topbar-h:54px;
   --sidenav-w:240px;
   --rail:#eb421b;
+  --wsrail-w:58px;
+  --panel-w:190px;
   --radius:8px;
   --radius-lg:14px;
   --shadow:0 1px 3px rgba(0,0,0,0.1);
@@ -188,44 +190,54 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .app-body-with-sidebar{display:flex;padding-top:var(--topbar-h);min-height:100vh;background:var(--bg);}
 
 /* SIDEBAR */
-.sidenav{width:var(--sidenav-w);background:var(--rail);border-right:1px solid var(--orange-dark);position:fixed;top:var(--topbar-h);left:0;bottom:0;z-index:50;display:flex;flex-direction:column;padding:14px 0 0;overflow-y:auto;}
-.sidenav-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,0.22);padding-top:2px;padding-bottom:14px;display:flex;flex-direction:column;}
-.sidenav-section-label{font-size:9.5px;color:rgba(255,255,255,0.72);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;padding:14px 20px 7px;}
+.sidenav{position:fixed;top:var(--topbar-h);left:var(--wsrail-w);bottom:0;width:var(--panel-w);background:#fff;border-right:1px solid var(--border);z-index:50;display:flex;flex-direction:column;padding:10px 0 0;overflow-y:auto;}
+/* Workspace icon rail (slim, always visible) */
+.wsrail{position:fixed;top:var(--topbar-h);left:0;bottom:0;width:var(--wsrail-w);background:var(--rail);z-index:51;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0;}
+.wsrail-logo{width:34px;height:34px;border-radius:9px;background:#fff;color:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.wsrail-logo svg{width:20px;height:20px;}
+.ws-item{position:relative;width:100%;display:flex;justify-content:center;}
+.ws-spacer{flex:1;}
+.ws-btn{width:40px;height:40px;border-radius:10px;border:none;background:none;color:rgba(255,255,255,.82);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .12s,color .12s;}
+.ws-btn svg{width:20px;height:20px;}
+.ws-btn:hover{background:rgba(255,255,255,.14);color:#fff;}
+.ws-item.active .ws-btn{background:#fff;color:var(--orange);}
+/* Hover flyout — shows a workspace's pages when the panel is collapsed */
+.ws-flyout{display:none;position:absolute;left:calc(100% + 6px);top:0;min-width:188px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:6px 0;z-index:60;box-shadow:var(--shadow-md);}
+.ws-flyout .wf-title{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);font-weight:700;padding:8px 14px 6px;}
+body.nav-collapsed .ws-item:hover .ws-flyout{display:block;}
+.sidenav-bottom{margin-top:auto;border-top:1px solid var(--border);padding-top:2px;padding-bottom:12px;display:flex;flex-direction:column;}
+.sidenav-section-label{font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:12px 16px 6px;}
 .sidenav-bottom .sidenav-section-label{padding-top:10px;}
-.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:11px 20px;color:rgba(255,255,255,0.85);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
-.nav-btn svg{width:16px;height:16px;flex-shrink:0;}
-.nav-btn:hover{color:#ffffff;background:rgba(255,255,255,0.12);}
-.nav-btn.active{color:#ffffff;font-weight:600;background:rgba(255,255,255,0.18);border-left-color:#ffffff;}
+.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:9px 16px;color:var(--text-2);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
+.nav-btn svg{width:16px;height:16px;flex-shrink:0;color:var(--text-3);}
+.nav-btn:hover{color:var(--text);background:var(--gray-50);}
+.nav-btn:hover svg{color:var(--text-2);}
+.nav-btn.active{color:var(--orange);font-weight:600;background:var(--orange-light);border-left-color:var(--orange);}
+.nav-btn.active svg{color:var(--orange);}
 /* v1.4.0 — Sidebar nav badge. Pill on the right edge of a nav-btn. Set/cleared
    by HPE.ui.setNavBadge(section, pageId, count); refreshed from each section's
    refreshBadges() hook after every renderSidebar() call. */
 .nav-badge{margin-left:auto;background:#dc2626;color:white;font-size:10px;font-weight:700;line-height:1;padding:3px 6px;min-width:16px;text-align:center;border-radius:8px;flex-shrink:0;}
 .nav-btn .nav-label{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
-.nav-btn.is-cross-link::after{content:'\2197';font-size:10px;color:rgba(255,255,255,0.7);margin-left:4px;}
-.nav-btn.nav-quick-quote{background:#ffffff;color:var(--orange) !important;font-weight:700;margin:0 12px 10px;padding:10px 14px;border-radius:8px;border-left:none;width:auto;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.18);}
-.nav-btn.nav-quick-quote:hover{background:#fff3ef;color:var(--orange-dark) !important;}
+.nav-btn.is-cross-link::after{content:'\2197';font-size:10px;color:var(--text-3);margin-left:4px;}
+.nav-btn.nav-quick-quote{background:var(--orange);color:#ffffff !important;font-weight:600;margin:4px 12px 8px;padding:10px 14px;border-radius:8px;border-left:none;width:auto;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.12);}
+.nav-btn.nav-quick-quote:hover{background:var(--orange-dark);color:#ffffff !important;}
+.nav-btn.nav-quick-quote svg{color:#ffffff;}
 /* ── v-redesign: sidebar-owned nav + collapsible icon rail ───────────── */
 .nav-toggle{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;color:var(--text-2);cursor:pointer;padding:7px;margin-right:2px;border-radius:7px;flex-shrink:0;}
 .nav-toggle svg{width:20px;height:20px;}
 .nav-toggle:hover{background:rgba(0,0,0,0.05);color:var(--text);}
 @media(max-width:720px){.nav-toggle{display:none;}}
-.sidenav .nav-section{font-size:9.5px;color:rgba(255,255,255,0.72);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;padding:14px 20px 7px;}
+.sidenav .nav-section{font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:0.12em;font-weight:700;padding:12px 16px 6px;}
 .sidenav-divider{height:1px;background:rgba(255,255,255,0.20);margin:8px 14px;}
 .nav-section-btn svg{opacity:0.95;}
-body.nav-collapsed{--sidenav-w:64px;}
-body.nav-collapsed .sidenav .nav-label,
-body.nav-collapsed .sidenav .sidenav-section-label,
-body.nav-collapsed .sidenav .nav-section,
-body.nav-collapsed .sidenav .nav-badge,
-body.nav-collapsed .sidenav-divider{display:none;}
-body.nav-collapsed .sidenav .nav-btn{justify-content:center;padding-left:0;padding-right:0;gap:0;}
-body.nav-collapsed .sidenav .nav-btn.is-cross-link::after{display:none;}
-body.nav-collapsed .sidenav .nav-btn svg{width:18px;height:18px;}
-body.nav-collapsed .sidenav .nav-quick-quote{margin-left:10px;margin-right:10px;padding-left:0;padding-right:0;}
+body.nav-collapsed .sidenav{display:none;}
+body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
+@media(max-width:720px){.wsrail{display:none;}.sidenav{display:none;}.main-content-with-sidebar{margin-left:0;}}
 .nav-btn.nav-quick-quote svg{width:14px;height:14px;}
 
 /* MAIN content area — hosts all section pages, only one visible at a time */
-.main-content-with-sidebar{margin-left:var(--sidenav-w);flex:1;min-width:0;min-height:calc(100vh - var(--topbar-h));}
+.main-content-with-sidebar{margin-left:calc(var(--wsrail-w) + var(--panel-w));flex:1;min-width:0;min-height:calc(100vh - var(--topbar-h));}
 .section{display:none;}
 .section.active{display:block;}
 
@@ -3013,9 +3025,8 @@ body.admin-mode .admin-only-block { display: block; }
     <!-- SIDEBAR --------------------------------------------------
          Contents are rendered dynamically by HPE.ui.renderSidebar()
          based on the active section. -->
-    <aside class="sidenav" id="sidenav">
-      <!-- populated by JS -->
-    </aside>
+    <aside class="wsrail" id="wsrail"><!-- workspace icon rail, populated by JS --></aside>
+    <aside class="sidenav" id="sidenav"><!-- page panel, populated by JS --></aside>
     <script>try{if(localStorage.getItem('hpe_nav_collapsed')==='1')document.body.classList.add('nav-collapsed');}catch(e){}</script>
 
     <!-- MAIN CONTENT --------------------------------------------- -->
@@ -5717,25 +5728,6 @@ const HPE = (function(){
       const sec = sections[state.currentSection];
       const sidenav = document.getElementById('sidenav');
       let html = '';
-      // v-redesign — Workspaces switcher. The sidebar now owns BOTH section
-      // switching (this group) and in-section page nav (below), replacing the
-      // old centered topbar tabs. Buttons reuse HPE.router.go(section).
-      const SECTION_ICONS = {
-        hub:'<path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/>',
-        used:'<path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M3 9v6l9 5 9-5V9"/>',
-        shortline:'<path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/>',
-        kubota:'<circle cx="6" cy="16" r="2.2"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="M8 14l1.5-4H14l2 4"/>'
-      };
-      html += '<div class="sidenav-section-label">Workspaces</div>';
-      Object.keys(sections).forEach(key => {
-        const s = sections[key];
-        const activeCls = key === state.currentSection ? 'active' : '';
-        html += `<button class="nav-btn nav-section-btn ${activeCls}" data-section="${key}" title="${s.label}" onclick="HPE.router.go('${key}')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${SECTION_ICONS[key] || ''}</svg>
-          <span class="nav-label">${s.label}</span>
-        </button>`;
-      });
-      html += '<div class="sidenav-divider"></div>';
       // Quick Quote button
       if(sec.quickQuote){
         html += `<button class="nav-btn nav-quick-quote" onclick="HPE.ui.openQuickQuote()">
@@ -5780,9 +5772,37 @@ const HPE = (function(){
         html += '</div>';
       }
       sidenav.innerHTML = html;
+      ui.renderWorkspaceRail();
       // v1.4.0 — Re-apply badges after rebuilding the DOM. Each section's
       // refreshBadges() hook (if any) re-issues setNavBadge calls.
       ui.refreshAllBadges();
+    },
+    // v-redesign — the slim workspace icon rail (always visible). Owns section
+    // switching; each icon carries a hover-flyout of that section's pages so the
+    // collapsed state stays fully navigable.
+    renderWorkspaceRail(){
+      const rail = document.getElementById('wsrail');
+      if(!rail) return;
+      const ICONS = {
+        hub:'<path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/>',
+        used:'<path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M3 9v6l9 5 9-5V9"/>',
+        shortline:'<path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/>',
+        kubota:'<circle cx="6" cy="16" r="2.2"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="M8 14l1.5-4H14l2 4"/>'
+      };
+      let html = '<div class="wsrail-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="16" r="2.2"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="M8 14l1.5-4H14l2 4"/></svg></div>';
+      Object.keys(sections).forEach(key => {
+        const s = sections[key];
+        const activeCls = key === state.currentSection ? 'active' : '';
+        let fly = `<div class="ws-flyout"><div class="wf-title">${s.label}</div>`;
+        (s.nav || []).forEach(item => {
+          const adminCls = item.admin ? ' admin-only' : '';
+          fly += `<button class="nav-btn${adminCls}" onclick="HPE.router.go('${key}','${item.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg><span class="nav-label">${item.label}</span></button>`;
+        });
+        fly += '</div>';
+        html += `<div class="ws-item ${activeCls}"><button class="ws-btn" title="${s.label}" onclick="HPE.router.go('${key}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ICONS[key] || ''}</svg></button>${fly}</div>`;
+      });
+      html += '<div class="ws-spacer"></div>';
+      rail.innerHTML = html;
     },
     updateSidebarActive(){
       document.querySelectorAll('.sidenav .nav-btn').forEach(btn => {

@@ -5790,7 +5790,7 @@ const HPE = (function(){
         shortline:'<rect x="1" y="5" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/>',
         kubota:'<circle cx="6" cy="16" r="2.2"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="M8 14l1.5-4H14l2 4"/>'
       };
-      let html = '<div class="wsrail-logo">HPE</div>';
+      let html = '';
       Object.keys(sections).forEach(key => {
         const s = sections[key];
         const activeCls = key === state.currentSection ? 'active' : '';

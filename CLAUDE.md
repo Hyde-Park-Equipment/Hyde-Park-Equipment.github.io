@@ -5,9 +5,14 @@
 > it stale. This file replaces the old "re-upload + paste handoff" ritual.
 
 > 🎨 **Active UI redesign in progress (2026-06-13)** — Kubota-style rebuild. All
-> redesign work happens in **`playground.html`** (an isolated, Drive-read-only
-> sandbox), **NOT** `index.html` (the live app). Read **[`PLAYGROUND.md`](PLAYGROUND.md)**
-> before doing any redesign work, and only edit `playground.html` for it.
+> redesign work lives on the **`playground` branch**, NOT `main` — this keeps the
+> 40k-line `playground.html` sandbox off GitHub Pages (which serves the `main`
+> root publicly). To work on it: `git fetch && git checkout playground`;
+> `playground.html` is an isolated, Drive-read-only copy of the app, and
+> `PLAYGROUND.md` (on that branch) is the handoff. **Never** do redesign work in
+> `index.html` (the live app), and don't merge `playground.html` into `main`.
+> When `main` gets a real fix the sandbox needs, cherry-pick it `main` →
+> `playground` so the playground stays current.
 
 ## What this is
 Single-file internal sales platform for **Hyde Park Equipment (HPE)**.

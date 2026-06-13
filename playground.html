@@ -76,7 +76,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@500;600&display=swap" rel="stylesheet">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 /* ========================================================================
@@ -100,6 +100,7 @@
   --gray-300:#d1d5db;--gray-400:#9ca3af;--gray-500:#6b7280;
   --gray-600:#4b5563;--gray-700:#374151;--gray-800:#1f2937;--gray-900:#111827;
   --orange:#eb421b; --orange-dark:#c9381a; --orange-light:#fdebe6;
+  --teal:#00aaad; --teal-dark:#00898c; --teal-light:#e0f5f5;
   --green:#16a34a; --green-light:#dcfce7;
   --blue:#2563eb;  --blue-bg:#eff6ff; --blue-light:#dbeafe;
   --amber:#d97706; --amber-light:#fef3c7;
@@ -115,7 +116,7 @@
   --shadow-md:0 4px 16px rgba(0,0,0,0.12);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;}
+html,body{background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;min-height:100vh;}
 button,a{font-family:inherit;}
 a{color:inherit;text-decoration:none;}
 
@@ -126,7 +127,7 @@ a{color:inherit;text-decoration:none;}
 .auth-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .auth-title{font-size:18px;font-weight:600;color:white;margin-bottom:4px;}
 .auth-sub{font-size:12px;color:#a3a3a3;margin-bottom:28px;line-height:1.5;}
-.google-btn{width:100%;padding:11px 20px;border-radius:8px;border:1px solid #262626;background:white;font-size:14px;font-weight:500;color:#374151;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background 0.15s;font-family:'DM Sans',sans-serif;}
+.google-btn{width:100%;padding:11px 20px;border-radius:8px;border:1px solid #262626;background:white;font-size:14px;font-weight:500;color:#374151;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background 0.15s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .google-btn:hover{background:#f9fafb;}
 .auth-error{background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.4);color:#fca5a5;font-size:12px;padding:10px 12px;border-radius:7px;margin-top:14px;display:none;text-align:left;}
 .auth-loading{font-size:12px;color:#a3a3a3;margin-top:14px;display:none;}
@@ -177,7 +178,7 @@ a{color:inherit;text-decoration:none;}
 /* ROLE SWITCHER (admin-only — hidden by default; HPE.ui.applyAdminPermissions
    shows it when SALESPEOPLE loads and the current user is an admin).
    Pinned to the right edge so it doesn't disturb the centered .app-switcher. */
-.role-switcher-btn{position:absolute;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 12px;color:var(--text-2);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s,color .12s,border-color .12s;}
+.role-switcher-btn{position:absolute;right:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:6px 12px;color:var(--text-2);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s,color .12s,border-color .12s;}
 .role-switcher-btn:hover{background:rgba(0,0,0,0.05);color:var(--text);}
 .role-switcher-btn svg{width:14px;height:14px;flex-shrink:0;}
 body.admin-mode .role-switcher-btn{background:var(--orange);border-color:var(--orange);color:white;}
@@ -191,7 +192,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .sidenav-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,0.22);padding-top:2px;padding-bottom:14px;display:flex;flex-direction:column;}
 .sidenav-section-label{font-size:9.5px;color:rgba(255,255,255,0.72);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;padding:14px 20px 7px;}
 .sidenav-bottom .sidenav-section-label{padding-top:10px;}
-.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:11px 20px;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
+.nav-btn{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:11px 20px;color:rgba(255,255,255,0.85);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;width:100%;text-align:left;border-left:3px solid transparent;}
 .nav-btn svg{width:16px;height:16px;flex-shrink:0;}
 .nav-btn:hover{color:#ffffff;background:rgba(255,255,255,0.12);}
 .nav-btn.active{color:#ffffff;font-weight:600;background:rgba(255,255,255,0.18);border-left-color:#ffffff;}
@@ -203,6 +204,24 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .nav-btn.is-cross-link::after{content:'\2197';font-size:10px;color:rgba(255,255,255,0.7);margin-left:4px;}
 .nav-btn.nav-quick-quote{background:#ffffff;color:var(--orange) !important;font-weight:700;margin:0 12px 10px;padding:10px 14px;border-radius:8px;border-left:none;width:auto;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.18);}
 .nav-btn.nav-quick-quote:hover{background:#fff3ef;color:var(--orange-dark) !important;}
+/* ── v-redesign: sidebar-owned nav + collapsible icon rail ───────────── */
+.nav-toggle{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;color:var(--text-2);cursor:pointer;padding:7px;margin-right:2px;border-radius:7px;flex-shrink:0;}
+.nav-toggle svg{width:20px;height:20px;}
+.nav-toggle:hover{background:rgba(0,0,0,0.05);color:var(--text);}
+@media(max-width:720px){.nav-toggle{display:none;}}
+.sidenav .nav-section{font-size:9.5px;color:rgba(255,255,255,0.72);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;padding:14px 20px 7px;}
+.sidenav-divider{height:1px;background:rgba(255,255,255,0.20);margin:8px 14px;}
+.nav-section-btn svg{opacity:0.95;}
+body.nav-collapsed{--sidenav-w:64px;}
+body.nav-collapsed .sidenav .nav-label,
+body.nav-collapsed .sidenav .sidenav-section-label,
+body.nav-collapsed .sidenav .nav-section,
+body.nav-collapsed .sidenav .nav-badge,
+body.nav-collapsed .sidenav-divider{display:none;}
+body.nav-collapsed .sidenav .nav-btn{justify-content:center;padding-left:0;padding-right:0;gap:0;}
+body.nav-collapsed .sidenav .nav-btn.is-cross-link::after{display:none;}
+body.nav-collapsed .sidenav .nav-btn svg{width:18px;height:18px;}
+body.nav-collapsed .sidenav .nav-quick-quote{margin-left:10px;margin-right:10px;padding-left:0;padding-right:0;}
 .nav-btn.nav-quick-quote svg{width:14px;height:14px;}
 
 /* MAIN content area — hosts all section pages, only one visible at a time */
@@ -267,9 +286,9 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 /* ===== HOME (hub) PAGE STYLES — absorbed from Home_v0.3.2f =================== */
 
 /* Buttons used by Home pages */
-.btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background 0.15s;font-family:'DM Sans',sans-serif;}
+.btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background 0.15s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .btn-orange:hover{background:var(--orange-dark);}
-.btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .btn-secondary:hover{background:var(--gray-50);}
 
 /* Page header layout (used by hub pages with right-aligned controls) */
@@ -286,20 +305,20 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 /* My Quotes (shell-level unified list, v1.5.2) */
 .hub-quotes-toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px;padding:14px;background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);}
 .hub-quotes-scope{display:inline-flex;border:1px solid var(--gray-200);border-radius:8px;overflow:hidden;}
-.hqs-btn{background:var(--card);color:var(--gray-700);border:none;padding:7px 14px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border-right:1px solid var(--gray-200);}
+.hqs-btn{background:var(--card);color:var(--gray-700);border:none;padding:7px 14px;font-size:12px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border-right:1px solid var(--gray-200);}
 .hqs-btn:last-child{border-right:none;}
 .hqs-btn.active{background:var(--orange);color:white;}
 .hqs-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;padding:0 6px;background:rgba(0,0,0,0.08);border-radius:9px;font-size:10px;font-weight:700;}
 .hqs-btn.active .hqs-count{background:rgba(255,255,255,0.25);}
 .hub-quotes-chips{display:inline-flex;flex-wrap:wrap;gap:6px;}
-.hqc-chip{background:var(--card);color:var(--gray-600);border:1px solid var(--gray-200);border-radius:14px;padding:5px 11px;font-size:11.5px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.hqc-chip{background:var(--card);color:var(--gray-600);border:1px solid var(--gray-200);border-radius:14px;padding:5px 11px;font-size:11.5px;font-weight:500;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 .hqc-chip:hover{border-color:var(--gray-300);color:var(--gray-800);}
 .hqc-chip.active{background:var(--gray-900);color:white;border-color:var(--gray-900);}
-.hub-quotes-search{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--card);color:var(--gray-900);}
+.hub-quotes-search{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--card);color:var(--gray-900);}
 .hub-quotes-search:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,93,4,0.08);}
 .hub-quotes-list{display:flex;flex-direction:column;gap:8px;}
 .hub-quotes-empty{padding:32px 16px;text-align:center;color:var(--gray-500);font-size:13px;background:var(--card);border:1px dashed var(--gray-200);border-radius:var(--radius-lg);}
-.hub-quotes-retry{margin-left:8px;background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;}
+.hub-quotes-retry{margin-left:8px;background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 .hub-quote-card{background:var(--card);border:1px solid var(--gray-200);border-left:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color 120ms,box-shadow 120ms;}
 .hub-quote-card:hover{border-color:var(--gray-300);box-shadow:0 1px 3px rgba(0,0,0,0.06);}
 /* v3.13.9 — skeleton placeholders for the quotes loading state (shaped like real cards) */
@@ -334,7 +353,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .hqc-del:hover{background:#fee2e2;border-color:#fecaca;color:#dc2626;}
 /* v3.1.23 — Action button row on Hub quote cards (Won / Lost / Reactivate) */
 .hqc-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;padding-top:8px;border-top:1px dashed var(--gray-200);}
-.hqc-action{background:white;border:1px solid var(--gray-200);border-radius:6px;padding:5px 11px;font-size:11.5px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--gray-700);transition:background 120ms,border-color 120ms;}
+.hqc-action{background:white;border:1px solid var(--gray-200);border-radius:6px;padding:5px 11px;font-size:11.5px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;color:var(--gray-700);transition:background 120ms,border-color 120ms;}
 .hqc-action:hover{background:var(--gray-50);}
 .hqc-act-won{color:#16a34a;border-color:#a7f3d0;}
 .hqc-act-won:hover{background:#dcfce7;}
@@ -391,9 +410,9 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .cdetail-body{padding:18px 22px;overflow-y:auto;}
 .cdetail-section{margin-bottom:22px;}
 .cdetail-section-title{font-size:11px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
-.cdetail-section-title button{background:white;border:1px solid var(--gray-200);color:var(--gray-700);padding:4px 10px;border-radius:5px;font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;}
+.cdetail-section-title button{background:white;border:1px solid var(--gray-200);color:var(--gray-700);padding:4px 10px;border-radius:5px;font-size:11px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-transform:none;letter-spacing:0;}
 .cdetail-section-title button:hover{background:var(--gray-50);border-color:var(--orange);color:var(--orange);}
-.cdetail-notes{width:100%;padding:10px 12px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical;min-height:80px;}
+.cdetail-notes{width:100%;padding:10px 12px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;resize:vertical;min-height:80px;}
 .cdetail-history{width:100%;font-size:12px;border-collapse:collapse;}
 .cdetail-history th{text-align:left;font-size:10px;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.05em;padding:6px 8px;border-bottom:1px solid var(--gray-200);}
 .cdetail-history td{padding:7px 8px;border-bottom:1px solid var(--gray-100);}
@@ -417,7 +436,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 /* v3.13.34 — Customer detail PAGE (replaces the modal). Reuses .cdetail-* for
    inner content; .cpage-* adds page-level chrome (back link, stats strip,
    history disclosure, open quotes, purchase-history collapse). */
-.cpage-back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--orange);font-size:12px;font-weight:600;cursor:pointer;padding:6px 0;margin-bottom:8px;font-family:'DM Sans',sans-serif;}
+.cpage-back{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--orange);font-size:12px;font-weight:600;cursor:pointer;padding:6px 0;margin-bottom:8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .cpage-back:hover{text-decoration:underline;}
 .cpage-card{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;}
 .cpage-stats{display:grid;grid-template-columns:repeat(4, 1fr);gap:1px;background:var(--gray-100);border-bottom:1px solid var(--gray-100);}
@@ -425,7 +444,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .cpage-stat-l{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-3);font-weight:600;margin-bottom:4px;}
 .cpage-stat-v{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--gray-900);}
 .cpage-stat-sub{font-size:11px;color:var(--text-3);margin-top:2px;}
-.cpage-history-toggle{background:none;border:none;color:var(--orange);font-size:11px;font-weight:600;cursor:pointer;padding:6px 0;margin-top:4px;font-family:'DM Sans',sans-serif;}
+.cpage-history-toggle{background:none;border:none;color:var(--orange);font-size:11px;font-weight:600;cursor:pointer;padding:6px 0;margin-top:4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .cpage-history-toggle:hover{text-decoration:underline;}
 .cpage-history-list{margin-top:8px;border-top:1px dashed var(--gray-200);padding-top:8px;}
 .cpage-history-row{display:flex;align-items:center;gap:10px;padding:6px 10px;font-size:11px;color:var(--gray-600);}
@@ -439,7 +458,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .cpage-quote-row .cq-desc{flex:1;min-width:0;font-size:12px;color:var(--gray-800);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .cpage-quote-row .cq-amt{font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-900);font-weight:500;}
 .cpage-quote-row .cq-status{font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:10px;background:var(--gray-100);color:var(--gray-700);}
-.cpage-show-more{background:none;border:1px solid var(--gray-200);color:var(--gray-700);font-size:11px;font-weight:600;cursor:pointer;padding:6px 12px;border-radius:5px;font-family:'DM Sans',sans-serif;margin-top:8px;}
+.cpage-show-more{background:none;border:1px solid var(--gray-200);color:var(--gray-700);font-size:11px;font-weight:600;cursor:pointer;padding:6px 12px;border-radius:5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin-top:8px;}
 .cpage-show-more:hover{border-color:var(--orange);color:var(--orange);}
 .cpage-notfound{text-align:center;padding:60px 20px;color:var(--gray-500);}
 .cpage-notfound h2{font-size:18px;font-weight:600;color:var(--gray-700);margin-bottom:8px;}
@@ -489,7 +508,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .dash-comms-title{font-size:14px;font-weight:600;color:var(--gray-900);display:flex;align-items:center;gap:8px;}
 .dash-comms-title svg{width:16px;height:16px;color:var(--orange);}
 .dash-comms-unread{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;padding:0 6px;background:var(--red);color:white;border-radius:9px;font-size:10px;font-weight:700;}
-.dash-comms-link{font-size:11px;color:var(--orange);font-weight:500;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;}
+.dash-comms-link{font-size:11px;color:var(--orange);font-weight:500;cursor:pointer;background:none;border:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .dash-comms-link:hover{text-decoration:underline;}
 .dash-comms-rows{display:flex;flex-direction:column;gap:0;}
 .dash-comms-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--gray-100);font-size:12px;cursor:pointer;}
@@ -545,7 +564,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .comms-panel{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:16px;margin-bottom:16px;}
 .comms-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .comms-tabs{display:flex;gap:4px;background:var(--gray-100);padding:3px;border-radius:6px;font-size:11px;}
-.comms-tab{background:none;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;color:var(--gray-600);font-weight:500;font-size:11px;font-family:'DM Sans',sans-serif;}
+.comms-tab{background:none;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;color:var(--gray-600);font-weight:500;font-size:11px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .comms-tab.active{background:white;color:var(--gray-900);box-shadow:0 1px 2px rgba(0,0,0,0.05);}
 .comms-list{display:flex;flex-direction:column;gap:8px;}
 .comms-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px 12px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:flex-start;}
@@ -562,7 +581,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .comms-meta{font-size:10px;color:var(--gray-500);text-align:right;flex-shrink:0;line-height:1.4;}
 .comms-meta strong{display:block;color:var(--gray-700);font-weight:500;}
 .comms-actions{display:flex;gap:4px;margin-top:6px;}
-.comms-action-btn{background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:11px;padding:2px 6px;border-radius:4px;font-family:'DM Sans',sans-serif;}
+.comms-action-btn{background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:11px;padding:2px 6px;border-radius:4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .comms-action-btn:hover{background:var(--gray-100);color:var(--gray-900);}
 .comms-action-btn.delete:hover{color:var(--red);}
 .comms-empty{text-align:center;color:var(--gray-400);font-size:12px;padding:20px;font-style:italic;}
@@ -570,22 +589,22 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .comms-compose.show{display:block;}
 .comms-compose-row{display:grid;grid-template-columns:80px 1fr;gap:10px;margin-bottom:8px;align-items:center;}
 .comms-compose-row label{font-size:11px;color:var(--gray-600);font-weight:500;}
-.comms-compose-row input,.comms-compose-row select,.comms-compose-row textarea{padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:'DM Sans',sans-serif;}
+.comms-compose-row input,.comms-compose-row select,.comms-compose-row textarea{padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .comms-compose-row textarea{resize:vertical;min-height:60px;}
 .comms-compose-actions{display:flex;justify-content:flex-end;gap:6px;margin-top:6px;}
 
 /* Customers page */
 .cust-toolbar{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
 .quotes-toggle{display:inline-flex;background:white;border:1px solid var(--gray-200);border-radius:8px;padding:3px;}
-.qtg{background:none;border:none;cursor:pointer;padding:6px 14px;font-size:12px;font-weight:600;color:var(--gray-600);border-radius:5px;display:inline-flex;align-items:center;gap:6px;font-family:'DM Sans',sans-serif;}
+.qtg{background:none;border:none;cursor:pointer;padding:6px 14px;font-size:12px;font-weight:600;color:var(--gray-600);border-radius:5px;display:inline-flex;align-items:center;gap:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .qtg:hover{color:var(--gray-900);}
 .qtg.active{background:var(--orange);color:white;}
 .qtg-count{font-size:10px;background:rgba(0,0,0,0.1);color:inherit;padding:1px 6px;border-radius:8px;font-weight:700;}
 .qtg.active .qtg-count{background:rgba(255,255,255,0.25);}
 .cust-search-wrap{position:relative;flex:1;min-width:200px;}
 .cust-search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);pointer-events:none;}
-.cust-search-wrap input{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;background:#fff;font-family:'DM Sans',sans-serif;}
-.cust-type-filter{padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;background:#fff;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.cust-search-wrap input{width:100%;padding:8px 10px 8px 32px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;background:#fff;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+.cust-type-filter{padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;background:#fff;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .cust-table-wrap{background:white;border:1px solid var(--gray-200);border-radius:10px;overflow-x:auto;}
 .cust-table{width:100%;border-collapse:collapse;font-size:13px;}
 .cust-table thead tr{background:var(--gray-50);border-bottom:1px solid var(--gray-200);}
@@ -612,10 +631,10 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .cust-form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;}
 .cust-form label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--gray-600);font-weight:500;letter-spacing:0.02em;}
 .cust-form label.full{grid-column:1/-1;}
-.cust-form input,.cust-form select,.cust-form textarea{padding:9px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;}
+.cust-form input,.cust-form select,.cust-form textarea{padding:9px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .cust-form textarea{resize:vertical;}
 .modal-actions{display:flex;gap:10px;margin-top:22px;justify-content:flex-end;}
-.modal-actions .btn-delete{margin-right:auto;color:var(--red);border-color:#fecaca;display:none;background:white;border:1px solid;padding:8px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.modal-actions .btn-delete{margin-right:auto;color:var(--red);border-color:#fecaca;display:none;background:white;border:1px solid;padding:8px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .modal-actions .btn-delete.show{display:inline-flex;}
 
 /* Loading / spinner */
@@ -629,7 +648,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 
 /* Debug panel */
 .debug-section{margin-top:24px;}
-.debug-toggle{background:white;border:1px solid var(--gray-200);color:var(--gray-700);font-size:12px;font-weight:500;padding:7px 12px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.debug-toggle{background:white;border:1px solid var(--gray-200);color:var(--gray-700);font-size:12px;font-weight:500;padding:7px 12px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .debug-toggle:hover{color:var(--gray-900);border-color:var(--gray-300);}
 .debug-panel{display:none;margin-top:10px;background:var(--card);border:1px solid var(--gray-200);border-radius:8px;padding:14px;}
 .debug-panel.open{display:block;}
@@ -767,7 +786,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .fin-cell.custom .fin-cell-rate-suffix{color:var(--orange);}
 .fin-cell-amt{font-size:11px;font-weight:700;color:var(--gray-900);margin-top:2px;font-family:'DM Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .fin-cell-amt.empty{color:var(--gray-400);}
-.finance-reset-btn{background:none;border:1px solid var(--gray-200);color:var(--gray-600);font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;}
+.finance-reset-btn{background:none;border:1px solid var(--gray-200);color:var(--gray-600);font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:5px;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-transform:none;letter-spacing:0;}
 .finance-reset-btn:hover{background:var(--orange);color:white;border-color:var(--orange);}
 .badge-service{display:inline-block;background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap;}
 .service-row{background:rgba(252,211,77,0.06)!important;}
@@ -800,7 +819,7 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 .list-count{margin-left:auto;font-size:12px;color:var(--gray-500);background:var(--gray-100);padding:3px 10px;border-radius:20px;}
 .search-wrap{position:relative;margin-bottom:10px;}
 .search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);}
-.search-input{width:100%;padding:8px 10px 8px 30px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
+.search-input{width:100%;padding:8px 10px 8px 30px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 .search-input:focus{outline:none;border-color:var(--orange);}
 .table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--gray-200);background:white;}
 table{width:100%;border-collapse:collapse;font-size:12px;}
@@ -822,7 +841,7 @@ tbody td{padding:8px 10px;color:var(--gray-700);white-space:nowrap;border-right:
 tbody td:last-child{border-right:none;}
 /* v3.13.48 — Inline-editable list cells. Look like plain text until hovered or
    focused, so the list stays scannable but every cell is directly editable. */
-.list-edit{width:100%;min-width:60px;box-sizing:border-box;border:1px solid transparent;background:transparent;border-radius:4px;padding:3px 5px;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--gray-800);}
+.list-edit{width:100%;min-width:60px;box-sizing:border-box;border:1px solid transparent;background:transparent;border-radius:4px;padding:3px 5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:var(--gray-800);}
 .list-edit:hover{border-color:var(--gray-200);background:#fff;}
 .list-edit:focus{outline:none;border-color:var(--orange);background:#fff;}
 /* v3.15.1 — numeric edit cells (Hours / List Price on the Full List) get a
@@ -911,27 +930,27 @@ tbody td:last-child{padding-right:18px;}
 .detail-field.wrap-cell span{white-space:normal;word-wrap:break-word;overflow-wrap:break-word;display:block;}
 .detail-field.mono span{font-family:'DM Mono',monospace;font-size:11px;}
 .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
-.upload-btn{padding:10px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
+.upload-btn{padding:10px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
 .upload-btn:hover{background:var(--orange-dark);}
-.camera-btn{padding:10px;background:var(--black);color:white;border:1px solid var(--black-3);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
+.camera-btn{padding:10px;background:var(--black);color:white;border:1px solid var(--black-3);border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
 .camera-btn:hover{background:var(--black-3);}
-.sell-btn{padding:10px;background:white;color:var(--purple);border:1.5px solid #c4b5fd;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;grid-column:1/-1;}
+.sell-btn{padding:10px;background:white;color:var(--purple);border:1.5px solid #c4b5fd;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;grid-column:1/-1;}
 .sell-btn:hover{background:var(--purple-light);}
-.unsell-btn{padding:10px;background:var(--purple-light);color:var(--purple);border:1.5px solid #c4b5fd;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;grid-column:1/-1;}
-.agdealer-btn{padding:9px 12px;background:#1a6b3c;color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
+.unsell-btn{padding:10px;background:var(--purple-light);color:var(--purple);border:1.5px solid #c4b5fd;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;grid-column:1/-1;}
+.agdealer-btn{padding:9px 12px;background:#1a6b3c;color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
 .agdealer-btn:hover{background:#155c33;}
-.posted-toggle{padding:9px 12px;background:white;color:#166534;border:1.5px solid #86efac;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
+.posted-toggle{padding:9px 12px;background:white;color:#166534;border:1.5px solid #86efac;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
 .posted-toggle.is-posted{background:#dcfce7;}
 .posted-toggle:hover{background:#dcfce7;}
 .ag-panel{background:white;border:1px solid #86efac;border-radius:var(--radius-lg);padding:16px;margin-top:12px;}
 .ag-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .ag-panel-title{font-size:13px;font-weight:700;color:#166534;display:flex;align-items:center;gap:6px;}
-.ag-open-btn{background:#1a6b3c;color:white;border:none;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.ag-open-btn{background:#1a6b3c;color:white;border:none;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .ag-row{display:flex;align-items:center;border-bottom:1px solid var(--gray-100);padding:7px 0;}
 .ag-row:last-child{border-bottom:none;}
 .ag-field{font-size:11px;font-weight:600;color:var(--gray-500);width:130px;flex-shrink:0;text-transform:uppercase;letter-spacing:0.04em;}
 .ag-value{font-size:12px;color:var(--gray-900);flex:1;font-weight:500;}
-.ag-copy{background:none;border:1px solid var(--gray-200);border-radius:5px;padding:3px 10px;font-size:10px;font-weight:600;cursor:pointer;color:var(--gray-600);font-family:'DM Sans',sans-serif;transition:background 0.1s,color 0.1s;white-space:nowrap;}
+.ag-copy{background:none;border:1px solid var(--gray-200);border-radius:5px;padding:3px 10px;font-size:10px;font-weight:600;cursor:pointer;color:var(--gray-600);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;transition:background 0.1s,color 0.1s;white-space:nowrap;}
 .ag-copy:hover{background:var(--orange);color:white;border-color:var(--orange);}
 .ag-copy.copied{background:var(--green);color:white;border-color:var(--green);}
 .pic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;}
@@ -948,14 +967,14 @@ tbody td:last-child{padding-right:18px;}
 .modal-overlay .modal-title{font-size:16px;font-weight:600;color:var(--gray-900);margin-bottom:4px;}
 .modal-overlay .modal-sub{font-size:12px;color:var(--gray-500);margin-bottom:16px;}
 .modal-overlay .modal-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-500);display:block;margin-bottom:5px;}
-.modal-overlay .modal-textarea{width:100%;border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px 12px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);resize:vertical;min-height:100px;margin-bottom:12px;}
+.modal-overlay .modal-textarea{width:100%;border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px 12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);resize:vertical;min-height:100px;margin-bottom:12px;}
 .modal-overlay .modal-textarea:focus{outline:none;border-color:var(--orange);}
 .modal-overlay .modal-file{width:100%;border:1px dashed var(--gray-300);border-radius:var(--radius);padding:12px;font-size:12px;color:var(--gray-500);margin-bottom:16px;cursor:pointer;text-align:center;}
 .modal-overlay .modal-file:hover{border-color:var(--orange);color:var(--orange);}
 .modal-overlay .modal-actions{display:flex;gap:8px;justify-content:flex-end;}
-.modal-overlay .modal-cancel{background:none;border:1px solid var(--gray-200);border-radius:var(--radius);padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--gray-700);}
+.modal-overlay .modal-cancel{background:none;border:1px solid var(--gray-200);border-radius:var(--radius);padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);}
 .modal-overlay .modal-cancel:hover{background:var(--gray-50);}
-.modal-overlay .modal-submit{background:var(--orange);color:white;border:none;border-radius:var(--radius);padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.modal-overlay .modal-submit{background:var(--orange);color:white;border:none;border-radius:var(--radius);padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .modal-overlay .modal-submit:hover{background:var(--orange-dark);}
 .modal-overlay .modal-submit:disabled{opacity:0.5;cursor:not-allowed;}
 .fin-detail-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
@@ -970,14 +989,14 @@ tbody td:last-child{padding-right:18px;}
 .notes-icon{cursor:pointer;color:var(--amber);position:relative;}
 .notes-icon:hover .notes-tooltip{display:block;}
 .notes-tooltip{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--gray-900);color:white;font-size:11px;padding:6px 10px;border-radius:6px;width:200px;white-space:pre-wrap;z-index:10;pointer-events:none;}
-.notes-area{width:100%;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);resize:vertical;min-height:80px;}
+.notes-area{width:100%;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);resize:vertical;min-height:80px;}
 .notes-area.notes-compact{min-height:36px;resize:vertical;overflow:hidden;}
 .tc-label{display:block;font-size:10px;font-weight:700;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
-.tc-input{width:100%;padding:9px 12px;border-radius:6px;border:1px solid var(--gray-300);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);box-sizing:border-box;background:white;}
+.tc-input{width:100%;padding:9px 12px;border-radius:6px;border:1px solid var(--gray-300);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);box-sizing:border-box;background:white;}
 .tc-input:focus{outline:none;border-color:var(--orange);}
 .tc-star:hover{transform:scale(1.1);}
 .notes-area:focus{outline:none;border-color:var(--orange);}
-.save-note-btn{padding:8px 16px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;margin-top:6px;}
+.save-note-btn{padding:8px 16px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;margin-top:6px;}
 .archive-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--gray-100);font-size:12px;}
 .archive-row:last-child{border-bottom:none;}
 .archive-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray-500);min-width:60px;}
@@ -1021,7 +1040,7 @@ tbody td:last-child{padding-right:18px;}
 .quote-section-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
 .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .quote-field label{font-size:11px;color:var(--gray-500);display:block;margin-bottom:4px;}
-.quote-field input, .quote-field textarea{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
+.quote-field input, .quote-field textarea{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 .quote-field input:focus, .quote-field textarea:focus{outline:none;border-color:var(--orange);}
 .quote-field.full{grid-column:1/-1;}
 .margin-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:12px 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
@@ -1032,8 +1051,8 @@ tbody td:last-child{padding-right:18px;}
 .addcost-row{display:grid;grid-template-columns:1fr 2fr auto;gap:8px;align-items:center;margin-bottom:8px;}
 .addcost-check{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--gray-600);}
 .quote-actions{display:flex;gap:10px;padding:16px 20px;border-top:1px solid var(--gray-100);}
-.quote-pdf-btn{flex:1;padding:11px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
-.quote-cancel-btn{padding:11px 20px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
+.quote-pdf-btn{flex:1;padding:11px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+.quote-cancel-btn{padding:11px 20px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;cursor:pointer;}
 .star-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px;line-height:1;transition:transform 0.1s;}
 .star-btn:hover{transform:scale(1.2);}
 .star-btn.active{color:#f59e0b;}
@@ -1044,18 +1063,18 @@ tbody td:last-child{padding-right:18px;}
 .note-indicator:hover .note-tip{display:block;}
 .settings-field{margin-bottom:14px;}
 .settings-field label{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:4px;}
-.settings-field input, .settings-field select{width:100%;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
+.settings-field input, .settings-field select{width:100%;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 .settings-field input:focus, .settings-field select:focus{outline:none;border-color:var(--orange);}
 /* v2.0.5 — Hub-level My Settings rows. Slightly tighter than legacy .settings-field. */
 .settings-row{margin-bottom:14px;}
 .settings-row label{display:block;font-size:11px;font-weight:600;color:var(--gray-700);margin-bottom:5px;letter-spacing:0.02em;}
 .settings-row input{width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:7px;font-family:inherit;font-size:13px;color:var(--gray-900);}
 .settings-row input:focus{outline:none;border-color:var(--orange);}
-.settings-save-btn{width:100%;padding:11px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px;}
+.settings-save-btn{width:100%;padding:11px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px;}
 .customer-mode-banner{background:#1a6b3c;color:white;text-align:center;padding:8px;font-size:12px;font-weight:600;position:sticky;top:54px;z-index:45;}
 .index-field{cursor:pointer;user-select:none;}
 .index-field:hover{opacity:0.8;}
-.nav-arrow-btn{padding:5px 12px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+.nav-arrow-btn{padding:5px 12px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
 .nav-arrow-btn.disabled{background:var(--gray-200);color:var(--gray-400);cursor:default;pointer-events:none;}
 .agd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;}
 .agd-modal{background:white;border-radius:var(--radius-lg);width:100%;max-width:600px;box-shadow:var(--shadow-md);margin:auto;}
@@ -1068,16 +1087,16 @@ tbody td:last-child{padding-right:18px;}
 .agd-field{display:flex;align-items:center;gap:8px;margin-bottom:6px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:6px 10px;}
 .agd-field label{font-size:10px;color:var(--gray-500);width:90px;flex-shrink:0;}
 .agd-field span{flex:1;font-size:13px;font-weight:500;color:var(--gray-900);}
-.agd-copy-btn{background:none;border:1px solid var(--gray-200);border-radius:4px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--gray-600);white-space:nowrap;font-family:'DM Sans',sans-serif;}
+.agd-copy-btn{background:none;border:1px solid var(--gray-200);border-radius:4px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--gray-600);white-space:nowrap;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .agd-copy-btn:hover{background:var(--gray-100);}
 .agd-copy-btn.copied{background:#dcfce7;border-color:#16a34a;color:#16a34a;}
-.agd-desc-area{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:12px;color:var(--gray-900);resize:vertical;}
+.agd-desc-area{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:var(--gray-900);resize:vertical;}
 .agd-char-count{font-size:10px;color:var(--gray-400);text-align:right;margin-top:2px;}
-.agd-ai-btn{padding:8px 14px;background:var(--black);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.agd-ai-btn{padding:8px 14px;background:var(--black);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
 .agd-ai-btn:hover{background:var(--black-3);}
 .agd-actions{display:flex;gap:8px;padding:14px 18px;border-top:1px solid var(--gray-100);}
-.agd-open-btn{flex:1;padding:10px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
-.agd-cancel-btn{padding:10px 16px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
+.agd-open-btn{flex:1;padding:10px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+.agd-cancel-btn{padding:10px 16px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;cursor:pointer;}
 .trades-section{background:white;border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px;}
 .trades-section-header{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;background:var(--black);}
 .trades-section-header:hover{background:var(--black-3);}
@@ -1088,8 +1107,8 @@ tbody td:last-child{padding-right:18px;}
 .trades-section-body{display:none;}
 .trades-section-body.open{display:block;}
 .cv-mode-banner{background:#1a6b3c;color:white;padding:8px 16px;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:space-between;position:sticky;top:54px;z-index:40;}
-.cv-exit-btn{background:rgba(255,255,255,0.2);border:none;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
-.nav-arrow-btn{padding:5px 12px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
+.cv-exit-btn{background:rgba(255,255,255,0.2);border:none;color:white;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+.nav-arrow-btn{padding:5px 12px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;}
 .nav-arrow-btn.disabled{background:var(--gray-200);color:var(--gray-400);cursor:default;pointer-events:none;}
 .agd-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;}
 .agd-modal{background:white;border-radius:var(--radius-lg);width:100%;max-width:600px;box-shadow:var(--shadow-md);margin:auto;}
@@ -1102,16 +1121,16 @@ tbody td:last-child{padding-right:18px;}
 .agd-field{display:flex;align-items:center;gap:8px;margin-bottom:6px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:6px 10px;}
 .agd-field label{font-size:10px;color:var(--gray-500);width:90px;flex-shrink:0;}
 .agd-field span{flex:1;font-size:13px;font-weight:500;color:var(--gray-900);}
-.agd-copy-btn{background:none;border:1px solid var(--gray-200);border-radius:4px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--gray-600);white-space:nowrap;font-family:'DM Sans',sans-serif;}
+.agd-copy-btn{background:none;border:1px solid var(--gray-200);border-radius:4px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--gray-600);white-space:nowrap;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .agd-copy-btn:hover{background:var(--gray-100);}
 .agd-copy-btn.copied{background:#dcfce7;border-color:#16a34a;color:#16a34a;}
-.agd-desc-area{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:12px;color:var(--gray-900);resize:vertical;}
+.agd-desc-area{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:var(--gray-900);resize:vertical;}
 .agd-char-count{font-size:10px;color:var(--gray-400);text-align:right;margin-top:2px;}
-.agd-ai-btn{padding:8px 14px;background:var(--black);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.agd-ai-btn{padding:8px 14px;background:var(--black);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;}
 .agd-ai-btn:hover{background:var(--black-3);}
 .agd-actions{display:flex;gap:8px;padding:14px 18px;border-top:1px solid var(--gray-100);}
-.agd-open-btn{flex:1;padding:10px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
-.agd-cancel-btn{padding:10px 16px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
+.agd-open-btn{flex:1;padding:10px;background:var(--orange);color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer;}
+.agd-cancel-btn{padding:10px 16px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;cursor:pointer;}
 .trades-section{background:white;border:1px solid var(--gray-200);border-radius:var(--radius-lg);margin-bottom:12px;overflow:hidden;}
 .trades-section-header{background:var(--black);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
 .trades-section-title{font-size:13px;font-weight:600;color:white;}
@@ -1136,7 +1155,7 @@ tbody td:last-child{padding-right:18px;}
 #section-used .udc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 #section-used .udc-title-row{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gray-900);}
 #section-used .udc-badge{display:inline-flex;align-items:center;justify-content:center;height:18px;padding:0 7px;background:var(--red);color:white;border-radius:9px;font-size:10px;font-weight:700;margin-left:4px;}
-#section-used .udc-link{font-size:11px;color:var(--orange);font-weight:500;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+#section-used .udc-link{font-size:11px;color:var(--orange);font-weight:500;cursor:pointer;background:none;border:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;padding:0;}
 #section-used .udc-link:hover{text-decoration:underline;}
 #section-used .udc-rows{display:flex;flex-direction:column;gap:0;}
 #section-used .udc-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--gray-100);font-size:12px;cursor:pointer;}
@@ -1157,7 +1176,7 @@ tbody td:last-child{padding-right:18px;}
 #section-kubota .udc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 #section-kubota .udc-title-row{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gray-900);}
 #section-kubota .udc-badge{display:inline-flex;align-items:center;justify-content:center;height:18px;padding:0 7px;background:var(--red);color:white;border-radius:9px;font-size:10px;font-weight:700;margin-left:4px;}
-#section-kubota .udc-link{font-size:11px;color:var(--purple);font-weight:500;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+#section-kubota .udc-link{font-size:11px;color:var(--purple);font-weight:500;cursor:pointer;background:none;border:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;padding:0;}
 #section-kubota .udc-link:hover{text-decoration:underline;}
 #section-kubota .udc-rows{display:flex;flex-direction:column;gap:0;}
 #section-kubota .udc-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--gray-100);font-size:12px;cursor:pointer;}
@@ -1217,7 +1236,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .pkg-lines{font-size:11.5px;color:var(--gray-700);background:var(--gray-50);border-radius:6px;padding:7px 10px;}
 #section-shortline .pkg-line-row{display:flex;justify-content:space-between;padding:2px 0;}
 #section-shortline .pkg-actions{display:flex;gap:6px;margin-top:8px;}
-#section-shortline .pkg-btn-sm{padding:4px 10px;border:1px solid var(--gray-200);background:white;border-radius:5px;font-size:11px;cursor:pointer;color:var(--gray-700);font-family:'DM Sans',sans-serif;}
+#section-shortline .pkg-btn-sm{padding:4px 10px;border:1px solid var(--gray-200);background:white;border-radius:5px;font-size:11px;cursor:pointer;color:var(--gray-700);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #section-shortline .pkg-btn-sm:hover{background:var(--gray-50);}
 #section-shortline .pkg-btn-sm.danger{color:#dc2626;}
 #section-shortline .pkg-btn-sm.danger:hover{background:#fef2f2;}
@@ -1265,7 +1284,7 @@ tbody td:last-child{padding-right:18px;}
 .cm-deal-row .deal-margin-good{color:#0a7a3f;font-weight:600;}
 .cm-deal-row .deal-margin-bad{color:#dc2626;font-weight:600;}
 .cm-segment{display:inline-flex;background:var(--gray-100);border-radius:6px;padding:2px;gap:2px;}
-.cm-segment button{border:none;background:transparent;padding:5px 10px;font-size:11px;color:var(--gray-600);cursor:pointer;border-radius:5px;font-family:'DM Sans',sans-serif;font-weight:500;}
+.cm-segment button{border:none;background:transparent;padding:5px 10px;font-size:11px;color:var(--gray-600);cursor:pointer;border-radius:5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:500;}
 .cm-segment button.active{background:white;color:var(--gray-900);box-shadow:0 1px 2px rgba(0,0,0,0.06);}
 .cm-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:11px;}
 .cm-bar-row .b-label{width:130px;color:var(--gray-700);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -1296,9 +1315,9 @@ tbody td:last-child{padding-right:18px;}
 #section-hub .page-title{font-size:20px;font-weight:600;color:var(--gray-900);letter-spacing:-0.02em;}
 #section-hub .page-sub{font-size:12px;color:var(--gray-500);margin-top:2px;}
 /* BUTTONS */
-#section-shortline .btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+#section-shortline .btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
 #section-shortline .btn-orange:hover{background:var(--orange-dark);}
-#section-shortline .btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;}
+#section-shortline .btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 #section-shortline .btn-secondary:hover{background:var(--gray-50);}
 /* DASH CARDS */
 #section-shortline .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
@@ -1340,7 +1359,7 @@ tbody td:last-child{padding-right:18px;}
    same (same width, height, hover behaviour) so the carousel reads as a
    uniform set with a clear "this one is a bundle" hint. */
 #section-shortline .sc-tile-pkg .sc-img{background:#fff7ed;border-color:#fed7aa;}
-#section-shortline .sc-pkg-badge{position:absolute;top:6px;left:6px;background:var(--orange);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:0.06em;font-family:'DM Sans',sans-serif;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
+#section-shortline .sc-pkg-badge{position:absolute;top:6px;left:6px;background:var(--orange);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:0.06em;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
 /* v2.0.9.7 — Arrow buttons. Track is a positioning parent for the absolute-
    positioned arrow overlays; arrows fade in on hover and are disabled at
    scroll boundaries (greyed out + no pointer). */
@@ -1378,7 +1397,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .pbpkg-stock.partial{background:#fef3c7;color:#92400e;}
 #section-shortline .pbpkg-stock.zero{background:var(--gray-100);color:var(--gray-500);}
 #section-shortline .pbpkg-price{margin-left:auto;font-size:14px;font-weight:700;color:var(--orange);font-family:'DM Mono',monospace;}
-#section-shortline .pbpkg-disc{font-size:10px;font-weight:500;color:#dc2626;font-family:'DM Sans',sans-serif;letter-spacing:normal;}
+#section-shortline .pbpkg-disc{font-size:10px;font-weight:500;color:#dc2626;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;letter-spacing:normal;}
 #section-shortline .pbpkg-detail{margin-top:10px;padding-top:10px;border-top:1px dashed var(--gray-200);display:flex;flex-direction:column;gap:10px;}
 #section-shortline .pbpkg-line-block{background:var(--gray-50);border-radius:6px;padding:8px 10px;}
 #section-shortline .pbpkg-line-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--gray-700);margin-bottom:6px;gap:8px;}
@@ -1407,7 +1426,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .brand-card-tile-logo{
   height:48px;display:flex;align-items:center;justify-content:flex-start;
   font-size:24px;font-weight:800;color:var(--gray-900);letter-spacing:-0.02em;
-  font-family:'DM Sans',sans-serif;margin-bottom:4px;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin-bottom:4px;
 }
 /* Per-brand accent strip on the left */
 #section-shortline .brand-card-tile.walker{border-left:4px solid #1e40af;}
@@ -1433,26 +1452,26 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .pricebook-crumb .crumb-clear{
   margin-left:auto;background:none;border:1px solid var(--gray-200);
   padding:3px 9px;border-radius:5px;font-size:11px;cursor:pointer;
-  color:var(--gray-600);font-family:'DM Sans',sans-serif;
+  color:var(--gray-600);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .pricebook-crumb .crumb-clear:hover{background:white;color:var(--gray-900);}
 #section-shortline .pricebook-crumb .crumb-back{
   display:inline-flex;align-items:center;gap:5px;
   background:var(--orange);color:white;border:none;
   padding:5px 11px;border-radius:5px;font-size:12px;font-weight:600;
-  cursor:pointer;font-family:'DM Sans',sans-serif;
+  cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .pricebook-crumb .crumb-back:hover{background:#d04400;}
 #section-shortline .pricebook-crumb .crumb-back svg{flex-shrink:0;}
 /* Quotes toolbar (My/All toggle + filter) */
 #section-shortline .quotes-toolbar{display:flex;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
 #section-shortline .quotes-toggle{display:inline-flex;background:white;border:1px solid var(--gray-200);border-radius:8px;padding:3px;}
-#section-shortline .qtg-btn{background:none;border:none;cursor:pointer;padding:6px 14px;font-size:12px;font-weight:600;color:var(--gray-600);border-radius:5px;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;}
+#section-shortline .qtg-btn{background:none;border:none;cursor:pointer;padding:6px 14px;font-size:12px;font-weight:600;color:var(--gray-600);border-radius:5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;display:inline-flex;align-items:center;gap:6px;}
 #section-shortline .qtg-btn:hover{color:var(--gray-900);}
 #section-shortline .qtg-btn.active{background:var(--orange);color:white;}
 #section-shortline .qtg-count{font-size:10px;background:rgba(0,0,0,0.1);color:inherit;padding:1px 6px;border-radius:8px;font-weight:700;}
 #section-shortline .qtg-btn.active .qtg-count{background:rgba(255,255,255,0.25);}
-#section-shortline .quotes-filter-input{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;background:white;}
+#section-shortline .quotes-filter-input{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:white;}
 #section-shortline .quotes-filter-input:focus{outline:none;border-color:var(--orange);}
 #section-shortline .dash-card{background:white;border:1px solid var(--gray-200);border-top:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:14px 16px;cursor:pointer;transition:box-shadow 0.15s;}
 #section-shortline .dash-card:hover{box-shadow:var(--shadow);}
@@ -1492,7 +1511,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .toolbar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;}
 #section-shortline .search-wrap{position:relative;flex:1;min-width:240px;}
 #section-shortline .search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);}
-#section-shortline .search-input{width:100%;padding:9px 10px 9px 32px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
+#section-shortline .search-input{width:100%;padding:9px 10px 9px 32px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 #section-shortline .search-input:focus{outline:none;border-color:var(--orange);}
 /* v2.0.8.8 — Global price-book search (Brand Hub landing) */
 #section-shortline #pb-global-search:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,93,4,0.10);}
@@ -1511,7 +1530,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline #pb-global-search-results .pb-search-empty{padding:20px;text-align:center;color:var(--gray-400);font-size:13px;}
 #section-shortline #pb-global-search-results .pb-search-footer{padding:9px 14px;text-align:center;font-size:11px;color:var(--gray-500);background:var(--gray-50);border-top:1px solid var(--gray-200);}
 #section-shortline #pb-global-search-results mark{background:rgba(232,93,4,0.18);color:inherit;padding:0;border-radius:2px;}
-#section-shortline .filter-select{padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-700);cursor:pointer;}
+#section-shortline .filter-select{padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);background:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-700);cursor:pointer;}
 #section-shortline .filter-select:focus{outline:none;border-color:var(--orange);}
 #section-shortline .toolbar-stats{font-size:12px;color:var(--gray-500);margin-left:auto;}
 /* TABLE */
@@ -1541,7 +1560,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .b-promo::before{background:var(--orange);}
 #section-shortline .b-popular{background:var(--purple-light);color:var(--purple);}
 #section-shortline .b-popular::before{background:var(--purple);}
-#section-shortline .quick-quote-btn{background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;}
+#section-shortline .quick-quote-btn{background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 #section-shortline .quick-quote-btn:hover{background:var(--orange-dark);}
 /* DETAIL DRAWER */
 /* v2.0.4 — Drawer CSS removed. See drawer DOM removal note. */
@@ -1554,7 +1573,7 @@ tbody td:last-child{padding-right:18px;}
   background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.25);
   color:var(--orange);font-size:11px;font-weight:600;
   padding:5px 10px;border-radius:5px;cursor:pointer;
-  font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-transform:none;letter-spacing:0;
 }
 #section-shortline .brand-info-jump-btn:hover{background:var(--orange);color:white;border-color:var(--orange);}
 /* v2.0.10.24 — The .popular-toggle-btn CSS rules (~17 lines) were removed.
@@ -1566,7 +1585,7 @@ tbody td:last-child{padding-right:18px;}
   display:inline-block;font-size:9px;font-weight:700;color:#b45309;
   background:rgba(245,158,11,0.18);padding:1px 6px;border-radius:3px;
   margin-left:6px;letter-spacing:0.04em;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 /* v0.7 — SKU product image */
 #section-shortline .sku-image-slot{}
@@ -1590,7 +1609,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .sku-img-btn{
   background:rgba(0,0,0,0.7);color:white;border:none;
   padding:5px 10px;border-radius:5px;font-size:11px;cursor:pointer;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .sku-img-btn:hover{background:black;}
 #section-shortline .sku-img-btn.danger{background:rgba(220,38,38,0.85);}
@@ -1728,7 +1747,7 @@ tbody td:last-child{padding-right:18px;}
   background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.30);
   color:var(--orange);font-size:12px;font-weight:600;
   padding:7px 12px;border-radius:6px;cursor:pointer;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
   margin-left:auto;
 }
 #section-shortline .brand-finance-info-btn:hover{background:var(--orange);color:white;border-color:var(--orange);}
@@ -1778,7 +1797,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .quote-body{padding:20px;max-height:75vh;overflow-y:auto;}
 #section-shortline .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 #section-shortline .quote-field label{font-size:11px;color:var(--gray-500);display:block;margin-bottom:4px;}
-#section-shortline .quote-field input, #section-shortline .quote-field textarea, #section-shortline .quote-field select{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
+#section-shortline .quote-field input, #section-shortline .quote-field textarea, #section-shortline .quote-field select{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 #section-shortline .quote-field input:focus, #section-shortline .quote-field textarea:focus, #section-shortline .quote-field select:focus{outline:none;border-color:var(--orange);}
 #section-shortline .quote-field.full{grid-column:1/-1;}
 /* v1.5.2.4 — Two-row card layout for line items.
@@ -1804,12 +1823,12 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .qline-remove{background:none;border:1px solid var(--gray-200);color:var(--gray-500);cursor:pointer;font-size:14px;line-height:1;width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;}
 #section-shortline .qline-remove:hover{color:var(--red);border-color:var(--red);background:#fef2f2;}
 #section-shortline .add-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
-#section-shortline .add-btn{background:white;border:1px dashed var(--gray-300);color:var(--gray-500);padding:9px;border-radius:var(--radius);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+#section-shortline .add-btn{background:white;border:1px dashed var(--gray-300);color:var(--gray-500);padding:9px;border-radius:var(--radius);font-size:12px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #section-shortline .add-btn:hover{border-color:var(--orange);color:var(--orange);}
 #section-shortline .line-picker{display:none;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;margin-top:8px;}
 #section-shortline .line-picker.open{display:block;}
 #section-shortline .lp-header{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
-#section-shortline .lp-header input{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--gray-200);font-size:13px;font-family:'DM Sans',sans-serif;}
+#section-shortline .lp-header input{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--gray-200);font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #section-shortline .lp-header input:focus{outline:none;border-color:var(--orange);}
 #section-shortline .lp-close{background:white;border:1px solid var(--gray-200);color:var(--gray-500);cursor:pointer;font-size:14px;line-height:1;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;}
 #section-shortline .lp-close:hover{color:var(--gray-900);background:var(--gray-100);}
@@ -1846,7 +1865,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .bulk-margin-btn{
   background:var(--orange);color:white;border:none;padding:6px 12px;
   border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .bulk-margin-btn:hover{background:#d04400;}
 #section-shortline .bulk-margin-bar small{flex:1;font-size:10.5px;color:var(--gray-500);text-align:right;}
@@ -1967,12 +1986,12 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .admin-page .brand-card-body textarea.bh-autogrow{
   min-height:30px;height:30px;padding:6px 9px;font-size:12.5px;line-height:1.45;
   resize:none;overflow:hidden;width:100%;box-sizing:border-box;
-  font-family:'DM Sans',sans-serif;border-radius:5px;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;border-radius:5px;
 }
 /* Inline single-line inputs (description, contact fields, hex, numbers) */
 #section-shortline .admin-page .brand-card-body input.bh-input{
   padding:6px 9px;font-size:12.5px;border-radius:5px;width:100%;box-sizing:border-box;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .admin-page .brand-card-body input.bh-input[type=number],
 #section-shortline .admin-page .brand-card-body input.bh-mono{font-family:'DM Mono',monospace;}
@@ -2002,7 +2021,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .bh-color-inline .brand-color-hex{width:80px;padding:6px 8px;font-size:11.5px;}
 #section-shortline .bh-presets-toggle{
   background:none;border:none;color:var(--gray-600);font-size:10.5px;cursor:pointer;
-  padding:4px 6px;border-radius:4px;font-family:'DM Sans',sans-serif;
+  padding:4px 6px;border-radius:4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .bh-presets-toggle:hover{color:var(--orange);background:rgba(232,93,4,0.06);}
 #section-shortline .bh-swatches-row{display:flex;gap:5px;align-items:center;margin-top:6px;flex-wrap:wrap;}
@@ -2021,7 +2040,7 @@ tbody td:last-child{padding-right:18px;}
   display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;
   background:white;border:1px dashed var(--gray-300);border-radius:6px;
   font-size:12px;color:var(--gray-600);cursor:pointer;transition:all 0.15s;
-  font-family:'DM Sans',sans-serif;text-align:left;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-align:left;
 }
 #section-shortline .bh-bar-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(232,93,4,0.04);border-style:solid;}
 #section-shortline .bh-bar-btn.dragover{border-color:var(--orange);color:var(--orange);background:rgba(232,93,4,0.08);border-style:solid;}
@@ -2186,7 +2205,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .finance-reset-link{
   background:none;border:none;color:var(--orange);cursor:pointer;
   font-size:11px;font-weight:600;padding:0;text-transform:none;letter-spacing:0;
-  font-family:'DM Sans',sans-serif;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .finance-reset-link:hover{text-decoration:underline;}
 /* v0.9 — Reset all rates button */
@@ -2194,7 +2213,7 @@ tbody td:last-child{padding-right:18px;}
   background:none;border:1px solid var(--gray-200);
   color:var(--gray-600);font-size:10.5px;font-weight:600;
   padding:4px 10px;border-radius:5px;cursor:pointer;
-  font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;
+  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-transform:none;letter-spacing:0;
 }
 #section-shortline .finance-reset-btn:hover{background:var(--orange);color:white;border-color:var(--orange);}
 /* TRADE-IN LINE STYLING */
@@ -2285,7 +2304,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .comms-title{font-size:14px;font-weight:600;color:var(--gray-900);display:flex;align-items:center;gap:8px;}
 #section-shortline .comms-title svg{width:18px;height:18px;color:var(--orange);}
 #section-shortline .comms-tabs{display:flex;gap:4px;background:var(--gray-100);padding:3px;border-radius:6px;font-size:11px;}
-#section-shortline .comms-tab{background:none;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;color:var(--gray-600);font-weight:500;font-family:'DM Sans',sans-serif;font-size:11px;}
+#section-shortline .comms-tab{background:none;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;color:var(--gray-600);font-weight:500;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;}
 #section-shortline .comms-tab.active{background:white;color:var(--gray-900);box-shadow:0 1px 2px rgba(0,0,0,0.05);}
 #section-shortline .comms-list{display:flex;flex-direction:column;gap:8px;}
 #section-shortline .comms-item{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px 12px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:flex-start;}
@@ -2345,7 +2364,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .comms-meta{font-size:10px;color:var(--gray-500);text-align:right;flex-shrink:0;line-height:1.4;}
 #section-shortline .comms-meta strong{display:block;color:var(--gray-700);font-weight:500;}
 #section-shortline .comms-actions{display:flex;gap:4px;margin-top:6px;}
-#section-shortline .comms-action-btn{background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:11px;padding:2px 6px;border-radius:4px;font-family:'DM Sans',sans-serif;}
+#section-shortline .comms-action-btn{background:none;border:none;color:var(--gray-500);cursor:pointer;font-size:11px;padding:2px 6px;border-radius:4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #section-shortline .comms-action-btn:hover{background:var(--gray-100);color:var(--gray-900);}
 #section-shortline .comms-action-btn.delete:hover{color:var(--red);}
 #section-shortline .comms-empty{text-align:center;color:var(--gray-400);font-size:12px;padding:20px;font-style:italic;}
@@ -2354,12 +2373,12 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .comms-compose.show{display:block;}
 #section-shortline .comms-compose-row{display:grid;grid-template-columns:140px 1fr;gap:8px;margin-bottom:8px;align-items:center;}
 #section-shortline .comms-compose-row label{font-size:11px;color:var(--gray-600);font-weight:500;}
-#section-shortline .comms-compose-row input, #section-shortline .comms-compose-row select, #section-shortline .comms-compose-row textarea{width:100%;padding:6px 9px;border-radius:6px;border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:12px;}
+#section-shortline .comms-compose-row input, #section-shortline .comms-compose-row select, #section-shortline .comms-compose-row textarea{width:100%;padding:6px 9px;border-radius:6px;border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;}
 #section-shortline .comms-compose-row textarea{resize:vertical;min-height:60px;}
 #section-shortline .comms-compose-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px;}
 /* BRAND HUB (admin) */
 #section-shortline .brand-hub-toolbar{display:flex;gap:10px;margin-bottom:14px;align-items:center;flex-wrap:wrap;}
-#section-shortline .brand-hub-toolbar input[type=text]{flex:1;min-width:200px;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--black-3);background:var(--black-2);color:white;font-size:12px;font-family:'DM Sans',sans-serif;}
+#section-shortline .brand-hub-toolbar input[type=text]{flex:1;min-width:200px;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--black-3);background:var(--black-2);color:white;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #section-shortline .brand-hub-toolbar input[type=text]:focus{outline:none;border-color:var(--orange);}
 #section-shortline .brand-card{background:var(--black-2);border:1px solid var(--black-3);border-radius:var(--radius-lg);margin-bottom:12px;overflow:hidden;}
 #section-shortline .brand-card-header{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;background:var(--black-2);}
@@ -2550,13 +2569,13 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .brand-activate-btn{
   background:var(--orange);color:white;border:none;
   padding:6px 14px;border-radius:5px;font-size:11px;font-weight:600;
-  cursor:pointer;font-family:'DM Sans',sans-serif;
+  cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 #section-shortline .brand-activate-btn:hover{background:#d04400;}
 #section-shortline .brand-deactivate-btn{
   background:transparent;color:var(--gray-400);border:1px solid var(--gray-300);
   padding:4px 10px;border-radius:5px;font-size:11px;font-weight:500;
-  cursor:pointer;font-family:'DM Sans',sans-serif;margin-left:auto;
+  cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin-left:auto;
 }
 #section-shortline .brand-deactivate-btn:hover{color:#dc2626;border-color:#dc2626;background:rgba(220,38,38,0.06);}
 #section-shortline .brand-active-toolbar{
@@ -2582,7 +2601,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .brand-field label{font-size:10px;color:var(--gray-500);font-weight:500;text-transform:uppercase;letter-spacing:0.04em;}
 #section-shortline .brand-field .ro-value{font-size:13px;color:white;padding:7px 10px;background:var(--black-3);border-radius:6px;min-height:32px;display:flex;align-items:center;}
 #section-shortline .brand-field .ro-value.empty{color:var(--gray-500);font-style:italic;}
-#section-shortline .brand-field input, #section-shortline .brand-field select, #section-shortline .brand-field textarea{padding:7px 10px;border-radius:6px;border:1px solid var(--gray-700);background:var(--black-3);color:white;font-family:'DM Sans',sans-serif;font-size:13px;}
+#section-shortline .brand-field input, #section-shortline .brand-field select, #section-shortline .brand-field textarea{padding:7px 10px;border-radius:6px;border:1px solid var(--gray-700);background:var(--black-3);color:white;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;}
 #section-shortline .brand-field input:focus, #section-shortline .brand-field select:focus, #section-shortline .brand-field textarea:focus{outline:none;border-color:var(--orange);}
 #section-shortline .brand-field textarea{resize:vertical;min-height:60px;}
 #section-shortline .brand-field input[type=number]{font-family:'DM Mono',monospace;}
@@ -2605,7 +2624,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .file-row svg{width:16px;height:16px;color:var(--orange);flex-shrink:0;}
 #section-shortline .file-row .file-name{flex:1;color:white;font-family:'DM Mono',monospace;font-size:11px;}
 #section-shortline .file-row .file-meta{font-size:10px;color:var(--gray-500);}
-#section-shortline .file-row .file-action{background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:11px;padding:4px 8px;border-radius:4px;font-family:'DM Sans',sans-serif;}
+#section-shortline .file-row .file-action{background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:11px;padding:4px 8px;border-radius:4px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #section-shortline .file-row .file-action:hover{background:var(--black);color:white;}
 #section-shortline .file-row .file-action.delete:hover{color:var(--red);}
 /* Sales view of brand info — light theme cards */
@@ -2665,7 +2684,7 @@ body.admin-mode .admin-only-block { display: block; }
 #quote-overlay-sl .section-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
 #quote-overlay-sl .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 #quote-overlay-sl .quote-field label{font-size:11px;color:var(--gray-500);display:block;margin-bottom:4px;}
-#quote-overlay-sl .quote-field input, #quote-overlay-sl .quote-field textarea, #quote-overlay-sl .quote-field select{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);}
+#quote-overlay-sl .quote-field input, #quote-overlay-sl .quote-field textarea, #quote-overlay-sl .quote-field select{width:100%;padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);}
 #quote-overlay-sl .quote-field input:focus, #quote-overlay-sl .quote-field textarea:focus, #quote-overlay-sl .quote-field select:focus{outline:none;border-color:var(--orange);}
 #quote-overlay-sl .quote-field.full{grid-column:1/-1;}
 #quote-overlay-sl .quote-line{display:flex;flex-direction:column;gap:8px;padding:10px;background:white;border:1px solid var(--gray-200);border-radius:var(--radius);font-size:12px;margin-bottom:6px;}
@@ -2722,12 +2741,12 @@ body.admin-mode .admin-only-block { display: block; }
    of the modal body. */
 .pkg-edit-banner{background:linear-gradient(90deg,#fffbeb 0%,#fef3c7 100%);border:1px solid #fcd34d;border-radius:8px;padding:12px 14px;margin:12px 16px 0 16px;}
 #quote-overlay-sl .add-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
-#quote-overlay-sl .add-btn{background:white;border:1px dashed var(--gray-300);color:var(--gray-500);padding:9px;border-radius:var(--radius);font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+#quote-overlay-sl .add-btn{background:white;border:1px dashed var(--gray-300);color:var(--gray-500);padding:9px;border-radius:var(--radius);font-size:12px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #quote-overlay-sl .add-btn:hover{border-color:var(--orange);color:var(--orange);}
 #quote-overlay-sl .line-picker{display:none;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;margin-top:8px;}
 #quote-overlay-sl .line-picker.open{display:block;}
 #quote-overlay-sl .lp-header{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
-#quote-overlay-sl .lp-header input{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--gray-200);font-size:13px;font-family:'DM Sans',sans-serif;}
+#quote-overlay-sl .lp-header input{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--gray-200);font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #quote-overlay-sl .lp-header input:focus{outline:none;border-color:var(--orange);}
 #quote-overlay-sl .lp-close{background:white;border:1px solid var(--gray-200);color:var(--gray-500);cursor:pointer;font-size:14px;line-height:1;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0;}
 #quote-overlay-sl .lp-close:hover{color:var(--gray-900);background:var(--gray-100);}
@@ -2746,7 +2765,7 @@ body.admin-mode .admin-only-block { display: block; }
 #quote-overlay-sl .bulk-margin-label svg{color:var(--orange);}
 #quote-overlay-sl .bulk-margin-bar input{width:80px;padding:5px 8px;border:1px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:'DM Mono',monospace;text-align:right;}
 #quote-overlay-sl .bulk-margin-bar input:focus{outline:none;border-color:var(--orange);}
-#quote-overlay-sl .bulk-margin-btn{background:var(--orange);color:white;border:none;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+#quote-overlay-sl .bulk-margin-btn{background:var(--orange);color:white;border:none;padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #quote-overlay-sl .bulk-margin-btn:hover{background:#d04400;}
 #quote-overlay-sl .bulk-margin-bar small{flex:1;font-size:10.5px;color:var(--gray-500);text-align:right;}
 #quote-overlay-sl .totals-box{background:var(--gray-50);border-radius:var(--radius);padding:12px;margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
@@ -2759,9 +2778,9 @@ body.admin-mode .admin-only-block { display: block; }
 #quote-overlay-sl .totals-grand-card label{font-size:11px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.04em;margin:0;}
 #quote-overlay-sl .totals-grand-card span{font-size:20px;font-weight:700;color:var(--black);font-family:'DM Mono',monospace;}
 #quote-overlay-sl .quote-actions{display:flex;gap:10px;padding:16px 20px;border-top:1px solid var(--gray-100);}
-#quote-overlay-sl .btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+#quote-overlay-sl .btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
 #quote-overlay-sl .btn-orange:hover{background:var(--orange-dark);}
-#quote-overlay-sl .btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;}
+#quote-overlay-sl .btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 #quote-overlay-sl .btn-secondary:hover{background:var(--gray-50);}
 #quote-overlay-sl .cust-history-panel{background:var(--blue-light);border:1px solid var(--blue);border-radius:var(--radius);padding:10px 12px;margin-top:8px;font-size:12px;display:none;}
 #quote-overlay-sl .cust-history-panel.show{display:block;}
@@ -2780,9 +2799,9 @@ body.admin-mode .admin-only-block { display: block; }
 #quote-overlay-sl .finance-payments-block{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px 12px;}
 #quote-overlay-sl .finance-payments-block label{font-size:11px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;}
 #quote-overlay-sl .finance-payments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
-#quote-overlay-sl .finance-reset-btn{background:white;border:1px solid var(--gray-200);color:var(--gray-600);font-size:11px;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+#quote-overlay-sl .finance-reset-btn{background:white;border:1px solid var(--gray-200);color:var(--gray-600);font-size:11px;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 #quote-overlay-sl .finance-reset-btn:hover{background:var(--orange);color:white;border-color:var(--orange);}
-#quote-overlay-sl .brand-finance-info-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.25);color:var(--orange);font-size:11px;font-weight:600;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;}
+#quote-overlay-sl .brand-finance-info-btn{display:inline-flex;align-items:center;gap:5px;background:rgba(232,93,4,0.08);border:1px solid rgba(232,93,4,0.25);color:var(--orange);font-size:11px;font-weight:600;padding:5px 10px;border-radius:5px;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-transform:none;letter-spacing:0;}
 #quote-overlay-sl .brand-finance-info-btn:hover{background:var(--orange);color:white;border-color:var(--orange);}
 #quote-overlay-sl .brand-finance-info-btn:disabled{background:var(--gray-50);color:var(--gray-400);border-color:var(--gray-200);cursor:not-allowed;}
 #quote-overlay-sl .brand-finance-info-btn:disabled:hover{background:var(--gray-50);color:var(--gray-400);border-color:var(--gray-200);}
@@ -2837,7 +2856,7 @@ body.admin-mode .admin-only-block { display: block; }
 /* rep-picker (team-view) */
 .dxb-picker{display:flex;align-items:center;gap:7px;background:var(--orange-light);border:1px solid #fde4cf;border-radius:8px;padding:5px 8px 5px 11px;}
 .dxb-picker-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-dark);}
-.dxb-picker-sel{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--gray-900);background:#fff;border:1px solid #fdd9bf;border-radius:6px;padding:4px 8px;cursor:pointer;max-width:170px;}
+.dxb-picker-sel{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;color:var(--gray-900);background:#fff;border:1px solid #fdd9bf;border-radius:6px;padding:4px 8px;cursor:pointer;max-width:170px;}
 .dxb-picker-sel:focus{outline:none;border-color:var(--orange);}
 .dxb-picker-clear{border:none;background:none;color:var(--orange-dark);font-size:13px;cursor:pointer;padding:2px 4px;line-height:1;border-radius:4px;}
 .dxb-picker-clear:hover{background:#fdd9bf;}
@@ -2970,20 +2989,19 @@ body.admin-mode .admin-only-block { display: block; }
     <button class="topbar-hamburger" id="topbar-hamburger" onclick="HPE.ui.openMobileMenu()" aria-label="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
+    <button class="nav-toggle" id="nav-toggle" onclick="HPE.ui.toggleNav()" aria-label="Collapse or expand menu" title="Collapse / expand menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAASgklEQVR42u1aaXRc1ZH+qu5bulvq1m7tkmUjyzbeN2IwNsQbmCUwToA4hiRsExIyySRDQrZJQnKGOdkm+0YmyWTG7EtwwITY4BgIi21WG2+SLVuLN22tVneru9+7t+bHk2XZGPAQnJM5x3V03unz9F7f+1XdqvvVdxs4bafttJ2203ba/h8bvePXmECABF9BEIFg6Pr3CyCYNwD95tNkAv8N8ZwsACYw4A9NhwodPreK51eg0KXuQdnVj+aE7BuQg2l4Rp8Qjzk1YOhkXC6AEQCwmOdV8ofG0mWjUVogEIIBFIEFWtKDtCdBO+KypRev9WBb3LQNSEYLjsycaeh7/kYARozHZ8T4qrG4ZhwayzmXwe/3mHv3yNZeCllSFqKKiEwp4ellPLFQqqICGxBIRlr68VoPb+ySjYfllW6J5wwgBNC7h+RtImCzWlZLN4znixoA4LF95re7sKkLBQ7NLUdY0Q+26PFFPL+SdsSla1CyGmGb6vJxZpFML6UZZdRYCISAnEmk+boNuH93jvBuriV6M9+L4D3l1u8W8hnF1NwtP9smj7cjZOOsUTypGAMeWvvl5wtw/276+NN6YQ1q8nhUiFymrEhXRjpSaE9KPCNKoSLME4vMhxr58CAvezQTsVRTIb/c7b0rSKw3A+ALXTNeDWjMe8BsPIRF1bhhAqc1Nh7W97SY3owh0FdmqPGF1DVo7m42gTuYqDKChhiNLeDzqihmsxFkDf2pTe5spvqoBuiXC6wDabzcDcXwzSmqTQQA4wqtxkLn6nHOJya5353rjgrz8AOKUOBw+0p7yxWOzawIFkGdIJyUZ9OMMuveRaGQYgBjYur1K5wiV73zPeg4X5/wrggA7Ir7zfHcZWOk0Dbb+szhQeMwFIEBLchqZIVCtiiGlqG/4cKlCIrAJClPXury9wyYuigxoTREWUFfVuNdygR+m9pPxEAiR9oQYWiWwcBaxNPiMCk6xpVBzQ2eNAKLwIS+nIzOhxEcGpR17fwuef8tARBgBFEbIQUtMuDJcQ7TQp6GQ2LxW7kywNM2gLEFDGBeuZoxSmaXKRzZ1E8ZAAKAygixEJgSvrxhmYkP2Ao2vVVBDl5rHTBV+QRgUoksbPRroji1OTBs1fmcFViK4rmjsxm+Zg1ZChafOIDBhhWkREfKjAqBCRkNeKTN0AM4RWV02D3VEUr5cAh9GTOc3MF/BchpKCLFNHwnKFDD1AOCgBh1JCWeJSPozSKpOWdM8MwQqyVAht6SvxLAsNssBgzGxJD04Gnpzkiwu41E4Guxie1jk1jL0IaQb1PEQljBUVBMD+81E4ut5w/J5auxbwAxR2U0ctroYykrEdT/hfwdA0ARtAzNUmsAMOCWhBkb47DiuOhhDIG/s1osGJtHcjX+aJP1kSZEbVPgUNiCw0IEIvK1WIp9kYwPQ8j5POBRX4b3p2lfUpr7sbNPWvqlJyu+GLwxmG8LIKiSFqvJxSgLUXDrxS7Zl0B9VL4+y1q9lx9p8wKQgWUNiIZyIHi9JES3n0WuJSkfisRlithwjwwi2mS0cZmISDnCJDaDWYggQoM+H07J9n5+9qCs3y+bukxO6wDGW0TDGrmmbxhvf3ySijkocqUoH/DMgGcymtd20H+8KivHcYHrrGrOBY4BJKfBRBYNuV8L6qLwgFufpa5BSuTQ70ELuUoqI5hewrNGYWIhN8TE15L2QYRBDRHxBATYjNIIFsX0hfWc8dX2Pn64Va1qNi0J/20iEDj1+gn2BTXqk894W/sk38aSWuuLM7g2on0xK8bhvGp1yaPmoxNUS8J64ZBvM4xQThMIzggKUeRSeVi+P1eMUMpHd0ZaB2hXP17plh9tkf6cido4v8b65hxuiuqkBhGFbS62BSIZDykfqSxIoFg3FeKrs/HJyern29TXN3u+MSfcvNXwJwP64VbdlpSMlkROXu7WD++lJXWqMmx6Bqk0bN5brf51k3x4HK/rCGoIXVyvplfg1zvQmTQWQQumlPCKMzCoxWKJWFIalimj4LJV4OKbc3h6mXq4VW/rM6v30uVjuDzPPHeQr3lStvVRe5JCFlVGUOjCUVAEDZPyxWZZ3CA1edYjewUkbwqACQfS8p5y9bEz7ZxRC2uowOHtfXpdJz7YyBElAx7qYtKfwSu9GBOjrb0GoGX1PKucfrsN7UkTMKJZZbx8DKX9ITaRM5T1oUgeb+fbX9ZLauncCrWmXSdy4om6dDTCim7brDd0mjNi6u4WuW83beklZmQN5wwxUdZQxqPOJO7fbU7Inni45M8epa6baM2rpG/OUedU8KFBijpqR5//5Rcoz2YG4oPm+vE4kJKpJZbNBIivAYE9gkp4Qp5QxKbiEIpDKHSgSIochBWdU6G2dNOKcajNU0Ty4B6zN0GV+fqGicpm3HSmPHoBPj9VjJEP/FFm3ufNvt8fu0rPvE9Pu9f8eAtNLmE5EftQw63jVWPUH9vk9pf9dR3yYKssqqapJdifwoYDsqRWNcRMWnNJmPb006FBZI05mJYlNWpWBe7cidYBQ4AQ2pN8XyvuaTHrD9CufsoKF7hUlgcFrGqRbXE5r5qM0F8OmpSPaSU8rcyw8G92mn0pXjGB6vPN4gZZVGmt2mUSniwf7exOmMODeO5ytSMur3QbRTBvjEBQaL+3xX/qgOcbs2/AT3t6YrG1rF794SJ3WT1/bbN2mAjI+lhah86ULKhUFiNkk5VPMQeKoBgieF8dD+bkLwf0/+z0v/C8t2S1N+8huXE9FYTp6Q/Qwir6r+10aQMRiGDWdkI0jS+Uunxe3eqtXIuNPVZbwppVY26dYROoM218kYU1XFVxpBbTm+8DQS0KwBDhC8/nAF0aVsvqrQda9OYunlTs9+d4YiFymlxLTS3Enc3IEW3ughZojTFRNbec7msdWfVkb8K/Yxt+tV19brr697NxMGGEaXSMWxN602HTk6GKCM0oo/akXrUzt2on10a5OgIiI5BnDnoAOlNy5cOS9o76+gRJTIABnVVuX9OkOpLclzVEqM23chrPH/I8Y1I+XzlBWTB5YXn5MDZ3ycpGnFFAZGRRNRZX2y91821z1I+2mv1pUx5Wn5pqza+yKvOspkLVEOODKfNkp/96r7qqEVHbbO7i7X0m5dElo7muwLQm6IlOcRW0SCJnOlKmI2lwhNR0Z+T1HtNUpJrjepgmHgMgWFiLa9SDS60pJbyykda0oTdrljdY6y/lIlf9eT9e6dGdSWVbvD9Jzx+iiIWltbAU2QqFLr0ex5go7epHf05+OM+pyrc/OZUe2Yv+jIk6MEIDHn33bPv2l0zMVfMbMZDkh/YaXzC7nGeVm/4M37NbCDLUzfGxUyQUujy5mF7rMSfeyIKn/6GB9qfYYa+phD41xf6nZ8wjbaZvHX95Fm+spovW6HX76VfbPEAaolbrgL6zRQDU51sdKdFibptt/esm76cL3Oe79Kqd3h2v08wydcVYZcMwYfkYbo4jZMmtz/kZX90yTXqz9kOt5lCKtMaYfDFCR5eHHNc5IaehDRW5qjzCLtGuhD94RA5QQaQEmF6m5pbL2JhZ/jjHszKo0ZbUO+L6l9v0zDL6xhy1utXEs9pV9PFJ9ob9fjDOl2ZYr/aapTVqTwIfbFSP7jN37colPUn5pqVfP7zXPLjXf6DVZA1dXINnD9L1E2hdO51RgJXTzdUNNL1EIBgV5roo59lU7FLEojxriMlGLIraXODy/EoVsdCTxUea1PxydTgjHSkTSIZHk3jA49qoebJDPdjqnVvB4wt5Z1yPjqrWAblhg3/PEvuW6WrFWt0QRVqb0hA7SghEQmlP8myUR0QET+3PjRDF4BvTEFM3jFf37jbvW2suredvzaVxd+kvvMBJjxsLoIgC9y2pw+JaFc8iq8UIEjn4RgQEIiapDvPNz+iWfv+LL/iTi62SMORIoKyRLSK7tKYNTHI4I+OLIMBDF1i7E7jmCf/qJ/zRUb5stN2R0iGmmydZBSGUOBTPmiKXuwelM0Xb+3wA4wrU8rH07AFsOKCZ5PAgikJ892La2ofVrbjuz9LcrwFZ/jhC6mjvqg0spvoopz3py2FiEeyhTBARMRDPyDkVaksPssJtA/rYHCBA4LAGVEvCGEF/ThwLAL6ySX/nbH76Mmv2A/6VDTQ2Kr/cSc395q4WD6Azi2hhtYo5VOAQM/15v5lZaj14gZX06cszzM1P0292+ilPf+wpYzN9fbb1jTl0/QYB6Esz7R9v8fpzxyRldZ56cTn94DW6e7c89T5KecIItkciEjDlW/RYO3/2WbOwTv1sqyaCyIiemAgwEuSGOaIo/2GvP/1ePyOyZpn91CH6yQ49OoqW/mBgqYxQvycMFISoK2OM0Lfm8p4EfF9HHP8XC6ghygDCFjyDL77gfW2z1Ef5c1Os68fBMxI0kwSo4MoI26IYRa7YKugBRCBC4gM5beI5M2eU6c2an23NDcvD1nDWZ30GozREBIQUeSbYHzjtm6Wr9a4VtKIR/7hBzx1F1XnWVY0q7WNqEX1vi3Zt9GbwYpdMK+X6KHckzJQyc8uzKu3J+8eqb7+i8yx64iLnd83659v8mWXqhct4zkM67R/tUQN3iUBraJHhrnCowAgIxAADGQ2XkWdR+khXxcNVy4BgMLOMBCgNIZ4BQPctcicXWwOevm69SXoEcJHLf+rwVzX7D+zx21M4nBaXqcpFb0YvqaWER03FWLOPv/OK99PXfU9TWHF3Ru7ZY/5tLv/kXFURpm+/Ji91+wAdt60SoBScof5OIEI0kjwEBISIqCGmhkutNbJoxFO8fIzc8rwqDdGBQcOEsoh5+nKe95C9pk0PeHR2herN4NWeIWZ7OCPdWdGCZksCCWNQS0EYj7ULkxDQl0NhCIMp+cGW3P171BOXqFIXV67Txa66fLT1nztzI3WCjJbmPm5LCpNoAy0QEwghNJTLJCDWRrb3mWEV5Cidrsk3u/q5LGweWmotrFJbegxBzlvtP9aGR5dRgc3/PF0VuzizmBbXqPmV1gW1dmWEejKye8CP5wwAh8k3osTEs5BAXdTGHcoy6kzpeb/X08r4zCL+1QKeUirD4lwQio6UzHjAv7vFxBwoZaK2FNpS7KIkJCVhlEaoKEp9OT44iJFChjXcEac0jY7J5i7rwiZ5oNXEcwhOjlauw6sfUHcs4Guf8OJZKXIwt4JBVOjSw61ai5DIqJAF6KRvxCjPUH0+Au7uKMr4AOjX57l3Neu1nd7Ue+l7Z6uYg8+u9ZjEHLPWpbGAL6xXu+Nmay8OpJD00J9DPCcJj+NZk9XqyU49tUTNKuNfbBshLwRaUNRRdy5xm1eGvjrLBchm+u/zQ40FFoD5VVbbNSFArWxyVjSGjmMjDtNnJjsAbpxgvbg8tP0qe+sVjs0K4FunhwIN4vvnuHKTe36VfVaZ1bIiFLbeVF5XTDYflfbe+MCEIvvTU+03k1apyCWAFMFievRCZ+eVbsxWimhKifPb851HLgpNKFI2ww50dhoaYW65Myps1eZzy4rQ3YtC8gnrkQvtB5c6n5/mDE/05kl28lrnknqnNGQVu6qp0HpreXSEXEYRW1kc6Dd0nCKqji0DktFBXSMjdH+r+XATzynnNfvkjvlqU5d84mmvO2PMEdlsOP+6M1IRUXsS+sxiNauMX+7iCxtMXYSu36CTnlSE7aSPjYfNrHKuzucN+81d77XXduiujBCdWPAhgkU8pcSZWkKNBXbCw0DOaKFPT3YsprbkEBE6xsrDXOwqgGxWN010PzzOAVAfVdkb3YvrnbKwCoJGJ3JasUvXNjkAYo5avcxtvTrc8qHQRfUWACZaf3HottkOwCUhddNEd/0l4fdWWScjr8ccnlmmKiIckGoAN06wt77fjVhMR4KvhhW8z86wrmx0mgpUfVTljPnhPPXcQXqtx3/qIB9Is5AS0Tl9AmGDCVmNhdXWoUEcTOu7muW5Q+b7r+qXuoeOYboy9NMFtK2HLaZrxtF1G7wtveZkzoyzWg6kJenJkajwi90ys8TaM4AD6RFBCKAUuhy1+fxqa1wBAzSlRE0sGj58YSZ+ax27PMzLx4QKHTUSWH2+qoooAFePsxPXunV59tiotbg6FFJ0ktr6cJoR8dSy0PnV7oRCtyrPevsj7pEN0UmaIl5aF4pYyqLg3Ilumug0fzBUm2+5Sv3LtNBNE0OfmRwaG3tnJ3zEdILSpI47kggIlpGhD3LSR3FMMDLEBdM+zal0HSXr9/tjCjnf4f1pdCZle1w/1u73Zd/h2aqMmOep/gUJOcwjlgmNLC+nfPi/8uCfjl9XR0r33/nUT9tpO22n7R3Z/wIzwP54CIDwvwAAAABJRU5ErkJggg==" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
       <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v3.15.2</div>
       <div id="playground-badge" title="This is the PLAYGROUND build — UI experiments only. Not the live site." style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:#fff;background:var(--orange,#e85d04);padding:3px 8px;border-radius:4px;letter-spacing:0.06em;flex-shrink:0">🚧 PLAYGROUND</div>
-      <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'DM Sans',sans-serif;align-items:center;gap:5px"></div>
+      <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="data-status" id="data-status" aria-label="Data load status"></div>
-    <nav class="app-switcher" aria-label="Section switcher">
-      <a class="app-tab" data-section="hub" href="#/" onclick="HPE.router.go('hub','dashboard');return false;">Home</a>
-      <a class="app-tab" data-section="used" href="#/used" onclick="HPE.router.go('used');return false;">Used</a>
-      <a class="app-tab" data-section="shortline" href="#/shortline" onclick="HPE.router.go('shortline');return false;">Shortline</a>
-      <a class="app-tab" data-section="kubota" href="#/kubota" onclick="HPE.router.go('kubota');return false;">Kubota</a>
-    </nav>
+    <!-- v-redesign: section switcher moved into the sidebar (renderSidebar "Workspaces" group) -->
+    <div class="topbar-spacer" style="flex:1"></div>
     <button class="role-switcher-btn" id="role-switcher-btn" onclick="HPE.ui.toggleRole()" style="display:none">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 1l3 6 6 .9-4.5 4.4 1 6.7L12 16.7 6.5 19l1-6.7L3 7.9 9 7l3-6z"/></svg>
       <span class="role-switcher-label">Admin</span>
@@ -2998,6 +3016,7 @@ body.admin-mode .admin-only-block { display: block; }
     <aside class="sidenav" id="sidenav">
       <!-- populated by JS -->
     </aside>
+    <script>try{if(localStorage.getItem('hpe_nav_collapsed')==='1')document.body.classList.add('nav-collapsed');}catch(e){}</script>
 
     <!-- MAIN CONTENT --------------------------------------------- -->
     <main class="main-content-with-sidebar">
@@ -3237,7 +3256,7 @@ body.admin-mode .admin-only-block { display: block; }
               <button class="hqs-btn active" id="hub-quotes-scope-mine" onclick="HPE.quotes.setFilter('scope','mine');document.getElementById('hub-quotes-scope-mine').classList.add('active');document.getElementById('hub-quotes-scope-all').classList.remove('active')">My Quotes <span class="hqs-count" id="hub-quotes-mine-count">0</span></button>
               <button class="hqs-btn" id="hub-quotes-scope-all" onclick="HPE.quotes.setFilter('scope','all');document.getElementById('hub-quotes-scope-all').classList.add('active');document.getElementById('hub-quotes-scope-mine').classList.remove('active')">All Quotes <span class="hqs-count" id="hub-quotes-all-count">0</span></button>
               <!-- v3.13.46 — View a single rep's quotes. Options populated from the loaded quotes. -->
-              <select id="hub-quotes-rep" onchange="HPE.quotes.setRep(this.value)" title="View a specific rep's quotes" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;background:#fff;color:var(--gray-700);cursor:pointer;margin-left:8px"><option value="all">All reps</option></select>
+              <select id="hub-quotes-rep" onchange="HPE.quotes.setRep(this.value)" title="View a specific rep's quotes" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff;color:var(--gray-700);cursor:pointer;margin-left:8px"><option value="all">All reps</option></select>
             </div>
             <div class="hub-quotes-chips" data-group="source">
               <button class="hqc-chip active" data-val="all" onclick="HPE.quotes.setFilter('source','all');document.querySelectorAll('.hub-quotes-chips[data-group=&quot;source&quot;] .hqc-chip').forEach(b=>b.classList.toggle('active',b.dataset.val==='all'))">All sources</button>
@@ -3482,7 +3501,7 @@ body.admin-mode .admin-only-block { display: block; }
   <div id="pb-global-search-wrap" style="position:relative;margin-bottom:14px">
     <div style="position:relative;display:flex;align-items:center">
       <svg style="position:absolute;left:14px;pointer-events:none;color:var(--gray-400)" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="pb-global-search" placeholder="Search any brand, model, description, or tag..." autocomplete="off" oninput="S.onPbGlobalSearchInput()" onkeydown="S.onPbGlobalSearchKeydown(event)" onfocus="S.onPbGlobalSearchFocus()" style="width:100%;padding:12px 14px 12px 44px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:'DM Sans',sans-serif;background:white;box-shadow:0 1px 2px rgba(0,0,0,0.04);transition:border-color 0.15s,box-shadow 0.15s">
+      <input type="text" id="pb-global-search" placeholder="Search any brand, model, description, or tag..." autocomplete="off" oninput="S.onPbGlobalSearchInput()" onkeydown="S.onPbGlobalSearchKeydown(event)" onfocus="S.onPbGlobalSearchFocus()" style="width:100%;padding:12px 14px 12px 44px;border:1px solid var(--gray-200);border-radius:10px;font-size:14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:white;box-shadow:0 1px 2px rgba(0,0,0,0.04);transition:border-color 0.15s,box-shadow 0.15s">
       <button id="pb-global-search-clear" onclick="S.clearPbGlobalSearch()" style="display:none;position:absolute;right:10px;background:none;border:none;color:var(--gray-400);font-size:18px;cursor:pointer;padding:4px 8px;line-height:1" title="Clear search">×</button>
     </div>
     <div id="pb-global-search-results" style="display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:white;border:1px solid var(--gray-200);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.10);max-height:520px;overflow-y:auto;z-index:50"></div>
@@ -3790,18 +3809,18 @@ body.admin-mode .admin-only-block { display: block; }
        inventory (Walker, Toro, Kubota wholegoods, plus the 4 Stihl units).
        "Stihl Parts" = the Parts Inventory file's vendor-486 rows, in-stock only. -->
   <div id="inv-mode-toggle" style="display:flex;gap:0;align-items:center;margin-bottom:14px;border:1px solid var(--gray-200);border-radius:7px;overflow:hidden;width:fit-content;background:#fff">
-    <button type="button" id="inv-mode-units" class="inv-mode-btn active" onclick="S.setInventoryMode('units')" style="padding:8px 16px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;border:none;background:var(--orange);color:#fff;cursor:pointer">Units</button>
-    <button type="button" id="inv-mode-stihl-parts" class="inv-mode-btn" onclick="S.setInventoryMode('stihl-parts')" style="padding:8px 16px;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:600;border:none;background:#fff;color:var(--gray-700);cursor:pointer">Stihl Parts</button>
+    <button type="button" id="inv-mode-units" class="inv-mode-btn active" onclick="S.setInventoryMode('units')" style="padding:8px 16px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;border:none;background:var(--orange);color:#fff;cursor:pointer">Units</button>
+    <button type="button" id="inv-mode-stihl-parts" class="inv-mode-btn" onclick="S.setInventoryMode('stihl-parts')" style="padding:8px 16px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:600;border:none;background:#fff;color:var(--gray-700);cursor:pointer">Stihl Parts</button>
   </div>
   <div id="inv-units-filters" style="display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
     <div style="position:relative;flex:1;min-width:200px">
       <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="inv-filter" placeholder="Filter by tag, make, model, description…" oninput="S.renderInventoryPage()" style="width:100%;padding:8px 10px 8px 32px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff">
+      <input type="text" id="inv-filter" placeholder="Filter by tag, make, model, description…" oninput="S.renderInventoryPage()" style="width:100%;padding:8px 10px 8px 32px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff">
     </div>
-    <select id="inv-brand-filter" onchange="S.renderInventoryPage()" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer">
+    <select id="inv-brand-filter" onchange="S.renderInventoryPage()" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff;cursor:pointer">
       <option value="">All brands</option>
     </select>
-    <select id="inv-loc-filter" onchange="S.renderInventoryPage()" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff;cursor:pointer">
+    <select id="inv-loc-filter" onchange="S.renderInventoryPage()" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff;cursor:pointer">
       <option value="">All locations</option>
       <option value="S">Scotland (S)</option>
       <option value="M">Mallard (M)</option>
@@ -3815,9 +3834,9 @@ body.admin-mode .admin-only-block { display: block; }
   <div id="inv-stihl-parts-filters" style="display:none;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
     <div style="position:relative;flex:1;min-width:200px">
       <svg style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="inv-stihl-parts-filter" placeholder="Filter by part #, quick code, description…" oninput="S.renderStihlPartsPage()" style="width:100%;padding:8px 10px 8px 32px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff">
+      <input type="text" id="inv-stihl-parts-filter" placeholder="Filter by part #, quick code, description…" oninput="S.renderStihlPartsPage()" style="width:100%;padding:8px 10px 8px 32px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff">
     </div>
-    <span id="inv-stihl-parts-count" style="font-size:12px;color:var(--gray-600);font-family:'DM Sans',sans-serif">—</span>
+    <span id="inv-stihl-parts-count" style="font-size:12px;color:var(--gray-600);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">—</span>
   </div>
   <div id="inventory-list"></div>
   <div id="stihl-parts-list" style="display:none"></div>
@@ -4050,7 +4069,7 @@ body.admin-mode .admin-only-block { display: block; }
       <div class="cust-dis-search-wrap" id="cust-dis-search-wrap" style="position:relative;margin-bottom:18px">
         <div style="position:relative">
           <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--gray-400)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="cust-dis-search" autocomplete="off" placeholder="Search DIS contacts by name, phone, or email — or skip and fill in below for a new customer" oninput="HPE.sectionImpl.hub.onDISSearchInput(this.value)" onfocus="HPE.sectionImpl.hub.onDISSearchInput(this.value)" onblur="setTimeout(function(){HPE.sectionImpl.hub.closeDISSearchDropdown()},150)" style="width:100%;padding:10px 12px 10px 38px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fafafa;box-sizing:border-box">
+          <input type="text" id="cust-dis-search" autocomplete="off" placeholder="Search DIS contacts by name, phone, or email — or skip and fill in below for a new customer" oninput="HPE.sectionImpl.hub.onDISSearchInput(this.value)" onfocus="HPE.sectionImpl.hub.onDISSearchInput(this.value)" onblur="setTimeout(function(){HPE.sectionImpl.hub.closeDISSearchDropdown()},150)" style="width:100%;padding:10px 12px 10px 38px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;box-sizing:border-box">
         </div>
         <div id="cust-dis-search-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;margin-top:4px;background:white;border:1px solid var(--gray-200);border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:10;max-height:320px;overflow-y:auto"></div>
       </div>
@@ -4113,7 +4132,7 @@ body.admin-mode .admin-only-block { display: block; }
       </div>
       <div id="deal-stages-list" style="max-height:50vh;overflow-y:auto;padding:4px;background:var(--gray-50);border-radius:8px"></div>
       <div style="margin-top:10px">
-        <button onclick="HPE.sectionImpl.hub.addDealStage()" style="width:100%;padding:9px 12px;background:white;border:1px dashed var(--gray-300);border-radius:8px;font-size:12px;font-weight:600;color:var(--gray-600);cursor:pointer;font-family:'DM Sans',sans-serif">+ Add stage</button>
+        <button onclick="HPE.sectionImpl.hub.addDealStage()" style="width:100%;padding:9px 12px;background:white;border:1px dashed var(--gray-300);border-radius:8px;font-size:12px;font-weight:600;color:var(--gray-600);cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">+ Add stage</button>
       </div>
       <div style="font-size:11px;color:var(--gray-500);margin-top:14px;padding:10px 12px;background:#fff7ed;border-radius:6px;border-left:3px solid #fb923c">
         <strong>Note:</strong> Deleting a stage moves any deals currently on that stage to the previous stage in order. The stage history of those deals is preserved.
@@ -4229,7 +4248,7 @@ body.admin-mode .admin-only-block { display: block; }
       <div class="quote-section">
         <div class="quote-section-title">Customer</div>
         <div class="quote-grid">
-          <div class="quote-field"><label>Customer Name</label><div style="display:flex;gap:6px"><input type="text" id="q-customer" placeholder="Customer name" oninput="U.updateQuoteBuilderSaveButton()" style="flex:1"><button type="button" onclick="U.openDISLookupForBuilder()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Search the DIS contact database">🔍 DIS</button></div></div>
+          <div class="quote-field"><label>Customer Name</label><div style="display:flex;gap:6px"><input type="text" id="q-customer" placeholder="Customer name" oninput="U.updateQuoteBuilderSaveButton()" style="flex:1"><button type="button" onclick="U.openDISLookupForBuilder()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Search the DIS contact database">🔍 DIS</button></div></div>
           <div class="quote-field"><label>Salesperson</label><input type="text" id="q-salesperson" placeholder="Your name" oninput="U.updateQuoteBuilderSaveButton()"></div>
           <div class="quote-field"><label>Customer Phone</label><input type="tel" id="q-cust-phone" placeholder="Optional" oninput="U.updateQuoteBuilderSaveButton()"></div>
           <div class="quote-field"><label>Customer Email</label><input type="email" id="q-cust-email" placeholder="Optional" oninput="U.updateQuoteBuilderSaveButton()"></div>
@@ -4253,8 +4272,8 @@ body.admin-mode .admin-only-block { display: block; }
         </div>
         <div class="quote-section-title" style="margin-top:12px">Additional Cost</div>
         <div class="addcost-row">
-          <input type="number" id="q-addcost" placeholder="$ amount" oninput="U.updateMargin()" style="padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px">
-          <input type="text" id="q-addcost-desc" placeholder="Description (optional)" oninput="U.updateQuoteBuilderSaveButton()" style="padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px">
+          <input type="number" id="q-addcost" placeholder="$ amount" oninput="U.updateMargin()" style="padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px">
+          <input type="text" id="q-addcost-desc" placeholder="Description (optional)" oninput="U.updateQuoteBuilderSaveButton()" style="padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px">
           <label class="addcost-check"><input type="checkbox" id="q-addcost-show" checked onchange="U.updateMargin()"> Show on quote</label>
         </div>
         <div class="margin-box">
@@ -4277,7 +4296,7 @@ body.admin-mode .admin-only-block { display: block; }
       <div class="quote-section">
         <div class="quote-section-title" style="display:flex;align-items:center;justify-content:space-between">
           <span>Trade-In</span>
-          <button type="button" onclick="U.addTradeRow()" style="border:1px solid var(--orange);background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:12px;font-weight:600;padding:5px 10px;cursor:pointer;font-family:'DM Sans',sans-serif">+ Add trade</button>
+          <button type="button" onclick="U.addTradeRow()" style="border:1px solid var(--orange);background:var(--orange-light);color:var(--orange-dark);border-radius:6px;font-size:12px;font-weight:600;padding:5px 10px;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">+ Add trade</button>
         </div>
         <div id="q-trades-list"></div>
         <label class="addcost-check" style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray-700);margin-top:4px;cursor:pointer">
@@ -4314,12 +4333,12 @@ body.admin-mode .admin-only-block { display: block; }
       </div>
       <div class="quote-section">
         <div class="quote-section-title">Additional Notes</div>
-        <div class="quote-field full"><textarea id="q-notes" placeholder="Any additional details for the customer..." oninput="U.updateQuoteBuilderSaveButton()" style="width:100%;height:80px;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical"></textarea></div>
+        <div class="quote-field full"><textarea id="q-notes" placeholder="Any additional details for the customer..." oninput="U.updateQuoteBuilderSaveButton()" style="width:100%;height:80px;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;resize:vertical"></textarea></div>
       </div>
     </div>
     <div class="quote-actions">
       <button class="quote-cancel-btn" onclick="U.closeQuote()">Cancel</button>
-      <button id="q-save-btn" onclick="U.saveQuoteFromBuilder()" style="display:none;flex:1;padding:11px;background:#16a34a;color:white;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer">&#10003; Save Changes</button>
+      <button id="q-save-btn" onclick="U.saveQuoteFromBuilder()" style="display:none;flex:1;padding:11px;background:#16a34a;color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer">&#10003; Save Changes</button>
       <button class="quote-pdf-btn" onclick="U.generateQuotePDF()">&#8659; Download Quote PDF</button>
     </div>
   </div>
@@ -4373,25 +4392,25 @@ body.admin-mode .admin-only-block { display: block; }
       <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Name *
         <div style="display:flex;gap:8px">
-          <input type="text" id="cust-f-name-sl" placeholder="Customer name" style="flex:1;min-width:0;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
-          <button type="button" onclick="S.openDISLookupForCustomerModal()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Search the DIS customer database">🔍 DIS</button>
+          <input type="text" id="cust-f-name-sl" placeholder="Customer name" style="flex:1;min-width:0;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
+          <button type="button" onclick="S.openDISLookupForCustomerModal()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Search the DIS customer database">🔍 DIS</button>
         </div>
       </label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Email
-        <input type="email" id="cust-f-email-sl" placeholder="contact@..." style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
+        <input type="email" id="cust-f-email-sl" placeholder="contact@..." style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
       </label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Phone
-        <input type="text" id="cust-f-phone-sl" placeholder="(519) 555-0123" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
+        <input type="text" id="cust-f-phone-sl" placeholder="(519) 555-0123" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
       </label>
       <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Address
-        <input type="text" id="cust-f-address-sl" placeholder="Street, City, Province, Postal" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
+        <input type="text" id="cust-f-address-sl" placeholder="Street, City, Province, Postal" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
       </label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Customer type
-        <select id="cust-f-type-sl" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff">
+        <select id="cust-f-type-sl" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff">
           <option value="">— Not set —</option>
           <option value="residential">Residential</option>
           <option value="commercial">Commercial</option>
@@ -4399,14 +4418,14 @@ body.admin-mode .admin-only-block { display: block; }
       </label>
       <label style="display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Account owner
-        <select id="cust-f-owner-sl" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff">
+        <select id="cust-f-owner-sl" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff">
           <option value="">— Unassigned —</option>
         </select>
         <small id="cust-f-owner-hint-sl" style="font-size:10px;color:var(--gray-500);font-weight:400;margin-top:2px;display:none">Need more options? <a href="#" onclick="S.closeCustomerModal();S.switchRole('admin');S.navigate('salespeople');return false" style="color:var(--orange)">Add salespeople →</a></small>
       </label>
       <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--gray-600);font-weight:500">
         Notes
-        <textarea id="cust-f-notes-sl" rows="3" placeholder="Internal notes — purchase history, preferences, contact preferences, etc." style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;resize:vertical"></textarea>
+        <textarea id="cust-f-notes-sl" rows="3" placeholder="Internal notes — purchase history, preferences, contact preferences, etc." style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;resize:vertical"></textarea>
       </label>
     </div>
     <div style="display:flex;gap:10px;margin-top:18px;justify-content:flex-end">
@@ -4431,7 +4450,7 @@ body.admin-mode .admin-only-block { display: block; }
     </div>
     <div style="padding:14px 22px;border-bottom:1px solid var(--gray-100);position:relative">
       <svg style="position:absolute;left:32px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="cust-picker-search" placeholder="Search customers by name, email, phone, owner…" oninput="S.renderCustomerPicker()" style="width:100%;padding:8px 10px 8px 30px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
+      <input type="text" id="cust-picker-search" placeholder="Search customers by name, email, phone, owner…" oninput="S.renderCustomerPicker()" style="width:100%;padding:8px 10px 8px 30px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
     </div>
     <div id="cust-picker-list" style="overflow-y:auto;flex:1"></div>
   </div>
@@ -4449,13 +4468,13 @@ body.admin-mode .admin-only-block { display: block; }
         <div id="dis-lookup-sub" style="font-size:11px;color:var(--gray-500);margin-top:2px">Search the DIS Quantum contact list</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-        <button onclick="HPE.disLookup.refresh()" title="Reload contact list from Drive" style="padding:6px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer">⟳ Refresh</button>
+        <button onclick="HPE.disLookup.refresh()" title="Reload contact list from Drive" style="padding:6px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:11px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);cursor:pointer">⟳ Refresh</button>
         <button onclick="HPE.disLookup.close()" style="background:none;border:none;font-size:22px;color:var(--gray-400);cursor:pointer;line-height:1">×</button>
       </div>
     </div>
     <div style="padding:14px 22px;border-bottom:1px solid var(--gray-100);position:relative">
       <svg style="position:absolute;left:32px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--gray-400);pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="dis-lookup-search" placeholder="Search by name, phone, customer #, email, or city…" autocomplete="off" style="width:100%;padding:8px 10px 8px 30px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif">
+      <input type="text" id="dis-lookup-search" placeholder="Search by name, phone, customer #, email, or city…" autocomplete="off" style="width:100%;padding:8px 10px 8px 30px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
     </div>
     <div id="dis-lookup-list" style="overflow-y:auto;flex:1"></div>
     <div id="dis-lookup-footer" style="padding:10px 22px;border-top:1px solid var(--gray-100);font-size:10px;color:var(--gray-500);background:#f9fafb;text-align:center"></div>
@@ -4500,12 +4519,12 @@ body.admin-mode .admin-only-block { display: block; }
     <div style="padding:18px 22px;display:flex;flex-direction:column;gap:14px">
       <label style="display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--gray-600);font-weight:500">
         <span>Sold to <span style="color:#dc2626">*</span></span>
-        <input type="text" id="sold-f-customer" placeholder="Customer name (required)" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif" oninput="S.updateSoldModalCanSubmit()">
+        <input type="text" id="sold-f-customer" placeholder="Customer name (required)" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif" oninput="S.updateSoldModalCanSubmit()">
         <small id="sold-f-customer-error" style="display:none;font-size:10px;color:#dc2626;font-weight:500">Customer name is required</small>
       </label>
       <label style="display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--gray-600);font-weight:500">
         Sold by
-        <select id="sold-f-soldby" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:white">
+        <select id="sold-f-soldby" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:white">
           <option value="">— select —</option>
         </select>
         <small style="font-size:10px;color:var(--gray-500);font-weight:400">Defaults to you. Pick a teammate if you're recording someone else's sale.</small>
@@ -4520,7 +4539,7 @@ body.admin-mode .admin-only-block { display: block; }
       </label>
       <label style="display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--gray-600);font-weight:500">
         Notes
-        <textarea id="sold-f-notes" rows="3" placeholder="Optional — anything else worth recording" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical"></textarea>
+        <textarea id="sold-f-notes" rows="3" placeholder="Optional — anything else worth recording" style="padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;resize:vertical"></textarea>
       </label>
     </div>
     <div style="padding:14px 22px;border-top:1px solid var(--gray-200);display:flex;gap:8px;justify-content:flex-end;background:#fafafa">
@@ -4554,13 +4573,13 @@ body.admin-mode .admin-only-block { display: block; }
             <label>Customer</label>
             <div style="display:flex;gap:6px">
               <input type="text" id="q-customer-sl" placeholder="Type any customer name" oninput="S.onCustomerChange()" style="flex:1">
-              <button type="button" onclick="S.openCustomerPicker()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Pick a saved customer">📇 Select</button>
-              <button type="button" onclick="S.openDISLookupForBuilder()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Search the DIS contact database">🔍 DIS</button>
+              <button type="button" onclick="S.openCustomerPicker()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Pick a saved customer">📇 Select</button>
+              <button type="button" onclick="S.openDISLookupForBuilder()" style="padding:7px 10px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);cursor:pointer;white-space:nowrap" title="Search the DIS contact database">🔍 DIS</button>
             </div>
           </div>
           <div class="quote-field">
             <label>Salesperson</label>
-            <input type="text" id="q-salesperson-sl" placeholder="Your name" style="width:100%;padding:7px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:#fff">
+            <input type="text" id="q-salesperson-sl" placeholder="Your name" style="width:100%;padding:7px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff">
           </div>
           <div class="quote-field"><label>Email</label><input type="email" id="q-cust-email-sl" placeholder="customer@example.com"></div>
           <div class="quote-field"><label>Phone</label><input type="tel" id="q-cust-phone-sl" placeholder="(519) 555-1234"></div>
@@ -4700,7 +4719,7 @@ body.admin-mode .admin-only-block { display: block; }
      wire to _closeConfirmSave / _closeConfirmDiscard / _closeConfirmCancel
      which finish the close (or bail). -->
 <div class="sl-close-confirm-overlay" id="sl-close-confirm" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.55);z-index:10001;align-items:center;justify-content:center" onclick="if(event.target===this)S._closeConfirmCancel()">
-  <div class="sl-close-confirm-card" style="background:#fff;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,0.25);max-width:440px;width:90%;padding:22px 24px;font-family:'DM Sans',sans-serif">
+  <div class="sl-close-confirm-card" style="background:#fff;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,0.25);max-width:440px;width:90%;padding:22px 24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
     <div style="font-size:16px;font-weight:600;color:#0f172a;margin-bottom:8px" id="sl-close-confirm-title">Unsaved quote</div>
     <div style="font-size:13px;color:#475569;line-height:1.5;margin-bottom:18px" id="sl-close-confirm-body">You have unsaved changes. What would you like to do?</div>
     <div style="display:flex;gap:8px;justify-content:flex-end">
@@ -5698,6 +5717,25 @@ const HPE = (function(){
       const sec = sections[state.currentSection];
       const sidenav = document.getElementById('sidenav');
       let html = '';
+      // v-redesign — Workspaces switcher. The sidebar now owns BOTH section
+      // switching (this group) and in-section page nav (below), replacing the
+      // old centered topbar tabs. Buttons reuse HPE.router.go(section).
+      const SECTION_ICONS = {
+        hub:'<path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/>',
+        used:'<path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M3 9v6l9 5 9-5V9"/>',
+        shortline:'<path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-7h6v7"/>',
+        kubota:'<circle cx="6" cy="16" r="2.2"/><circle cx="16.5" cy="16.5" r="3.2"/><path d="M8 14l1.5-4H14l2 4"/>'
+      };
+      html += '<div class="sidenav-section-label">Workspaces</div>';
+      Object.keys(sections).forEach(key => {
+        const s = sections[key];
+        const activeCls = key === state.currentSection ? 'active' : '';
+        html += `<button class="nav-btn nav-section-btn ${activeCls}" data-section="${key}" title="${s.label}" onclick="HPE.router.go('${key}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${SECTION_ICONS[key] || ''}</svg>
+          <span class="nav-label">${s.label}</span>
+        </button>`;
+      });
+      html += '<div class="sidenav-divider"></div>';
       // Quick Quote button
       if(sec.quickQuote){
         html += `<button class="nav-btn nav-quick-quote" onclick="HPE.ui.openQuickQuote()">
@@ -5748,11 +5786,19 @@ const HPE = (function(){
     },
     updateSidebarActive(){
       document.querySelectorAll('.sidenav .nav-btn').forEach(btn => {
+        if(btn.dataset.section){
+          btn.classList.toggle('active', btn.dataset.section === state.currentSection);
+          return;
+        }
         const pageId = btn.dataset.page;
         const cross = btn.dataset.cross;
         const targetSection = cross || state.currentSection;
         btn.classList.toggle('active', pageId === state.currentPage && targetSection === state.currentSection);
       });
+    },
+    toggleNav(){
+      const c = document.body.classList.toggle('nav-collapsed');
+      try{ localStorage.setItem('hpe_nav_collapsed', c ? '1' : '0'); }catch(e){}
     },
     renderMobileMenu(){
       const sec = sections[state.currentSection];
@@ -10129,7 +10175,7 @@ HPE.disLookup = (function(){
         <div style="color:var(--red);font-weight:600;margin-bottom:6px">Couldn't load DIS contacts</div>
         <div style="font-size:12px;color:var(--gray-500)">${_esc(dis.getError())}</div>
         <div style="font-size:11px;color:var(--gray-400);margin-top:14px">Make sure the latest contact export is in <code>HPE Link/All Customers/</code></div>
-        <button onclick="HPE.disLookup.refresh()" style="margin-top:14px;padding:6px 14px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--gray-700);cursor:pointer">⟳ Try again</button>
+        <button onclick="HPE.disLookup.refresh()" style="margin-top:14px;padding:6px 14px;background:white;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--gray-700);cursor:pointer">⟳ Try again</button>
       </div>`;
       if(footer) footer.textContent = '';
       return;
@@ -14098,7 +14144,7 @@ function _tradeEmptyHtml(){
 }
 function tradeRowHtml(t){
   t=t||{};
-  const inp="padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'DM Sans',sans-serif;font-size:13px;color:var(--gray-900);width:100%";
+  const inp="padding:8px 10px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--gray-900);width:100%";
   return '<div class="q-trade-row" style="border:1px solid var(--gray-200);border-radius:var(--radius);padding:10px;margin-bottom:8px;position:relative">'
     +'<button type="button" onclick="U.removeTradeRow(this)" title="Remove trade" style="position:absolute;top:6px;right:6px;border:none;background:none;color:var(--gray-400);cursor:pointer;font-size:14px;line-height:1;padding:2px 4px">✕</button>'
     +'<div style="display:grid;grid-template-columns:72px 1fr 1fr;gap:8px;margin-bottom:8px;padding-right:20px">'
@@ -24812,7 +24858,7 @@ function renderCommissions(){
         <div class="page-sub">${escapeHtml(viewLabel)} · ${commissionsCurrentYear}${_mw ? ' · '+cmMonthWindowLabel(_mw) : ''} · last updated ${lastModifiedStr}</div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-        <select onchange="HPE.commissions.setYear(this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif">
+        <select onchange="HPE.commissions.setYear(this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
           ${yearOptions}
         </select>
         ${years.length >= 2 ? `<label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--gray-600);cursor:pointer">
@@ -25188,7 +25234,7 @@ function renderCommissionsRepPickerInline(){
     `<option disabled>──────────</option>`,
     ...reps.map(r => `<option value="${escapeHtml(r.code)}" ${commissionsCurrentRepFilter===r.code?'selected':''}>${escapeHtml(r.label)} (${escapeHtml(r.code)})</option>`)
   ];
-  return `<select onchange="HPE.commissions.setRepFilter(this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif">${opts.join('')}</select>`;
+  return `<select onchange="HPE.commissions.setRepFilter(this.value)" style="padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">${opts.join('')}</select>`;
 }
 
 function renderCommissionsMonthlyChart(agg, aggPrev){
@@ -25758,7 +25804,7 @@ function openDealDetail(dealKey, kind){
           </div>
           <div id="cm-notes-list" style="background:white;border:1px solid var(--gray-200);border-radius:6px;padding:8px;min-height:60px"></div>
           <div style="display:flex;gap:8px;margin-top:10px">
-            <textarea id="cm-note-input" rows="2" placeholder="Add a note about this deal…" style="flex:1;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical"></textarea>
+            <textarea id="cm-note-input" rows="2" placeholder="Add a note about this deal…" style="flex:1;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;resize:vertical"></textarea>
             <button class="btn-orange" style="padding:8px 14px;font-size:12px;align-self:flex-start" onclick="S.addDealNote('${S.escapeHtml(deal.persistKey)}','${kind}','${S.escapeHtml(dealKey)}')">+ Add note</button>
           </div>
           <div id="cm-related-placeholder" style="margin-top:14px;padding:10px 12px;background:white;border:1px dashed var(--gray-200);border-radius:6px;font-size:11px;color:var(--gray-500);font-style:italic">
@@ -25855,7 +25901,7 @@ function renderCostBreakdownSection(deal, eff, kind){
     </table>
     <div style="margin-top:10px">
       <label style="font-size:11px;color:var(--gray-600);font-weight:500;display:block;margin-bottom:4px">Override notes (optional)</label>
-      <textarea id="cb-notes" rows="2" placeholder="e.g. CC fee waived for this customer, handling charge reversed" style="width:100%;padding:7px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical">${escapeHtml(ovNotes)}</textarea>
+      <textarea id="cb-notes" rows="2" placeholder="e.g. CC fee waived for this customer, handling charge reversed" style="width:100%;padding:7px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;resize:vertical">${escapeHtml(ovNotes)}</textarea>
     </div>
     ${ovMeta}
     <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px">
@@ -25986,7 +26032,7 @@ function startEditNote(noteId, persistKey, kind, dealKey){
   const bodyDiv = row.querySelector('div[style*="white-space:pre-wrap"]');
   if(!bodyDiv) return;
   bodyDiv.outerHTML = `<div>
-    <textarea id="cm-edit-${escapeHtml(noteId)}" rows="3" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical">${escapeHtml(note.body)}</textarea>
+    <textarea id="cm-edit-${escapeHtml(noteId)}" rows="3" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;resize:vertical">${escapeHtml(note.body)}</textarea>
     <div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end">
       <button onclick="S.cancelEditNote('${S.escapeHtml(persistKey)}','${kind}','${S.escapeHtml(dealKey)}')" style="padding:5px 10px;border:1px solid var(--gray-200);background:white;border-radius:5px;font-size:11px;cursor:pointer">Cancel</button>
       <button class="btn-orange" style="padding:5px 10px;font-size:11px" onclick="S.saveEditNote('${S.escapeHtml(noteId)}','${S.escapeHtml(persistKey)}','${kind}','${S.escapeHtml(dealKey)}')">Save</button>
@@ -26038,7 +26084,7 @@ function openFlagDealDialog(kind, dealKey){
           <strong>${escapeHtml(deal.customer)}</strong> · ${escapeHtml(deal.invoice)} · ${CM_FMT$(deal.totalAmount)}
         </div>
         <label style="font-size:11px;color:var(--gray-600);font-weight:500;display:block;margin-bottom:4px">Reason (what should an admin look at?)</label>
-        <textarea id="cm-flag-reason" rows="4" placeholder="e.g. margin looks too low — wondering if a setup cost was double-billed" style="width:100%;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;resize:vertical"></textarea>
+        <textarea id="cm-flag-reason" rows="4" placeholder="e.g. margin looks too low — wondering if a setup cost was double-billed" style="width:100%;padding:8px 10px;border:1px solid var(--gray-200);border-radius:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;resize:vertical"></textarea>
         <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px">
           <button onclick="S.closeFlagDialog()" style="padding:7px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer;font-size:12px">Cancel</button>
           <button class="btn-orange" style="padding:7px 14px;font-size:12px" onclick="S.submitFlagDeal('${kind}','${S.escapeHtml(dealKey)}')">⚑ Flag for review</button>
@@ -29320,7 +29366,7 @@ function openModelTagPicker(brand, model){
         ${optionPills || '<span style="color:var(--gray-400);font-size:12px">— no tags yet, create one below —</span>'}
       </div>
       <div style="display:flex;gap:6px;align-items:center;border-top:1px solid var(--gray-200);padding-top:10px">
-        <input type="text" id="md-tag-new-input-${safeBrand}-${safeModel}" placeholder="Create new tag..." style="flex:1;padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'DM Sans',sans-serif" onkeydown="if(event.key==='Enter'){event.preventDefault();S.createModelTagFromPicker('${safeBrand}','${safeModel}')}">
+        <input type="text" id="md-tag-new-input-${safeBrand}-${safeModel}" placeholder="Create new tag..." style="flex:1;padding:6px 10px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif" onkeydown="if(event.key==='Enter'){event.preventDefault();S.createModelTagFromPicker('${safeBrand}','${safeModel}')}">
         <button onclick="S.createModelTagFromPicker('${safeBrand}','${safeModel}')" style="padding:6px 12px;background:var(--orange);color:white;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">+ Create</button>
         <button onclick="S.closeModelTagPicker('${safeBrand}','${safeModel}')" style="padding:6px 12px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer">Done</button>
       </div>
@@ -29826,7 +29872,7 @@ function renderLineItems(){
           <div class="qline-row1">
             <div class="qline-name-wrap">
               <div class="quote-line-name" style="color:var(--green)">
-                <input type="text" value="${li.desc.replace(/"/g,'&quot;')}" oninput="S.updateLine(${i},'desc',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:6px 8px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--green);font-weight:600;border-radius:4px" placeholder="e.g., 2018 Walker MT23 trade-in">
+                <input type="text" value="${li.desc.replace(/"/g,'&quot;')}" oninput="S.updateLine(${i},'desc',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:6px 8px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-align:left;color:var(--green);font-weight:600;border-radius:4px" placeholder="e.g., 2018 Walker MT23 trade-in">
                 <small>Trade-in credit (deducted from total)</small>
               </div>
             </div>
@@ -29857,7 +29903,7 @@ function renderLineItems(){
           <div class="qline-row1">
             <div class="qline-name-wrap">
               <div class="quote-line-name" style="color:var(--blue)">
-                <input type="text" value="${labelEsc}" oninput="S.updateLine(${i},'label',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:6px 8px;font-size:12px;font-family:'DM Sans',sans-serif;text-align:left;color:var(--blue);font-weight:600;border-radius:4px" placeholder="e.g., Delivery, Setup, Prep, Services">
+                <input type="text" value="${labelEsc}" oninput="S.updateLine(${i},'label',this.value);renderLineItems.skip=true" style="width:100%;border:1px solid var(--gray-200);padding:6px 8px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;text-align:left;color:var(--blue);font-weight:600;border-radius:4px" placeholder="e.g., Delivery, Setup, Prep, Services">
                 <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px">
                   <small style="display:flex;align-items:center;gap:6px;color:${isAbsorbed?'var(--gray-400)':'var(--gray-600)'}">
                     <input type="checkbox" ${(li.show_on_pdf && !isAbsorbed)?'checked':''} ${isAbsorbed?'disabled':''} onchange="S.updateLine(${i},'show_on_pdf',this.checked);renderLineItems.skip=true" style="width:13px;height:13px;accent-color:var(--blue);cursor:${isAbsorbed?'not-allowed':'pointer'}">
@@ -29867,7 +29913,7 @@ function renderLineItems(){
                   </small>
                   <small style="display:flex;align-items:center;gap:6px;color:var(--gray-600)">
                     <span>Nest under:</span>
-                    <select onchange="S.updateLine(${i},'absorbedBy',this.value)" style="padding:3px 6px;border:1px solid var(--gray-200);border-radius:4px;font-size:11px;font-family:'DM Sans',sans-serif;background:white">
+                    <select onchange="S.updateLine(${i},'absorbedBy',this.value)" style="padding:3px 6px;border:1px solid var(--gray-200);border-radius:4px;font-size:11px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:white">
                       <option value=""${li.absorbedBy == null ? ' selected' : ''}>None (standalone line)</option>
                       ${nestOptions || '<option value="" disabled>no item lines yet</option>'}
                     </select>
@@ -32686,7 +32732,7 @@ function renderSalespeople(){
           : 'width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:\'DM Sans\',sans-serif;font-size:13px';
         const placeholder = emailMissing ? 'required for Mark-Sold default' : 'optional';
         return `<tr>
-          <td><input type="text" value="${escapeAttr(s.name)}" oninput="S.updateSalesperson(${realIdx},'name',this.value)" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'DM Sans',sans-serif;font-size:13px"></td>
+          <td><input type="text" value="${escapeAttr(s.name)}" oninput="S.updateSalesperson(${realIdx},'name',this.value)" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px"></td>
           <td><input type="email" value="${escapeAttr(s.email||'')}" oninput="S.updateSalesperson(${realIdx},'email',this.value)" placeholder="${placeholder}" style="${emailStyle}"></td>
           <td><label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:12px"><input type="checkbox" ${s.active?'checked':''} onchange="S.toggleSalespersonActive(${realIdx})">${s.active?'<span style="color:var(--green);font-weight:600">Active</span>':'<span style="color:var(--gray-500)">Inactive</span>'}</label></td>
           <td style="text-align:right"><button onclick="S.removeSalesperson(${realIdx})" style="background:none;border:1px solid #fecaca;color:var(--red);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer">Remove</button></td>
@@ -33539,7 +33585,7 @@ function renderBrandCardBody(b){
         <div class="brand-grid three">
           <div class="brand-field">
             <label>Pricing Mode</label>
-            <select onchange="S.updateBrandField('${b.name}','pricing_mode',this.value)" style="padding:6px 10px;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:12.5px;width:100%">
+            <select onchange="S.updateBrandField('${b.name}','pricing_mode',this.value)" style="padding:6px 10px;border-radius:5px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12.5px;width:100%">
               <option value="flat_discount" ${(b.pricing_mode||'flat_discount')==='flat_discount'?'selected':''}>Flat brand discount</option>
               <option value="file_cost_column" ${b.pricing_mode==='file_cost_column'?'selected':''}>Read cost from file column</option>
               <option value="file_tier_column" ${b.pricing_mode==='file_tier_column'?'selected':''}>Read cost from tier column</option>
@@ -37094,7 +37140,7 @@ function openAdjustmentEditor(id){
           <div><label style="font-size:11px;color:var(--gray-600)">Invoice # (optional)</label>
             <input id="adj-invoice" type="text" value="${existing?escapeHtml(existing.invoice||''):''}" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:6px"></div>
           <div style="grid-column:span 2"><label style="font-size:11px;color:var(--gray-600)">Note</label>
-            <textarea id="adj-note" rows="2" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:6px;font-family:'DM Sans',sans-serif">${existing?escapeHtml(existing.note||''):''}</textarea></div>
+            <textarea id="adj-note" rows="2" style="width:100%;padding:6px 8px;border:1px solid var(--gray-200);border-radius:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">${existing?escapeHtml(existing.note||''):''}</textarea></div>
         </div>
         <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:20px">
           <button onclick="S.closeAdjustmentEditor()" style="padding:8px 14px;border:1px solid var(--gray-200);background:white;border-radius:6px;cursor:pointer">Cancel</button>

@@ -246,7 +246,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .page{display:none;padding:32px 28px;max-width:1400px;}
 .page.active{display:block;}
 .page-header{margin-bottom:24px;}
-.page-title{font-size:24px;font-weight:600;color:var(--text);letter-spacing:-0.01em;}
+.page-title{font-size:23px;font-weight:700;color:var(--text);letter-spacing:0.01em;text-transform:uppercase;}
 .page-sub{font-size:13px;color:var(--text-3);margin-top:4px;}
 
 /* Stage 1 placeholder (shown for every page until content is absorbed) */
@@ -301,8 +301,11 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 /* Buttons used by Home pages */
 .btn-orange{background:var(--orange);color:white;border:none;border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background 0.15s;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .btn-orange:hover{background:var(--orange-dark);}
-.btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--gray-200);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+.btn-secondary{background:white;color:var(--gray-700);border:1px solid var(--border-strong);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
 .btn-secondary:hover{background:var(--gray-50);}
+/* v-redesign — Kubota teal secondary CTA */
+.btn-teal{background:var(--teal);color:#fff;border:1px solid var(--teal);border-radius:7px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}
+.btn-teal:hover{background:var(--teal-dark);border-color:var(--teal-dark);}
 
 /* Page header layout (used by hub pages with right-aligned controls) */
 .page .page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
@@ -324,9 +327,9 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .hqs-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;padding:0 6px;background:rgba(0,0,0,0.08);border-radius:9px;font-size:10px;font-weight:700;}
 .hqs-btn.active .hqs-count{background:rgba(255,255,255,0.25);}
 .hub-quotes-chips{display:inline-flex;flex-wrap:wrap;gap:6px;}
-.hqc-chip{background:var(--card);color:var(--gray-600);border:1px solid var(--gray-200);border-radius:14px;padding:5px 11px;font-size:11.5px;font-weight:500;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
+.hqc-chip{background:var(--card);color:var(--gray-600);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:11.5px;font-weight:500;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 .hqc-chip:hover{border-color:var(--gray-300);color:var(--gray-800);}
-.hqc-chip.active{background:var(--gray-900);color:white;border-color:var(--gray-900);}
+.hqc-chip.active{background:var(--orange);color:white;border-color:var(--orange);}
 .hub-quotes-search{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:13px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--card);color:var(--gray-900);}
 .hub-quotes-search:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,93,4,0.08);}
 .hub-quotes-list{display:flex;flex-direction:column;gap:8px;}
@@ -341,7 +344,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 @media (prefers-reduced-motion: reduce){.skel-line{animation:none;}}
 .hqc-row1{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .hqc-row2{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--gray-600);}
-.hqc-source{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:0.04em;}
+.hqc-source{font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:0.04em;}
 .hqc-source.src-used{background:#dcfce7;color:#166534;}
 .hqc-source.src-sl{background:#ffedd5;color:#9a3412;}
 .hqc-customer{font-size:14px;font-weight:600;color:var(--gray-900);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -351,7 +354,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .hqc-cust-block{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;}
 .hqc-cust-block .hqc-customer{flex:none;}
 .hqc-reference{font-size:11px;font-weight:500;color:var(--gray-500);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.hqc-status{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;text-transform:capitalize;background:var(--gray-100);color:var(--gray-700);}
+.hqc-status{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;text-transform:capitalize;background:var(--gray-100);color:var(--gray-700);}
 .hqc-status.status-active,.hqc-status.status-draft,.hqc-status.status-sent{background:#dbeafe;color:#1e40af;}
 .hqc-status.status-won,.hqc-status.status-accepted{background:#dcfce7;color:#166534;}
 .hqc-status.status-lost,.hqc-status.status-declined{background:#fee2e2;color:#991b1b;}

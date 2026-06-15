@@ -1,9 +1,20 @@
-# PLAYGROUND.md — Kubota-style redesign handoff
+# PLAYGROUND.md — Kubota-style redesign handoff (SHIPPED)
 
-> **Cross-PC reference.** Claude Code memory/auth/history do NOT sync between
-> machines — only the git repo does. This file is the source of truth for the
-> redesign so any session (home or work PC) can continue. Last updated
-> **2026-06-13**. Read this first, then work **only in `playground-9k3xq7m2.html`**.
+> ## ✅ SHIPPED — the redesign is LIVE (v4.0.0 → v4.0.1), 2026-06-15
+> The Kubota redesign was promoted into **`index.html`** (the live app); the
+> read-only guard + PLAYGROUND badge were removed. **Work on `index.html`
+> directly now** — it is the source of truth again. Everything below about
+> "work only in the playground" is **HISTORICAL** (kept as the build log).
+> The sandbox `playground-9k3xq7m2.html` is now BEHIND live (still v3.15.3 +
+> read-only guard) and is **safe to delete**, or re-sync from `index.html`
+> before any *new* redesign experiment. Latest live fix: **v4.0.1** — "Traded By"
+> entries no longer silently disappear when a staff name changes.
+> **For current workflow, rules, and open follow-ups, see [`CLAUDE.md`](CLAUDE.md)**
+> (the always-loaded project memory) — start there.
+
+> **Cross-PC reference (historical build log below).** Claude Code memory/auth/
+> history do NOT sync between machines — only the git repo does. Last updated
+> **2026-06-15**.
 
 ---
 

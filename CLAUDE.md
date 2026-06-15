@@ -15,6 +15,26 @@
 > v3.15.3, has the read-only guard) — **re-sync it from `index.html` before any
 > future redesign experiments, or delete it.** See **[`PLAYGROUND.md`](PLAYGROUND.md)**.
 
+> 🔧 **v4.0.1 (2026-06-15) — "Traded By" data-loss fix + OPEN follow-ups (likely
+> the work-PC task).** Incident: a batch of John's "Traded By" entries on Used
+> equipment went missing. Root cause: "Traded By" is stored as the salesperson's
+> **display-name string** (`tradedBy[stock] = "John Williams"`, in `app-state.json`
+> + localStorage) and matched **exactly** against the live staff list (`STAFF`,
+> rebuilt from `salespeople.json`). When the stored name stopped matching a current
+> staff name, the row's `<select>` fell back to blank — which both hid the value and
+> could **delete** it on a blank save (`saveTradedBy` `else delete`). Fix shipped:
+> `tradedByOptionsHtml(stock, blankLabel)` (~line 10419, used by the Full List cell
+> and the detail view) renders an unmatched stored name as its **own selected
+> option** so it's never silent-blanked, with case/space-tolerant matching. John is
+> recovering any *truly* deleted entries manually (localStorage `tradedBy` / Drive
+> version history / Drive Trash, 30-day). Note: entries that were only *hidden*
+> should reappear on their own under v4.0.1.
+> **OPEN (optional, discuss scope first):** (1) re-key Traded By by **email** instead
+> of name, with a one-time name→email migration — bulletproof against renames but
+> changes the `app-state.json` shape, so stage carefully; (2) make the **"My trades"
+> dashboard/filters** name-tolerant (they still compare `tradedBy[stock] === myStaffName`
+> exactly at ~lines 11967 / 16383 / 16405 / 16427 / 16485) so counts stay right.
+
 ## What this is
 Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 - **One file:** `index.html` (~36,700 lines / ~2.5 MB). All HTML, CSS, JS inline.

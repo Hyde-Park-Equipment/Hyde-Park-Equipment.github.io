@@ -71,23 +71,31 @@
 - **Global:** custom scrollbars + orange `::selection` (right after `html,body`).
 
 ## ✅ Done
-- Tokens, Helvetica Neue, teal accent
+- Tokens, Helvetica Neue, teal accent; v3.15.3 (dup-folder fix ported from live)
 - White top bar; top tabs removed; **two-tier orange workspace rail (labeled) +
   white page panel**; collapse toggle + hover-flyout
 - Light tables; rounded status pills; orange filter chips; uppercase page titles;
-  teal secondary CTA
-- **Insights rails:** My Quotes + Used Full List (filter-aware)
-- Pill filter inputs; custom scrollbars; selection tint; Kubota light login
+  teal secondary CTA; pill filter inputs; pilled Used loc-toggles
+- **Insights rails (filter-aware):** My Quotes (`HPE.quotes._renderInsights`),
+  Used Full List (`renderList` → `.list-body-layout`), Shortline inventory
+  (inside `#inventory-list` so it hides in Stihl-Parts mode)
+- **Quote builders — sticky Kubota grand-total bar** pinned to bottom of each
+  modal: Shortline (`#quote-overlay-sl .totals-grand-card`) + Used
+  (`#quote-overlay .used-grand-bar`, body now scrolls internally). Pricing IDs
+  (`t-total`, `q-m-tat`, etc.) untouched.
+- Custom scrollbars; orange `::selection`; Kubota light login; Home hero
+  orange top-accent; **color sweep** (all old-orange hardcodes → Kubota orange)
 
-## ⏭ TODO (next)
-- Insights rail on **Shortline inventory** and the **Home cockpit**
-- **Quote-builder Summary** restyle. ⚠️ In this app these are *inline* summary
-  blocks, NOT side panels: Used `.margin-box` (~line 4296, fields `#q-m-cost`
-  `#q-m-gp` `#q-m-pct` `#q-m-tat`); Shortline `#section-shortline .calc-summary`
-  (~line 1805, dark grid). Making them sticky side-panels = restructuring the
-  quote modals — do carefully / consider a mockup first.
-- Pill the Used Mallard/Scotland `.loc-toggle` inline buttons (cosmetic)
-- General sweep: any remaining hardcoded grays → tokens
+## ⏭ TODO (optional — core redesign is feature-complete)
+- **Full-screen two-column quote builders** — IF John decides the sticky bottom
+  total bar isn't enough and wants Kubota's true right-side Summary panel. Would
+  mean widening the 780px modals to near-full-screen and rebuilding as two
+  columns (line items left, summary right). Bigger change — mock first, John
+  tests live each step.
+- Deeper **Home cockpit** refinement (kept light so far per the color-discipline
+  note: Home semantic readout tiles ≠ Used categorical `.dash-card` — don't merge).
+- Remaining hardcoded **grays → tokens** (cosmetic consistency).
+- **Ship to live** when John approves (see "Shipping to live" above).
 
 ## 🚀 Shipping to live (later, only when John approves)
 1. Remove the read-only guard `<script>` (top of `<head>`).

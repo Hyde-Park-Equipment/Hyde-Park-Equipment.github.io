@@ -31,9 +31,24 @@
 > should reappear on their own under v4.0.1.
 > **OPEN (optional, discuss scope first):** (1) re-key Traded By by **email** instead
 > of name, with a one-time name→email migration — bulletproof against renames but
-> changes the `app-state.json` shape, so stage carefully; (2) make the **"My trades"
-> dashboard/filters** name-tolerant (they still compare `tradedBy[stock] === myStaffName`
-> exactly at ~lines 11967 / 16383 / 16405 / 16427 / 16485) so counts stay right.
+> changes the `app-state.json` shape, so stage carefully.
+
+> 🔧 **v4.0.2 (2026-06-15) — Traded By: "I'm not in the dropdown" + My-Trades empty.**
+> Same root cause for BOTH: `STAFF` is replaced wholesale by `salespeople.json`
+> (`loadSharedSalespeople`, ~line 11266), and if that shared file omits a user / marks
+> them `active:false`, the `STAFF.find(s=>s.email===email).name` lookup returns `''`
+> — so the user vanished from the Traded By `<select>` AND every "my trades"
+> count/filter collapsed to 0 (John hit this himself on launch day). Fix: two helpers
+> in the `window.U` scope (~line 10470) — `currentUserStaffName()` (email→STAFF,
+> **falls back to the OAuth display name** so the current user is always representable)
+> and `sameStaffName(a,b)` (case/space-tolerant compare). `tradedByOptionsHtml` now
+> always injects the logged-in user as a self-option; all 5 my-trades derivations
+> (`myTradesMissingInfoCount`, `renderMyTrades`, `getMyTradesMissing`,
+> `getMyOpenQuotes`, `renderMyTradesMissing`) route through these. **This closes
+> open follow-up (2)** above (my-trades is now name-tolerant). Follow-up (1)
+> (email re-keying) still parked. **Underlying data question still worth answering:**
+> why is John missing from `salespeople.json` in the first place? — worth checking the
+> Shortline Salespeople page so the live list actually lists him.
 
 ## What this is
 Single-file internal sales platform for **Hyde Park Equipment (HPE)**.

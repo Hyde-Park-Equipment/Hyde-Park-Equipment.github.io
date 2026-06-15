@@ -100,12 +100,12 @@
   --gray-300:#d1d5db;--gray-400:#9ca3af;--gray-500:#6b7280;
   --gray-600:#4b5563;--gray-700:#374151;--gray-800:#1f2937;--gray-900:#111827;
   --orange:#eb421b; --orange-dark:#c9381a; --orange-light:#fdebe6;
-  --teal:#00aaad; --teal-dark:#00898c; --teal-light:#e0f5f5;
+  --teal:#eb421b; --teal-dark:#c9381a; --teal-light:#fdebe6;
   --green:#16a34a; --green-light:#dcfce7;
-  --blue:#2563eb;  --blue-bg:#eff6ff; --blue-light:#dbeafe;
+  --blue:#4b5563;  --blue-bg:#f3f4f6; --blue-light:#e5e7eb;
   --amber:#d97706; --amber-light:#fef3c7;
   --red:#dc2626;   --red-light:#fee2e2;
-  --purple:#7c3aed;--purple-bg:#f5f3ff; --purple-light:#f3e8ff;
+  --purple:#eb421b;--purple-bg:#fdebe6; --purple-light:#fdebe6;
   --green-bg:#ecfdf5;
   --topbar-h:54px;
   --sidenav-w:240px;
@@ -373,7 +373,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .hqc-cust-block .hqc-customer{flex:none;}
 .hqc-reference{font-size:11px;font-weight:500;color:var(--gray-500);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .hqc-status{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;text-transform:capitalize;background:var(--gray-100);color:var(--gray-700);}
-.hqc-status.status-active,.hqc-status.status-draft,.hqc-status.status-sent{background:#dbeafe;color:#1e40af;}
+.hqc-status.status-active,.hqc-status.status-draft,.hqc-status.status-sent{background:#e5e7eb;color:#374151;}
 .hqc-status.status-won,.hqc-status.status-accepted{background:#dcfce7;color:#166534;}
 .hqc-status.status-lost,.hqc-status.status-declined{background:#fee2e2;color:#991b1b;}
 .hqc-status.status-expired{background:#fef3c7;color:#92400e;}
@@ -580,7 +580,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .alerts{display:flex;flex-direction:column;gap:6px;}
 .alert{display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:7px 11px;border-radius:7px;font-weight:500;}
 .alert-warn{background:var(--amber-light);color:#92400e;border:1px solid #fde68a;}
-.alert-info{background:var(--blue-light);color:#1e40af;border:1px solid #bfdbfe;}
+.alert-info{background:var(--blue-light);color:#374151;border:1px solid #e5e7eb;}
 .alert-count{font-family:'DM Mono',monospace;font-weight:600;}
 .module-foot{display:flex;justify-content:space-between;font-size:10px;color:var(--gray-500);font-family:'DM Mono',monospace;border-top:1px solid var(--gray-100);padding-top:8px;}
 .fresh{color:var(--green);}
@@ -719,7 +719,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
    conflict-prone classes scoped under #section-used or .modal-overlay.
    ============================================================ */
 /* Used-specific CSS (absorbed v1.2.0) — Used-only tokens added back */
-:root{--scotland-bg:#fff3e6;--scotland-text:#9c3d02;--scotland-border:#f4a86a;--mallard-bg:#dbeafe;--mallard-text:#1e3a8a;--mallard-border:#93c5fd;--sidebar-w:200px;}
+:root{--scotland-bg:#fff3e6;--scotland-text:#9c3d02;--scotland-border:#f4a86a;--mallard-bg:#e5e7eb;--mallard-text:#374151;--mallard-border:#d1d5db;--sidebar-w:200px;}
 @media(max-width:700px){.fin-grid{grid-template-columns:1fr!important;}}
 @media (max-width:700px){.dashboard-divider{border-left:none!important;padding-left:0!important;margin-top:12px;}}
 #section-used .page-header{margin-bottom:16px;display:flex;align-items:baseline;gap:10px;}
@@ -781,7 +781,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .dash-card{background:white;border:1px solid var(--gray-200);border-top:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;transition:box-shadow 0.15s;}
 .dash-card:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong);}
 .dash-card.orange{border-top-color:var(--orange);}
-.dash-card.blue{border-top-color:#3b82f6;}
+.dash-card.blue{border-top-color:#6b7280;}
 .dash-card.red{border-top-color:var(--red);background:#fff8f8;}
 .dash-card.amber{border-top-color:var(--amber);}
 .dash-card.green{border-top-color:var(--green);}
@@ -791,7 +791,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .dash-card.red .dash-card-label{color:#991b1b;}
 .dash-card-count{font-size:30px;font-weight:300;font-family:'DM Mono',monospace;color:var(--gray-900);}
 .dash-card.orange .dash-card-count{color:var(--orange);}
-.dash-card.blue .dash-card-count{color:#1d4ed8;}
+.dash-card.blue .dash-card-count{color:#4b5563;}
 .dash-card.red .dash-card-count{color:var(--red);}
 .dash-card.amber .dash-card-count{color:var(--amber);}
 .dash-card.green .dash-card-count{color:var(--green);}
@@ -801,7 +801,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .sold-item{background:white;border:1px solid #e9d5ff;border-radius:var(--radius);padding:8px 12px;margin-bottom:6px;display:flex;align-items:center;gap:10px;font-size:12px;}
 .sold-item-name{font-weight:500;color:var(--gray-900);flex:1;}
 .sold-item-date{font-size:11px;color:var(--gray-400);}
-.sold-badge{background:#f3e8ff;color:var(--purple);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.sold-badge{background:#fdebe6;color:var(--purple);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
 .fin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:0;}
 .finance-payments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:6px;}
 @media (min-width:640px){.finance-payments-grid{grid-template-columns:repeat(9,1fr);}}
@@ -833,7 +833,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .service-history-marker{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--gray-500);background:var(--gray-50);border:1px solid var(--gray-200);padding:4px 10px;border-radius:14px;cursor:pointer;font-weight:500;}
 .service-history-marker:hover{background:#fef3c7;color:#92400e;border-color:#fcd34d;}
 .fin-card{background:white;border:1px solid var(--gray-200);border-top:3px solid var(--orange);border-radius:var(--radius-lg);padding:14px 16px;display:flex;flex-direction:column;align-items:center;}
-.fin-card.blue-top{border-top-color:#3b82f6;}
+.fin-card.blue-top{border-top-color:#6b7280;}
 .fin-card.green-top{border-top-color:var(--green);}
 .fin-card-title{font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-500);margin-bottom:10px;text-align:center;width:100%;}
 .dial-legend{display:flex;gap:12px;font-size:10px;margin-top:6px;justify-content:center;}
@@ -869,7 +869,7 @@ tbody tr:hover{background:var(--orange-light);}
 tbody tr.sold-row{opacity:0.45;background:#faf5ff;}
 tbody tr.reserved-row{background:#fee2e2;}
 tbody tr.reserved-row:hover{background:#fecaca;}
-tbody tr.sold-row.reserved-row{background:#f3e8ff;}
+tbody tr.sold-row.reserved-row{background:#fdebe6;}
 .badge-reserved{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;font-weight:700;padding:3px 8px;border-radius:4px;font-size:11px;}
 tbody td{padding:8px 10px;color:var(--gray-700);white-space:nowrap;border-right:1px solid var(--gray-100);}
 tbody td:last-child{border-right:none;}
@@ -923,9 +923,9 @@ tbody td:last-child{padding-right:18px;}
 .photo-strip-wrap{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
 .photo-strip-actions{display:flex;gap:6px;flex-shrink:0;align-items:center;}
 .strip-action-btn{background:var(--gray-100);color:var(--gray-700);border:1px solid var(--gray-300);border-radius:6px;padding:8px 12px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;transition:background 0.15s,color 0.15s;}
-.strip-dl-btn:hover{background:#0891b2;color:white;border-color:#0891b2;}
+.strip-dl-btn:hover{background:#eb421b;color:white;border-color:#eb421b;}
 .strip-del-btn:hover{background:#dc2626;color:white;border-color:#dc2626;}
-.photo-dl-mode.photo-strip .strip-thumb.dl-selected{border-color:#0891b2!important;box-shadow:0 0 0 2px #a5f3fc;}
+.photo-dl-mode.photo-strip .strip-thumb.dl-selected{border-color:#eb421b!important;box-shadow:0 0 0 2px #a5f3fc;}
 .photo-del-mode .strip-thumb{cursor:pointer;}
 .photo-del-mode .strip-thumb.del-selected{border-color:#dc2626!important;box-shadow:0 0 0 2px #fecaca;}
 .photo-del-mode .photo-dl-check{background:#fff;border-color:var(--gray-300);}
@@ -968,9 +968,9 @@ tbody td:last-child{padding-right:18px;}
 .upload-btn:hover{background:var(--orange-dark);}
 .camera-btn{padding:10px;background:var(--black);color:white;border:1px solid var(--black-3);border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
 .camera-btn:hover{background:var(--black-3);}
-.sell-btn{padding:10px;background:white;color:var(--purple);border:1.5px solid #c4b5fd;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;grid-column:1/-1;}
+.sell-btn{padding:10px;background:white;color:var(--purple);border:1.5px solid #fdebe6;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;grid-column:1/-1;}
 .sell-btn:hover{background:var(--purple-light);}
-.unsell-btn{padding:10px;background:var(--purple-light);color:var(--purple);border:1.5px solid #c4b5fd;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;grid-column:1/-1;}
+.unsell-btn{padding:10px;background:var(--purple-light);color:var(--purple);border:1.5px solid #fdebe6;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;grid-column:1/-1;}
 .agdealer-btn{padding:9px 12px;background:#1a6b3c;color:white;border:none;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
 .agdealer-btn:hover{background:#155c33;}
 .posted-toggle{padding:9px 12px;background:white;color:#166534;border:1.5px solid #86efac;border-radius:var(--radius);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.15s;}
@@ -1063,8 +1063,8 @@ tbody td:last-child{padding-right:18px;}
 .sold-field input:focus, .sold-field select:focus{outline:none;border-color:var(--orange);}
 .sold-footer{display:flex;gap:10px;padding:14px 20px;border-top:1px solid var(--gray-200);}
 .sold-cancel-btn{flex:1;padding:10px;border-radius:6px;border:1px solid var(--gray-300);background:white;color:var(--gray-700);font-weight:600;cursor:pointer;font-size:14px;}
-.sold-confirm-btn{flex:1;padding:10px;border-radius:6px;border:none;background:#7c3aed;color:white;font-weight:700;cursor:pointer;font-size:14px;}
-.sold-confirm-btn:hover{background:#6d28d9;}
+.sold-confirm-btn{flex:1;padding:10px;border-radius:6px;border:none;background:#eb421b;color:white;font-weight:700;cursor:pointer;font-size:14px;}
+.sold-confirm-btn:hover{background:#c9381a;}
 .quote-modal{background:white;border-radius:var(--radius-lg);width:100%;max-width:640px;box-shadow:var(--shadow-md);margin:auto;}
 .quote-header{background:var(--black);padding:16px 20px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;display:flex;align-items:center;justify-content:space-between;}
 .quote-header-title{font-size:15px;font-weight:600;color:white;}
@@ -1248,8 +1248,8 @@ tbody td:last-child{padding-right:18px;}
   --red:#dc2626;--red-light:#fee2e2;
   --amber:#d97706;--amber-light:#fef3c7;
   --green:#16a34a;--green-light:#dcfce7;
-  --blue:#2563eb;--blue-light:#dbeafe;
-  --purple:#7c3aed;--purple-light:#f3e8ff;
+  --blue:#4b5563;--blue-light:#e5e7eb;
+  --purple:#eb421b;--purple-light:#fdebe6;
   --gray-50:#f9fafb;--gray-100:#f3f4f6;--gray-200:#e5e7eb;
   --gray-300:#d1d5db;--gray-400:#9ca3af;--gray-500:#6b7280;
   --gray-600:#4b5563;--gray-700:#374151;--gray-800:#1f2937;--gray-900:#111827;
@@ -1300,9 +1300,9 @@ tbody td:last-child{padding-right:18px;}
 .cm-kpi::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gray-200);}
 .cm-kpi.k-sales::before{background:#ea7c1f;}
 .cm-kpi.k-profit::before{background:#0b74d4;}
-.cm-kpi.k-margin::before{background:#7c3aed;}
+.cm-kpi.k-margin::before{background:#eb421b;}
 .cm-kpi.k-comm::before{background:#0a7a3f;}
-.cm-kpi.k-tx::before{background:#0891b2;}
+.cm-kpi.k-tx::before{background:#eb421b;}
 .cm-kpi.k-avg::before{background:#db2777;}
 .cm-kpi-label{font-size:9px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;}
 .cm-kpi-value{font-size:18px;font-weight:700;color:var(--gray-900);font-family:'DM Mono',monospace;margin-top:2px;line-height:1.1;}
@@ -1467,11 +1467,11 @@ tbody td:last-child{padding-right:18px;}
   font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;margin-bottom:4px;
 }
 /* Per-brand accent strip on the left */
-#section-shortline .brand-card-tile.walker{border-left:4px solid #1e40af;}
+#section-shortline .brand-card-tile.walker{border-left:4px solid #374151;}
 #section-shortline .brand-card-tile.wright{border-left:4px solid #b45309;}
 #section-shortline .brand-card-tile.toro{border-left:4px solid #dc2626;}
 #section-shortline .brand-card-tile.stihl{border-left:4px solid #f59e0b;}
-#section-shortline .brand-card-tile.hla{border-left:4px solid #7c3aed;}
+#section-shortline .brand-card-tile.hla{border-left:4px solid #eb421b;}
 #section-shortline .brand-card-tile-stats{display:flex;gap:14px;font-size:11px;color:var(--gray-500);}
 #section-shortline .brand-card-tile-stats strong{color:var(--gray-900);font-family:'DM Mono',monospace;}
 #section-shortline .brand-card-tile-notes{font-size:11px;color:var(--gray-600);margin-top:6px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -2118,7 +2118,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .brand-pill{display:inline-block;background:var(--gray-100);color:var(--gray-700);font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:0.04em;}
 #section-shortline .brand-badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;margin-left:6px;letter-spacing:0.02em;vertical-align:middle;}
 #section-shortline .brand-badge-popular{background:#fef3c7;color:#92400e;border:1px solid #fde68a;}
-#section-shortline .brand-badge-cat{background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;}
+#section-shortline .brand-badge-cat{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;}
 #section-shortline .brand-pill.walker{background:#fff8dc;color:#856404;}
 #section-shortline .brand-pill.wright{background:#fef3c7;color:#92400e;}
 #section-shortline .brand-pill.toro{background:#fee2e2;color:#991b1b;}
@@ -2462,7 +2462,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .pp-summary{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:11px;color:var(--gray-600);}
 #section-shortline .pp-summary .pill{background:var(--gray-100);padding:4px 9px;border-radius:11px;font-weight:600;color:var(--gray-800);}
 #section-shortline .pp-summary .pill.match{background:#dcfce7;color:#166534;}
-#section-shortline .pp-summary .pill.new{background:#dbeafe;color:#1e40af;}
+#section-shortline .pp-summary .pill.new{background:#e5e7eb;color:#374151;}
 #section-shortline .pp-summary .pill.warn{background:#fef3c7;color:#92400e;}
 #section-shortline .pp-table-wrap{border:1px solid var(--gray-200);border-radius:8px;overflow:auto;max-height:50vh;}
 #section-shortline .pp-table{width:100%;border-collapse:collapse;font-size:12px;}
@@ -2481,7 +2481,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .pp-table input.num{font-family:'DM Mono',monospace;text-align:right;}
 #section-shortline .pp-match{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:0.04em;display:inline-block;}
 #section-shortline .pp-match.exists{background:#dcfce7;color:#166534;}
-#section-shortline .pp-match.new{background:#dbeafe;color:#1e40af;}
+#section-shortline .pp-match.new{background:#e5e7eb;color:#374151;}
 #section-shortline .pp-match.ambiguous{background:#fef3c7;color:#92400e;}
 #section-shortline .pp-source{font-size:10px;color:var(--gray-500);font-style:italic;}
 /* v2.0.7.6 — Column mapping panel above the review table */
@@ -2860,7 +2860,7 @@ body.admin-mode .admin-only-block { display: block; }
    app-state, SKU catalog, or inventory is reading from / writing to Drive.
    Idle = hidden. */
 .sync-status.show{display:inline-flex !important;}
-.sync-status.s-syncing{background:rgba(59,130,246,0.15);color:#93c5fd;}
+.sync-status.s-syncing{background:rgba(59,130,246,0.15);color:#d1d5db;}
 .sync-status.s-saved{background:rgba(34,197,94,0.15);color:#86efac;}
 .sync-status.s-error{background:rgba(239,68,68,0.18);color:#fca5a5;}
 .sync-status .sync-spin{display:inline-block;width:9px;height:9px;border:1.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:syncSpin 0.7s linear infinite;}
@@ -2900,7 +2900,7 @@ body.admin-mode .admin-only-block { display: block; }
 .dxb-picker-sel:focus{outline:none;border-color:var(--orange);}
 .dxb-picker-clear{border:none;background:none;color:var(--orange-dark);font-size:13px;cursor:pointer;padding:2px 4px;line-height:1;border-radius:4px;}
 .dxb-picker-clear:hover{background:#fdd9bf;}
-.dxb-ra-orange{background:var(--orange);}.dxb-ra-green{background:#4ade80;}.dxb-ra-purple{background:#a78bfa;}.dxb-ra-blue{background:#60a5fa;}
+.dxb-ra-orange{background:var(--orange);}.dxb-ra-green{background:#4ade80;}.dxb-ra-purple{background:#a78bfa;}.dxb-ra-blue{background:#9ca3af;}
 @media(max-width:720px){.dxb-readouts{grid-template-columns:repeat(2,1fr)}}
 
 /* v3.13.17 — Top row: hero (welcome + 2x2 readouts) and Monthly Sales chart side-by-side */
@@ -2941,14 +2941,14 @@ body.admin-mode .admin-only-block { display: block; }
 .dxb-str-empty{color:var(--text-3);font-size:12px;position:relative;z-index:1;}
 
 .dxb-grow{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:16px 18px;margin-bottom:16px;}
-.dxb-grow h3{font-size:12px;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.06em;margin-bottom:13px;}
+.dxb-grow h3{font-size:12px;font-weight:700;color:#4b5563;text-transform:uppercase;letter-spacing:.06em;margin-bottom:13px;}
 .dxb-grow-grid{display:flex;flex-direction:column;gap:10px;}
 .dxb-grow-item{display:flex;align-items:center;gap:13px;padding:11px 13px;background:#f8fafc;border:1px solid #e8eef5;border-radius:11px;}
-.dxb-grow-ic{width:32px;height:32px;border-radius:9px;background:#eff6ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+.dxb-grow-ic{width:32px;height:32px;border-radius:9px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
 .dxb-grow-t{font-size:13px;font-weight:600;color:var(--gray-900);}
 .dxb-grow-s{font-size:11px;color:var(--text-2);margin-top:2px;}
 .dxb-grow-bar{height:5px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin-top:7px;}
-.dxb-grow-bar-fill{height:100%;background:linear-gradient(90deg,#60a5fa,#2563eb);border-radius:3px;}
+.dxb-grow-bar-fill{height:100%;background:linear-gradient(90deg,#9ca3af,#4b5563);border-radius:3px;}
 .dxb-grow-empty{font-size:12px;color:var(--gray-500);padding:4px 0;}
 
 .dxb-attn{background:var(--card);border:1px solid var(--gray-200);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:16px;}
@@ -2977,7 +2977,7 @@ body.admin-mode .admin-only-block { display: block; }
 .dxb-pipe-row{display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .12s;}
 .dxb-pipe-row:last-child{border-bottom:none;}.dxb-pipe-row:hover{background:var(--gray-50);}
 .dxb-pipe-stat{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.dxb-ps-sent{background:#60a5fa;}.dxb-ps-draft{background:var(--gray-300);}.dxb-ps-won{background:#16a34a;}.dxb-ps-hot{background:var(--orange);}
+.dxb-ps-sent{background:#9ca3af;}.dxb-ps-draft{background:var(--gray-300);}.dxb-ps-won{background:#16a34a;}.dxb-ps-hot{background:var(--orange);}
 .dxb-pipe-cust{font-size:13px;font-weight:600;color:var(--gray-900);}
 .dxb-pipe-meta{font-size:11px;color:var(--text-3);margin-top:1px;}
 .dxb-pipe-amt{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--gray-900);}
@@ -4741,7 +4741,7 @@ body.admin-mode .admin-only-block { display: block; }
         <span id="t-total">$0</span>
       </div>
     </div>
-    <div id="quote-editing-badge" style="display:none;background:var(--blue-light, #eff6ff);color:#1e40af;padding:8px 12px;border-radius:6px;font-size:12px;margin-top:10px;border:1px solid #bfdbfe"></div>
+    <div id="quote-editing-badge" style="display:none;background:var(--blue-light, #f3f4f6);color:#374151;padding:8px 12px;border-radius:6px;font-size:12px;margin-top:10px;border:1px solid #e5e7eb"></div>
     <div class="quote-actions">
       <button class="btn-secondary qa-quote-only" style="flex:1" onclick="S.closeQuoteBuilder()">Cancel</button>
       <button class="btn-secondary qa-quote-only" style="flex:1" onclick="S.saveQuote()">Save quote</button>
@@ -9750,7 +9750,7 @@ const HPE = (function(){
         results.forEach((c, i) => {
           if(c._live) _disLiveResults[c.customerNumber] = c;
           const tag = (!c._live && c.isCompany)
-            ? '<span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.05em;background:#dbeafe;color:#1e40af;padding:1px 5px;border-radius:3px;margin-right:6px;vertical-align:middle">CO</span>'
+            ? '<span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.05em;background:#e5e7eb;color:#374151;padding:1px 5px;border-radius:3px;margin-right:6px;vertical-align:middle">CO</span>'
             : '';
           const inactive = (c._live && !c.active)
             ? ' <span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.05em;background:var(--gray-100);color:var(--gray-500);padding:1px 5px;border-radius:3px;vertical-align:middle">INACTIVE</span>'
@@ -10302,7 +10302,7 @@ HPE.disLookup = (function(){
         (c.city || '') + (c.province ? ', ' + c.province : '')
       ].filter(x => x && x.trim()).join(' · ');
       const tag = (!c._live && c.isCompany)
-        ? '<span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.05em;background:#dbeafe;color:#1e40af;padding:1px 5px;border-radius:3px;margin-right:6px;vertical-align:middle">CO</span>'
+        ? '<span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.05em;background:#e5e7eb;color:#374151;padding:1px 5px;border-radius:3px;margin-right:6px;vertical-align:middle">CO</span>'
         : '';
       const inactive = (c._live && !c.active)
         ? '<span style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.05em;background:var(--gray-100);color:var(--gray-500);padding:1px 5px;border-radius:3px;margin-left:6px;vertical-align:middle">INACTIVE</span>'
@@ -12253,7 +12253,7 @@ function barChartHTML(cost,floor,owned,maxVal){
   const pct=v=>maxVal>0?Math.min(100,Math.round(Math.max(0,v)/maxVal*100)):0;
   return`<div class="bar-chart">
     <div class="bar-row"><div class="bar-label">Total Cost <strong>${fmtM(cost)}</strong></div><div class="bar-track"><div class="bar-fill" style="width:${pct(cost)}%;background:#eb421b"></div></div></div>
-    <div class="bar-row"><div class="bar-label">Floor Planned <strong>${fmtM(floor)}</strong></div><div class="bar-track"><div class="bar-fill" style="width:${pct(floor)}%;background:#3b82f6"></div></div></div>
+    <div class="bar-row"><div class="bar-label">Floor Planned <strong>${fmtM(floor)}</strong></div><div class="bar-track"><div class="bar-fill" style="width:${pct(floor)}%;background:#6b7280"></div></div></div>
     <div class="bar-row"><div class="bar-label">Owned Equity <strong>${fmtM(owned)}</strong></div><div class="bar-track"><div class="bar-fill" style="width:${pct(Math.max(0,owned))}%;background:#16a34a"></div></div></div>
   </div>`;
 }
@@ -12505,15 +12505,15 @@ function renderDashboard(c){
         <div style="font-size:10px;color:var(--gray-400);margin-top:4px">Floor plan: ${fmtM(fAll.totalFloor)}</div>
       </div>
       <div class="fin-card blue-top" style="cursor:pointer" onclick="U.navigate('finlist','S','floorplan','breakdown')">
-        <div class="fin-card-title">Scotland — Cost Breakdown ↗ <span style="font-size:9px;color:#3b82f6">↗ view units</span></div>
+        <div class="fin-card-title">Scotland — Cost Breakdown ↗ <span style="font-size:9px;color:#6b7280">↗ view units</span></div>
         ${barChartHTML(fS.totalCost,fS.totalFloor,fS.owned,maxBar)}
       </div>
       <div class="fin-card blue-top" style="cursor:pointer" onclick="U.navigate('finlist','M','floorplan','breakdown')">
-        <div class="fin-card-title">Mallard — Cost Breakdown ↗ <span style="font-size:9px;color:#3b82f6">↗ view units</span></div>
+        <div class="fin-card-title">Mallard — Cost Breakdown ↗ <span style="font-size:9px;color:#6b7280">↗ view units</span></div>
         ${barChartHTML(fM.totalCost,fM.totalFloor,fM.owned,maxBar)}
       </div>
       <div class="fin-card blue-top" style="cursor:pointer" onclick="U.navigate('finlist','all','floorplan','breakdown')">
-        <div class="fin-card-title">Total — Cost Breakdown ↗ <span style="font-size:9px;color:#3b82f6">↗ view units</span></div>
+        <div class="fin-card-title">Total — Cost Breakdown ↗ <span style="font-size:9px;color:#6b7280">↗ view units</span></div>
         ${barChartHTML(fAll.totalCost,fAll.totalFloor,fAll.owned,maxBar)}
       </div>
     </div>
@@ -12954,7 +12954,7 @@ async function renderDetail(c){
       const postBtn='<button class="agdealer-btn" style="min-width:0;width:100%" onclick="U.openAGDealer(window._currentDetailStock)">'+
         '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Post on AGDealer</button>';
       const listingBtn=hasListingUrl?
-        '<button class="upload-btn" style="min-width:0;width:100%;padding:9px 12px;background:#7c3aed" onclick="U.openListingUrl(window._currentDetailStock)">'+
+        '<button class="upload-btn" style="min-width:0;width:100%;padding:9px 12px;background:#eb421b" onclick="U.openListingUrl(window._currentDetailStock)">'+
           '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> View HPE Listing</button>':'';
       const postedBtn='<button class="posted-toggle '+(isPosted?'is-posted':'')+'" style="min-width:0;width:100%" onclick="U.togglePosted(window._currentDetailStock)">'+
         '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'+
@@ -13122,11 +13122,11 @@ function renderFinList(c){
         <div class="list-count">${base.length} units</div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
-        <div style="background:#dbeafe;border:1px solid #93c5fd;border-radius:var(--radius-lg);padding:12px 14px">
-          <div style="font-size:10px;font-weight:700;color:#1e3a8a;text-transform:uppercase;letter-spacing:0.06em">Floor Planned</div>
-          <div style="font-size:18px;font-weight:600;color:#1d4ed8;font-family:'DM Mono',monospace">${floored.length} units</div>
-          <div style="font-size:11px;color:#1e3a8a;margin-top:2px">Floor plan: ${fmtM(totalFloor)}</div>
-          <div style="font-size:11px;color:#1e3a8a">Total cost: ${fmtM(totalCost)}</div>
+        <div style="background:#e5e7eb;border:1px solid #d1d5db;border-radius:var(--radius-lg);padding:12px 14px">
+          <div style="font-size:10px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:0.06em">Floor Planned</div>
+          <div style="font-size:18px;font-weight:600;color:#4b5563;font-family:'DM Mono',monospace">${floored.length} units</div>
+          <div style="font-size:11px;color:#374151;margin-top:2px">Floor plan: ${fmtM(totalFloor)}</div>
+          <div style="font-size:11px;color:#374151">Total cost: ${fmtM(totalCost)}</div>
         </div>
         <div style="background:#dcfce7;border:1px solid #86efac;border-radius:var(--radius-lg);padding:12px 14px">
           <div style="font-size:10px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:0.06em">Owned Outright</div>
@@ -13134,7 +13134,7 @@ function renderFinList(c){
           <div style="font-size:11px;color:#166534;margin-top:2px">Total cost: ${fmtM(ownedCost)}</div>
         </div>
       </div>
-      <div style="font-size:11px;font-weight:700;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Units with Floor Plan</div>
+      <div style="font-size:11px;font-weight:700;color:#4b5563;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Units with Floor Plan</div>
       ${buildFinTable(floored,'floor')}
       <div style="font-size:11px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:0.06em;margin:16px 0 8px">Owned Outright (No Floor Plan)</div>
       ${buildFinTable(owned,'owned')}`;
@@ -13569,7 +13569,7 @@ function tradeInPhotosButtonHtml(stock){
   const e=findPromotedTradeForStock(stock);
   if(!e||!e.photos||e.photos.length===0)return '';
   // Stash the photos on window so the click handler can grab them; cheaper than re-finding.
-  return '<button class="upload-btn" style="grid-column:1 / -1;background:#1d4ed8" onclick="U.openTradeInPhotosLightbox(\''+U.escTC(e.id)+'\')">&#128247; Pictures from Original Trade-in ('+e.photos.length+')</button>';
+  return '<button class="upload-btn" style="grid-column:1 / -1;background:#4b5563" onclick="U.openTradeInPhotosLightbox(\''+U.escTC(e.id)+'\')">&#128247; Pictures from Original Trade-in ('+e.photos.length+')</button>';
 }
 function openTradeInPhotosLightbox(entryId){
   const e=(tradeValuations||[]).find(function(x){return x&&x.id===entryId;});
@@ -14939,7 +14939,7 @@ function applyDealStages(newStages, opts){
   return { movedDeals };
 }
 const DEAL_SOURCE_LABELS={used:'Used Equipment',shortline:'Shortline',kubota:'Kubota'};
-const DEAL_SOURCE_COLORS={used:'#eb421b',shortline:'#3b82f6',kubota:'#16a34a'};
+const DEAL_SOURCE_COLORS={used:'#eb421b',shortline:'#6b7280',kubota:'#16a34a'};
 
 function getDealStageIndex(stageKey){
   for(let i=0;i<DEAL_STAGES.length;i++){if(DEAL_STAGES[i].key===stageKey)return i;}
@@ -15314,7 +15314,7 @@ function renderDeals(c){
     body=DEAL_STAGES.map(function(stage){
       const stageDeals=activePool.filter(function(d){return d.stage===stage.key;});
       if(stageDeals.length===0&&stage.optional)return '';
-      const stageColor=stage.optional?'#7c3aed':'#3b82f6';
+      const stageColor=stage.optional?'#eb421b':'#6b7280';
       return '<div style="margin-bottom:18px">'+
         '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:0 4px">'+
           '<span style="background:'+stageColor+';color:white;font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;letter-spacing:0.04em">'+(getDealStageIndex(stage.key)+1)+(stage.optional?' \u2022 OPTIONAL':'')+'</span>'+
@@ -15409,7 +15409,7 @@ function buildDealCardHtml(d){
   const totalSteps=DEAL_STAGES.filter(function(s){return !s.optional;}).length;
   const completed=Math.min(stageIdx+1,totalSteps);
   const pct=Math.round((completed/totalSteps)*100);
-  const progressColor=d.isLost?'#dc2626':d.isClosed?'#16a34a':'#3b82f6';
+  const progressColor=d.isLost?'#dc2626':d.isClosed?'#16a34a':'#6b7280';
   return '<div onclick="U.openDealDetail(\''+U.escTC(d.id)+'\')" style="background:white;border-radius:8px;padding:12px 14px;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,0.05);cursor:pointer;border:1px solid '+(d.isLost?'#fecaca':'transparent')+';border-left:3px solid '+sourceColor+';transition:box-shadow 0.15s" onmouseover="this.style.boxShadow=\'0 2px 8px rgba(0,0,0,0.08)\'" onmouseout="this.style.boxShadow=\'0 1px 2px rgba(0,0,0,0.05)\'">'+
     '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;flex-wrap:wrap">'+
       '<div style="flex:1;min-width:0">'+
@@ -15420,7 +15420,7 @@ function buildDealCardHtml(d){
     '</div>'+
     '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap">'+
       (d.isLost?'<span style="background:#dc2626;color:white;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700">\u274C LOST'+(d.lostReason?' \u00b7 '+escTC(d.lostReason):'')+'</span>':
-        '<span style="background:#3b82f615;color:#1e40af;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600">Stage '+(stageIdx+1)+': '+escTC(stage.label)+'</span>')+
+        '<span style="background:#6b728015;color:#374151;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600">Stage '+(stageIdx+1)+': '+escTC(stage.label)+'</span>')+
       (d.price?'<span style="font-size:12px;color:var(--gray-700);font-weight:600">$'+Number(d.price).toLocaleString()+'</span>':'')+
       '<span style="font-size:11px;color:var(--gray-400);margin-left:auto">'+escTC(d.id)+'</span>'+
     '</div>'+
@@ -15484,7 +15484,7 @@ function renderDealDetail(c){
     const isCurrent=s.key===d.stage;
     const isPast=i<currentIdx;
     const isFuture=i>currentIdx;
-    const dotColor=isCurrent?(d.isLost?'#dc2626':'#3b82f6'):isPast?'#16a34a':'var(--gray-300)';
+    const dotColor=isCurrent?(d.isLost?'#dc2626':'#6b7280'):isPast?'#16a34a':'var(--gray-300)';
     const action=(isFuture||isPast)&&!d.isLost
       ?'<button onclick="U.moveDealToStage(\''+U.escTC(d.id)+'\',\''+s.key+'\')" style="background:none;border:1px solid var(--gray-200);border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;color:var(--gray-700);font-family:DM Sans,sans-serif">'+(isFuture?'Move here':'Roll back')+'</button>'
       :'';
@@ -15505,7 +15505,7 @@ function renderDealDetail(c){
       '<div style="flex:1;min-width:0">'+
         '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px">'+
           '<div style="font-weight:'+(isCurrent?'700':'500')+';font-size:13px;color:'+(isCurrent?'var(--gray-900)':isPast?'var(--gray-700)':'var(--gray-500)')+'">'+(i+1)+'. '+escTC(s.label)+(s.optional?' (optional)':'')+'</div>'+
-          (isCurrent?'<span style="background:#3b82f615;color:#1e40af;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">CURRENT</span>':'')+
+          (isCurrent?'<span style="background:#6b728015;color:#374151;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">CURRENT</span>':'')+
           (isPast?'<span style="background:#dcfce7;color:#166534;padding:1px 7px;border-radius:3px;font-size:10px;font-weight:700">DONE</span>':'')+
         '</div>'+
         '<div style="font-size:11px;color:var(--gray-500);font-style:italic;margin-bottom:4px">'+escTC(s.hint||'')+'</div>'+
@@ -15745,7 +15745,7 @@ function renderQuotes(c){
     // Row 2: status chips
     '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">'+
       statusChip('all','All','#6b7280')+
-      statusChip('active','Active','#3b82f6')+
+      statusChip('active','Active','#6b7280')+
       statusChip('won','Won','#16a34a')+
       statusChip('lost','Lost','#dc2626')+
       statusChip('expired','Expired','#92400e')+
@@ -15825,10 +15825,10 @@ function buildQuoteCardHtml(q){
     if(q.status==='won')return '<span style="background:#16a34a;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.04em">\u2705 WON</span>';
     if(q.status==='lost')return '<span style="background:#dc2626;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.04em">\u274C LOST</span>';
     if(q.status==='expired')return '<span style="background:#92400e;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.04em">EXPIRED</span>';
-    return '<span style="background:#3b82f6;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.04em">ACTIVE</span>';
+    return '<span style="background:#6b7280;color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.04em">ACTIVE</span>';
   })();
   const financingBadge=(q.financing&&q.financing.enabled)?'<span style="background:#fef3c7;color:#92400e;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600">\u{1F4B5} Financing</span>':'';
-  const promotedBadge=q.promotedToDeal?'<span style="background:#7c3aed;color:white;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700">In Deal Pipeline</span>':'';
+  const promotedBadge=q.promotedToDeal?'<span style="background:#eb421b;color:white;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700">In Deal Pipeline</span>':'';
   // Won/Lost detail caption (small, under main row)
   let outcomeLine='';
   if(q.status==='won')outcomeLine='<div style="font-size:11px;color:#166534;margin-top:6px">Won by '+escTC(q.wonBy||'\u2014')+' on '+escTC(q.wonDate||'')+(q.dealId?' \u00b7 Deal '+escTC(q.dealId):'')+'</div>';
@@ -15851,13 +15851,13 @@ function buildQuoteCardHtml(q){
   // Deals pipeline link — Won quotes can jump to their deal
   if(q.status==='won'){
     if(q.dealId&&findDealById(q.dealId)){
-      actions+='<button onclick="event.stopPropagation();U.openDealDetail(\''+U.escTC(q.dealId)+'\')" title="Open this deal in the pipeline" style="background:rgba(124,58,237,0.08);color:#7c3aed;border:1px solid #c4b5fd;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif">\u2192 Open in Deals</button>';
+      actions+='<button onclick="event.stopPropagation();U.openDealDetail(\''+U.escTC(q.dealId)+'\')" title="Open this deal in the pipeline" style="background:rgba(124,58,237,0.08);color:#eb421b;border:1px solid #fdebe6;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif">\u2192 Open in Deals</button>';
     }else{
       // Quote was Won before deal pipeline existed — auto-create on click
-      actions+='<button onclick="event.stopPropagation();U.promoteWonQuoteToDeal(\''+U.escTC(q.id)+'\')" title="Create deal entry now" style="background:rgba(124,58,237,0.08);color:#7c3aed;border:1px dashed #c4b5fd;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif">\u2192 Send to Deals</button>';
+      actions+='<button onclick="event.stopPropagation();U.promoteWonQuoteToDeal(\''+U.escTC(q.id)+'\')" title="Create deal entry now" style="background:rgba(124,58,237,0.08);color:#eb421b;border:1px dashed #fdebe6;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif">\u2192 Send to Deals</button>';
     }
   }
-  return '<div class="quote-hist-card" style="cursor:'+(canEdit?'pointer':'default')+';border-left:3px solid '+(q.status==='won'?'#16a34a':q.status==='lost'?'#dc2626':q.status==='expired'?'#92400e':'#3b82f6')+'"'+(canEdit?' onclick="U.editQuote(\''+U.escTC(q.id)+'\')"':'')+'>'+
+  return '<div class="quote-hist-card" style="cursor:'+(canEdit?'pointer':'default')+';border-left:3px solid '+(q.status==='won'?'#16a34a':q.status==='lost'?'#dc2626':q.status==='expired'?'#92400e':'#6b7280')+'"'+(canEdit?' onclick="U.editQuote(\''+U.escTC(q.id)+'\')"':'')+'>'+
     '<div class="quote-hist-top" style="flex-wrap:wrap;gap:8px">'+
       '<div class="quote-hist-unit" style="flex:1;min-width:0">'+escTC(q.unitName||'')+'</div>'+
       statusBadge+
@@ -17531,7 +17531,7 @@ function buildLeadsListHtml(){
       }else if(lead.name||lead.phone||lead.email){
         contactHtml='<div style="font-size:11px;color:var(--gray-400);margin-top:6px;font-style:italic">&#128274; Customer contact info is private</div>';
       }
-      const shareBadge=lead.shareContact?'<span style="padding:1px 6px;background:#dbeafe;color:#1e40af;border-radius:3px;font-size:9px;font-weight:700;margin-left:6px;text-transform:uppercase">Shared</span>':'<span style="padding:1px 6px;background:var(--gray-100);color:var(--gray-600);border-radius:3px;font-size:9px;font-weight:700;margin-left:6px;text-transform:uppercase">Private</span>';
+      const shareBadge=lead.shareContact?'<span style="padding:1px 6px;background:#e5e7eb;color:#374151;border-radius:3px;font-size:9px;font-weight:700;margin-left:6px;text-transform:uppercase">Shared</span>':'<span style="padding:1px 6px;background:var(--gray-100);color:var(--gray-600);border-radius:3px;font-size:9px;font-weight:700;margin-left:6px;text-transform:uppercase">Private</span>';
       return '<div style="background:white;border-radius:8px;padding:14px 16px;box-shadow:0 1px 2px rgba(0,0,0,0.05);border:1px solid var(--gray-200)">'+
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">'+
           '<div style="flex:1;min-width:0">'+
@@ -17629,7 +17629,7 @@ function renderTradeCalc(c){
   c.innerHTML=
     '<div class="list-header" style="margin-bottom:12px">'+
     '<div class="list-title">Trade Value Calculator</div>'+
-    '<button onclick="U.navigate(\'mypending\')" style="margin-left:auto;background:#7c3aed;color:white;border:none;border-radius:6px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:12px;font-family:DM Sans,sans-serif;display:inline-flex;align-items:center;gap:6px">'+
+    '<button onclick="U.navigate(\'mypending\')" style="margin-left:auto;background:#eb421b;color:white;border:none;border-radius:6px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:12px;font-family:DM Sans,sans-serif;display:inline-flex;align-items:center;gap:6px">'+
       '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><polyline points="9 11 12 14 22 4"/></svg>'+
       'My Pending Trades'+
     '</button>'+
@@ -17993,16 +17993,16 @@ function renderTradeCalcResultInline(entry){
   // Not mandatory — skip button closes the prompt without saving.
   migrateTradeEntry(entry);
   const promptHtml=
-    '<div id="tc-gut-prompt" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px solid #3b82f6;border-radius:10px;padding:16px;margin-bottom:14px">'+
+    '<div id="tc-gut-prompt" style="background:linear-gradient(135deg,#f3f4f6,#e5e7eb);border:2px solid #6b7280;border-radius:10px;padding:16px;margin-bottom:14px">'+
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">'+
         '<span style="font-size:20px">&#128173;</span>'+
-        '<div style="font-size:14px;font-weight:700;color:#1e40af">What\'s your gut estimate?</div>'+
+        '<div style="font-size:14px;font-weight:700;color:#374151">What\'s your gut estimate?</div>'+
       '</div>'+
       '<div style="font-size:12px;color:var(--gray-700);margin-bottom:10px">Enter your personal valuation — what you think this unit is actually worth. You can skip and come back later from the trade detail view.</div>'+
       '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">'+
         '<span style="font-size:18px;font-weight:700;color:var(--gray-500)">$</span>'+
         '<input type="text" id="tc-gut-input-'+entry.id+'" placeholder="Your estimate (CAD)" style="flex:1;min-width:150px;padding:9px 12px;border-radius:6px;border:1px solid var(--gray-300);font-size:15px;font-weight:600;color:var(--gray-900)">'+
-        '<button onclick="U.saveGutEstimate(\''+entry.id+'\')" style="background:#3b82f6;color:white;border:none;border-radius:6px;padding:9px 18px;font-weight:700;cursor:pointer;font-size:13px">Save</button>'+
+        '<button onclick="U.saveGutEstimate(\''+entry.id+'\')" style="background:#6b7280;color:white;border:none;border-radius:6px;padding:9px 18px;font-weight:700;cursor:pointer;font-size:13px">Save</button>'+
         '<button onclick="U.dismissGutPrompt()" style="background:var(--gray-100);color:var(--gray-700);border:1px solid var(--gray-300);border-radius:6px;padding:9px 14px;font-weight:600;cursor:pointer;font-size:13px">Skip</button>'+
       '</div>'+
     '</div>';
@@ -18100,7 +18100,7 @@ function buildTradeCalcResultHtml(entry,inline){
 
   // === Straight Take ===
   const takeHtml=r.straight_take?
-    '<div style="margin-bottom:14px;padding:10px 12px;background:#f0f9ff;border-left:3px solid #0891b2;border-radius:4px">'+
+    '<div style="margin-bottom:14px;padding:10px 12px;background:#f0f9ff;border-left:3px solid #eb421b;border-radius:4px">'+
       '<div style="font-size:11px;font-weight:700;color:#0e7490;margin-bottom:3px">&#128161; Straight take</div>'+
       '<div style="font-size:12px;line-height:1.5;color:var(--gray-800)">'+fmtBold(r.straight_take)+'</div>'+
     '</div>':'';
@@ -18264,14 +18264,14 @@ async function renderTradeCalcDetail(c){
   // "My Estimate" section — personal gut valuation. All users have this.
   const myEstimateHint=isOriginator?'Your personal gut valuation — what you think this unit is worth.':'Your personal valuation opinion — what you think this unit is worth. Editable anytime.';
   const mySection=
-    '<div style="background:#eff6ff;border:2px solid #3b82f6;border-radius:8px;padding:14px;margin-bottom:14px">'+
+    '<div style="background:#f3f4f6;border:2px solid #6b7280;border-radius:8px;padding:14px;margin-bottom:14px">'+
       '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">'+
-        '<div style="font-size:12px;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:0.04em">&#128100; My Estimate'+(isOriginator?' (originator)':'')+'</div>'+
+        '<div style="font-size:12px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:0.04em">&#128100; My Estimate'+(isOriginator?' (originator)':'')+'</div>'+
       '</div>'+
       '<div style="display:flex;gap:8px;align-items:center">'+
         '<span style="font-size:20px;font-weight:700;color:var(--gray-500)">$</span>'+
         '<input type="text" id="tc-mynumber-'+entry.id+'" value="'+(mySubmitted?String(myNumber):'')+'" placeholder="Enter amount (CAD)" style="flex:1;padding:9px 12px;border-radius:6px;border:1px solid var(--gray-300);font-size:15px;font-weight:600;color:var(--gray-900)" onblur="U.saveMyTradeNumber(\''+entry.id+'\')">'+
-        '<button onclick="U.saveMyTradeNumber(\''+entry.id+'\')" style="background:#3b82f6;color:white;border:none;border-radius:6px;padding:9px 18px;font-weight:700;cursor:pointer;font-size:13px">Save</button>'+
+        '<button onclick="U.saveMyTradeNumber(\''+entry.id+'\')" style="background:#6b7280;color:white;border:none;border-radius:6px;padding:9px 18px;font-weight:700;cursor:pointer;font-size:13px">Save</button>'+
       '</div>'+
       '<div style="font-size:11px;color:var(--gray-600);margin-top:6px">'+escTC(myEstimateHint)+'</div>'+
     '</div>';
@@ -18332,9 +18332,9 @@ async function renderTradeCalcDetail(c){
               const name=getStaffName(en.email);
               const isOrig=en.isOriginator;
               const isSelf=en.email===me;
-              const bg=isOrig?'#fdebe6':(isSelf?'#eff6ff':'#f9fafb');
-              const border=isOrig?'1px solid var(--orange)':(isSelf?'1px solid #93c5fd':'1px solid var(--gray-200)');
-              const labelBadge=isOrig?'<span style="padding:1px 6px;background:var(--orange);color:white;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;margin-left:6px">Originator</span>':(isSelf?'<span style="padding:1px 6px;background:#3b82f6;color:white;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;margin-left:6px">You</span>':'');
+              const bg=isOrig?'#fdebe6':(isSelf?'#f3f4f6':'#f9fafb');
+              const border=isOrig?'1px solid var(--orange)':(isSelf?'1px solid #d1d5db':'1px solid var(--gray-200)');
+              const labelBadge=isOrig?'<span style="padding:1px 6px;background:var(--orange);color:white;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;margin-left:6px">Originator</span>':(isSelf?'<span style="padding:1px 6px;background:#6b7280;color:white;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;margin-left:6px">You</span>':'');
               return '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:'+bg+';border:'+border+';border-radius:6px">'+
                 '<div style="font-size:13px;color:var(--gray-900)">'+escTC(name)+labelBadge+'</div>'+
                 '<div style="font-size:15px;font-weight:'+(isOrig?'800':'700')+';color:'+(isOrig?'var(--orange)':'var(--gray-900)')+'">$'+Number(en.number).toLocaleString()+'</div>'+
@@ -22925,7 +22925,7 @@ let BRANDS = [
   {
     name:'Walker', sku_count:27, dealer_discount:23, default_margin:13, varies_by_model:false,
     pricing_mode:'flat_discount', tier_label:'',
-    color:'#1e40af',
+    color:'#374151',
     active:true,
     popular:true, categories:['Mower'],
     finance_notes:"",
@@ -25294,7 +25294,7 @@ function renderLifetimeDealsTable(agg){
     const marginPct = (d.margin * 100);
     const marginCls = marginPct < 5 ? 'deal-margin-bad' : (marginPct > 20 ? 'deal-margin-good' : '');
     const kindBadge = d.kind === 'parts'
-      ? '<span style="display:inline-block;font-size:9px;background:#dbeafe;color:#1e3a8a;padding:1px 5px;border-radius:3px;font-weight:600">P</span>'
+      ? '<span style="display:inline-block;font-size:9px;background:#e5e7eb;color:#374151;padding:1px 5px;border-radius:3px;font-weight:600">P</span>'
       : '<span style="display:inline-block;font-size:9px;background:#fef3c7;color:#92400e;padding:1px 5px;border-radius:3px;font-weight:600">S</span>';
     return `<tr onclick="S.openDealDetail('${escapeAttr(d.dealKey)}','${d.kind}')" style="cursor:pointer">
       <td style="font-size:11px;color:var(--gray-600);white-space:nowrap">${escapeHtml(d.date)}</td>
@@ -25569,7 +25569,7 @@ function renderMarginDealsSection(repCodes){
     const margin = eff.effectiveMargin * 100;
     const cls = margin < 5 ? 'deal-margin-bad' : (margin > 20 ? 'deal-margin-good' : '');
     const lineNote = d.lineCount > 1 ? ` <span style="color:var(--gray-400);font-weight:400">· ${d.lineCount} lines</span>` : '';
-    const overrideMark = eff.hasOverride ? ' <span style="color:#7c3aed;font-size:10px" title="Cost overridden">✎</span>' : '';
+    const overrideMark = eff.hasOverride ? ' <span style="color:#eb421b;font-size:10px" title="Cost overridden">✎</span>' : '';
     return `<div class="cm-deal-row" onclick="S.openDealDetail('${S.escapeHtml(d.dealKey)}','sales')" style="cursor:pointer" title="Click for deal detail">
       <div class="deal-main">
         <div class="deal-customer">${escapeHtml(d.customer || '—')}${overrideMark}</div>
@@ -25725,7 +25725,7 @@ function renderCommissionsInvoiceList(repCodes){
     const indicators = (flagged ? '<span title="Flagged for admin review" style="color:#dc2626;margin-left:4px">⚑</span>' : '')
                      + (wasResolved ? `<span title="Previously flagged — resolved ${resolvedTs}" style="color:#86efac;margin-left:4px;font-size:11px;font-weight:700">✓</span>` : '')
                      + (noteCount > 0 ? `<span title="${noteCount} note${noteCount===1?'':'s'}" style="color:var(--gray-500);margin-left:4px;font-size:10px">📝${noteCount}</span>` : '')
-                     + (eff.hasOverride ? '<span title="Cost overridden by admin" style="color:#7c3aed;margin-left:4px;font-size:10px">✎</span>' : '');
+                     + (eff.hasOverride ? '<span title="Cost overridden by admin" style="color:#eb421b;margin-left:4px;font-size:10px">✎</span>' : '');
     return `<tr style="cursor:pointer${flagged?';background:#fef9f9':''}" onclick="S.openDealDetail('${S.escapeHtml(d.dealKey)}','${kind}')" title="Click for deal detail">
       <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(d.date || '—')}</td>
       <td style="font-family:'DM Mono',monospace;font-size:11px">${escapeHtml(d.invoice)}${lineNote}${indicators}</td>
@@ -25829,7 +25829,7 @@ function openDealDetail(dealKey, kind){
       : `${lineMarginPct.toFixed(1)}%`;
     const itemName = escapeHtml(((ln.make||'') + ' ' + (ln.model||'')).trim() || ln.partNumber || ln.desc || '—');
     const bundledPill = bundled
-      ? ' <span style="display:inline-block;background:#eef2ff;color:#4338ca;border:1px solid #c7d2fe;font-size:9px;font-weight:700;padding:1px 6px;border-radius:8px;letter-spacing:0.3px;vertical-align:middle" title="Given at no charge — cost absorbed into the deal">BUNDLED</span>'
+      ? ' <span style="display:inline-block;background:#f3f4f6;color:#4338ca;border:1px solid #c7d2fe;font-size:9px;font-weight:700;padding:1px 6px;border-radius:8px;letter-spacing:0.3px;vertical-align:middle" title="Given at no charge — cost absorbed into the deal">BUNDLED</span>'
       : '';
     return `
     <tr${bundled ? ' style="background:#fafaff"' : ''}>
@@ -25852,7 +25852,7 @@ function openDealDetail(dealKey, kind){
   if(bundledLines.length > 0 && (deal.totalAmount || 0) > 0){
     const marginPoints = (absorbedCost / deal.totalAmount) * 100;
     const n = bundledLines.length;
-    bundledNoteHtml = `<div style="font-size:11px;color:#4338ca;background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:8px 10px;margin-top:8px">
+    bundledNoteHtml = `<div style="font-size:11px;color:#4338ca;background:#f3f4f6;border:1px solid #c7d2fe;border-radius:6px;padding:8px 10px;margin-top:8px">
       <span style="font-weight:600">${n} bundled item${n===1?'':'s'} given at no charge</span>, absorbing ${CM_FMT$(absorbedCost)} in cost — about ${marginPoints.toFixed(1)} margin point${marginPoints.toFixed(1)==='1.0'?'':'s'} on this deal. The blended margin above already reflects this.
     </div>`;
   }
@@ -25868,7 +25868,7 @@ function openDealDetail(dealKey, kind){
       ? `<span style="display:inline-block;background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">✓ REVIEWED</span>`
       : '');
   const overrideBadge = eff.hasOverride
-    ? `<span style="display:inline-block;background:#f3e8ff;color:#7c3aed;border:1px solid #ddd6fe;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">✎ COSTS OVERRIDDEN</span>`
+    ? `<span style="display:inline-block;background:#fdebe6;color:#eb421b;border:1px solid #fdebe6;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-left:8px">✎ COSTS OVERRIDDEN</span>`
     : '';
   const flagBtnHtml = flag
     ? `<button onclick="S.resolveDealFlag('${S.escapeHtml(deal.persistKey)}','${kind}','${S.escapeHtml(dealKey)}')" style="padding:7px 12px;border:1px solid #fecaca;background:white;color:#dc2626;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600">⚑ Unflag (resolve)</button>`
@@ -25988,13 +25988,13 @@ function renderCostBreakdownSection(deal, eff, kind){
     return `<tr>
       <td style="font-size:12px;color:var(--gray-700)">
         ${escapeHtml(c.label)}
-        ${overridden ? '<span style="color:#7c3aed;margin-left:4px;font-size:10px" title="Overridden">✎</span>' : ''}
+        ${overridden ? '<span style="color:#eb421b;margin-left:4px;font-size:10px" title="Overridden">✎</span>' : ''}
         ${c.hint ? `<div style="font-size:10px;color:var(--gray-500);margin-top:1px">${escapeHtml(c.hint)}</div>` : ''}
       </td>
       <td style="text-align:right;font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-500);width:90px" title="From xlsx">${CM_FMT$(c.orig||0)}</td>
       <td style="text-align:right;width:130px">
         <input id="${inputId}" type="number" step="0.01" value="${inputValue}" placeholder="${(c.orig||0).toFixed(2)}"
-          style="width:100%;padding:5px 7px;border:1px solid var(--gray-200);border-radius:4px;font-family:'DM Mono',monospace;font-size:11px;text-align:right${overridden?';background:#f3e8ff;border-color:#ddd6fe':''}">
+          style="width:100%;padding:5px 7px;border:1px solid var(--gray-200);border-radius:4px;font-family:'DM Mono',monospace;font-size:11px;text-align:right${overridden?';background:#fdebe6;border-color:#fdebe6':''}">
       </td>
     </tr>`;
   }).join('');
@@ -26007,7 +26007,7 @@ function renderCostBreakdownSection(deal, eff, kind){
   return `<div style="padding:18px 22px;border-top:1px solid var(--gray-200);background:#fafafa">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <div>
-        <div style="font-size:13px;font-weight:600;color:var(--gray-900)">Cost Breakdown <span style="font-weight:400;color:#7c3aed;font-size:11px;margin-left:6px">admin-only</span></div>
+        <div style="font-size:13px;font-weight:600;color:var(--gray-900)">Cost Breakdown <span style="font-weight:400;color:#eb421b;font-size:11px;margin-left:6px">admin-only</span></div>
         <div style="font-size:11px;color:var(--gray-500);margin-top:2px">Override individual components. Blank = use xlsx value. Changes recalculate profit, margin, and dashboard totals.</div>
       </div>
     </div>
@@ -26024,7 +26024,7 @@ function renderCostBreakdownSection(deal, eff, kind){
         <tr style="border-top:2px solid var(--gray-200);background:var(--gray-50)">
           <td style="padding:8px 10px;font-size:12px;font-weight:600;color:var(--gray-900)">Effective Total Cost</td>
           <td style="text-align:right;padding:8px 10px;font-family:'DM Mono',monospace;font-size:12px;color:var(--gray-500)" title="Original from xlsx">${CM_FMT$(deal.totalCost)}</td>
-          <td style="text-align:right;padding:8px 10px;font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#7c3aed">${CM_FMT$(eff.effectiveTotalCost)}</td>
+          <td style="text-align:right;padding:8px 10px;font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#eb421b">${CM_FMT$(eff.effectiveTotalCost)}</td>
         </tr>
       </tfoot>
     </table>
@@ -26868,11 +26868,11 @@ function getBrandColor(brandName){
   if (b && b.color) return b.color;
   // Fallback defaults for legacy brands without a custom color set
   const defaults = {
-    'Walker': '#1e40af',
+    'Walker': '#374151',
     'Wright': '#b45309',
     'Toro':   '#dc2626',
     'Stihl':  '#f59e0b',
-    'HLA':    '#7c3aed'
+    'HLA':    '#eb421b'
   };
   return defaults[brandName] || '#6b7280';
 }
@@ -31513,7 +31513,7 @@ function renderQuotes(){
 
   const statusColors = {
     draft: '#6b7280',
-    sent:  '#2563eb',
+    sent:  '#4b5563',
     won:   '#16a34a',
     lost:  '#dc2626'
   };
@@ -31910,7 +31910,7 @@ function renderSoldArchivePage(){
     <tbody>
       ${rows.map(e => {
         const sourcePill = (e.source === 'xlsx')
-          ? '<span style="display:inline-block;font-size:9px;font-weight:700;background:#dbeafe;color:#1e40af;padding:2px 6px;border-radius:3px;letter-spacing:0.04em" title="Auto-archived from inventory file">FILE</span>'
+          ? '<span style="display:inline-block;font-size:9px;font-weight:700;background:#e5e7eb;color:#374151;padding:2px 6px;border-radius:3px;letter-spacing:0.04em" title="Auto-archived from inventory file">FILE</span>'
           : '<span style="display:inline-block;font-size:9px;font-weight:700;background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:3px;letter-spacing:0.04em" title="Manually marked sold in app">MANUAL</span>';
         return `<tr style="border-bottom:1px solid var(--gray-100)">
           <td style="padding:8px 12px;font-family:'DM Mono',monospace;font-weight:700;color:var(--gray-900)">${escapeHtml(e.tag)}</td>
@@ -32066,7 +32066,7 @@ function renderInventoryPage(){
         const brandLabel = (brandRec && brandRec.auto_created)
           ? `<span style="color:var(--gray-700)">${escapeHtml(u.brand)}</span> <span title="Newly auto-discovered brand — review in Brand Hub" style="font-size:9px;background:#fef3c7;color:#92400e;padding:1px 5px;border-radius:3px;font-weight:600;letter-spacing:0.3px">NEW</span>`
           : escapeHtml(u.brand || u.make || '—');
-        const locColor = u.location === 'S' ? '#16a34a' : (u.location === 'M' ? '#2563eb' : '#6b7280');
+        const locColor = u.location === 'S' ? '#16a34a' : (u.location === 'M' ? '#4b5563' : '#6b7280');
         const isSold = u.sold;
         const rowStyle = isSold
           ? 'border-bottom:1px solid var(--gray-100);cursor:pointer;opacity:0.6;background:#fafafa'
@@ -32381,9 +32381,9 @@ function openInventoryDetail(tag){
         </div>
         ${(u.list_price === 0 && computedPrice) ? `<div style="margin-top:10px;padding:8px 12px;background:#fdebe6;border:1px solid #fed7aa;border-radius:6px;font-size:11px;color:var(--gray-700)">No list price on file — quote would use <strong>$${computedPrice.toLocaleString()}</strong> (cost + ${margin}% margin from ${escapeHtml(u.brand)} brand defaults). Override in builder.</div>` : ''}
         ${existingQuotes.length > 0 ? `
-          <div style="margin-top:14px;padding:10px 12px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px">
-            <div style="font-size:11px;font-weight:600;color:#1e40af;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px">⚠ Already on ${existingQuotes.length} quote${existingQuotes.length===1?'':'s'}</div>
-            ${existingQuotes.slice(0,5).map(q => `<div style="font-size:12px;color:#1e40af;margin-top:3px"><a href="#" onclick="S.closeInventoryDetail();S.loadQuoteIntoBuilder('${S.escapeAttr(q.id)}');return false" style="color:#1e40af;text-decoration:underline">${escapeHtml(q.id)}</a> — ${escapeHtml(q.customer?.name || '—')} · ${escapeHtml(q.salesperson || '—')}</div>`).join('')}
+          <div style="margin-top:14px;padding:10px 12px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px">
+            <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:6px">⚠ Already on ${existingQuotes.length} quote${existingQuotes.length===1?'':'s'}</div>
+            ${existingQuotes.slice(0,5).map(q => `<div style="font-size:12px;color:#374151;margin-top:3px"><a href="#" onclick="S.closeInventoryDetail();S.loadQuoteIntoBuilder('${S.escapeAttr(q.id)}');return false" style="color:#374151;text-decoration:underline">${escapeHtml(q.id)}</a> — ${escapeHtml(q.customer?.name || '—')} · ${escapeHtml(q.salesperson || '—')}</div>`).join('')}
           </div>` : ''}
       </div>
       ${heroImg ? `<div style="aspect-ratio:4/3;background:var(--gray-50);border-radius:8px;border:1px solid var(--gray-200);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px"><img src="${heroImg}" alt="" style="max-width:100%;max-height:100%;object-fit:contain"></div>` : ''}
@@ -32970,7 +32970,7 @@ function renderAdminPermissions(){
     const cvaChecked = (s.can_view_all_commissions || s.is_admin) ? 'checked' : '';
     const cvaDisabled = s.is_admin ? 'disabled' : '';
     const cvaBadge = (s.can_view_all_commissions && !s.is_admin)
-      ? '<span style="display:inline-block;background:#dbeafe;color:#1e3a8a;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-right:4px">VIEW ALL COMMISSIONS</span>'
+      ? '<span style="display:inline-block;background:#e5e7eb;color:#374151;font-size:10px;font-weight:600;padding:3px 9px;border-radius:10px;letter-spacing:0.3px;margin-right:4px">VIEW ALL COMMISSIONS</span>'
       : '';
     return `
       <tr>
@@ -33670,7 +33670,7 @@ function renderBrandCardBody(b){
           <button class="pkg-btn-sm" onclick="S.resetBrandColor('${safe}')" title="Reset to default">Reset</button>
         </div>
         <div class="bh-swatches-row ${presetsOpen ? '' : 'hidden'}" id="brand-presets-${b.name}">
-          ${['#1e40af','#b45309','#dc2626','#f59e0b','#7c3aed','#16a34a','#0891b2','#475569'].map(c => `
+          ${['#374151','#b45309','#dc2626','#f59e0b','#eb421b','#16a34a','#eb421b','#475569'].map(c => `
             <button class="brand-color-swatch" style="background:${c}" onclick="S.updateBrandColor('${safe}', '${c}')" title="${c}"></button>
           `).join('')}
         </div>
@@ -34269,7 +34269,7 @@ function _renderManageCategoriesBody(){
     const safe = cat.replace(/'/g, "\\'");
     return `<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--gray-100);border-radius:8px;margin-bottom:6px">
       <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
-        <span style="display:inline-flex;align-items:center;padding:5px 10px;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;border-radius:6px;font-size:12px;font-weight:500">${escapeHtml(cat)}</span>
+        <span style="display:inline-flex;align-items:center;padding:5px 10px;background:#f3f4f6;color:#374151;border:1px solid #e5e7eb;border-radius:6px;font-size:12px;font-weight:500">${escapeHtml(cat)}</span>
         <span style="font-size:11px;color:var(--gray-500)">${usedBy} brand${usedBy===1?'':'s'}</span>
       </div>
       <div style="display:flex;gap:6px">
@@ -35867,8 +35867,8 @@ function resetBrandColor(brandName){
   if (!b) return;
   // Set to the default for known brands, or remove if no default
   const defaults = {
-    'Walker': '#1e40af', 'Wright': '#b45309', 'Toro': '#dc2626',
-    'Stihl': '#f59e0b', 'HLA': '#7c3aed'
+    'Walker': '#374151', 'Wright': '#b45309', 'Toro': '#dc2626',
+    'Stihl': '#f59e0b', 'HLA': '#eb421b'
   };
   const def = defaults[brandName] || '#6b7280';
   b.color = def;
@@ -36811,7 +36811,7 @@ function renderCostComponentsSummaryPanel(){
   const overrideCount = Object.keys(COMMISSIONS_COST_OVERRIDES).length;
   return `<div class="admin-panel" style="margin-top:14px">
     <div class="admin-panel-title" style="display:flex;justify-content:space-between;align-items:center">
-      <span>Cost Components Summary <span style="font-weight:400;color:#7c3aed;font-size:11px;margin-left:6px">admin-only</span></span>
+      <span>Cost Components Summary <span style="font-weight:400;color:#eb421b;font-size:11px;margin-left:6px">admin-only</span></span>
       <span style="font-size:11px;font-weight:400;color:var(--gray-500)">${overrideCount > 0 ? overrideCount + ' deal' + (overrideCount===1?'':'s') + ' with overrides' : 'Click any deal in Commissions to override its costs'}</span>
     </div>
     ${cards}
@@ -38497,7 +38497,7 @@ HPE.sectionImpl.kubota = (function(){
       const hLast = plotH - (y(lastArr[m]) - padT);
       const hThis = plotH - (y(thisArr[m]) - padT);
       if(lastArr[m] > 0) bars += `<rect x="${xLast.toFixed(1)}" y="${y(lastArr[m]).toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(0,hLast).toFixed(1)}" fill="#cbd5e1" rx="1.5"><title>${MN[m]} ${lastYear}: ${FMT$(lastArr[m])}</title></rect>`;
-      if(thisArr[m] > 0) bars += `<rect x="${xThis.toFixed(1)}" y="${y(thisArr[m]).toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(0,hThis).toFixed(1)}" fill="#7c3aed" rx="1.5"><title>${MN[m]} ${thisYear}: ${FMT$(thisArr[m])}</title></rect>`;
+      if(thisArr[m] > 0) bars += `<rect x="${xThis.toFixed(1)}" y="${y(thisArr[m]).toFixed(1)}" width="${barW.toFixed(1)}" height="${Math.max(0,hThis).toFixed(1)}" fill="#eb421b" rx="1.5"><title>${MN[m]} ${thisYear}: ${FMT$(thisArr[m])}</title></rect>`;
       bars += `<text x="${(gx+groupW/2).toFixed(1)}" y="${H-padB+13}" text-anchor="middle" font-size="9" fill="#999">${MN[m]}</text>`;
     }
     return `
@@ -38505,7 +38505,7 @@ HPE.sectionImpl.kubota = (function(){
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
           <span style="font-size:12px;font-weight:600;color:var(--gray-700)">Monthly Sales</span>
           <span style="display:flex;gap:12px;font-size:10px;color:var(--gray-500)">
-            <span><span style="display:inline-block;width:9px;height:9px;background:#7c3aed;border-radius:2px;margin-right:4px;vertical-align:middle"></span>${thisYear}</span>
+            <span><span style="display:inline-block;width:9px;height:9px;background:#eb421b;border-radius:2px;margin-right:4px;vertical-align:middle"></span>${thisYear}</span>
             <span><span style="display:inline-block;width:9px;height:9px;background:#cbd5e1;border-radius:2px;margin-right:4px;vertical-align:middle"></span>${lastYear}</span>
           </span>
         </div>
@@ -39436,7 +39436,7 @@ HPE.sectionImpl.kubota = (function(){
       if(_catEditPart === pn){
         const opts = cats.map(c => `<button type="button" onclick="HPE.sectionImpl.kubota.applyCatPick('${escAttr(pn)}','${escAttr(c)}')" style="display:block;width:100%;text-align:left;padding:5px 8px;border:none;background:none;font-size:12px;cursor:pointer;font-family:inherit;border-radius:4px" onmouseover="this.style.background='var(--gray-100)'" onmouseout="this.style.background='none'">${esc(c)}</button>`).join('');
         return `<td style="${td};min-width:170px">
-          <div style="border:1px solid var(--purple,#7c3aed);border-radius:7px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.10);padding:5px">
+          <div style="border:1px solid var(--purple,#eb421b);border-radius:7px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.10);padding:5px">
             <input type="text" autofocus placeholder="Type new or pick…" value="${escAttr(resolveCategory(p).value)}"
               onkeydown="if(event.key==='Enter'){HPE.sectionImpl.kubota.applyCatTyped('${escAttr(pn)}',this);}else if(event.key==='Escape'){HPE.sectionImpl.kubota.closeCatEditor();}"
               style="width:100%;box-sizing:border-box;padding:5px 7px;border:1px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:inherit;margin-bottom:4px;text-transform:uppercase">
@@ -39462,7 +39462,7 @@ HPE.sectionImpl.kubota = (function(){
       if(_seriesEditPart === pn){
         const opts = seriesList.map(c => `<button type="button" onclick="HPE.sectionImpl.kubota.applySeriesPick('${escAttr(pn)}','${escAttr(c)}')" style="display:block;width:100%;text-align:left;padding:5px 8px;border:none;background:none;font-size:12px;cursor:pointer;font-family:inherit;border-radius:4px" onmouseover="this.style.background='var(--gray-100)'" onmouseout="this.style.background='none'">${esc(c)}</button>`).join('');
         return `<td style="${td};min-width:150px">
-          <div style="border:1px solid var(--purple,#7c3aed);border-radius:7px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.10);padding:5px">
+          <div style="border:1px solid var(--purple,#eb421b);border-radius:7px;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.10);padding:5px">
             <input type="text" autofocus placeholder="Type new or pick…" value="${escAttr(resolveSeries(p))}"
               onkeydown="if(event.key==='Enter'){HPE.sectionImpl.kubota.applySeriesTyped('${escAttr(pn)}',this);}else if(event.key==='Escape'){HPE.sectionImpl.kubota.closeSeriesEditor();}"
               style="width:100%;box-sizing:border-box;padding:5px 7px;border:1px solid var(--gray-200);border-radius:5px;font-size:12px;font-family:inherit;margin-bottom:4px;text-transform:uppercase">
@@ -39498,11 +39498,11 @@ HPE.sectionImpl.kubota = (function(){
         // badge; the editor floats above it as an absolutely-positioned overlay,
         // so opening it never reflows the table columns.
         const badge = models.length
-          ? `<span style="display:inline-block;min-width:20px;padding:2px 8px;border-radius:11px;background:var(--purple-50,#eef2ff);color:var(--purple,#6d28d9);font-size:11px;font-weight:700">${models.length}</span>`
+          ? `<span style="display:inline-block;min-width:20px;padding:2px 8px;border-radius:11px;background:var(--purple-50,#f3f4f6);color:var(--purple,#c9381a);font-size:11px;font-weight:700">${models.length}</span>`
           : '<span style="color:var(--gray-300)">—</span>';
         return `<td style="${td};text-align:center;position:relative;overflow:visible;z-index:60">
           ${badge}
-          <div style="position:absolute;z-index:70;top:calc(100% + 3px);left:50%;transform:translateX(-50%);width:340px;max-width:88vw;text-align:left;border:1px solid var(--purple,#7c3aed);border-radius:8px;background:#fff;box-shadow:0 8px 26px rgba(0,0,0,0.16);padding:11px">
+          <div style="position:absolute;z-index:70;top:calc(100% + 3px);left:50%;transform:translateX(-50%);width:340px;max-width:88vw;text-align:left;border:1px solid var(--purple,#eb421b);border-radius:8px;background:#fff;box-shadow:0 8px 26px rgba(0,0,0,0.16);padding:11px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
               <div style="font-size:11px;font-weight:700;color:var(--gray-700);font-family:'DM Mono',monospace">${esc(p.partNumber)}</div>
               <div style="font-size:10px;color:var(--gray-400)">${models.length} model${models.length===1?'':'s'}</div>
@@ -39523,7 +39523,7 @@ HPE.sectionImpl.kubota = (function(){
       // Count badge + CSS-only hover tooltip listing all models.
       const list = models.map(m => esc(m)).join('<br>');
       return `<td style="${td};text-align:center;cursor:pointer;position:relative;overflow:visible" onclick="HPE.sectionImpl.kubota.openModelsEditor('${escAttr(pn)}')" onmouseover="this.querySelector('.mdl-tip').style.display='block'" onmouseout="this.querySelector('.mdl-tip').style.display='none'">
-        <span style="display:inline-block;min-width:20px;padding:2px 8px;border-radius:11px;background:var(--purple-50,#eef2ff);color:var(--purple,#6d28d9);font-size:11px;font-weight:700">${models.length}</span>
+        <span style="display:inline-block;min-width:20px;padding:2px 8px;border-radius:11px;background:var(--purple-50,#f3f4f6);color:var(--purple,#c9381a);font-size:11px;font-weight:700">${models.length}</span>
         <div class="mdl-tip" style="display:none;position:absolute;z-index:50;left:50%;transform:translateX(-50%);top:calc(100% + 4px);background:#111827;color:#f9fafb;font-size:11px;line-height:1.6;padding:7px 11px;border-radius:6px;white-space:nowrap;text-align:left;box-shadow:0 6px 18px rgba(0,0,0,0.25);font-weight:500">${list}</div>
       </td>`;
     };
@@ -39573,8 +39573,8 @@ HPE.sectionImpl.kubota = (function(){
     const serOpts = ['<option value="">All series</option>'].concat(
       allKnownSeries().map(c => `<option value="${escAttr(c)}" ${_invSeriesFilter.toUpperCase()===c.toUpperCase()?'selected':''}>${esc(c)}</option>`)
     ).join('');
-    const catDropdown = `<select title="Filter by category" onchange="HPE.sectionImpl.kubota.setInvCatFilter(this.value)" style="${_ddStyle}${_invCatFilter?';border-color:var(--purple,#7c3aed);color:var(--purple,#7c3aed);font-weight:600':''}">${catOpts}</select>`;
-    const serDropdown = `<select title="Filter by series" onchange="HPE.sectionImpl.kubota.setInvSeriesFilter(this.value)" style="${_ddStyle}${_invSeriesFilter?';border-color:var(--purple,#7c3aed);color:var(--purple,#7c3aed);font-weight:600':''}">${serOpts}</select>`;
+    const catDropdown = `<select title="Filter by category" onchange="HPE.sectionImpl.kubota.setInvCatFilter(this.value)" style="${_ddStyle}${_invCatFilter?';border-color:var(--purple,#eb421b);color:var(--purple,#eb421b);font-weight:600':''}">${catOpts}</select>`;
+    const serDropdown = `<select title="Filter by series" onchange="HPE.sectionImpl.kubota.setInvSeriesFilter(this.value)" style="${_ddStyle}${_invSeriesFilter?';border-color:var(--purple,#eb421b);color:var(--purple,#eb421b);font-weight:600':''}">${serOpts}</select>`;
     // v3.8.0 — Admin-only "Show ignored (N)" toggle. Only rendered for admins;
     // shown only when there's at least one ignored part (or already toggled on).
     const _ignN = ignoredCount();
@@ -39590,7 +39590,7 @@ HPE.sectionImpl.kubota = (function(){
       const st = _modelsImport.stats;
       const fileBits = _modelsImport.fileNames.map(n => esc(n)).join(', ');
       importPreview = `
-        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:8px;padding:13px 16px;margin-bottom:12px">
+        <div style="background:#fdebe6;border:1px solid #fdebe6;border-radius:8px;padding:13px 16px;margin-bottom:12px">
           <div style="font-size:13px;font-weight:600;color:#5b21b6;margin-bottom:6px">Review model import</div>
           <div style="font-size:12px;color:var(--gray-700);line-height:1.7">
             Files: <span style="color:var(--gray-500)">${fileBits}</span><br>
@@ -39600,7 +39600,7 @@ HPE.sectionImpl.kubota = (function(){
             <span style="color:var(--gray-500)">Existing and manually-entered models are kept (merge only).</span>
           </div>
           <div style="display:flex;gap:8px;margin-top:11px">
-            <button type="button" onclick="HPE.sectionImpl.kubota.commitModelsImport()" style="padding:6px 15px;border:none;background:var(--purple,#7c3aed);color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit"${st.newAssignments===0?' disabled':''}>${st.newAssignments===0?'Nothing new to add':'Add '+st.newAssignments+' model'+(st.newAssignments===1?'':'s')}</button>
+            <button type="button" onclick="HPE.sectionImpl.kubota.commitModelsImport()" style="padding:6px 15px;border:none;background:var(--purple,#eb421b);color:#fff;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit"${st.newAssignments===0?' disabled':''}>${st.newAssignments===0?'Nothing new to add':'Add '+st.newAssignments+' model'+(st.newAssignments===1?'':'s')}</button>
             <button type="button" onclick="HPE.sectionImpl.kubota.cancelModelsImport()" style="padding:6px 15px;border:1px solid var(--gray-200);background:#fff;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--gray-600)">Cancel</button>
           </div>
         </div>`;
@@ -39634,7 +39634,7 @@ HPE.sectionImpl.kubota = (function(){
               <th style="${thStyle};text-align:center;cursor:default" rowspan="2">Models</th>
               <th style="${thStyle};width:150px" rowspan="2" onclick="HPE.sectionImpl.kubota.sortInv('description')">Description${arrow('description')}</th>
               <th style="${thNum};color:#4ade80;border-left:1px solid #555" rowspan="2" onclick="HPE.sectionImpl.kubota.sortInv('available')">Total<br>Avail${arrow('available')}</th>
-              <th colspan="3" style="${thStyle};text-align:center;cursor:default;border-left:1px solid #3a3a3a;color:#c4b5fd">Mallard</th>
+              <th colspan="3" style="${thStyle};text-align:center;cursor:default;border-left:1px solid #3a3a3a;color:#fdebe6">Mallard</th>
               <th colspan="3" style="${thStyle};text-align:center;cursor:default;border-left:1px solid #3a3a3a;color:#7dd3fc">Scotland</th>
             </tr>
             <tr>

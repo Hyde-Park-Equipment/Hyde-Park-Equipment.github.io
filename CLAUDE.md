@@ -4,16 +4,16 @@
 > current — when something here goes stale, fix it in the same change that made
 > it stale. This file replaces the old "re-upload + paste handoff" ritual.
 
-> 🎨 **Active UI redesign in progress (2026-06-13)** — Kubota-style rebuild. The
-> sandbox is **`playground-9k3xq7m2.html`** on `main` — an isolated,
-> Drive-read-only copy of the app. It's served live (so Google login + Drive work)
-> but at a deliberately **obscure, unguessable URL** so reps don't stumble onto it:
-> `https://hyde-park-equipment.github.io/playground-9k3xq7m2.html` (it's also
-> login-gated to `@hydeparkequipment.ca`). Do **all** redesign work in that file —
-> **never** in `index.html` (the live app). Read **[`PLAYGROUND.md`](PLAYGROUND.md)**
-> first. `./smoke.sh` only checks `index.html`; smoke the sandbox explicitly with
-> `./smoke.sh playground-9k3xq7m2.html`. (If you rename the sandbox for fresh
-> obscurity, update this pointer + PLAYGROUND.md + the URL in the same change.)
+> ✅ **Kubota UI redesign SHIPPED to live as v4.0.0 (2026-06-15).** `index.html`
+> now carries the full redesign: orange **two-tier side nav** (workspace icon-rail
+> + white page panel, collapsible, hover-flyouts; personal "My …" links live in the
+> rail's bottom group), light tables/cards, **insight stat rails** (My Quotes, Used
+> Full List, Shortline inventory), **sticky quote-total bars**, and a **uniform
+> orange + neutral palette** (purple/blue/teal removed; green/red kept only for
+> won/lost quote status + alerts). Helvetica Neue UI font, DM Mono for numbers.
+> The old read-only sandbox `playground-9k3xq7m2.html` is now BEHIND live (still
+> v3.15.3, has the read-only guard) — **re-sync it from `index.html` before any
+> future redesign experiments, or delete it.** See **[`PLAYGROUND.md`](PLAYGROUND.md)**.
 
 ## What this is
 Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
@@ -21,7 +21,7 @@ Single-file internal sales platform for **Hyde Park Equipment (HPE)**.
 - **Deployed to:** GitHub Pages under the `Hyde-Park-Equipment` org.
 - **Backend:** Google Drive via OAuth, restricted to `@hydeparkequipment.ca`.
 - **Developer & primary user:** John Williams.
-- **Current version:** v3.15.3 (bump this line whenever you ship — see below).
+- **Current version:** v4.0.0 (bump this line whenever you ship — see below).
 
 This is a real production tool reps use daily. Default to caution: small,
 reviewable diffs; never break `main`.

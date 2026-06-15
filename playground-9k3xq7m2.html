@@ -1069,6 +1069,10 @@ tbody td:last-child{padding-right:18px;}
 .quote-header-title{font-size:15px;font-weight:600;color:white;}
 .quote-close{background:none;border:none;color:var(--gray-400);font-size:20px;cursor:pointer;}
 .quote-body{padding:20px;}
+#quote-overlay .quote-body{max-height:75vh;overflow-y:auto;}
+#quote-overlay .used-grand-bar{position:sticky;bottom:0;z-index:5;background:var(--black);color:#fff;border-radius:var(--radius);padding:14px 16px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 -4px 14px rgba(0,0,0,0.12);}
+#quote-overlay .used-grand-bar label{color:rgba(255,255,255,0.82);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin:0;}
+#quote-overlay .used-grand-bar span{color:var(--orange);font-family:'DM Mono',monospace;font-weight:700;font-size:20px;}
 .quote-section{margin-bottom:18px;}
 .quote-section-title{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
 .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
@@ -4324,9 +4328,6 @@ body.admin-mode .admin-only-block { display: block; }
         </label>
         <!-- v3.13.42 — Trade-in breakdown (Subtotal / Less Trade / Taxable / HST). Hidden unless a trade allowance is entered. -->
         <div id="q-trade-summary" style="display:none"></div>
-        <div class="margin-box" style="margin-top:8px;grid-template-columns:1fr">
-          <div class="margin-item"><label id="q-m-tat-label">Total After Tax (HST 13%)</label><span id="q-m-tat" style="font-size:18px;color:var(--black);font-weight:700">—</span></div>
-        </div>
       </div>
       <!-- v3.13.42 — TRADE-IN. Multiple units allowed; allowances sum into one
            credit that reduces the HST-taxable amount (Ontario rule). -->
@@ -4371,6 +4372,10 @@ body.admin-mode .admin-only-block { display: block; }
       <div class="quote-section">
         <div class="quote-section-title">Additional Notes</div>
         <div class="quote-field full"><textarea id="q-notes" placeholder="Any additional details for the customer..." oninput="U.updateQuoteBuilderSaveButton()" style="width:100%;height:80px;padding:9px 12px;border-radius:var(--radius);border:1px solid var(--gray-200);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;resize:vertical"></textarea></div>
+      </div>
+      <div class="used-grand-bar">
+        <label id="q-m-tat-label">Total After Tax (HST 13%)</label>
+        <span id="q-m-tat">—</span>
       </div>
     </div>
     <div class="quote-actions">

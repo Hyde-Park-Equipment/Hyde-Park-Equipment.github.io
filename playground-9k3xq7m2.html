@@ -2807,7 +2807,9 @@ body.admin-mode .admin-only-block { display: block; }
 #quote-overlay-sl .totals-item.cost span{color:var(--blue);}
 #quote-overlay-sl .totals-item.margin span{color:var(--green);}
 #quote-overlay-sl .totals-item.pct span{color:var(--green);}
-#quote-overlay-sl .totals-grand-card{background:var(--gray-50);border-radius:var(--radius);padding:14px 16px;margin-top:8px;display:flex;align-items:center;justify-content:space-between;}
+#quote-overlay-sl .totals-grand-card{position:sticky;bottom:0;z-index:5;background:var(--black);color:#fff;border-radius:var(--radius);padding:14px 16px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 -4px 14px rgba(0,0,0,0.12);}
+#quote-overlay-sl .totals-grand-card label{color:rgba(255,255,255,0.82);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin:0;}
+#quote-overlay-sl .totals-grand-card span{color:var(--orange);font-family:'DM Mono',monospace;font-weight:700;font-size:20px;}
 #quote-overlay-sl .totals-grand-card label{font-size:11px;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:0.04em;margin:0;}
 #quote-overlay-sl .totals-grand-card span{font-size:20px;font-weight:700;color:var(--black);font-family:'DM Mono',monospace;}
 #quote-overlay-sl .quote-actions{display:flex;gap:10px;padding:16px 20px;border-top:1px solid var(--gray-100);}
@@ -4680,10 +4682,6 @@ body.admin-mode .admin-only-block { display: block; }
           <input type="checkbox" id="q-tax-exempt-sl" style="width:15px;height:15px;cursor:pointer" onchange="S.updateTotals();S.updateFinanceDisplay();">
           Tax Exempt (no HST applied)
         </label>
-        <div class="totals-grand-card">
-          <label id="t-total-label">Total + HST</label>
-          <span id="t-total">$0</span>
-        </div>
       </div>
       <div class="section-block">
         <div class="section-title" style="display:flex;align-items:center;gap:10px">
@@ -4731,6 +4729,10 @@ body.admin-mode .admin-only-block { display: block; }
       <div class="section-block">
         <div class="section-title">Notes</div>
         <div class="quote-field full"><textarea id="q-notes-sl" placeholder="Any additional details visible on the PDF..." style="height:60px;resize:vertical"></textarea></div>
+      </div>
+      <div class="totals-grand-card">
+        <label id="t-total-label">Total + HST</label>
+        <span id="t-total">$0</span>
       </div>
     </div>
     <div id="quote-editing-badge" style="display:none;background:var(--blue-light, #eff6ff);color:#1e40af;padding:8px 12px;border-radius:6px;font-size:12px;margin-top:10px;border:1px solid #bfdbfe"></div>

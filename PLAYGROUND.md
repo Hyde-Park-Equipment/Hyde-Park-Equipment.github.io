@@ -97,5 +97,14 @@
 4. `./smoke.sh` green, then commit. Pages deploys.
 
 ## Smoke / version
-`./smoke.sh playground-9k3xq7m2.html`. Current version pill: **v3.15.2** (unchanged — the
-playground rides the same version; the 🚧 PLAYGROUND topbar badge marks the build).
+`./smoke.sh playground-9k3xq7m2.html`. Current version pill: **v3.15.3** — the
+playground now carries the v3.15.3 dup-folder Used-sync fix (ported from live so a
+future "promote playground → index" never regresses it). The 🚧 PLAYGROUND topbar
+badge marks the build.
+
+> **Incident note (2026-06-13):** the FIRST playground copy (before the read-only
+> guard existed) booted against live Drive and its `findOrCreateFolder` spawned an
+> empty duplicate "All Inventory" folder; live Used sync then sometimes read the
+> empty one. Fixed in v3.15.3 (live + now playground): never take `files[0]` blindly
+> — prefer the folder that has contents, tiebreak oldest. The read-only guard now
+> prevents the playground from writing/creating anything.

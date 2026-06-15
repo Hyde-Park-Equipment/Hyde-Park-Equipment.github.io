@@ -349,7 +349,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .insight-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-top:3px;}
 @media(max-width:980px){.insights-rail{display:none;}}
 .list-body-layout{display:flex;gap:16px;align-items:flex-start;}
-.list-body-layout #table-container{flex:1;min-width:0;}
+.list-body-layout #table-container,.list-body-layout .lbl-main{flex:1;min-width:0;}
 .hub-quotes-empty{padding:32px 16px;text-align:center;color:var(--gray-500);font-size:13px;background:var(--card);border:1px dashed var(--gray-200);border-radius:var(--radius-lg);}
 .hub-quotes-retry{margin-left:8px;background:var(--orange);color:white;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:600;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;cursor:pointer;}
 .hub-quote-card{background:var(--card);border:1px solid var(--gray-200);border-left:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color 120ms,box-shadow 120ms;}
@@ -32013,7 +32013,21 @@ function renderInventoryPage(){
     ? `<span style="color:var(--orange);margin-left:4px">${inventorySort.dir === 'asc' ? '▲' : '▼'}</span>`
     : '<span style="color:var(--gray-300);margin-left:4px">↕</span>';
   const thBase = 'padding:10px 12px;font-size:11px;font-weight:600;color:var(--gray-600);letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;user-select:none';
-  list.innerHTML = `<table style="width:100%;border-collapse:collapse;background:white;border:1px solid var(--gray-200);border-radius:10px;overflow:hidden;font-size:12px">
+  // v-redesign — Shortline inventory Insights rail (reflects current filters)
+  const _iS=rows.filter(u=>u.location==='S').length;
+  const _iM=rows.filter(u=>u.location==='M').length;
+  const _iBrands=new Set(rows.map(u=>u.brand||u.make).filter(Boolean)).size;
+  const _iVal=rows.reduce((s,u)=>s+((+u.list_price>0?+u.list_price:(+u.cost||0))||0),0);
+  const _iMoney=n=>n>=1e6?'$'+(n/1e6).toFixed(1)+'M':n>=1e3?'$'+Math.round(n/1e3)+'k':'$'+Math.round(n);
+  const _iTile=(ic,n,l)=>'<div class="insight-tile"><svg class="insight-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+ic+'</svg><div class="insight-num">'+n+'</div><div class="insight-lbl">'+l+'</div></div>';
+  const invInsightsHtml='<aside class="insights-rail" aria-label="Inventory insights">'+
+    _iTile('<rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="4" rx="1"/><rect x="3" y="16" width="18" height="4" rx="1"/>',rows.length,'Units')+
+    _iTile('<path d="M12 21s7-6.7 7-12a7 7 0 0 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/>',_iS,'Scotland')+
+    _iTile('<path d="M12 21s7-6.7 7-12a7 7 0 0 0-14 0c0 5.3 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/>',_iM,'Mallard')+
+    _iTile('<path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.3"/>',_iBrands,'Brands')+
+    _iTile('<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',_iMoney(_iVal),'List value')+
+    '</aside>';
+  list.innerHTML = '<div class="list-body-layout"><div class="lbl-main">' + `<table style="width:100%;border-collapse:collapse;background:white;border:1px solid var(--gray-200);border-radius:10px;overflow:hidden;font-size:12px">
     <thead><tr style="background:#f9fafb;border-bottom:1px solid var(--gray-200)">
       <th style="text-align:left;${thBase}" onclick="S.sortInventoryBy('tag')">Tag${sortInd('tag')}</th>
       <th style="text-align:left;${thBase}" onclick="S.sortInventoryBy('brand')">Brand${sortInd('brand')}</th>
@@ -32108,7 +32122,7 @@ function renderInventoryPage(){
   </table>
   <div style="margin-top:8px;font-size:11px;color:var(--gray-500)">
     * = make name from inventory file doesn't match a configured brand. Add the brand in admin to surface its files/colors here.
-  </div>`;
+  </div>` + '</div>' + invInsightsHtml + '</div>';
 }
 
 /* ============================================================

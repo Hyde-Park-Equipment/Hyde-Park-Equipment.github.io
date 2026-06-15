@@ -198,11 +198,12 @@ body.admin-mode .role-switcher-btn:hover{background:var(--orange-dark);border-co
 /* SIDEBAR */
 .sidenav{position:fixed;top:var(--topbar-h);left:var(--wsrail-w);bottom:0;width:var(--panel-w);background:#fff;border-right:1px solid var(--border);z-index:50;display:flex;flex-direction:column;padding:10px 0 0;overflow-y:auto;}
 /* Workspace icon rail (slim, always visible) */
-.wsrail{position:fixed;top:var(--topbar-h);left:0;bottom:0;width:var(--wsrail-w);background:var(--rail);z-index:51;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0;}
+.wsrail{position:fixed;top:var(--topbar-h);left:0;bottom:0;width:var(--wsrail-w);background:var(--rail);z-index:51;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0;overflow-y:auto;}
 .wsrail-logo{width:42px;height:30px;border-radius:8px;background:#fff;color:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:13px;font-weight:700;letter-spacing:.02em;}
 .wsrail-logo svg{width:20px;height:20px;}
 .ws-item{position:relative;width:100%;display:flex;justify-content:center;}
-.ws-spacer{flex:1;}
+.ws-spacer{flex:1;min-height:8px;}
+.ws-div{width:42px;height:1px;background:rgba(255,255,255,0.28);margin:8px 0;flex-shrink:0;}
 .ws-btn{width:62px;min-height:48px;border-radius:10px;border:none;background:none;color:rgba(255,255,255,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 2px;cursor:pointer;transition:background .12s,color .12s;}
 .ws-btn svg{width:20px;height:20px;}
 .ws-name{font-size:8.5px;font-weight:600;letter-spacing:.01em;line-height:1;white-space:nowrap;}
@@ -5787,22 +5788,7 @@ const HPE = (function(){
           <span class="nav-label">${item.label}</span>
         </button>`;
       });
-      // Bottom nav
-      if(sec.bottomNav && sec.bottomNav.length){
-        html += '<div class="sidenav-bottom">';
-        html += '<div class="sidenav-section-label">My Sales Platform</div>';
-        sec.bottomNav.forEach(item => {
-          const target = item.cross ? item.cross : state.currentSection;
-          const isCross = item.cross && item.cross !== state.currentSection;
-          const klass = isCross ? 'is-cross-link' : '';
-          const activeKlass = (target === state.currentSection && item.id === state.currentPage) ? 'active' : '';
-          html += `<button class="nav-btn ${klass} ${activeKlass}" data-page="${item.id}" data-cross="${item.cross || ''}" onclick="HPE.router.go('${target}','${item.id}')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg>
-            <span class="nav-label">${item.label}</span>
-          </button>`;
-        });
-        html += '</div>';
-      }
+      // Personal "My …" links now live in the workspace rail (renderWorkspaceRail).
       sidenav.innerHTML = html;
       ui.renderWorkspaceRail();
       // v1.4.0 — Re-apply badges after rebuilding the DOM. Each section's
@@ -5831,9 +5817,23 @@ const HPE = (function(){
           fly += `<button class="nav-btn${adminCls}" onclick="HPE.router.go('${key}','${item.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg><span class="nav-label">${item.label}</span></button>`;
         });
         fly += '</div>';
-        html += `<div class="ws-item ${activeCls}"><button class="ws-btn" title="${s.label}" onclick="HPE.router.go('${key}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ICONS[key] || ''}</svg><span class="ws-name">${s.label}</span></button>${fly}</div>`;
+        html += `<div class="ws-item ${activeCls}"><button class="ws-btn" data-section="${key}" title="${s.label}" onclick="HPE.router.go('${key}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ICONS[key] || ''}</svg><span class="ws-name">${s.label}</span></button>${fly}</div>`;
       });
       html += '<div class="ws-spacer"></div>';
+      // Personal "My …" group, anchored at the bottom of the rail (moved here from
+      // the white page panel). Short labels; same router targets as before.
+      const sec = sections[state.currentSection];
+      if(sec && sec.bottomNav && sec.bottomNav.length){
+        const SHORT = {customers:'Customers',deals:'Pipeline',quotes:'Quotes',commissions:'Commissions',communications:'Comms',settings:'Settings',bugreport:'Feedback'};
+        html += '<div class="ws-div"></div>';
+        sec.bottomNav.forEach(item => {
+          const target = item.cross ? item.cross : state.currentSection;
+          const isActive = (target === state.currentSection && item.id === state.currentPage) ? 'active' : '';
+          let nm = SHORT[item.id] || (item.label || '').replace(/^My\s+/i,'');
+          if(/bug|feature/i.test(nm)) nm = 'Feedback';
+          html += `<div class="ws-item ${isActive}"><button class="ws-btn" data-page="${item.id}" data-cross="${item.cross || ''}" title="${item.label}" onclick="HPE.router.go('${target}','${item.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg><span class="ws-name">${nm}</span></button></div>`;
+        });
+      }
       rail.innerHTML = html;
     },
     updateSidebarActive(){
@@ -5846,6 +5846,17 @@ const HPE = (function(){
         const cross = btn.dataset.cross;
         const targetSection = cross || state.currentSection;
         btn.classList.toggle('active', pageId === state.currentPage && targetSection === state.currentSection);
+      });
+      // Workspace rail (workspace tiles + personal group) active state.
+      document.querySelectorAll('#wsrail .ws-item').forEach(item => {
+        const btn = item.querySelector('.ws-btn');
+        if(!btn) return;
+        if(btn.dataset.section){
+          item.classList.toggle('active', btn.dataset.section === state.currentSection);
+        } else if(btn.dataset.page){
+          const target = btn.dataset.cross || state.currentSection;
+          item.classList.toggle('active', btn.dataset.page === state.currentPage && target === state.currentSection);
+        }
       });
     },
     toggleNav(){

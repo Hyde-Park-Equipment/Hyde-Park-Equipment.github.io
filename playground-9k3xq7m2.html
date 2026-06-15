@@ -778,7 +778,7 @@ body.nav-collapsed .main-content-with-sidebar{margin-left:var(--wsrail-w);}
 .dash-subhead{font-size:12px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:-2px;}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
 .dash-card{background:white;border:1px solid var(--gray-200);border-top:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:12px 14px;cursor:pointer;transition:box-shadow 0.15s;}
-.dash-card:hover{box-shadow:var(--shadow);}
+.dash-card:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong);}
 .dash-card.orange{border-top-color:var(--orange);}
 .dash-card.blue{border-top-color:#3b82f6;}
 .dash-card.red{border-top-color:var(--red);background:#fff8f8;}
@@ -1511,7 +1511,7 @@ tbody td:last-child{padding-right:18px;}
 #section-shortline .quotes-filter-input{flex:1;min-width:200px;padding:8px 12px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:white;}
 #section-shortline .quotes-filter-input:focus{outline:none;border-color:var(--orange);}
 #section-shortline .dash-card{background:white;border:1px solid var(--gray-200);border-top:3px solid var(--gray-300);border-radius:var(--radius-lg);padding:14px 16px;cursor:pointer;transition:box-shadow 0.15s;}
-#section-shortline .dash-card:hover{box-shadow:var(--shadow);}
+#section-shortline .dash-card:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong);}
 #section-shortline .dash-card.orange{border-top-color:var(--orange);}
 #section-shortline .dash-card.green{border-top-color:var(--green);}
 #section-shortline .dash-card.amber{border-top-color:var(--amber);}
@@ -2870,7 +2870,7 @@ body.admin-mode .admin-only-block { display: block; }
 @media(max-width:760px){#page-hub-dashboard{margin:-20px -14px;padding:20px 18px 40px;}}
 @keyframes dxbRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 #page-hub-dashboard .dxb-hero,#page-hub-dashboard #dxb-rep,#page-hub-dashboard #dxb-mgmt{animation:dxbRise .5s cubic-bezier(.2,.7,.3,1) both;}
-.dxb-hero{position:relative;background:#ffffff;border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:22px 26px;overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);}
+.dxb-hero{position:relative;background:#ffffff;border:1px solid var(--gray-200);border-top:3px solid var(--orange);border-radius:var(--radius-lg);padding:22px 26px;overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);}
 .dxb-hero-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;margin-bottom:20px;}
 .dxb-greeting{font-size:13px;color:var(--text-2);font-weight:500;}
 .dxb-name{font-size:24px;font-weight:700;color:var(--gray-900);letter-spacing:-.02em;line-height:1.1;margin-top:2px;}

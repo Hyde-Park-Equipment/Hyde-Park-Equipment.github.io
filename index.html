@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v4.6.2</title><!-- build:20260616_v462_apostrophe_handler_sweep -->
+<title>HPE Sales Platform v4.8.1</title><!-- build:20260616_v481_column_heading_clobber_fix -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -2425,9 +2425,11 @@ tbody td:last-child{padding-right:18px;}
 /* v2.0.7 — Price file parser modal. Full-screen overlay with a review table:
    admin checks/edits each parsed row, then accepts to commit into MODEL_FIELDS.
    Modal width caps at 1100px so wider tables (description column) read well. */
-#section-shortline .pp-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;display:none;align-items:flex-start;justify-content:center;padding:32px 20px;overflow-y:auto;}
+#section-shortline .pp-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;display:none;align-items:flex-start;justify-content:center;padding:16px 12px;overflow-y:auto;}
 #section-shortline .pp-overlay.open{display:flex;}
-#section-shortline .pp-modal{background:#fff;border-radius:12px;width:100%;max-width:1100px;display:flex;flex-direction:column;max-height:calc(100vh - 64px);overflow:hidden;box-shadow:0 24px 60px -16px rgba(0,0,0,0.3);}
+/* v4.6.3 — Use most of the screen so wide tables (parse review, price-book editor)
+   have real room; Description/Series no longer get crushed by the fixed columns. */
+#section-shortline .pp-modal{background:#fff;border-radius:12px;width:100%;max-width:min(97vw, 1720px);display:flex;flex-direction:column;max-height:calc(100vh - 32px);overflow:hidden;box-shadow:0 24px 60px -16px rgba(0,0,0,0.3);}
 #section-shortline .pp-header{padding:18px 22px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;background:#fafafa;}
 #section-shortline .pp-header h2{margin:0;font-size:16px;font-weight:700;color:var(--gray-900);letter-spacing:-0.01em;}
 #section-shortline .pp-header .pp-sub{font-size:11px;color:var(--gray-500);margin-top:3px;}
@@ -3017,7 +3019,7 @@ body.admin-mode .admin-only-block { display: block; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.6.2</div>
+      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.8.1</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="data-status" id="data-status" aria-label="Data load status"></div>
@@ -3652,7 +3654,7 @@ body.admin-mode .admin-only-block { display: block; }
           <th onclick="S.sortBy('promo')" id="pb-th-promo" style="text-align:right;cursor:pointer;user-select:none">Promo <span id="pb-ind-promo" style="color:var(--gray-300);margin-left:3px">↕</span></th>
           <th onclick="S.sortBy('cost')" id="pb-th-cost" style="text-align:right;cursor:pointer;user-select:none">Cost <span id="pb-ind-cost" style="color:var(--gray-300);margin-left:3px">↕</span></th>
           <th onclick="S.sortBy('stock')" id="pb-th-stock" style="cursor:pointer;user-select:none">Stock <span id="pb-ind-stock" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th>Flags</th>
+          <th onclick="S.sortBy('popular')" id="pb-th-flags" style="cursor:pointer;user-select:none;min-width:104px" title="Sort by Popular (brings Popular models to the top)">Flags <span id="pb-ind-popular" style="color:var(--gray-300);margin-left:3px">↕</span></th>
           <th></th>
         </tr>
       </thead>
@@ -4830,8 +4832,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '4.6.2',
-    build: '20260616_v462_apostrophe_handler_sweep',
+    version: '4.8.1',
+    build: '20260616_v481_column_heading_clobber_fix',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     // v3.14.0 — Cloudflare Worker proxy for live DIS Quantum API lookups.
     // The Worker validates our Google access token and holds the DIS key
@@ -4853,6 +4855,10 @@ const HPE = (function(){
   // TOP of this array. Keep notes short and rep-facing (what they'd notice),
   // not internal implementation detail. Newest first.
   const CHANGELOG = [
+    { v: '4.8.1', date: 'Jun 16 2026', note: 'Fixed: renaming the Promo or Model column heading (Edit price book → Column headings) now actually shows on the Price Book. The fleet-pricing and Stihl header logic was overwriting your custom names right after they were applied.' },
+    { v: '4.8.0', date: 'Jun 16 2026', note: 'Model detail page: ‹ Prev / Next › buttons (and the ← → arrow keys) step through the exact list of models you were just browsing in the Price Book — rip through them favouriting/showcasing without bouncing back to the list each time. Also: the Price Book Flags column is now click-to-sort, so you can bring Popular models back to the top any time (it sorts Popular-first), and the Popular/Promo badges no longer overflow that column.' },
+    { v: '4.7.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: added a search box to filter rows (by model, description, series or subgroup) and click-to-sort column headers (Model, Description, MSRP, Cost, Promo, MAP, Series, Subgroup) — much easier to find and order rows in a big file. A row counter shows how many match.' },
+    { v: '4.6.3', date: 'Jun 16 2026', note: 'The Parse / Edit-results screen (and the price-book editor) now use most of the screen instead of a narrow box, so the Description, Series and Subgroup columns have real room — no more crushed/cut-off descriptions.' },
     { v: '4.6.2', date: 'Jun 16 2026', note: 'Fixed clicks breaking on customers and models whose name has an apostrophe — e.g. a customer like “O’Brien Farms” or a model like “10’ HC”. Customer links across Home (recently quoted, pipeline, top customers, My Customers) and trade rows, the commissions customer filter, the model-image manager, and the Kubota model-merge button now all work for apostrophe names. (Continuation of the v4.4.1 fix, now applied app-wide.)' },
     { v: '4.6.1', date: 'Jun 16 2026', note: 'Small sidebar tidy: hovering the Home button no longer pops a redundant “Home” flyout — just click Home. Used/Shortline/Kubota keep their hover menus since those have pages to jump to.' },
     { v: '4.6.0', date: 'Jun 16 2026', note: 'You can now re-open a price file’s parse results any time to change anything. Each price file in Brand Maintenance has a new “✎ Edit results” button that brings back the full parse screen — all the detected columns, the column-to-price mapping, and every row — loaded from the saved parse (no re-read, no API cost). Remap a column, fix descriptions or series/subgroup, include/exclude rows, then re-apply. (Or use “↻ Re-parse from API” inside it to pull the file fresh.)' },
@@ -28890,8 +28896,14 @@ function filterAndRender(){
   // The cell rendering inside rowHtml already reads the same checkbox state.
   const _pbShowFleet = !!document.getElementById('pb-show-fleet')?.checked;
   const _pbThPromo = document.getElementById('pb-th-promo');
-  if(_pbThPromo){
-    _pbThPromo.firstChild.nodeValue = _pbShowFleet ? 'Fleet ' : 'Promo ';
+  if(_pbThPromo && _pbThPromo.firstChild){
+    // v4.8.1 — This swap runs AFTER _pbApplyColumnLabels and used to hardcode
+    // "Promo", clobbering a custom column heading (Edit price book → Column
+    // headings). Now it honours the custom Promo label; fleet mode still shows
+    // "Fleet" since that's a different price entirely.
+    const _promoCustom = (_brec && _brec.column_labels && _brec.column_labels.promo && String(_brec.column_labels.promo).trim())
+      ? String(_brec.column_labels.promo).trim() : 'Promo';
+    _pbThPromo.firstChild.nodeValue = (_pbShowFleet ? 'Fleet' : _promoCustom) + ' ';
     _pbThPromo.setAttribute('onclick', `S.sortBy('${_pbShowFleet ? 'fleet_price' : 'promo'}')`);
   }
 
@@ -28905,8 +28917,13 @@ function filterAndRender(){
   // _pbIsStihl and looks up quickCode via the STIHL_PRICING map.
   const _pbIsStihl = (brand === 'Stihl');
   const _pbThModel = document.getElementById('pb-th-model');
-  if(_pbThModel){
-    _pbThModel.firstChild.nodeValue = _pbIsStihl ? 'Part Number ' : 'Model ';
+  if(_pbThModel && _pbThModel.firstChild){
+    // v4.8.1 — Honour a custom Model heading (Edit price book → Column headings)
+    // for non-Stihl brands; Stihl still forces "Part Number" (its Model field
+    // really is a part number).
+    const _modelCustom = (_brec && _brec.column_labels && _brec.column_labels.model && String(_brec.column_labels.model).trim())
+      ? String(_brec.column_labels.model).trim() : 'Model';
+    _pbThModel.firstChild.nodeValue = (_pbIsStihl ? 'Part Number' : _modelCustom) + ' ';
   }
   // Inject or remove the Quick Code header cell. It sits between Model and
   // Description in the source DOM order.
@@ -29012,6 +29029,9 @@ function filterAndRender(){
           av = (_stihlQuickCodeByPN.get(String(a.model||'').trim()) || '').toLowerCase();
           bv = (_stihlQuickCodeByPN.get(String(b.model||'').trim()) || '').toLowerCase();
         }
+        // v4.8.0 — Popular is a per-SKU boolean; sort it 1/0. Default dir is desc
+        // (set in sortBy) so clicking the Flags header brings Popular models to top.
+        if(currentSort.field === 'popular'){ av = a.popular ? 1 : 0; bv = b.popular ? 1 : 0; }
         if (typeof av==='string'){ av=av.toLowerCase(); bv=bv.toLowerCase(); }
       }
       if (av<bv) return currentSort.dir==='asc'?-1:1;
@@ -29087,7 +29107,7 @@ function filterAndRender(){
       <td class="cell-num">${promoOrFleetCellInner}</td>
       <td class="cell-num cell-cost" style="${costStyle}">${_fmtMoney2(costToShow)}</td>
       <td>${stockCell}</td>
-      <td>${flags.join(' ')||'<span style="color:var(--gray-400);font-size:11px">—</span>'}</td>
+      <td><div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">${flags.join('')||'<span style="color:var(--gray-400);font-size:11px">—</span>'}</div></td>
       <td onclick="event.stopPropagation();S.addToQuickQuote(${s.id})"><button class="quick-quote-btn">+ Quote</button></td>
       ${_pbBulkEditMode ? `<td onclick="event.stopPropagation()" style="background:#fdebe6;padding:4px"><input type="text" value="${escapeAttr(effectiveModelSeries(s))}" onblur="S.bulkEditModelGroup('${jsAttr(s.brand)}','${jsAttr(s.model)}','series',this.value)" placeholder="—" style="width:120px;border:1px solid #fdba74;border-radius:4px;padding:3px 6px;font-size:11px;font-family:inherit"></td>
       <td onclick="event.stopPropagation()" style="background:#fdebe6;padding:4px"><input type="text" value="${escapeAttr(effectiveModelSubgroup(s))}" onblur="S.bulkEditModelGroup('${jsAttr(s.brand)}','${jsAttr(s.model)}','subgroup',this.value)" placeholder="—" style="width:120px;border:1px solid #fdba74;border-radius:4px;padding:3px 6px;font-size:11px;font-family:inherit"></td>` : ''}
@@ -29416,7 +29436,7 @@ function editUnitListPrice(tag){
 
 function sortBy(field){
   if (currentSort.field===field) currentSort.dir=currentSort.dir==='asc'?'desc':'asc';
-  else { currentSort.field=field; currentSort.dir = (field==='cost'||field==='msrp'||field==='promo'||field==='stock') ? 'desc' : 'asc'; }
+  else { currentSort.field=field; currentSort.dir = (field==='cost'||field==='msrp'||field==='promo'||field==='stock'||field==='popular') ? 'desc' : 'asc'; }
   userSortActive = true;  // v0.9 — user has explicitly chosen a sort
   // v0.32 — Update column header indicators
   refreshPricebookSortIndicators();
@@ -29425,7 +29445,7 @@ function sortBy(field){
 
 /* v0.32 — Refresh ▲/▼ markers on Price Book table headers */
 function refreshPricebookSortIndicators(){
-  ['brand','model','desc','msrp','promo','cost','stock'].forEach(f => {
+  ['brand','model','desc','msrp','promo','cost','stock','popular'].forEach(f => {
     const el = document.getElementById('pb-ind-' + f);
     if(!el) return;
     if(userSortActive && currentSort.field === f){
@@ -29531,6 +29551,31 @@ function jsAttr(s){
 // customer names ("O'Brien"), model names ("10' HC"), etc.
 if(typeof window !== 'undefined' && !window.jsArg){ window.jsArg = jsAttr; }
 
+// v4.8.0 — Step to the prev/next model in the current Price Book browsing list
+// (_pbLastVisible — the filtered+sorted rows). Powers the ‹ Prev / Next › buttons
+// and the ← → arrow keys on the model detail page.
+function modelDetailNav(dir){
+  if(typeof currentModelDetailKey === 'undefined' || !currentModelDetailKey) return;
+  const list = (typeof _pbLastVisible !== 'undefined' && Array.isArray(_pbLastVisible)) ? _pbLastVisible : [];
+  if(!list.length){ if(typeof showToast === 'function') showToast('Open a model from the Price Book list to step through them.'); return; }
+  const idx = list.findIndex(s => s && s.brand === currentModelDetailKey.brand && s.model === currentModelDetailKey.model);
+  if(idx < 0){ if(typeof showToast === 'function') showToast('This model isn’t in the current Price Book list.'); return; }
+  const target = idx + dir;
+  if(target < 0 || target >= list.length){ if(typeof showToast === 'function') showToast(dir < 0 ? 'Already at the first model.' : 'Already at the last model.'); return; }
+  const s = list[target];
+  if(typeof navigateToModelDetail === 'function') navigateToModelDetail(s.brand, s.model);
+}
+// Arrow-key nav on the model detail page (skipped while typing in a field).
+document.addEventListener('keydown', function(ev){
+  if(ev.key !== 'ArrowLeft' && ev.key !== 'ArrowRight') return;
+  const page = document.getElementById('page-shortline-model-detail');
+  if(!page || !page.classList.contains('active')) return;
+  const t = ev.target;
+  if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+  ev.preventDefault();
+  modelDetailNav(ev.key === 'ArrowLeft' ? -1 : 1);
+});
+
 function renderModelDetailPage(){
   const container = document.getElementById('model-detail-content');
   if(!container) return;
@@ -29572,6 +29617,20 @@ function renderModelDetailPage(){
   // like "10' HC" were breaking every editable field with a SyntaxError.
   const safeBrand = jsAttr(brand);
   const safeModel = jsAttr(model);
+
+  // v4.8.0 — Prev/Next through the current Price Book browsing list (_pbLastVisible,
+  // the filtered+sorted rows you were just looking at). Lets you rip through models
+  // — favourite/showcase each — without bouncing back to the list every time.
+  const _navList = (typeof _pbLastVisible !== 'undefined' && Array.isArray(_pbLastVisible)) ? _pbLastVisible : [];
+  const _navIdx = _navList.findIndex(s => s && s.brand === brand && s.model === model);
+  const _hasPrev = _navIdx > 0;
+  const _hasNext = _navIdx >= 0 && _navIdx < _navList.length - 1;
+  const prevNextHtml = (_navIdx >= 0 && _navList.length > 1) ? `
+    <div style="display:flex;align-items:center;gap:6px;margin-top:8px">
+      <button onclick="S.modelDetailNav(-1)" ${_hasPrev ? '' : 'disabled'} title="Previous model (or press ←)" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid var(--gray-200);background:#fff;border-radius:7px;font-size:12px;font-weight:600;font-family:inherit;color:var(--gray-700);cursor:${_hasPrev ? 'pointer' : 'not-allowed'};${_hasPrev ? '' : 'opacity:.4'}">‹ Prev</button>
+      <button onclick="S.modelDetailNav(1)" ${_hasNext ? '' : 'disabled'} title="Next model (or press →)" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid var(--gray-200);background:#fff;border-radius:7px;font-size:12px;font-weight:600;font-family:inherit;color:var(--gray-700);cursor:${_hasNext ? 'pointer' : 'not-allowed'};${_hasNext ? '' : 'opacity:.4'}">Next ›</button>
+      <span style="font-size:11px;color:var(--gray-400);margin-left:3px">${_navIdx + 1} of ${_navList.length}</span>
+    </div>` : '';
 
   // Hero / left column
   const heroHtml = `
@@ -29697,6 +29756,7 @@ function renderModelDetailPage(){
             <div class="md-brand-pill" style="background:${brandColor}1f;color:${brandColor}">${escapeHtml(brand)}</div>
             <h1>${escapeHtml(model)}</h1>
             <div class="md-model-id">${eff.category ? escapeHtml(eff.category) : ''}${sku && sku._synthetic ? ' <span style="font-size:10px;color:var(--amber);font-weight:600">(not in SKU catalog)</span>' : ''}</div>
+            ${prevNextHtml}
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
             <button class="brand-info-jump-btn" onclick="S.jumpToBrandInfo('${safeBrand}')" title="View ${escapeAttr(brand)} brand info">
@@ -36602,6 +36662,16 @@ function _ppRenderTable(){
   const truncBanner = _ppState.wasTruncated
     ? '<div class="pp-colmap-note warn" style="margin-bottom:10px"><strong>⚠ Response truncated:</strong> The price file is too large to fit in one parse — Claude\'s response hit the output token limit. Rows from the end of the file are missing. The ' + counts.total + ' rows below are everything that fit. Commit them if you like, but you\'ll need to re-parse with a different approach (e.g. split the PDF, or contact a developer about page chunking) to capture the rest.</div>'
     : '';
+  // v4.7.0 — Sortable header helper. Clicking toggles asc/desc; an arrow marks the
+  // active sort. Sorting/filtering repaint only the tbody (via _ppRenderRows) so the
+  // search box keeps focus while you type.
+  const sortTh = (field, label, cls, style) => {
+    const s = _ppState.ppSort || {};
+    const arrow = s.field === field ? (s.dir === 'asc' ? ' ▲' : ' ▼') : '';
+    return '<th' + (cls ? ' class="' + cls + '"' : '') + ' style="' + (style ? style + ';' : '') + 'cursor:pointer;user-select:none"' +
+      ' onclick="S.priceParserSortBy(\'' + field + '\')">' + label +
+      '<span id="pp-sort-' + field + '" style="color:var(--orange);font-size:10px">' + arrow + '</span></th>';
+  };
   body.innerHTML = '' +
     truncBanner +
     '<div class="pp-colmap">' +
@@ -36616,28 +36686,32 @@ function _ppRenderTable(){
       (counts.ambig > 0 ? '<div class="pill warn">' + counts.ambig + ' ambiguous</div>' : '') +
       '<div class="pill">' + counts.included + ' will commit</div>' +
     '</div>' +
+    // v4.7.0 — Search box: filters rows by model / description / series / subgroup.
+    '<div style="display:flex;align-items:center;gap:10px;margin:10px 0 8px">' +
+      '<input type="text" id="pp-row-filter" placeholder="Search rows by model, description, series…" oninput="S.priceParserSetFilter(this.value)" value="' + escapeAttr(_ppState.ppFilter || '') + '" style="flex:1;max-width:380px;padding:7px 11px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:inherit">' +
+      '<span id="pp-row-count" style="font-size:11px;color:var(--gray-500);white-space:nowrap"></span>' +
+    '</div>' +
     '<div class="pp-table-wrap">' +
       '<table class="pp-table">' +
         '<thead><tr>' +
           '<th class="ctr" style="width:38px"><input type="checkbox" id="pp-toggle-all" onclick="S.priceParserBulk(this.checked?\'include\':\'exclude\')" checked></th>' +
-          '<th style="width:130px">Model</th>' +
-          '<th>Description</th>' +
-          '<th class="num" style="width:100px">MSRP</th>' +
-          '<th class="num" style="width:100px">Cost</th>' +
-          '<th class="num" style="width:100px">Promo</th>' +
-          '<th class="num" style="width:100px">MAP</th>' +
-          '<th style="width:130px">Cost source</th>' +
-          // v2.0.10.9 — Series/Subgroup columns. Editable; commit writes to
-          // MODEL_FIELDS so they show up in the price book grouping toggle.
-          '<th style="width:140px">Series</th>' +
-          '<th style="width:140px">Subgroup</th>' +
+          // v4.6.3 — min-widths so Description/Series stay readable; v4.7.0 — click-to-sort.
+          sortTh('model', 'Model', '', 'min-width:150px') +
+          sortTh('description', 'Description', '', 'min-width:280px') +
+          sortTh('msrp', 'MSRP', 'num', 'width:100px') +
+          sortTh('cost', 'Cost', 'num', 'width:100px') +
+          sortTh('promo', 'Promo', 'num', 'width:100px') +
+          sortTh('map', 'MAP', 'num', 'width:100px') +
+          '<th style="width:120px">Cost source</th>' +
+          // v2.0.10.9 — Series/Subgroup columns. Editable; commit writes to MODEL_FIELDS.
+          sortTh('series', 'Series', '', 'min-width:170px') +
+          sortTh('subgroup', 'Subgroup', '', 'min-width:170px') +
           '<th class="ctr" style="width:90px">Match</th>' +
         '</tr></thead>' +
-        '<tbody>' +
-          rows.map(r => _ppRowHtml(r, roles, brand)).join('') +
-        '</tbody>' +
+        '<tbody id="pp-tbody"></tbody>' +
       '</table>' +
     '</div>';
+  _ppRenderRows();
   const ftr = document.getElementById('pp-footer');
   if(ftr) ftr.style.display = 'flex';
   // v2.0.8.3 — Show "Re-parse from API" button only when the rows came from
@@ -36683,8 +36757,8 @@ function _ppRowHtml(r, roles, brand){
   const numCell = (val) => '<td class="num">' + (val > 0 ? '$' + val.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',') : '<span style="color:var(--gray-400)">—</span>') + '</td>';
   return '<tr id="pp-row-' + r.id + '" class="' + cls + '">' +
     '<td class="ctr"><input type="checkbox" ' + (r.includes ? 'checked' : '') + ' onchange="S.priceParserToggleRow(\'' + r.id + '\',this.checked)"></td>' +
-    '<td><input type="text" value="' + escapeAttr(r.model) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'model\',this.value)"></td>' +
-    '<td><input type="text" value="' + escapeAttr(r.description) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'description\',this.value)"></td>' +
+    '<td><input type="text" value="' + escapeAttr(r.model) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'model\',this.value)" style="width:100%"></td>' +
+    '<td><input type="text" value="' + escapeAttr(r.description) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'description\',this.value)" style="width:100%"></td>' +
     numCell(v.msrp) +
     numCell(v.cost) +
     numCell(v.promo) +
@@ -36695,6 +36769,70 @@ function _ppRowHtml(r, roles, brand){
     '<td><input type="text" value="' + escapeAttr(r.subgroup || '') + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'subgroup\',this.value)" placeholder="—" style="width:100%"></td>' +
     '<td class="ctr">' + matchPill + '</td>' +
   '</tr>';
+}
+
+/* v4.7.0 — Parse-review row search + sort. _ppState.ppFilter (text) and
+   _ppState.ppSort ({field,dir}) drive a filtered/sorted VIEW of _ppState.rows;
+   the underlying array (and commit) is untouched — commit still uses every
+   included row regardless of display order. Filtering/sorting repaint only the
+   tbody so the search box keeps focus. */
+function _ppDisplayRows(){
+  const rows = _ppState.rows || [];
+  const f = (_ppState.ppFilter || '').trim().toLowerCase();
+  let out = rows;
+  if(f){
+    out = rows.filter(r =>
+      String(r.model || '').toLowerCase().includes(f) ||
+      String(r.description || '').toLowerCase().includes(f) ||
+      String(r.series || '').toLowerCase().includes(f) ||
+      String(r.subgroup || '').toLowerCase().includes(f));
+  }
+  const s = _ppState.ppSort;
+  if(s && s.field){
+    const roles = _ppState.columnRoles || {};
+    const brand = _ppState.brand;
+    const isPrice = ['msrp','cost','promo','map'].indexOf(s.field) >= 0;
+    const keyOf = (r) => {
+      if(isPrice){ const v = _ppApplyMapping(r, roles, brand); return Number(v[s.field] || 0); }
+      return String(r[s.field] || '').toLowerCase();
+    };
+    out = out.slice().sort((a, b) => {
+      const ka = keyOf(a), kb = keyOf(b);
+      if(ka < kb) return s.dir === 'asc' ? -1 : 1;
+      if(ka > kb) return s.dir === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+  return out;
+}
+function _ppRenderRows(){
+  const tb = document.getElementById('pp-tbody');
+  if(!tb) return;
+  const roles = _ppState.columnRoles || {};
+  const brand = _ppState.brand;
+  const disp = _ppDisplayRows();
+  tb.innerHTML = disp.length
+    ? disp.map(r => _ppRowHtml(r, roles, brand)).join('')
+    : '<tr><td colspan="11" style="padding:18px;text-align:center;color:var(--gray-400)">No rows match your search.</td></tr>';
+  const total = (_ppState.rows || []).length;
+  const cntEl = document.getElementById('pp-row-count');
+  if(cntEl) cntEl.textContent = (disp.length === total) ? (total + ' rows') : (disp.length + ' of ' + total + ' rows');
+  // Reflect the active sort arrow on each sortable header.
+  const s = _ppState.ppSort || {};
+  ['model','description','msrp','cost','promo','map','series','subgroup'].forEach(f => {
+    const ind = document.getElementById('pp-sort-' + f);
+    if(ind) ind.textContent = (s.field === f) ? (s.dir === 'asc' ? ' ▲' : ' ▼') : '';
+  });
+}
+function priceParserSetFilter(v){
+  _ppState.ppFilter = String(v == null ? '' : v);
+  _ppRenderRows();
+}
+function priceParserSortBy(field){
+  const s = _ppState.ppSort || (_ppState.ppSort = { field:null, dir:'asc' });
+  if(s.field === field){ s.dir = (s.dir === 'asc') ? 'desc' : 'asc'; }
+  else { s.field = field; s.dir = 'asc'; }
+  _ppRenderRows();
 }
 
 // v2.0.7.6 — Dropdown handler. Updates the role for one column and re-renders.
@@ -38922,6 +39060,8 @@ function updateCommissionCodes(idx, value){
     priceParserBulk: typeof priceParserBulk === 'function' ? priceParserBulk : undefined,
     priceParserEditField: typeof priceParserEditField === 'function' ? priceParserEditField : undefined,
     priceParserSetColumnRole: typeof priceParserSetColumnRole === 'function' ? priceParserSetColumnRole : undefined,
+    priceParserSetFilter: typeof priceParserSetFilter === 'function' ? priceParserSetFilter : undefined,
+    priceParserSortBy: typeof priceParserSortBy === 'function' ? priceParserSortBy : undefined,
     priceParserReparse: typeof priceParserReparse === 'function' ? priceParserReparse : undefined,
     commitPriceParser: typeof commitPriceParser === 'function' ? commitPriceParser : undefined,
     /* v1.2.2 — Real Drive-backed brand price file upload + download */
@@ -39044,6 +39184,7 @@ function updateCommissionCodes(idx, value){
     submitUnitNote: typeof submitUnitNote === 'function' ? submitUnitNote : undefined,
     deleteNoteFromUI: typeof deleteNoteFromUI === 'function' ? deleteNoteFromUI : undefined,
     editModelField: typeof editModelField === 'function' ? editModelField : undefined,
+    modelDetailNav: typeof modelDetailNav === 'function' ? modelDetailNav : undefined,
     uploadModelDetailImage: typeof uploadModelDetailImage === 'function' ? uploadModelDetailImage : undefined,
     removeModelDetailImage: typeof removeModelDetailImage === 'function' ? removeModelDetailImage : undefined,
     // v2.0.9.2 — Showcase toggle + dashboard carousel

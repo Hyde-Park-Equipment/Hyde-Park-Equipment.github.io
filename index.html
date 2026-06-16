@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v4.11.1</title><!-- build:20260616_v4111_webp_logos -->
+<title>HPE Sales Platform v4.13.0</title><!-- build:20260616_v4130_parse_column_reorder -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -3019,7 +3019,7 @@ body.admin-mode .admin-only-block { display: block; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.11.1</div>
+      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.13.0</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="data-status" id="data-status" aria-label="Data load status"></div>
@@ -4832,8 +4832,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '4.11.1',
-    build: '20260616_v4111_webp_logos',
+    version: '4.13.0',
+    build: '20260616_v4130_parse_column_reorder',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     // v3.14.0 — Cloudflare Worker proxy for live DIS Quantum API lookups.
     // The Worker validates our Google access token and holds the DIS key
@@ -4855,6 +4855,8 @@ const HPE = (function(){
   // TOP of this array. Keep notes short and rep-facing (what they'd notice),
   // not internal implementation detail. Newest first.
   const CHANGELOG = [
+    { v: '4.13.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: you can now reorder the columns — the Columns ▾ menu has ▲▼ buttons next to each column to move it left/right. Your order (and which columns are hidden) is remembered per brand. That completes the parse-screen customization: inline-edit everything, search, sort, show/hide, reorder.' },
+    { v: '4.12.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: added an editable Category column, so you can set each model’s category right in the review table (it commits to the model). It pre-fills from a model’s existing category when you re-open the results, and it’s sortable + hideable like the others. Also: your Columns show/hide choices are now remembered per brand.' },
     { v: '4.11.1', date: 'Jun 16 2026', note: 'Brand logo upload now accepts WebP (and JPG) files, not just PNG. WebP/JPG are auto-converted to PNG on upload so they keep transparency and still embed correctly in quote PDFs.' },
     { v: '4.11.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: a “Columns ▾” menu lets you hide columns you don’t need (Promo, MAP, Cost source, etc.) so the ones you care about — Description, Series — get more room. (Column reordering is the next step.)' },
     { v: '4.10.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: the MSRP, Cost, Promo and MAP cells are now editable right in the table — type a number to override what the file said for that row, and that’s what commits. Clear a cell to fall back to the file/computed value. (First of the parse-screen power-ups; column show/hide and more inline fields next.)' },
@@ -36644,6 +36646,13 @@ function _ppNormalizeRows(rows){
     });
     const series = String(r.series || '').trim();
     const subgroup = String(r.subgroup || '').trim();
+    // v4.12.0 — Category isn't extracted by the parser, so prefill from the
+    // model's existing override (if any) when re-opening, instead of blank.
+    let category = String(r.category || '').trim();
+    if(!category && _ppState && _ppState.brand && typeof getModelField === 'function'){
+      const _c = getModelField(_ppState.brand.name, model, 'category');
+      if(typeof _c === 'string' && _c.trim()) category = _c.trim();
+    }
     // Assign display order based on file position. First series seen → 10,
     // second → 20, etc. Same logic per-(series, subgroup) pair so subgroups
     // sort correctly within their series.
@@ -36668,6 +36677,7 @@ function _ppNormalizeRows(rows){
       id: 'pp_' + i,
       model,
       description: String(r.description || '').trim(),
+      category,  // v4.12.0 — editable in the review table (prefilled above)
       series,
       subgroup,
       seriesOrder,
@@ -36804,16 +36814,45 @@ function _ppRenderTable(){
       ' onclick="S.priceParserSortBy(\'' + field + '\')">' + label +
       '<span id="pp-sort-' + field + '" style="color:var(--orange);font-size:10px">' + arrow + '</span></th>';
   };
-  // v4.11.0 — Columns show/hide menu (CSS-class visibility, same pattern as the
-  // Used list). Checkbox per hideable column; toggling rewrites #pp-col-vis-style.
-  const _PP_HIDEABLE = [['description','Description'],['msrp','MSRP'],['cost','Cost'],['promo','Promo'],['map','MAP'],['costsource','Cost source'],['series','Series'],['subgroup','Subgroup']];
+  // v4.11.0/v4.13.0 — Columns menu: per column a show/hide checkbox + move ▲▼
+  // (reorder). Show/hide is CSS (#pp-col-vis-style); reorder rebuilds the table.
+  // v4.12.0 — Load this brand's saved hidden-column prefs the first time the table
+  // renders, so the Columns menu remembers your choices across sessions.
+  if(_ppState.hiddenCols === undefined){
+    _ppState.hiddenCols = (_ppState.brand && _ppState.brand.parser && Array.isArray(_ppState.brand.parser.hiddenCols))
+      ? _ppState.brand.parser.hiddenCols.slice() : [];
+  }
+  // v4.13.0 — Load this brand's saved column order the first time too.
+  if(_ppState.colOrder === undefined && _ppState.brand && _ppState.brand.parser && Array.isArray(_ppState.brand.parser.colOrder)){
+    _ppState.colOrder = _ppState.brand.parser.colOrder.slice();
+  }
   const _ppHidden = new Set(_ppState.hiddenCols || []);
+  const _menuOrder = _ppColOrder();
   const colsMenuHtml = '<div style="position:relative;display:inline-block">' +
     '<button type="button" onclick="var m=document.getElementById(\'pp-cols-menu\');m.style.display=(m.style.display===\'block\'?\'none\':\'block\')" style="padding:7px 11px;border:1px solid var(--gray-200);background:#fff;border-radius:7px;font-size:12px;font-weight:600;color:var(--gray-700);cursor:pointer;font-family:inherit;white-space:nowrap">Columns ▾</button>' +
-    '<div id="pp-cols-menu" style="display:none;position:absolute;right:0;top:calc(100% + 4px);background:#fff;border:1px solid var(--gray-200);border-radius:8px;box-shadow:var(--shadow-md);padding:6px;z-index:20;min-width:170px">' +
-      _PP_HIDEABLE.map(function(c){ return '<label style="display:flex;align-items:center;gap:8px;padding:5px 7px;font-size:12px;cursor:pointer;color:var(--gray-700);border-radius:5px"><input type="checkbox" ' + (_ppHidden.has(c[0]) ? '' : 'checked') + ' onchange="S.priceParserToggleCol(\'' + c[0] + '\',this.checked)">' + c[1] + '</label>'; }).join('') +
+    '<div id="pp-cols-menu" style="display:none;position:absolute;right:0;top:calc(100% + 4px);background:#fff;border:1px solid var(--gray-200);border-radius:8px;box-shadow:var(--shadow-md);padding:6px;z-index:20;min-width:210px">' +
+      '<div style="font-size:10px;color:var(--gray-400);padding:2px 6px 5px;text-transform:uppercase;letter-spacing:0.04em">Show / order columns</div>' +
+      _menuOrder.map(function(k, idx){
+        const c = _PP_COL_MAP[k];
+        const cb = c.fixed
+          ? '<input type="checkbox" checked disabled title="Always shown">'
+          : '<input type="checkbox" ' + (_ppHidden.has(k) ? '' : 'checked') + ' onchange="S.priceParserToggleCol(\'' + k + '\',this.checked)">';
+        const mvBtn = (dir, glyph, disabled) => '<button type="button" title="' + (dir < 0 ? 'Move left' : 'Move right') + '" ' + (disabled ? 'disabled' : '') + ' onclick="S.priceParserMoveCol(\'' + k + '\',' + dir + ')" style="border:1px solid var(--gray-200);background:#fff;border-radius:4px;width:20px;height:20px;cursor:pointer;font-size:9px;line-height:1;' + (disabled ? 'opacity:.35' : '') + '">' + glyph + '</button>';
+        return '<div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px">' +
+          '<label style="display:flex;align-items:center;gap:7px;cursor:pointer;flex:1;font-size:12px;color:var(--gray-700)">' + cb + c.label + '</label>' +
+          mvBtn(-1, '▲', idx === 0) + mvBtn(1, '▼', idx === _menuOrder.length - 1) +
+        '</div>';
+      }).join('') +
     '</div>' +
   '</div>';
+  // v4.13.0 — Build a header cell for a movable column key (sortable or plain).
+  const _thFor = (key) => {
+    const c = _PP_COL_MAP[key];
+    if(!c) return '';
+    if(c.sortable) return sortTh(key, c.label, c.num ? 'num' : '', c.thStyle);
+    return '<th class="pp-col-' + key + '" style="' + (c.thStyle ? c.thStyle + ';' : '') + '">' + c.label + '</th>';
+  };
+  const _ppOrderedKeys = _ppColOrder();
   body.innerHTML = '' +
     truncBanner +
     '<div class="pp-colmap">' +
@@ -36841,17 +36880,9 @@ function _ppRenderTable(){
       '<table class="pp-table">' +
         '<thead><tr>' +
           '<th class="ctr" style="width:38px"><input type="checkbox" id="pp-toggle-all" onclick="S.priceParserBulk(this.checked?\'include\':\'exclude\')" checked></th>' +
-          // v4.6.3 — min-widths so Description/Series stay readable; v4.7.0 — click-to-sort.
-          sortTh('model', 'Model', '', 'min-width:150px') +
-          sortTh('description', 'Description', '', 'min-width:280px') +
-          sortTh('msrp', 'MSRP', 'num', 'width:100px') +
-          sortTh('cost', 'Cost', 'num', 'width:100px') +
-          sortTh('promo', 'Promo', 'num', 'width:100px') +
-          sortTh('map', 'MAP', 'num', 'width:100px') +
-          '<th class="pp-col-costsource" style="width:120px">Cost source</th>' +
-          // v2.0.10.9 — Series/Subgroup columns. Editable; commit writes to MODEL_FIELDS.
-          sortTh('series', 'Series', '', 'min-width:170px') +
-          sortTh('subgroup', 'Subgroup', '', 'min-width:170px') +
+          // v4.13.0 — columns render in the saved order (min-widths + click-to-sort
+          // come from _PP_COLS). Checkbox stays first, Match last.
+          _ppOrderedKeys.map(_thFor).join('') +
           '<th class="ctr" style="width:90px">Match</th>' +
         '</tr></thead>' +
         '<tbody id="pp-tbody"></tbody>' +
@@ -36905,18 +36936,23 @@ function _ppRowHtml(r, roles, brand){
   // (priceParserEditPrice → r._override) that _ppApplyMapping honours for both
   // display and commit. Blank reverts that field to the mapped/computed value.
   const editNumCell = (field, val) => '<td class="num pp-col-' + field + '"><input type="number" step="0.01" min="0" class="num" value="' + (val > 0 ? val : '') + '" oninput="S.priceParserEditPrice(\'' + r.id + '\',\'' + field + '\',this.value)" placeholder="—" title="Edit ' + field.toUpperCase() + ' for this row (overrides the file)"></td>';
+  const textCell = (field, val) => '<td class="pp-col-' + field + '"><input type="text" value="' + escapeAttr(val || '') + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'' + field + '\',this.value)" placeholder="—" style="width:100%"></td>';
+  // v4.13.0 — cells keyed by column, assembled in the saved order (_ppColOrder).
+  const cell = {
+    model:       textCell('model', r.model),
+    description: textCell('description', r.description),
+    msrp:        editNumCell('msrp', v.msrp),
+    cost:        editNumCell('cost', v.cost),
+    promo:       editNumCell('promo', v.promo),
+    map:         editNumCell('map', v.map),
+    costsource:  '<td class="pp-col-costsource"><span class="pp-source">' + escapeHtml(v.costSource) + '</span></td>',
+    series:      textCell('series', r.series),
+    subgroup:    textCell('subgroup', r.subgroup),
+    category:    textCell('category', r.category)
+  };
   return '<tr id="pp-row-' + r.id + '" class="' + cls + '">' +
     '<td class="ctr"><input type="checkbox" ' + (r.includes ? 'checked' : '') + ' onchange="S.priceParserToggleRow(\'' + r.id + '\',this.checked)"></td>' +
-    '<td class="pp-col-model"><input type="text" value="' + escapeAttr(r.model) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'model\',this.value)" style="width:100%"></td>' +
-    '<td class="pp-col-description"><input type="text" value="' + escapeAttr(r.description) + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'description\',this.value)" style="width:100%"></td>' +
-    editNumCell('msrp', v.msrp) +
-    editNumCell('cost', v.cost) +
-    editNumCell('promo', v.promo) +
-    editNumCell('map', v.map) +
-    '<td class="pp-col-costsource"><span class="pp-source">' + escapeHtml(v.costSource) + '</span></td>' +
-    // v2.0.10.9 — Series/Subgroup edit cells
-    '<td class="pp-col-series"><input type="text" value="' + escapeAttr(r.series || '') + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'series\',this.value)" placeholder="—" style="width:100%"></td>' +
-    '<td class="pp-col-subgroup"><input type="text" value="' + escapeAttr(r.subgroup || '') + '" oninput="S.priceParserEditField(\'' + r.id + '\',\'subgroup\',this.value)" placeholder="—" style="width:100%"></td>' +
+    _ppColOrder().map(k => cell[k] || '').join('') +
     '<td class="ctr">' + matchPill + '</td>' +
   '</tr>';
 }
@@ -36982,13 +37018,13 @@ function _ppRenderRows(){
   const disp = _ppDisplayRows();
   tb.innerHTML = disp.length
     ? disp.map(r => _ppRowHtml(r, roles, brand)).join('')
-    : '<tr><td colspan="11" style="padding:18px;text-align:center;color:var(--gray-400)">No rows match your search.</td></tr>';
+    : '<tr><td colspan="12" style="padding:18px;text-align:center;color:var(--gray-400)">No rows match your search.</td></tr>';
   const total = (_ppState.rows || []).length;
   const cntEl = document.getElementById('pp-row-count');
   if(cntEl) cntEl.textContent = (disp.length === total) ? (total + ' rows') : (disp.length + ' of ' + total + ' rows');
   // Reflect the active sort arrow on each sortable header.
   const s = _ppState.ppSort || {};
-  ['model','description','msrp','cost','promo','map','series','subgroup'].forEach(f => {
+  ['model','description','msrp','cost','promo','map','series','subgroup','category'].forEach(f => {
     const ind = document.getElementById('pp-sort-' + f);
     if(ind) ind.textContent = (s.field === f) ? (s.dir === 'asc' ? ' ▲' : ' ▼') : '';
   });
@@ -37010,6 +37046,60 @@ function priceParserToggleCol(key, visible){
   if(visible) set.delete(key); else set.add(key);
   _ppState.hiddenCols = Array.from(set);
   _ppApplyColVis();
+  // v4.12.0 — Persist per brand so the choice sticks next time you open this brand.
+  const b = _ppState.brand;
+  if(b){
+    if(!b.parser || typeof b.parser !== 'object') b.parser = {};
+    b.parser.hiddenCols = _ppState.hiddenCols.slice();
+    if(typeof saveAppState === 'function') saveAppState();
+  }
+}
+
+/* v4.13.0 — Movable column metadata. Drives the header, the row cells, the
+   Columns menu, sorting and hiding from one place, so order is configurable.
+   The checkbox (first) and Match (last) columns are fixed and not in here. */
+const _PP_COLS = [
+  { key:'model',       label:'Model',       sortable:true,            thStyle:'min-width:150px', fixed:true },
+  { key:'description', label:'Description',  sortable:true,            thStyle:'min-width:280px' },
+  { key:'msrp',        label:'MSRP',         sortable:true, num:true,  thStyle:'width:100px' },
+  { key:'cost',        label:'Cost',         sortable:true, num:true,  thStyle:'width:100px' },
+  { key:'promo',       label:'Promo',        sortable:true, num:true,  thStyle:'width:100px' },
+  { key:'map',         label:'MAP',          sortable:true, num:true,  thStyle:'width:100px' },
+  { key:'costsource',  label:'Cost source',  sortable:false,           thStyle:'width:120px' },
+  { key:'series',      label:'Series',       sortable:true,            thStyle:'min-width:170px' },
+  { key:'subgroup',    label:'Subgroup',     sortable:true,            thStyle:'min-width:170px' },
+  { key:'category',    label:'Category',     sortable:true,            thStyle:'min-width:150px' }
+];
+const _PP_COL_MAP = (function(){ const m = {}; _PP_COLS.forEach(c => { m[c.key] = c; }); return m; })();
+const _PP_COL_DEFAULT_ORDER = _PP_COLS.map(c => c.key);
+// Current column order — repaired against the canonical key set (drops unknowns,
+// appends any new columns missing from a saved order, e.g. Category added later).
+function _ppColOrder(){
+  const o = Array.isArray(_ppState.colOrder) ? _ppState.colOrder : null;
+  if(!o) return _PP_COL_DEFAULT_ORDER.slice();
+  const seen = new Set();
+  const out = [];
+  o.forEach(k => { if(_PP_COL_MAP[k] && !seen.has(k)){ out.push(k); seen.add(k); } });
+  _PP_COL_DEFAULT_ORDER.forEach(k => { if(!seen.has(k)){ out.push(k); seen.add(k); } });
+  return out;
+}
+function priceParserMoveCol(key, dir){
+  const order = _ppColOrder();
+  const i = order.indexOf(key);
+  const j = i + dir;
+  if(i < 0 || j < 0 || j >= order.length) return;
+  const tmp = order[j]; order[j] = order[i]; order[i] = tmp;
+  _ppState.colOrder = order;
+  const b = _ppState.brand;
+  if(b){
+    if(!b.parser || typeof b.parser !== 'object') b.parser = {};
+    b.parser.colOrder = order.slice();
+    if(typeof saveAppState === 'function') saveAppState();
+  }
+  _ppRenderTable();          // rebuild thead + rows in the new order
+  // Keep the Columns menu open after a move so you can keep nudging.
+  const menu = document.getElementById('pp-cols-menu');
+  if(menu) menu.style.display = 'block';
 }
 function priceParserSortBy(field){
   const s = _ppState.ppSort || (_ppState.ppSort = { field:null, dir:'asc' });
@@ -37073,6 +37163,8 @@ function priceParserEditField(rowId, field, value){
     r.series = String(value || '').trim();
   } else if(field === 'subgroup'){
     r.subgroup = String(value || '').trim();
+  } else if(field === 'category'){
+    r.category = String(value || '').trim();
   }
 }
 
@@ -37113,6 +37205,9 @@ function commitPriceParser(){
     if(v.promo_cost > 0)  MODEL_FIELDS[k].promo_cost  = v.promo_cost;
     if(v.fleet_price > 0) MODEL_FIELDS[k].fleet_price = v.fleet_price;
     if(r.description) MODEL_FIELDS[k].desc = r.description;
+    // v4.12.0 — Category (editable in the review table). Blank clears the override.
+    if(r.category && r.category.trim()) MODEL_FIELDS[k].category = r.category.trim();
+    else delete MODEL_FIELDS[k].category;
     // v2.0.10.9 — Group fields. Overwrites any prior series/subgroup; the
     // re-parse-means-file-is-authoritative convention matches msrp/cost
     // behavior. To clear a group from a model after commit, edit it on the
@@ -39271,6 +39366,7 @@ function updateCommissionCodes(idx, value){
     priceParserSetFilter: typeof priceParserSetFilter === 'function' ? priceParserSetFilter : undefined,
     priceParserEditPrice: typeof priceParserEditPrice === 'function' ? priceParserEditPrice : undefined,
     priceParserToggleCol: typeof priceParserToggleCol === 'function' ? priceParserToggleCol : undefined,
+    priceParserMoveCol: typeof priceParserMoveCol === 'function' ? priceParserMoveCol : undefined,
     priceParserSortBy: typeof priceParserSortBy === 'function' ? priceParserSortBy : undefined,
     priceParserReparse: typeof priceParserReparse === 'function' ? priceParserReparse : undefined,
     commitPriceParser: typeof commitPriceParser === 'function' ? commitPriceParser : undefined,

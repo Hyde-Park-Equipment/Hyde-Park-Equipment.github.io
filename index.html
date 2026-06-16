@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v4.6.0</title><!-- build:20260616_v460_reopen_parsed_results -->
+<title>HPE Sales Platform v4.6.2</title><!-- build:20260616_v462_apostrophe_handler_sweep -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -3017,7 +3017,7 @@ body.admin-mode .admin-only-block { display: block; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,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" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.6.0</div>
+      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.6.2</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="data-status" id="data-status" aria-label="Data load status"></div>
@@ -4811,12 +4811,27 @@ body.admin-mode .admin-only-block { display: block; }
  *   - Optimistic concurrency (Stage 3)
  * ============================================================================ */
 
+/* v4.6.2 — Global JS-arg escaper, defined up-front so every module scope can use
+   it the moment any render runs. Escapes a value for use as a JS-string argument
+   inside an inline on*-handler ("...('VALUE')") — i.e. it escapes ' and \ (the JS
+   layer) on top of the HTML-attribute layer. Use this (NOT the HTML-only
+   escapeAttr/escTC/esc) for any model/customer/name value dropped into a handler,
+   so apostrophes ("O'Brien", "10' HC") don't break it with "missing ) after
+   argument list". See also jsAttr (identical) in the Shortline scope. */
+if(typeof window !== 'undefined'){
+  window.jsArg = function(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  };
+}
+
 const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '4.6.0',
-    build: '20260616_v460_reopen_parsed_results',
+    version: '4.6.2',
+    build: '20260616_v462_apostrophe_handler_sweep',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     // v3.14.0 — Cloudflare Worker proxy for live DIS Quantum API lookups.
     // The Worker validates our Google access token and holds the DIS key
@@ -4838,6 +4853,8 @@ const HPE = (function(){
   // TOP of this array. Keep notes short and rep-facing (what they'd notice),
   // not internal implementation detail. Newest first.
   const CHANGELOG = [
+    { v: '4.6.2', date: 'Jun 16 2026', note: 'Fixed clicks breaking on customers and models whose name has an apostrophe — e.g. a customer like “O’Brien Farms” or a model like “10’ HC”. Customer links across Home (recently quoted, pipeline, top customers, My Customers) and trade rows, the commissions customer filter, the model-image manager, and the Kubota model-merge button now all work for apostrophe names. (Continuation of the v4.4.1 fix, now applied app-wide.)' },
+    { v: '4.6.1', date: 'Jun 16 2026', note: 'Small sidebar tidy: hovering the Home button no longer pops a redundant “Home” flyout — just click Home. Used/Shortline/Kubota keep their hover menus since those have pages to jump to.' },
     { v: '4.6.0', date: 'Jun 16 2026', note: 'You can now re-open a price file’s parse results any time to change anything. Each price file in Brand Maintenance has a new “✎ Edit results” button that brings back the full parse screen — all the detected columns, the column-to-price mapping, and every row — loaded from the saved parse (no re-read, no API cost). Remap a column, fix descriptions or series/subgroup, include/exclude rows, then re-apply. (Or use “↻ Re-parse from API” inside it to pull the file fresh.)' },
     { v: '4.5.0', date: 'Jun 16 2026', note: 'Price book customization (part 3): you can now rename the price-book columns per brand. In “✎ Edit price book” there’s a Column headings row — e.g. call “MSRP” → “List Price” or “Cost” → “Dealer Cost” for one brand. Leave a box blank to keep the default. The custom headings show when that brand is selected on the Price Book.' },
     { v: '4.4.2', date: 'Jun 16 2026', note: 'Price book customization (part 2): you can now add a short intro blurb at the top of a brand’s price book, and a description under each section header. Set them in “✎ Edit price book” — a Brand intro box at the top, and a description line under each section. The intro shows when a single brand is selected; section notes show when you group by Series.' },
@@ -5850,12 +5867,20 @@ const HPE = (function(){
       Object.keys(sections).forEach(key => {
         const s = sections[key];
         const activeCls = key === state.currentSection ? 'active' : '';
-        let fly = `<div class="ws-flyout"><div class="wf-title">${s.label}</div>`;
-        (s.nav || []).forEach(item => {
-          const adminCls = item.admin ? ' admin-only' : '';
-          fly += `<button class="nav-btn${adminCls}" onclick="HPE.router.go('${key}','${item.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg><span class="nav-label">${item.label}</span></button>`;
-        });
-        fly += '</div>';
+        // v4.6.1 — Only build a hover-flyout for sections that have real pages to
+        // jump to (≥1 non-admin nav item). Home's only "pages" are admin tools, so
+        // its flyout was just a redundant "Home" label next to the Home button —
+        // dropped. Used/Shortline/Kubota keep theirs.
+        const hasPages = (s.nav || []).some(item => !item.admin);
+        let fly = '';
+        if(hasPages){
+          fly = `<div class="ws-flyout"><div class="wf-title">${s.label}</div>`;
+          (s.nav || []).forEach(item => {
+            const adminCls = item.admin ? ' admin-only' : '';
+            fly += `<button class="nav-btn${adminCls}" onclick="HPE.router.go('${key}','${item.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${item.icon}</svg><span class="nav-label">${item.label}</span></button>`;
+          });
+          fly += '</div>';
+        }
         html += `<div class="ws-item ${activeCls}"><button class="ws-btn" data-section="${key}" title="${s.label}" onclick="HPE.router.go('${key}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${ICONS[key] || ''}</svg><span class="ws-name">${s.label}</span></button>${fly}</div>`;
       });
       html += '<div class="ws-spacer"></div>';
@@ -6751,7 +6776,7 @@ const HPE = (function(){
           '<div class="hqc-row1">' +
             '<span class="hqc-source '+sourceClass+'">'+sourceLabel+'</span>' +
             '<div class="hqc-cust-block">' +
-              '<span class="hqc-customer" onclick="event.stopPropagation();HPE.sectionImpl.hub.openCustomerDetail(\''+esc(cust).replace(/\x27/g,"&#39;")+'\')" title="Open customer profile">'+esc(cust)+'</span>' +
+              '<span class="hqc-customer" onclick="event.stopPropagation();HPE.sectionImpl.hub.openCustomerDetail(\''+window.jsArg(cust)+'\')" title="Open customer profile">'+esc(cust)+'</span>' +
               refMarkup +
             '</div>' +
             '<span class="hqc-status status-'+esc(status)+'">'+esc(status)+'</span>' +
@@ -8178,7 +8203,7 @@ const HPE = (function(){
           // to the customer page when the name is clicked. (Previously
           // quote follow-ups went to #/quotes — inconsistent with every
           // other customer-name click site.)
-          const click = 'HPE.sectionImpl.hub.openCustomerDetail(\'' + escapeAttr(r.customer || '') + '\')';
+          const click = 'HPE.sectionImpl.hub.openCustomerDetail(\'' + window.jsArg(r.customer || '') + '\')';
           const doneCall = isCust
             ? 'HPE.sectionImpl.hub.completeCustomerReachOut(\'' + escapeAttr(r.id) + '\')'
             : 'HPE.sectionImpl.hub.completeQuoteFollowUp(\'' + escapeAttr(r.id) + '\')';
@@ -8279,7 +8304,7 @@ const HPE = (function(){
           const total = top.reduce((s,c) => s + c.sales, 0);
           const rows = top.length === 0
             ? '<div class="ctop-empty">No sales data for ' + y + '.</div>'
-            : top.map((c, i) => '<div class="ctop-row" onclick="HPE.sectionImpl.hub.openCustomerDetail(\''+escapeAttr(c.customer)+'\')" title="'+escapeAttr(c.customer)+' — '+c.dealCount+' deal'+(c.dealCount===1?'':'s')+'">' +
+            : top.map((c, i) => '<div class="ctop-row" onclick="HPE.sectionImpl.hub.openCustomerDetail(\''+window.jsArg(c.customer)+'\')" title="'+escapeAttr(c.customer)+' — '+c.dealCount+' deal'+(c.dealCount===1?'':'s')+'">' +
                 '<span class="ctop-rank">'+(i+1)+'</span>' +
                 '<span class="ctop-name">'+escapeHtml(c.customer)+'</span>' +
                 '<span class="ctop-amt">'+_moneyShort(c.sales)+'</span>' +
@@ -9109,7 +9134,7 @@ const HPE = (function(){
           // the rest of the row still opens My Quotes.
           return '<div class="dxb-pipe-row" onclick="HPE.router.go(\'hub\',\'quotes\')">'+
             '<span class="dxb-pipe-stat dxb-ps-'+escapeAttr(stat)+'"></span>'+
-            '<div style="flex:1;min-width:0"><div class="dxb-pipe-cust" style="cursor:pointer" onclick="event.stopPropagation();HPE.sectionImpl.hub.openCustomerDetail(\''+escapeAttr(q.customer||'')+'\')" title="Open customer profile">'+escapeHtml(q.customer||'(no customer)')+'</div>'+
+            '<div style="flex:1;min-width:0"><div class="dxb-pipe-cust" style="cursor:pointer" onclick="event.stopPropagation();HPE.sectionImpl.hub.openCustomerDetail(\''+window.jsArg(q.customer||'')+'\')" title="Open customer profile">'+escapeHtml(q.customer||'(no customer)')+'</div>'+
             '<div class="dxb-pipe-meta">'+escapeHtml(q.meta||'')+'</div></div>'+
             '<div style="text-align:right"><div class="dxb-pipe-amt">'+(q.amount!=null?(dxbMoney(q.amount).c+dxbMoney(q.amount).v+dxbMoney(q.amount).u):'—')+'</div>'+
             '<div class="dxb-pipe-age">'+escapeHtml(q.age||'')+'</div></div></div>';
@@ -9369,7 +9394,7 @@ const HPE = (function(){
           '<tbody>' +
             rows.map(c => {
               const mine = isMine(c);
-              return '<tr onclick="HPE.sectionImpl.hub.openCustomerDetail(\'' + escapeAttr(c.name) + '\')">' +
+              return '<tr onclick="HPE.sectionImpl.hub.openCustomerDetail(\'' + window.jsArg(c.name) + '\')">' +
                 '<td><strong>' + escapeHtml(c.name) + '</strong>' + typeBadge(c.customer_type) + '</td>' +
                 '<td>' + escapeHtml(c.email || '—') + '</td>' +
                 '<td style="font-family:\'DM Mono\',monospace;font-size:12px">' + escapeHtml(c.phone || '—') + '</td>' +
@@ -15833,7 +15858,7 @@ function buildDealCardHtml(d){
     '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;flex-wrap:wrap">'+
       '<div style="flex:1;min-width:0">'+
         '<div style="font-weight:700;font-size:14px;color:var(--gray-900)">'+escTC(d.unitName||'(unknown unit)')+'</div>'+
-        '<div style="font-size:11px;color:var(--gray-500);margin-top:2px"><span onclick="event.stopPropagation();HPE.sectionImpl.hub.openCustomerDetail(\''+U.escTC(d.customer||'')+'\')" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px" title="Open customer profile">'+escTC(d.customer||'\u2014')+'</span> \u00b7 '+escTC(d.salesperson||'\u2014')+(d.stock?(' \u00b7 '+escTC(d.stock)):'')+'</div>'+
+        '<div style="font-size:11px;color:var(--gray-500);margin-top:2px"><span onclick="event.stopPropagation();HPE.sectionImpl.hub.openCustomerDetail(\''+window.jsArg(d.customer||'')+'\')" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px" title="Open customer profile">'+escTC(d.customer||'\u2014')+'</span> \u00b7 '+escTC(d.salesperson||'\u2014')+(d.stock?(' \u00b7 '+escTC(d.stock)):'')+'</div>'+
       '</div>'+
       '<span style="background:'+sourceColor+';color:white;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap">'+escTC(sourceLabel)+'</span>'+
     '</div>'+
@@ -25683,7 +25708,7 @@ function renderLifetimeTopCustomers(agg){
   const max = top[0].sales || 1;
   const rows = top.map(c => {
     const pct = (c.sales / max) * 100;
-    return `<div class="cm-bar-row" onclick="HPE.commissions.setLifetimeCustomer('${escapeAttr(c.customer)}')" style="cursor:pointer" title="Filter to ${escapeAttr(c.customer)}">
+    return `<div class="cm-bar-row" onclick="HPE.commissions.setLifetimeCustomer('${window.jsArg(c.customer)}')" style="cursor:pointer" title="Filter to ${escapeAttr(c.customer)}">
       <div class="b-label">${escapeHtml(c.customer)}</div>
       <div class="b-track"><div class="b-fill" style="width:${pct.toFixed(1)}%"></div></div>
       <div class="b-val">${CM_FMT$_K(c.sales)}</div>
@@ -29498,6 +29523,13 @@ function jsAttr(s){
     .replace(/\\/g,'\\\\')
     .replace(/'/g,"\\'");
 }
+// v4.6.2 — Global alias so every module scope (Hub, Used, Kubota, DIS, commissions)
+// can JS-escape an inline on*-handler arg the same way, without each carrying its
+// own helper. This IIFE body runs at load, so window.jsArg is ready before any
+// user-triggered render. Use it (not the HTML-only escapeAttr/escTC/esc) for any
+// value dropped into onclick="...('VALUE')" that could contain an apostrophe —
+// customer names ("O'Brien"), model names ("10' HC"), etc.
+if(typeof window !== 'undefined' && !window.jsArg){ window.jsArg = jsAttr; }
 
 function renderModelDetailPage(){
   const container = document.getElementById('model-detail-content');
@@ -33695,8 +33727,8 @@ function renderModelImages(){
         <div style="font-size:11px;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.04em">${escapeHtml(p.brand) || '<span style="color:var(--gray-400)">no brand</span>'}</div>
         <div style="font-weight:600;color:var(--gray-900);font-family:'DM Mono',monospace;font-size:13px">${escapeHtml(p.model)}</div>
         <div style="display:flex;gap:6px;margin-top:4px">
-          <button onclick="S.replaceModelImage('${S.escapeAttr(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Replace</button>
-          <button onclick="S.removeModelImage('${S.escapeAttr(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid #fecaca;color:var(--red);border-radius:5px;font-size:11px;cursor:pointer">Remove</button>
+          <button onclick="S.replaceModelImage('${window.jsArg(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid var(--gray-200);border-radius:5px;font-size:11px;cursor:pointer">Replace</button>
+          <button onclick="S.removeModelImage('${window.jsArg(p.key)}')" style="flex:1;padding:5px 10px;background:white;border:1px solid #fecaca;color:var(--red);border-radius:5px;font-size:11px;cursor:pointer">Remove</button>
         </div>
       </div>
     `).join('')}
@@ -41200,7 +41232,7 @@ Put each real wholegood part under its section. If a section has no parts to che
       modelInner = '<strong>'+esc(r.model)+'</strong>';
     }
     // v3.13.49 — Merge control + "incl. predecessor" chips.
-    const mergeBtn = '<button onclick="event.stopPropagation();HPE.sectionImpl.kubota.openMergePicker(\''+esc(r.model)+'\',event)" title="Merge a discontinued model into this one" style="margin-left:6px;border:none;background:none;color:var(--gray-300);cursor:pointer;font-size:13px;padding:0 2px;line-height:1" onmouseover="this.style.color=\'var(--orange)\'" onmouseout="this.style.color=\'var(--gray-300)\'">⤳</button>';
+    const mergeBtn = '<button onclick="event.stopPropagation();HPE.sectionImpl.kubota.openMergePicker(\''+window.jsArg(r.model)+'\',event)" title="Merge a discontinued model into this one" style="margin-left:6px;border:none;background:none;color:var(--gray-300);cursor:pointer;font-size:13px;padding:0 2px;line-height:1" onmouseover="this.style.color=\'var(--orange)\'" onmouseout="this.style.color=\'var(--gray-300)\'">⤳</button>';
     const mergeChips = (r.mergedFrom && r.mergedFrom.length)
       ? '<div style="margin-top:3px;display:flex;flex-wrap:wrap;gap:4px">'+r.mergedFrom.map(p => '<span style="display:inline-flex;align-items:center;gap:3px;font-size:9px;background:var(--gray-100);color:var(--gray-600);border-radius:8px;padding:1px 6px" title="Merged in — its sales &amp; stock roll up here">↳ '+esc(p)+' <span onclick="event.stopPropagation();HPE.sectionImpl.kubota.unmergeModel(\''+esc(p)+'\')" style="cursor:pointer;color:var(--gray-400);font-weight:700" title="Unmerge">✕</span></span>').join('')+'</div>'
       : '';

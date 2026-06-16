@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>HPE Sales Platform v4.13.0</title><!-- build:20260616_v4130_parse_column_reorder -->
+<title>HPE Sales Platform v4.16.0</title><!-- build:20260616_v4160_pricebook_column_reorder -->
 <!-- v1.2.2 — App icons (orange tractor on solid black, no rounded corners; OS rounds on home screen). -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB70lEQVR42o2SvWtTYRTGn+e8996Y5uO2pI1ECKbVWpSq+FWwILgJTo6Obq7OTg7iKA7+C+Lm4uKq4CIolZYWG0VMta39yEeT9Da5932PQ8HWUsVnOgfO7xw4/Az2hYAQ/xXy4KgQh7Lmd6XASJrjIQPDKIHVv64GgNNDcv2YlAZoFYYIPKx09flnuxGpU+xnjRAkLgxLN+arJZvx8XTOztW171gakOVtp4BgjxEFnGK5q59artnXfACrutx1Cw1bySFKkDgk+44YX3AqlFujUu9xY0fH8tyK+XDKu3qU10q4fVKuFDmSlrUInRgEzGDAyYI3HuLeWb5dRWBwxMOjaalH8qyq5wqo5M3N41LOyusVjR2Y9nAib0g+mcaHdc7W9f26joaYCMUTre9oJ8Z8Q5t9KLTWVnNmSO5MmPmGVluc2VRAfMPvHY0tMz5vlPFlCwtNpA2E0rMwlRy6CVYjLWek0YNVjuUwMaiLLQ0DPp61WZ8PLnn3L3I4jZffVGLHqaIYUASZAEsdd7mIWgetGCmD7RgzG67R1xiaOCjgLbb0xVdXzrLZw7s12+yh2pTzBdbauvvNn5HefZMEhgOGeR8MDAopAbAWqVX1iDAlWR+TQ+ZHVz9uJiScgkAxLe34T2G4Zx4N/6kqD8MOILvtL5sU2hANLxE/AAAAAElFTkSuQmCC">
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
@@ -3019,7 +3019,7 @@ body.admin-mode .admin-only-block { display: block; }
     <div class="topbar-left">
       <div class="topbar-logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAASgklEQVR42u1aaXRc1ZH+qu5bulvq1m7tkmUjyzbeN2IwNsQbmCUwToA4hiRsExIyySRDQrZJQnKGOdkm+0YmyWTG7EtwwITY4BgIi21WG2+SLVuLN22tVneru9+7t+bHk2XZGPAQnJM5x3V03unz9F7f+1XdqvvVdxs4bafttJ2203ba/h8bvePXmECABF9BEIFg6Pr3CyCYNwD95tNkAv8N8ZwsACYw4A9NhwodPreK51eg0KXuQdnVj+aE7BuQg2l4Rp8Qjzk1YOhkXC6AEQCwmOdV8ofG0mWjUVogEIIBFIEFWtKDtCdBO+KypRev9WBb3LQNSEYLjsycaeh7/kYARozHZ8T4qrG4ZhwayzmXwe/3mHv3yNZeCllSFqKKiEwp4ellPLFQqqICGxBIRlr68VoPb+ySjYfllW6J5wwgBNC7h+RtImCzWlZLN4znixoA4LF95re7sKkLBQ7NLUdY0Q+26PFFPL+SdsSla1CyGmGb6vJxZpFML6UZZdRYCISAnEmk+boNuH93jvBuriV6M9+L4D3l1u8W8hnF1NwtP9smj7cjZOOsUTypGAMeWvvl5wtw/276+NN6YQ1q8nhUiFymrEhXRjpSaE9KPCNKoSLME4vMhxr58CAvezQTsVRTIb/c7b0rSKw3A+ALXTNeDWjMe8BsPIRF1bhhAqc1Nh7W97SY3owh0FdmqPGF1DVo7m42gTuYqDKChhiNLeDzqihmsxFkDf2pTe5spvqoBuiXC6wDabzcDcXwzSmqTQQA4wqtxkLn6nHOJya5353rjgrz8AOKUOBw+0p7yxWOzawIFkGdIJyUZ9OMMuveRaGQYgBjYur1K5wiV73zPeg4X5/wrggA7Ir7zfHcZWOk0Dbb+szhQeMwFIEBLchqZIVCtiiGlqG/4cKlCIrAJClPXury9wyYuigxoTREWUFfVuNdygR+m9pPxEAiR9oQYWiWwcBaxNPiMCk6xpVBzQ2eNAKLwIS+nIzOhxEcGpR17fwuef8tARBgBFEbIQUtMuDJcQ7TQp6GQ2LxW7kywNM2gLEFDGBeuZoxSmaXKRzZ1E8ZAAKAygixEJgSvrxhmYkP2Ao2vVVBDl5rHTBV+QRgUoksbPRroji1OTBs1fmcFViK4rmjsxm+Zg1ZChafOIDBhhWkREfKjAqBCRkNeKTN0AM4RWV02D3VEUr5cAh9GTOc3MF/BchpKCLFNHwnKFDD1AOCgBh1JCWeJSPozSKpOWdM8MwQqyVAht6SvxLAsNssBgzGxJD04Gnpzkiwu41E4Guxie1jk1jL0IaQb1PEQljBUVBMD+81E4ut5w/J5auxbwAxR2U0ctroYykrEdT/hfwdA0ARtAzNUmsAMOCWhBkb47DiuOhhDIG/s1osGJtHcjX+aJP1kSZEbVPgUNiCw0IEIvK1WIp9kYwPQ8j5POBRX4b3p2lfUpr7sbNPWvqlJyu+GLwxmG8LIKiSFqvJxSgLUXDrxS7Zl0B9VL4+y1q9lx9p8wKQgWUNiIZyIHi9JES3n0WuJSkfisRlithwjwwi2mS0cZmISDnCJDaDWYggQoM+H07J9n5+9qCs3y+bukxO6wDGW0TDGrmmbxhvf3ySijkocqUoH/DMgGcymtd20H+8KivHcYHrrGrOBY4BJKfBRBYNuV8L6qLwgFufpa5BSuTQ70ELuUoqI5hewrNGYWIhN8TE15L2QYRBDRHxBATYjNIIFsX0hfWc8dX2Pn64Va1qNi0J/20iEDj1+gn2BTXqk894W/sk38aSWuuLM7g2on0xK8bhvGp1yaPmoxNUS8J64ZBvM4xQThMIzggKUeRSeVi+P1eMUMpHd0ZaB2hXP17plh9tkf6cido4v8b65hxuiuqkBhGFbS62BSIZDykfqSxIoFg3FeKrs/HJyern29TXN3u+MSfcvNXwJwP64VbdlpSMlkROXu7WD++lJXWqMmx6Bqk0bN5brf51k3x4HK/rCGoIXVyvplfg1zvQmTQWQQumlPCKMzCoxWKJWFIalimj4LJV4OKbc3h6mXq4VW/rM6v30uVjuDzPPHeQr3lStvVRe5JCFlVGUOjCUVAEDZPyxWZZ3CA1edYjewUkbwqACQfS8p5y9bEz7ZxRC2uowOHtfXpdJz7YyBElAx7qYtKfwSu9GBOjrb0GoGX1PKucfrsN7UkTMKJZZbx8DKX9ITaRM5T1oUgeb+fbX9ZLauncCrWmXSdy4om6dDTCim7brDd0mjNi6u4WuW83beklZmQN5wwxUdZQxqPOJO7fbU7Inni45M8epa6baM2rpG/OUedU8KFBijpqR5//5Rcoz2YG4oPm+vE4kJKpJZbNBIivAYE9gkp4Qp5QxKbiEIpDKHSgSIochBWdU6G2dNOKcajNU0Ty4B6zN0GV+fqGicpm3HSmPHoBPj9VjJEP/FFm3ufNvt8fu0rPvE9Pu9f8eAtNLmE5EftQw63jVWPUH9vk9pf9dR3yYKssqqapJdifwoYDsqRWNcRMWnNJmPb006FBZI05mJYlNWpWBe7cidYBQ4AQ2pN8XyvuaTHrD9CufsoKF7hUlgcFrGqRbXE5r5qM0F8OmpSPaSU8rcyw8G92mn0pXjGB6vPN4gZZVGmt2mUSniwf7exOmMODeO5ytSMur3QbRTBvjEBQaL+3xX/qgOcbs2/AT3t6YrG1rF794SJ3WT1/bbN2mAjI+lhah86ULKhUFiNkk5VPMQeKoBgieF8dD+bkLwf0/+z0v/C8t2S1N+8huXE9FYTp6Q/Qwir6r+10aQMRiGDWdkI0jS+Uunxe3eqtXIuNPVZbwppVY26dYROoM218kYU1XFVxpBbTm+8DQS0KwBDhC8/nAF0aVsvqrQda9OYunlTs9+d4YiFymlxLTS3Enc3IEW3ughZojTFRNbec7msdWfVkb8K/Yxt+tV19brr697NxMGGEaXSMWxN602HTk6GKCM0oo/akXrUzt2on10a5OgIiI5BnDnoAOlNy5cOS9o76+gRJTIABnVVuX9OkOpLclzVEqM23chrPH/I8Y1I+XzlBWTB5YXn5MDZ3ycpGnFFAZGRRNRZX2y91821z1I+2mv1pUx5Wn5pqza+yKvOspkLVEOODKfNkp/96r7qqEVHbbO7i7X0m5dElo7muwLQm6IlOcRW0SCJnOlKmI2lwhNR0Z+T1HtNUpJrjepgmHgMgWFiLa9SDS60pJbyykda0oTdrljdY6y/lIlf9eT9e6dGdSWVbvD9Jzx+iiIWltbAU2QqFLr0ex5go7epHf05+OM+pyrc/OZUe2Yv+jIk6MEIDHn33bPv2l0zMVfMbMZDkh/YaXzC7nGeVm/4M37NbCDLUzfGxUyQUujy5mF7rMSfeyIKn/6GB9qfYYa+phD41xf6nZ8wjbaZvHX95Fm+spovW6HX76VfbPEAaolbrgL6zRQDU51sdKdFibptt/esm76cL3Oe79Kqd3h2v08wydcVYZcMwYfkYbo4jZMmtz/kZX90yTXqz9kOt5lCKtMaYfDFCR5eHHNc5IaehDRW5qjzCLtGuhD94RA5QQaQEmF6m5pbL2JhZ/jjHszKo0ZbUO+L6l9v0zDL6xhy1utXEs9pV9PFJ9ob9fjDOl2ZYr/aapTVqTwIfbFSP7jN37colPUn5pqVfP7zXPLjXf6DVZA1dXINnD9L1E2hdO51RgJXTzdUNNL1EIBgV5roo59lU7FLEojxriMlGLIraXODy/EoVsdCTxUea1PxydTgjHSkTSIZHk3jA49qoebJDPdjqnVvB4wt5Z1yPjqrWAblhg3/PEvuW6WrFWt0QRVqb0hA7SghEQmlP8myUR0QET+3PjRDF4BvTEFM3jFf37jbvW2suredvzaVxd+kvvMBJjxsLoIgC9y2pw+JaFc8iq8UIEjn4RgQEIiapDvPNz+iWfv+LL/iTi62SMORIoKyRLSK7tKYNTHI4I+OLIMBDF1i7E7jmCf/qJ/zRUb5stN2R0iGmmydZBSGUOBTPmiKXuwelM0Xb+3wA4wrU8rH07AFsOKCZ5PAgikJ892La2ofVrbjuz9LcrwFZ/jhC6mjvqg0spvoopz3py2FiEeyhTBARMRDPyDkVaksPssJtA/rYHCBA4LAGVEvCGEF/ThwLAL6ySX/nbH76Mmv2A/6VDTQ2Kr/cSc395q4WD6Azi2hhtYo5VOAQM/15v5lZaj14gZX06cszzM1P0292+ilPf+wpYzN9fbb1jTl0/QYB6Esz7R9v8fpzxyRldZ56cTn94DW6e7c89T5KecIItkciEjDlW/RYO3/2WbOwTv1sqyaCyIiemAgwEuSGOaIo/2GvP/1ePyOyZpn91CH6yQ49OoqW/mBgqYxQvycMFISoK2OM0Lfm8p4EfF9HHP8XC6ghygDCFjyDL77gfW2z1Ef5c1Os68fBMxI0kwSo4MoI26IYRa7YKugBRCBC4gM5beI5M2eU6c2an23NDcvD1nDWZ30GozREBIQUeSbYHzjtm6Wr9a4VtKIR/7hBzx1F1XnWVY0q7WNqEX1vi3Zt9GbwYpdMK+X6KHckzJQyc8uzKu3J+8eqb7+i8yx64iLnd83659v8mWXqhct4zkM67R/tUQN3iUBraJHhrnCowAgIxAADGQ2XkWdR+khXxcNVy4BgMLOMBCgNIZ4BQPctcicXWwOevm69SXoEcJHLf+rwVzX7D+zx21M4nBaXqcpFb0YvqaWER03FWLOPv/OK99PXfU9TWHF3Ru7ZY/5tLv/kXFURpm+/Ji91+wAdt60SoBScof5OIEI0kjwEBISIqCGmhkutNbJoxFO8fIzc8rwqDdGBQcOEsoh5+nKe95C9pk0PeHR2herN4NWeIWZ7OCPdWdGCZksCCWNQS0EYj7ULkxDQl0NhCIMp+cGW3P171BOXqFIXV67Txa66fLT1nztzI3WCjJbmPm5LCpNoAy0QEwghNJTLJCDWRrb3mWEV5Cidrsk3u/q5LGweWmotrFJbegxBzlvtP9aGR5dRgc3/PF0VuzizmBbXqPmV1gW1dmWEejKye8CP5wwAh8k3osTEs5BAXdTGHcoy6kzpeb/X08r4zCL+1QKeUirD4lwQio6UzHjAv7vFxBwoZaK2FNpS7KIkJCVhlEaoKEp9OT44iJFChjXcEac0jY7J5i7rwiZ5oNXEcwhOjlauw6sfUHcs4Guf8OJZKXIwt4JBVOjSw61ai5DIqJAF6KRvxCjPUH0+Au7uKMr4AOjX57l3Neu1nd7Ue+l7Z6uYg8+u9ZjEHLPWpbGAL6xXu+Nmay8OpJD00J9DPCcJj+NZk9XqyU49tUTNKuNfbBshLwRaUNRRdy5xm1eGvjrLBchm+u/zQ40FFoD5VVbbNSFArWxyVjSGjmMjDtNnJjsAbpxgvbg8tP0qe+sVjs0K4FunhwIN4vvnuHKTe36VfVaZ1bIiFLbeVF5XTDYflfbe+MCEIvvTU+03k1apyCWAFMFievRCZ+eVbsxWimhKifPb851HLgpNKFI2ww50dhoaYW65Myps1eZzy4rQ3YtC8gnrkQvtB5c6n5/mDE/05kl28lrnknqnNGQVu6qp0HpreXSEXEYRW1kc6Dd0nCKqji0DktFBXSMjdH+r+XATzynnNfvkjvlqU5d84mmvO2PMEdlsOP+6M1IRUXsS+sxiNauMX+7iCxtMXYSu36CTnlSE7aSPjYfNrHKuzucN+81d77XXduiujBCdWPAhgkU8pcSZWkKNBXbCw0DOaKFPT3YsprbkEBE6xsrDXOwqgGxWN010PzzOAVAfVdkb3YvrnbKwCoJGJ3JasUvXNjkAYo5avcxtvTrc8qHQRfUWACZaf3HottkOwCUhddNEd/0l4fdWWScjr8ccnlmmKiIckGoAN06wt77fjVhMR4KvhhW8z86wrmx0mgpUfVTljPnhPPXcQXqtx3/qIB9Is5AS0Tl9AmGDCVmNhdXWoUEcTOu7muW5Q+b7r+qXuoeOYboy9NMFtK2HLaZrxtF1G7wtveZkzoyzWg6kJenJkajwi90ys8TaM4AD6RFBCKAUuhy1+fxqa1wBAzSlRE0sGj58YSZ+ax27PMzLx4QKHTUSWH2+qoooAFePsxPXunV59tiotbg6FFJ0ktr6cJoR8dSy0PnV7oRCtyrPevsj7pEN0UmaIl5aF4pYyqLg3Ilumug0fzBUm2+5Sv3LtNBNE0OfmRwaG3tnJ3zEdILSpI47kggIlpGhD3LSR3FMMDLEBdM+zal0HSXr9/tjCjnf4f1pdCZle1w/1u73Zd/h2aqMmOep/gUJOcwjlgmNLC+nfPi/8uCfjl9XR0r33/nUT9tpO22n7R3Z/wIzwP54CIDwvwAAAABJRU5ErkJggg==" alt="HPE"></div>
       <div class="topbar-title">Hyde Park Equipment<span id="topbar-section-sub">Sales Platform</span></div>
-      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.13.0</div>
+      <div class="topbar-version" id="topbar-version" title="What's new — click for changelog" onclick="HPE.ui.showChangelog()" style="font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:#6b6b6b;background:rgba(0,0,0,0.05);padding:3px 7px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;cursor:pointer">v4.16.0</div>
       <div class="sync-status" id="sync-status" style="display:none;font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;letter-spacing:0.02em;flex-shrink:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;align-items:center;gap:5px"></div>
     </div>
     <div class="data-status" id="data-status" aria-label="Data load status"></div>
@@ -3618,6 +3618,12 @@ body.admin-mode .admin-only-block { display: block; }
          grows Series and Subgroup edit columns; an "Apply to all visible"
          mini-bar appears below the toolbar for assigning a value to every
          row currently filtered into view at once. -->
+    <!-- v4.14.0 — Columns menu (everyone): toggle which columns show. Starts from
+         the brand's admin default; changes are session-only. -->
+    <div style="position:relative;display:inline-block">
+      <button class="filter-select" type="button" onclick="S.renderPbColumnsMenu()" style="cursor:pointer;border:1px solid var(--gray-200);background:#fff;font-size:12px;font-weight:600;color:var(--gray-700);padding:7px 12px;border-radius:7px;white-space:nowrap" title="Show or hide columns">Columns ▾</button>
+      <div id="pb-cols-menu" style="display:none;position:absolute;left:0;top:calc(100% + 4px);background:#fff;border:1px solid var(--gray-200);border-radius:8px;box-shadow:var(--shadow-md);padding:6px;z-index:30;min-width:160px"></div>
+    </div>
     <button class="filter-select admin-only" id="pb-bulk-edit-btn" onclick="S.togglePriceBookBulkEdit()" style="display:none;cursor:pointer;border:1px solid var(--gray-200);background:#fff;font-size:12px;font-weight:600;color:var(--gray-700);padding:7px 12px;border-radius:7px;white-space:nowrap" title="Bulk-edit Series/Subgroup on filtered rows">✎ Bulk edit groups</button>
     <button class="filter-select admin-only" onclick="S.openBrandResultsEditorFromPriceBook()" style="cursor:pointer;border:1px solid var(--orange);background:#fff;font-size:12px;font-weight:600;color:var(--orange);padding:7px 12px;border-radius:7px;white-space:nowrap" title="Open the full editor for the selected brand: re-categorize models, rename/reorder sections, edit descriptions">✎ Edit price book</button>
     <div class="toolbar-stats" id="result-count"></div>
@@ -3647,14 +3653,14 @@ body.admin-mode .admin-only-block { display: block; }
     <table>
       <thead>
         <tr>
-          <th onclick="S.sortBy('brand')" id="pb-th-brand" style="cursor:pointer;user-select:none">Brand <span id="pb-ind-brand" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('model')" id="pb-th-model" style="cursor:pointer;user-select:none">Model <span id="pb-ind-model" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('desc')" id="pb-th-desc" style="cursor:pointer;user-select:none">Description <span id="pb-ind-desc" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('msrp')" id="pb-th-msrp" style="text-align:right;cursor:pointer;user-select:none">MSRP <span id="pb-ind-msrp" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('promo')" id="pb-th-promo" style="text-align:right;cursor:pointer;user-select:none">Promo <span id="pb-ind-promo" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('cost')" id="pb-th-cost" style="text-align:right;cursor:pointer;user-select:none">Cost <span id="pb-ind-cost" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('stock')" id="pb-th-stock" style="cursor:pointer;user-select:none">Stock <span id="pb-ind-stock" style="color:var(--gray-300);margin-left:3px">↕</span></th>
-          <th onclick="S.sortBy('popular')" id="pb-th-flags" style="cursor:pointer;user-select:none;min-width:104px" title="Sort by Popular (brings Popular models to the top)">Flags <span id="pb-ind-popular" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('brand')" id="pb-th-brand" class="pb-col-brand" style="cursor:pointer;user-select:none">Brand <span id="pb-ind-brand" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('model')" id="pb-th-model" class="pb-col-model" style="cursor:pointer;user-select:none">Model <span id="pb-ind-model" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('desc')" id="pb-th-desc" class="pb-col-desc" style="cursor:pointer;user-select:none">Description <span id="pb-ind-desc" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('msrp')" id="pb-th-msrp" class="pb-col-msrp" style="text-align:right;cursor:pointer;user-select:none">MSRP <span id="pb-ind-msrp" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('promo')" id="pb-th-promo" class="pb-col-promo" style="text-align:right;cursor:pointer;user-select:none">Promo <span id="pb-ind-promo" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('cost')" id="pb-th-cost" class="pb-col-cost" style="text-align:right;cursor:pointer;user-select:none">Cost <span id="pb-ind-cost" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('stock')" id="pb-th-stock" class="pb-col-stock" style="cursor:pointer;user-select:none">Stock <span id="pb-ind-stock" style="color:var(--gray-300);margin-left:3px">↕</span></th>
+          <th onclick="S.sortBy('popular')" id="pb-th-flags" class="pb-col-flags" style="cursor:pointer;user-select:none;min-width:104px" title="Sort by Popular (brings Popular models to the top)">Flags <span id="pb-ind-popular" style="color:var(--gray-300);margin-left:3px">↕</span></th>
           <th></th>
         </tr>
       </thead>
@@ -4832,8 +4838,8 @@ const HPE = (function(){
 
   // -- CONFIG ---------------------------------------------------------------
   const config = {
-    version: '4.13.0',
-    build: '20260616_v4130_parse_column_reorder',
+    version: '4.16.0',
+    build: '20260616_v4160_pricebook_column_reorder',
     googleClientId: '659141396162-8iilhoicrtpnnpie0m88m8f69lulgg4l.apps.googleusercontent.com',
     // v3.14.0 — Cloudflare Worker proxy for live DIS Quantum API lookups.
     // The Worker validates our Google access token and holds the DIS key
@@ -4855,6 +4861,9 @@ const HPE = (function(){
   // TOP of this array. Keep notes short and rep-facing (what they'd notice),
   // not internal implementation detail. Newest first.
   const CHANGELOG = [
+    { v: '4.16.0', date: 'Jun 16 2026', note: 'Price Book: you can now set the column ORDER per brand too. In “✎ Edit price book”, the “Columns reps see” list has ▲▼ buttons to arrange them left-to-right exactly how you want each brand to read for the reps. That completes per-brand display control: grouping, sort, which columns show, and their order. (Stihl keeps its parts layout.)' },
+    { v: '4.15.0', date: 'Jun 16 2026', note: 'Price Book: you can now choose which columns reps see per brand — in “✎ Edit price book” there’s a “Columns reps see” row (e.g. hide Cost from reps for a brand). The Price Book also gets a “Columns ▾” menu so anyone can show/hide columns for their own session. The brand’s setting is the default reps load into. (Column reorder is the last piece, coming as its own update.)' },
+    { v: '4.14.0', date: 'Jun 16 2026', note: 'Price Book: you can now set a default view per brand for your reps — in “✎ Edit price book” pick how that brand opens (Group by Series/Subgroup, and a default sort). When a rep selects that brand it loads that way automatically; they can still change it for their own session.' },
     { v: '4.13.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: you can now reorder the columns — the Columns ▾ menu has ▲▼ buttons next to each column to move it left/right. Your order (and which columns are hidden) is remembered per brand. That completes the parse-screen customization: inline-edit everything, search, sort, show/hide, reorder.' },
     { v: '4.12.0', date: 'Jun 16 2026', note: 'Parse / Edit-results screen: added an editable Category column, so you can set each model’s category right in the review table (it commits to the model). It pre-fills from a model’s existing category when you re-open the results, and it’s sortable + hideable like the others. Also: your Columns show/hide choices are now remembered per brand.' },
     { v: '4.11.1', date: 'Jun 16 2026', note: 'Brand logo upload now accepts WebP (and JPG) files, not just PNG. WebP/JPG are auto-converted to PNG on upload so they keep transparency and still embed correctly in quote PDFs.' },
@@ -28363,8 +28372,97 @@ function onBrandFilterChange(){
   // v2.0.10.21 — Clear parts-mode selection when brand changes; selections
   // are scoped to a single brand context.
   if(typeof _pmSelected !== 'undefined' && _pmSelected.clear) _pmSelected.clear();
+  // v4.14.0 — Load the brand's admin-set default view (grouping + sort) so reps
+  // open into the layout the admin designed. They can still change it afterwards.
+  if(typeof _pbApplyBrandLayout === 'function') _pbApplyBrandLayout(selectedBrandFilter);
   updatePricebookView();
   filterAndRender();
+}
+
+/* v4.14.0 — Apply a brand's saved default Price Book view (brand.pricebook_layout):
+   default grouping (Group by Series/Subgroup) and default sort. Called when a brand
+   is selected; it just seeds the controls, so the rep can still change them. */
+let _pbColHidden = [];   // v4.14.0 — session-visible hidden columns on the price book
+function _pbSetColVisStyle(hidden){
+  let style = document.getElementById('pb-col-vis-style');
+  if(!style){ style = document.createElement('style'); style.id = 'pb-col-vis-style'; document.head.appendChild(style); }
+  const h = Array.isArray(hidden) ? hidden : [];
+  style.textContent = h.map(k => '#pricebook-table-wrap .pb-col-' + k + '{display:none}').join('');
+}
+function _pbApplyBrandLayout(brandName){
+  const b = brandName ? BRANDS.find(x => x.name === brandName) : null;
+  const layout = (b && b.pricebook_layout && typeof b.pricebook_layout === 'object') ? b.pricebook_layout : null;
+  const gb = document.getElementById('groupby-select');
+  if(gb) gb.value = (layout && typeof layout.groupBy === 'string') ? layout.groupBy : '';
+  if(layout && layout.sort && layout.sort.field){
+    currentSort.field = layout.sort.field;
+    currentSort.dir = (layout.sort.dir === 'desc') ? 'desc' : 'asc';
+    userSortActive = true;  // honour the admin default instead of the in-stock/popular priority sort
+    if(typeof refreshPricebookSortIndicators === 'function') refreshPricebookSortIndicators();
+  }
+  // v4.14.0 — Column visibility: reset the session to the brand's admin default
+  // (reps can re-toggle via the Columns menu; their changes are session-only).
+  _pbColHidden = (layout && Array.isArray(layout.hidden)) ? layout.hidden.slice() : [];
+  _pbSetColVisStyle(_pbColHidden);
+}
+// v4.14.0 — Rep-facing Columns menu toggle (session only — doesn't change the
+// brand default the admin set).
+function pbToggleColVis(key, visible){
+  const set = new Set(_pbColHidden || []);
+  if(visible) set.delete(key); else set.add(key);
+  _pbColHidden = Array.from(set);
+  _pbSetColVisStyle(_pbColHidden);
+}
+
+/* v4.15.0 — Per-brand price-book COLUMN ORDER. The price book table is static
+   HTML, so we reorder the `pb-col-*` cells in place (header + each data row) by
+   idempotent DOM moves — always pulling the movable cells to the front in the
+   chosen order, leaving non-movable cells (quote button, Stihl quick-code,
+   admin bulk-edit) where they sit. Stihl always uses the DEFAULT order because
+   its rows carry an extra quick-code cell that must stay right after Model. */
+const _PB_MOVABLE_COLS = ['brand','model','desc','msrp','promo','cost','stock','flags'];
+function _pbRepairColOrder(order){
+  const seen = new Set(); const out = [];
+  (Array.isArray(order) ? order : []).forEach(k => { if(_PB_MOVABLE_COLS.indexOf(k) >= 0 && !seen.has(k)){ out.push(k); seen.add(k); } });
+  _PB_MOVABLE_COLS.forEach(k => { if(!seen.has(k)){ out.push(k); seen.add(k); } });
+  return out;
+}
+function _pbEffectiveColOrder(brandName){
+  const b = brandName ? BRANDS.find(x => x.name === brandName) : null;
+  const custom = (b && b.pricebook_layout && Array.isArray(b.pricebook_layout.columns)) ? b.pricebook_layout.columns : null;
+  if(custom && brandName !== 'Stihl' && !_pbBulkEditMode) return _pbRepairColOrder(custom);
+  return _PB_MOVABLE_COLS.slice();
+}
+function _pbReorderRowCells(tr, keys){
+  if(!tr) return;
+  const cells = keys.map(k => tr.querySelector(':scope > .pb-col-' + k));
+  if(cells.some(c => !c)) return;  // unexpected structure — leave it alone
+  const frag = document.createDocumentFragment();
+  cells.forEach(c => frag.appendChild(c));         // detach in target order
+  tr.insertBefore(frag, tr.firstElementChild);     // re-attach at the front
+}
+// Reorder the header row. Call BEFORE the Stihl quick-code <th> is injected so
+// Model sits in its final spot first.
+function _pbApplyColOrderHead(keys){
+  _pbReorderRowCells(document.querySelector('#pricebook-table-wrap thead tr'), keys);
+}
+// Reorder the data rows. Skipped for Stihl (quick-code cell rides with Model).
+function _pbApplyColOrderBody(keys, isStihl){
+  if(isStihl) return;
+  document.querySelectorAll('#pricebook-table-wrap tbody tr').forEach(tr => {
+    if(tr.querySelector(':scope > td[colspan]')) return;  // group-header / note rows
+    _pbReorderRowCells(tr, keys);
+  });
+}
+// v4.14.0 — Build/toggle the rep-facing Columns menu on the Price Book toolbar.
+function renderPbColumnsMenu(){
+  const menu = document.getElementById('pb-cols-menu');
+  if(!menu) return;
+  if(menu.style.display === 'block'){ menu.style.display = 'none'; return; }
+  const hidden = new Set(_pbColHidden || []);
+  menu.innerHTML = [['brand','Brand'],['model','Model'],['desc','Description'],['msrp','MSRP'],['promo','Promo'],['cost','Cost'],['stock','Stock'],['flags','Flags']]
+    .map(function(c){ return '<label style="display:flex;align-items:center;gap:8px;padding:5px 7px;font-size:12px;cursor:pointer;color:var(--gray-700)"><input type="checkbox" ' + (hidden.has(c[0]) ? '' : 'checked') + ' onchange="S.pbToggleColVis(\'' + c[0] + '\',this.checked)">' + c[1] + '</label>'; }).join('');
+  menu.style.display = 'block';
 }
 
 /* ============================================================
@@ -29015,6 +29113,12 @@ function filterAndRender(){
     _pbThPromo.setAttribute('onclick', `S.sortBy('${_pbShowFleet ? 'fleet_price' : 'promo'}')`);
   }
 
+  // v4.15.0 — Apply the brand's column ORDER to the header now (BEFORE the Stihl
+  // quick-code <th> is injected, so Model is already in its final position). The
+  // body rows are reordered at the end of this function. Stihl/bulk-edit → default.
+  const _pbEffOrder = (typeof _pbEffectiveColOrder === 'function') ? _pbEffectiveColOrder(brand) : null;
+  if(_pbEffOrder) _pbApplyColOrderHead(_pbEffOrder);
+
   // v3.1.x — Stihl-aware header mutation. When the brand filter is set to
   // Stihl, the SKU "Model" field is actually a part number and rows benefit
   // from showing the human-readable Quick Code alongside it. We:
@@ -29207,15 +29311,15 @@ function filterAndRender(){
     const costToShow = (onActivePromo && ePromoCost > 0) ? ePromoCost : (eCost || 0);
     const costStyle  = (onActivePromo && ePromoCost > 0) ? 'color:#dc2626;font-weight:600' : '';
     return `<tr class="${ePromo > 0 ? 'has-promo' : ''}" onclick="S.openDetail(${s.id})">
-      <td><span class="brand-pill" style="${_bPillStyle}">${s.brand}</span></td>
-      <td class="cell-model">${s.model}</td>
+      <td class="pb-col-brand"><span class="brand-pill" style="${_bPillStyle}">${s.brand}</span></td>
+      <td class="cell-model pb-col-model">${s.model}</td>
       ${_pbIsStihl ? `<td class="cell-model" style="color:var(--gray-700);font-weight:600">${escapeHtml(_stihlQuickCodeByPN.get(String(s.model||'').trim()) || '')}</td>` : ''}
-      <td class="cell-desc" title="${(eDesc||'').replace(/"/g,'&quot;')}">${eDesc||''}</td>
-      <td class="cell-num">${_fmtMoney2(eMsrp)}</td>
-      <td class="cell-num">${promoOrFleetCellInner}</td>
-      <td class="cell-num cell-cost" style="${costStyle}">${_fmtMoney2(costToShow)}</td>
-      <td>${stockCell}</td>
-      <td><div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">${flags.join('')||'<span style="color:var(--gray-400);font-size:11px">—</span>'}</div></td>
+      <td class="cell-desc pb-col-desc" title="${(eDesc||'').replace(/"/g,'&quot;')}">${eDesc||''}</td>
+      <td class="cell-num pb-col-msrp">${_fmtMoney2(eMsrp)}</td>
+      <td class="cell-num pb-col-promo">${promoOrFleetCellInner}</td>
+      <td class="cell-num cell-cost pb-col-cost" style="${costStyle}">${_fmtMoney2(costToShow)}</td>
+      <td class="pb-col-stock">${stockCell}</td>
+      <td class="pb-col-flags"><div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center">${flags.join('')||'<span style="color:var(--gray-400);font-size:11px">—</span>'}</div></td>
       <td onclick="event.stopPropagation();S.addToQuickQuote(${s.id})"><button class="quick-quote-btn">+ Quote</button></td>
       ${_pbBulkEditMode ? `<td onclick="event.stopPropagation()" style="background:#fdebe6;padding:4px"><input type="text" value="${escapeAttr(effectiveModelSeries(s))}" onblur="S.bulkEditModelGroup('${jsAttr(s.brand)}','${jsAttr(s.model)}','series',this.value)" placeholder="—" style="width:120px;border:1px solid #fdba74;border-radius:4px;padding:3px 6px;font-size:11px;font-family:inherit"></td>
       <td onclick="event.stopPropagation()" style="background:#fdebe6;padding:4px"><input type="text" value="${escapeAttr(effectiveModelSubgroup(s))}" onblur="S.bulkEditModelGroup('${jsAttr(s.brand)}','${jsAttr(s.model)}','subgroup',this.value)" placeholder="—" style="width:120px;border:1px solid #fdba74;border-radius:4px;padding:3px 6px;font-size:11px;font-family:inherit"></td>` : ''}
@@ -29291,9 +29395,11 @@ function filterAndRender(){
       const bodyRows = rows.map(s => rowHtml(s).replace('<tr ', `<tr data-group-row="${groupId}" `)).join('');
       return headerRow + _noteRow + bodyRows;
     }).join('');
+    if(_pbEffOrder) _pbApplyColOrderBody(_pbEffOrder, _pbIsStihl);  // v4.15.0
     return;
   }
   tbody.innerHTML = filtered.map(rowHtml).join('');
+  if(_pbEffOrder) _pbApplyColOrderBody(_pbEffOrder, _pbIsStihl);    // v4.15.0
 }
 
 // v2.0.10.8 — Collapse/expand a group's rows. Rows are tagged with
@@ -35237,7 +35343,51 @@ function _breRender(){
   });
   colHtml += '</div></div>';
 
-  body.innerHTML = introHtml + colHtml + sectionsHtml + bulkHtml + tableHtml;
+  // v4.14.0 — Default Price Book view for reps (grouping + sort). Saved per brand;
+  // reps load into it and can still change it for their own session.
+  const _lay = (brand.pricebook_layout && typeof brand.pricebook_layout === 'object') ? brand.pricebook_layout : {};
+  const _layGroup = (typeof _lay.groupBy === 'string') ? _lay.groupBy : '';
+  const _laySortField = (_lay.sort && _lay.sort.field) ? _lay.sort.field : '';
+  const _laySortDir = (_lay.sort && _lay.sort.dir === 'desc') ? 'desc' : 'asc';
+  const _gOpt = (v, lbl) => '<option value="' + v + '"' + (_layGroup === v ? ' selected' : '') + '>' + lbl + '</option>';
+  const _sOpt = (v, lbl) => '<option value="' + v + '"' + (_laySortField === v ? ' selected' : '') + '>' + lbl + '</option>';
+  let layoutHtml = '<div style="margin-bottom:14px">' +
+    '<div style="font-weight:700;font-size:12px;color:var(--gray-700);margin-bottom:5px">Default view for reps <span style="font-weight:400;color:var(--gray-400)">— how this brand’s price book opens</span></div>' +
+    '<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">' +
+      '<label style="font-size:12px;color:var(--gray-600);display:inline-flex;align-items:center;gap:5px">Group by ' +
+        '<select onchange="S.breSetLayoutGroupBy(this.value)" style="padding:5px 8px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit">' +
+          _gOpt('', 'No grouping (flat list)') + _gOpt('series', 'Series') + _gOpt('subgroup', 'Subgroup') + _gOpt('series_subgroup', 'Series + Subgroup') +
+        '</select></label>' +
+      '<label style="font-size:12px;color:var(--gray-600);display:inline-flex;align-items:center;gap:5px">Sort by ' +
+        '<select id="bre-sort-field" onchange="S.breSetLayoutSort()" style="padding:5px 8px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit">' +
+          _sOpt('', 'Default (in-stock, popular first)') + _sOpt('model', 'Model') + _sOpt('desc', 'Description') + _sOpt('msrp', 'MSRP') + _sOpt('promo', 'Promo') + _sOpt('cost', 'Cost') + _sOpt('stock', 'Stock') +
+        '</select></label>' +
+      '<label style="font-size:12px;color:var(--gray-600);display:inline-flex;align-items:center;gap:5px">' +
+        '<select id="bre-sort-dir" onchange="S.breSetLayoutSort()" style="padding:5px 8px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px;font-family:inherit">' +
+          '<option value="asc"' + (_laySortDir === 'asc' ? ' selected' : '') + '>Ascending</option><option value="desc"' + (_laySortDir === 'desc' ? ' selected' : '') + '>Descending</option>' +
+        '</select></label>' +
+    '</div>' +
+    // v4.14.0/v4.15.0 — Which columns reps see for this brand (untick = hide; ▲▼ =
+    // reorder). Reps can still re-toggle visibility for their own session via the
+    // Price Book Columns menu. Stihl always uses the default order (parts layout).
+    '<div style="margin-top:8px"><div style="font-size:11px;color:var(--gray-500);margin-bottom:4px">Columns reps see <span style="color:var(--gray-400)">— untick to hide, ▲▼ to reorder</span></div>' +
+      '<div style="display:flex;flex-direction:column;gap:3px;max-width:330px">' +
+        (function(){
+          const _layHidden = new Set(Array.isArray(_lay.hidden) ? _lay.hidden : []);
+          const _labels = {brand:'Brand',model:'Model',desc:'Description',msrp:'MSRP',promo:'Promo',cost:'Cost',stock:'Stock',flags:'Flags'};
+          const _ord = (typeof _pbRepairColOrder === 'function') ? _pbRepairColOrder(_lay.columns) : ['brand','model','desc','msrp','promo','cost','stock','flags'];
+          return _ord.map(function(k, idx){
+            const mv = function(dir, glyph, dis){ return '<button type="button" title="' + (dir < 0 ? 'Move left' : 'Move right') + '" ' + (dis ? 'disabled' : '') + ' onclick="S.breMoveLayoutCol(\'' + k + '\',' + dir + ')" style="border:1px solid var(--gray-200);background:#fff;border-radius:4px;width:20px;height:20px;cursor:pointer;font-size:9px;line-height:1;' + (dis ? 'opacity:.35' : '') + '">' + glyph + '</button>'; };
+            return '<div style="display:flex;align-items:center;gap:6px">' +
+              '<label style="display:flex;align-items:center;gap:7px;cursor:pointer;flex:1;font-size:12px;color:var(--gray-700)"><input type="checkbox" ' + (_layHidden.has(k) ? '' : 'checked') + ' onchange="S.breSetLayoutHidden(\'' + k + '\',this.checked)">' + _labels[k] + '</label>' +
+              mv(-1, '▲', idx === 0) + mv(1, '▼', idx === _ord.length - 1) +
+            '</div>';
+          }).join('');
+        })() +
+      '</div></div>' +
+    '</div>';
+
+  body.innerHTML = introHtml + colHtml + layoutHtml + sectionsHtml + bulkHtml + tableHtml;
 }
 
 function breToggleRow(model, checked){
@@ -35349,6 +35499,51 @@ function breSetColumnLabel(key, value){
   const v = String(value==null?'':value).trim();
   if(v) brand.column_labels[key] = v; else delete brand.column_labels[key];
   if(typeof saveAppState === 'function') saveAppState();
+}
+// v4.14.0 — Per-brand default Price Book view (grouping + sort) for reps.
+function _breEnsureLayout(brand){
+  if(!brand.pricebook_layout || typeof brand.pricebook_layout !== 'object') brand.pricebook_layout = {};
+  return brand.pricebook_layout;
+}
+function breSetLayoutGroupBy(value){
+  const brand = _breState.brand; if(!brand) return;
+  const lay = _breEnsureLayout(brand);
+  const v = String(value == null ? '' : value);
+  if(v) lay.groupBy = v; else delete lay.groupBy;
+  if(typeof saveAppState === 'function') saveAppState();
+}
+function breSetLayoutSort(){
+  const brand = _breState.brand; if(!brand) return;
+  const lay = _breEnsureLayout(brand);
+  const fEl = document.getElementById('bre-sort-field');
+  const dEl = document.getElementById('bre-sort-dir');
+  const field = fEl ? String(fEl.value || '') : '';
+  const dir = (dEl && dEl.value === 'desc') ? 'desc' : 'asc';
+  if(field) lay.sort = { field, dir }; else delete lay.sort;
+  if(typeof saveAppState === 'function') saveAppState();
+}
+// v4.14.0 — Which price-book columns reps see for this brand (unchecked = hidden).
+function breSetLayoutHidden(key, visible){
+  const brand = _breState.brand; if(!brand) return;
+  const lay = _breEnsureLayout(brand);
+  const set = new Set(Array.isArray(lay.hidden) ? lay.hidden : []);
+  if(visible) set.delete(key); else set.add(key);
+  lay.hidden = Array.from(set);
+  if(!lay.hidden.length) delete lay.hidden;
+  if(typeof saveAppState === 'function') saveAppState();
+}
+// v4.15.0 — Reorder a price-book column left/right for this brand's rep view.
+function breMoveLayoutCol(key, dir){
+  const brand = _breState.brand; if(!brand) return;
+  const lay = _breEnsureLayout(brand);
+  const order = (typeof _pbRepairColOrder === 'function') ? _pbRepairColOrder(lay.columns)
+    : ['brand','model','desc','msrp','promo','cost','stock','flags'];
+  const i = order.indexOf(key); const j = i + dir;
+  if(i < 0 || j < 0 || j >= order.length) return;
+  const t = order[j]; order[j] = order[i]; order[i] = t;
+  lay.columns = order;
+  if(typeof saveAppState === 'function') saveAppState();
+  _breRender();  // reflect the new order in the editor
 }
 function _breAfterChange(){
   if(typeof _pbInvalidateSearchIndex === 'function') _pbInvalidateSearchIndex();
@@ -39628,6 +39823,12 @@ function updateCommissionCodes(idx, value){
     breSetBrandIntro: typeof breSetBrandIntro === 'function' ? breSetBrandIntro : undefined,
     breSetSectionNote: typeof breSetSectionNote === 'function' ? breSetSectionNote : undefined,
     breSetColumnLabel: typeof breSetColumnLabel === 'function' ? breSetColumnLabel : undefined,
+    breSetLayoutGroupBy: typeof breSetLayoutGroupBy === 'function' ? breSetLayoutGroupBy : undefined,
+    breSetLayoutSort: typeof breSetLayoutSort === 'function' ? breSetLayoutSort : undefined,
+    breSetLayoutHidden: typeof breSetLayoutHidden === 'function' ? breSetLayoutHidden : undefined,
+    breMoveLayoutCol: typeof breMoveLayoutCol === 'function' ? breMoveLayoutCol : undefined,
+    pbToggleColVis: typeof pbToggleColVis === 'function' ? pbToggleColVis : undefined,
+    renderPbColumnsMenu: typeof renderPbColumnsMenu === 'function' ? renderPbColumnsMenu : undefined,
     renderAdminPermissions: typeof renderAdminPermissions === 'function' ? renderAdminPermissions : undefined,
     renderBrandCardBody: typeof renderBrandCardBody === 'function' ? renderBrandCardBody : undefined,
     renderBrandCardsGrid: typeof renderBrandCardsGrid === 'function' ? renderBrandCardsGrid : undefined,

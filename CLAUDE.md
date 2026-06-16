@@ -276,6 +276,39 @@ Brian Apfelbeck (bapfelbeck@), Adam Mason (adam@).
 - Drive-shared commissions cache (vs per-browser IndexedDB) — only if reps start
   hopping between machines a lot.
 - Label↔route-slug naming cleanup — cosmetic; catch-all already makes it harmless.
+- **Backend / "proper server" migration (long-term architecture)** — parked 2026-06-15,
+  direction discussed. **Recommendation: directionally yes, but incremental (strangler-fig),
+  never a from-scratch rewrite, and keep the single-file UI.** The real ceiling isn't the
+  2.5MB file — it's that the backend is JSON-on-Drive with no transactions / last-write-wins
+  concurrency (the Traded By data-loss incident, the duplicate `app-state.json` consolidation
+  logic, and stray `(1)` files are all symptoms). That risk scales badly with more
+  people/modules writing. The "no server" wall also forces a bolt-on for every event/scheduled/
+  integration feature (DIS → Cloudflare Worker; email → Apps Script). **Amalgamation with
+  coworkers' service modules is the strongest argument FOR a backend** — a shared DB+API is the
+  prerequisite that lets independent front-ends compose into one platform (Google Workspace
+  OAuth already gives shared auth). Recommended managed backend: **Supabase** (Postgres + Google
+  auth + instant REST/realtime + row-level security) or **Cloudflare D1** (already on CF Workers)
+  — both avoid real ops burden. Path: (1) align with coworkers on a SHARED data model/backend
+  BEFORE any code; (2) stand up managed DB+API, UI untouched; (3) migrate one data domain at a
+  time (quotes or trades first) behind the same screens, verify on real data, Drive can mirror
+  during transition; (4) split the single-file UI later, independently. Open scoping Qs for John:
+  what are the coworker modules built on (anyone already on a real DB?), what does "amalgamation"
+  mean (one shell vs shared data/auth/nav), and who maintains it long-term. See
+  [[project_email_notifications]] / [[project_dis_roadmap]].
+- **Email notifications (no-reply, staff-facing)** — parked 2026-06-15, feasibility
+  already scoped. John wants event emails ("New trade evaluation posted") + aging
+  reminders ("quote follow-up due", "trade needs info 15 days — upload pic + list
+  price"). **Hard constraint:** the GitHub Pages app is browser-only with no server,
+  so it can't send mail or run when closed — needs a small always-on helper. Two
+  notification kinds: instant (app pings helper on the event) vs scheduled (a daily
+  timer reads `app-state.json`, finds overdue items, emails the owning rep, and logs
+  sends so nobody's pestered daily — the dedup log is the fiddly part). **Recommended
+  backend: Google Apps Script** (all-Google shop → native Drive read, built-in daily
+  triggers, sends from their own domain so `noreply@hydeparkequipment.ca` gets DKIM
+  for free, no key in the client). Alt: Cloudflare Worker + Resend (matches DIS proxy
+  but needs DNS verification + a service account for Drive). Keep it staff-only (no
+  customer emails → no CASL). Effectively free at their volume. ~0.5 day instant,
+  ~1 day scheduled.
 
 ---
 

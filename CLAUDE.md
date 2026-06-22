@@ -4,6 +4,14 @@
 > current — when something here goes stale, fix it in the same change that made
 > it stale. This file replaces the old "re-upload + paste handoff" ritual.
 
+> 🏗️ **NEW PLATFORM REBUILD — see [`PLATFORM_HANDOFF.md`](PLATFORM_HANDOFF.md) (2026-06-19).** Decided:
+> rebuild HPE's modules (Sales/Service/Parts/Admin) into ONE unified app on a real backend — **Vite +
+> React + TS + Tailwind/shadcn** frontend, **Supabase** (Postgres, Canadian region) backend, **Cloudflare
+> Pages** hosting, in a **SEPARATE repo**. **This `index.html` app stays 100% live/untouched** during that
+> work (parallel build, cut over module-by-module). Start = a live Phase-0 UI skeleton. Full plan +
+> decisions (auth model, Adam Mason's coworker repo, invoice automation) in PLATFORM_HANDOFF.md and the
+> memory files (`project_backend_migration` is the master record).
+
 > ✅ **Kubota UI redesign SHIPPED to live as v4.0.0 (2026-06-15).** `index.html`
 > now carries the full redesign: orange **two-tier side nav** (workspace icon-rail
 > + white page panel, collapsible, hover-flyouts; personal "My …" links live in the

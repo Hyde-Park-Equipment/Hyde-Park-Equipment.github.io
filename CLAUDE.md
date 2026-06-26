@@ -4,13 +4,15 @@
 > current — when something here goes stale, fix it in the same change that made
 > it stale. This file replaces the old "re-upload + paste handoff" ritual.
 
-> 🏗️ **NEW PLATFORM REBUILD — see [`PLATFORM_HANDOFF.md`](PLATFORM_HANDOFF.md) (2026-06-19).** Decided:
-> rebuild HPE's modules (Sales/Service/Parts/Admin) into ONE unified app on a real backend — **Vite +
-> React + TS + Tailwind/shadcn** frontend, **Supabase** (Postgres, Canadian region) backend, **Cloudflare
-> Pages** hosting, in a **SEPARATE repo**. **This `index.html` app stays 100% live/untouched** during that
-> work (parallel build, cut over module-by-module). Start = a live Phase-0 UI skeleton. Full plan +
-> decisions (auth model, Adam Mason's coworker repo, invoice automation) in PLATFORM_HANDOFF.md and the
-> memory files (`project_backend_migration` is the master record).
+> 🏗️ **NEW PLATFORM — BUILT & LIVE.** The rebuild decided in [`PLATFORM_HANDOFF.md`](PLATFORM_HANDOFF.md)
+> (2026-06-19) is now the real app: **"The Hub"**, **live at https://thehub-hpe.com** — repo
+> `Hyde-Park-Equipment/HPE-deck`, local **`C:\Users\johnw\hpe-deck`** (Vite + React + TS + Tailwind/shadcn
+> on Supabase + Cloudflare Pages). **Work on the new platform happens in THAT repo — its
+> `hpe-deck/HANDOFF.md` (status) + `CLAUDE.md` (rules) + `SERVICE_PORT.md` are authoritative; read them
+> there, not here.** As of 2026-06-26 (v0.15.6): Sales at parity, DB seeded with real data, DIS live,
+> Service KPI 13/13 + Warranty started, RBAC gate, 3D branding. **This `index.html` app stays 100%
+> live/untouched** (cut over module-by-module). Original plan/decisions still in PLATFORM_HANDOFF.md +
+> memory (`project_backend_migration`, `project_hpe_deck`).
 
 > ✅ **Kubota UI redesign SHIPPED to live as v4.0.0 (2026-06-15).** `index.html`
 > now carries the full redesign: orange **two-tier side nav** (workspace icon-rail
